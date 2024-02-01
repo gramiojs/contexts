@@ -1,0 +1,27 @@
+{
+    "name": "@gramio/contexts",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "scripts": {
+        "type": "tsc --noEmit",
+        "lint": "bunx @biomejs/biome check ./src",
+        "lint:fix": "bun lint --apply",
+        "build": "bun tsc && bunx tsc-alias"
+    },
+    "devDependencies": {
+        "@biomejs/biome": "1.5.3",
+        "@gramio/types": "^7.0.6",
+        "@types/bun": "^1.0.4",
+        "madge": "^6.1.0",
+        "tsup": "^8.0.1",
+        "typescript": "^5.3.3"
+    },
+    "peerDependencies": {
+        "@gramio/types": "^7.0.6"
+    },
+    "dependencies": {
+        "inspectable": "^2.1.0",
+        "middleware-io": "^2.8.1",
+        "reflect-metadata": "^0.2.1"
+    }
+}
