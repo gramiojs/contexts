@@ -1,5 +1,7 @@
 {
     "name": "@gramio/contexts",
+    "version": "0.0.1",
+    "description": "WIP",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "scripts": {
@@ -10,16 +12,19 @@
     },
     "devDependencies": {
         "@biomejs/biome": "1.5.3",
-        "@gramio/types": "^7.0.6",
-        "@types/bun": "^1.0.4",
+        "@gramio/types": "^7.0.14",
+        "@types/bun": "^1.0.5",
         "madge": "^6.1.0",
         "tsup": "^8.0.1",
-        "typescript": "^5.3.3"
+        "typescript": "^5.3.3",
+        "gramio": "^0.0.1",
+        "inspectable": "^2.1.0",
+        "middleware-io": "^2.8.1",
+        "reflect-metadata": "^0.2.1"
     },
     "peerDependencies": {
-        "@gramio/types": "^7.0.6"
-    },
-    "dependencies": {
+        "@gramio/types": "^7.0.14",
+        "gramio": "^0.0.1",
         "inspectable": "^2.1.0",
         "middleware-io": "^2.8.1",
         "reflect-metadata": "^0.2.1"

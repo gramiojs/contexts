@@ -7,7 +7,7 @@
 
     /* Bundler mode */
     "moduleResolution": "NodeNext",
-    
+    "declaration": true,
     /* Linting */
     "skipLibCheck": true,
     "strict": true,
@@ -22,5 +22,6 @@
       "#*": ["./*"],
     }
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": ["dist"]
 }
