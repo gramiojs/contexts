@@ -1,7 +1,5 @@
-import * as Interfaces from "@gramio/types/objects";
+import * as Objects from "@gramio/types/objects";
 import * as Params from "@gramio/types/params";
-
-import type { MediaInput } from "../../TODO";
 
 import type { Optional } from "#utils";
 
@@ -29,7 +27,7 @@ class ChatControlMixin {
 
 	/** Sets default chat permissions */
 	setChatDefaultPermissions(
-		permissions: Interfaces.TelegramChatPermissions,
+		permissions: Objects.TelegramChatPermissions,
 		params?: Optional<
 			Params.SetChatPermissionsParams,
 			"chat_id" | "permissions"
@@ -44,7 +42,7 @@ class ChatControlMixin {
 
 	/** Sets a new profile photo for the chat */
 	setChatPhoto(
-		photo: MediaInput,
+		photo: Params.SetChatPhotoParams["photo"],
 		params?: Optional<Params.SetChatPhotoParams, "chat_id" | "photo">,
 	) {
 		return this.bot.api.setChatPhoto({

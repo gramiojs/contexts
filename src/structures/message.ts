@@ -448,7 +448,7 @@ export class Message {
 	get replyMarkup() {
 		const { reply_markup } = this.payload;
 
-		if (!reply_markup) return undefined;
+		if (!reply_markup || !("inline_keyboard" in reply_markup)) return undefined;
 
 		return new InlineKeyboardMarkup(reply_markup);
 	}
