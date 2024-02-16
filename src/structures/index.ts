@@ -84,3 +84,4 @@ export * from "./video-chat-started";
 export * from "./web-app-data";
 export * from "./web-app-info";
 export * from "./write-access-allowed";
+export * from "./chat-boost-added";

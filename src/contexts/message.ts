@@ -316,13 +316,6 @@ class MessageContext extends Context {
 		return this.viaBot !== undefined;
 	}
 
-	// INFO: deprecated methods
-
-	/** @deprecated use `attachment` instead */
-	get attachments() {
-		return [this.attachment] as Attachment[];
-	}
-
 	/** @deprecated use `hasAttachmentType(type)` and `hasAttachment` instead */
 	hasAttachments(type?: AttachmentType | AttachmentTypeEnum) {
 		if (type === undefined) {
@@ -370,6 +363,7 @@ inspectable(MessageContext, {
 			from: context.from,
 			createdAt: context.createdAt,
 			chat: context.chat,
+			senderBoostCount: context.senderBoostCount,
 			replyMessage: context.replyMessage,
 			viaBot: context.viaBot,
 			updatedAt: context.updatedAt,

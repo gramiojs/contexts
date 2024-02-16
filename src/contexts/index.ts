@@ -45,3 +45,4 @@ export * from "./video-chat-scheduled";
 export * from "./video-chat-started";
 export * from "./web-app-data";
 export * from "./write-access-allowed";
+export * from "./boost-added";

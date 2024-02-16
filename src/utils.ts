@@ -37,7 +37,8 @@ export type MessageEventName =
 	| "passport_data"
 	| "giveaway_created"
 	| "giveaway_completed"
-	| "giveaway_winners";
+	| "giveaway_winners"
+	| "boost_added";
 // | "removed_chat_boost";
 
 export type CustomEventName = "service_message";
@@ -195,6 +196,7 @@ export interface ContextsMapping {
 	pre_checkout_query: Contexts.PreCheckoutQueryContext;
 	proximity_alert_triggered: Contexts.ProximityAlertTriggeredContext;
 	write_access_allowed: Contexts.WriteAccessAllowedContext;
+	boost_added: Contexts.BoostAddedContext;
 	forum_topic_created: Contexts.ForumTopicCreatedContext;
 	forum_topic_edited: Contexts.ForumTopicEditedContext;
 	forum_topic_closed: Contexts.ForumTopicClosedContext;
@@ -252,6 +254,7 @@ export const SERVICE_MESSAGE_EVENTS: MessageEventName[] = [
 	"successful_payment",
 	"proximity_alert_triggered",
 	// passport_data?
+	"boost_added",
 ];
 
 /** Like `Require<O, K>` but it sets `V` as the value for `K` values */
@@ -332,6 +335,7 @@ export const EVENTS: [keyof Message, MessageEventName][] = [
 	["chatShared", "chat_shared"],
 	["proximityAlertTriggered", "proximity_alert_triggered"],
 	["writeAccessAllowed", "write_access_allowed"],
+	["chatBoostAdded", "boost_added"],
 	["forumTopicCreated", "forum_topic_created"],
 	["forumTopicEdited", "forum_topic_edited"],
 	["forumTopicClosed", "forum_topic_closed"],

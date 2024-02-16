@@ -1,3 +1,4 @@
+import { TelegramMessage } from "@gramio/types";
 import { ChatType, memoizeGetters } from "#utils";
 import type { Require, RequireValue } from "#utils";
 import { Chat, User } from "../../structures";
@@ -38,6 +39,14 @@ class TargetMixin {
 		if (!sender_chat) return undefined;
 
 		return new Chat(sender_chat);
+	}
+
+	/**
+	 * *Optional*. If the sender of the message boosted the chat, the number of boosts added by the user
+	 */
+	get senderBoostCount() {
+		return this.payload
+			.sender_boost_count as TelegramMessage["sender_boost_count"];
 	}
 
 	/** Conversation the message belongs to */

@@ -1,6 +1,7 @@
-import { Inspectable } from "inspectable";
+import { Inspect, Inspectable } from "inspectable";
 
 import { TelegramObjects } from "@gramio/types";
+import { Chat } from "./chat";
 
 @Inspectable()
 export class Story {
@@ -8,5 +9,17 @@ export class Story {
 
 	get [Symbol.toStringTag]() {
 		return this.constructor.name;
+	}
+
+	/** Unique identifier for the story in the chat */
+	@Inspect()
+	get id() {
+		return this.payload.id;
+	}
+
+	/** Chat that posted the story */
+	@Inspect()
+	get chat() {
+		return new Chat(this.payload.chat);
 	}
 }

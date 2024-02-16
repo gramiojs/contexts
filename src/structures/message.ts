@@ -55,10 +55,12 @@ import {
 } from "./attachments";
 
 import { memoizeGetters } from "#utils";
+import { ChatBoostAdded } from "./chat-boost-added";
 import { Giveaway } from "./giveaway";
 import { GiveawayCompleted } from "./giveaway-completed";
 import { GiveawayCreated } from "./giveaway-created";
 import { GiveawayWinners } from "./giveaway-winners";
+import { Story } from "./story";
 
 /** This object represents a message. */
 @Inspectable()
@@ -164,6 +166,16 @@ export class Message {
 		if (!reply_to_message) return undefined;
 
 		return new Message(reply_to_message);
+	}
+
+	/**  For replies to a story, the original story */
+	@Inspect({ nullable: false })
+	get replyStory() {
+		const { reply_to_story } = this.payload;
+
+		if (!reply_to_story) return undefined;
+
+		return new Story(reply_to_story);
 	}
 
 	/** Information about the message that is being replied to, which may come from another chat or forum topic */
@@ -668,6 +680,16 @@ export class Message {
 		if (!write_access_allowed) return undefined;
 
 		return new WriteAccessAllowed(write_access_allowed);
+	}
+
+	/** Service message: chat boost added */
+	@Inspect({ nullable: false })
+	get chatBoostAdded() {
+		const { boost_added } = this.payload;
+
+		if (!boost_added) return undefined;
+
+		return new ChatBoostAdded(boost_added);
 	}
 
 	/** Service message: forum topic created */

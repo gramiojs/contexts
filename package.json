@@ -13,7 +13,7 @@
     },
     "devDependencies": {
         "@biomejs/biome": "1.5.3",
-        "@gramio/types": "^7.0.17",
+        "@gramio/types": "^7.1.0",
         "@types/bun": "^1.0.5",
         "gramio": "^0.0.8",
         "inspectable": "^2.1.0",
@@ -24,7 +24,7 @@
         "typescript": "^5.3.3"
     },
     "peerDependencies": {
-        "@gramio/types": "^7.0.17",
+        "@gramio/types": "^7.1.0",
         "gramio": "^0.0.8",
         "inspectable": "^2.1.0",
         "middleware-io": "^2.8.1",

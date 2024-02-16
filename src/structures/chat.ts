@@ -365,6 +365,22 @@ export class Chat {
 	get linkedChatId() {
 		return this.payload.linked_chat_id;
 	}
+
+	/**
+	 * For supergroups, the name of the group's custom emoji sticker set. Custom emoji from this set can be used by all users and bots in the group. Returned only in [getChat](https://core.telegram.org/bots/api/#getchat).
+	 */
+	@Inspect({ nullable: false })
+	get customEmojiStickerSetName() {
+		return this.payload.custom_emoji_sticker_set_name;
+	}
+
+	/**
+	 * For supergroups, the minimum number of boosts that a non-administrator user needs to add in order to ignore slow mode and chat permissions. Returned only in [getChat](https://core.telegram.org/bots/api/#getchat).
+	 */
+	@Inspect({ nullable: false })
+	get unrestrictBoostCount() {
+		return this.payload.unrestrict_boost_count;
+	}
 }
 
 memoizeGetters(Chat, ["photo", "location", "pinnedMessage", "permissions"]);
