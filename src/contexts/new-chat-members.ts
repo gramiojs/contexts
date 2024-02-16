@@ -1,6 +1,6 @@
 import { inspectable } from "inspectable";
 
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 import { Message, User } from "../structures";
 
 import type { Bot } from "gramio";
@@ -23,13 +23,13 @@ import {
 
 interface NewChatMembersContextOptions {
 	bot: Bot;
-	update: Interfaces.TelegramUpdate;
-	payload: Interfaces.TelegramMessage;
+	update: TelegramObjects.TelegramUpdate;
+	payload: TelegramObjects.TelegramMessage;
 	updateId: number;
 }
 
 class NewChatMembersContext extends Context {
-	payload: Interfaces.TelegramMessage;
+	payload: TelegramObjects.TelegramMessage;
 
 	constructor(options: NewChatMembersContextOptions) {
 		super({
@@ -44,7 +44,8 @@ class NewChatMembersContext extends Context {
 
 	/** New chat members */
 	get eventMembers() {
-		const members = this.payload.new_chat_members as Interfaces.TelegramUser[];
+		const members = this.payload
+			.new_chat_members as TelegramObjects.TelegramUser[];
 
 		return members.map((member) => new User(member));
 	}

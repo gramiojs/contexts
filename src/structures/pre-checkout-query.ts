@@ -1,6 +1,6 @@
 import { Inspect, Inspectable } from "inspectable";
 
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 
 import { memoizeGetters } from "#utils";
 import { OrderInfo } from "./order-info";
@@ -9,7 +9,7 @@ import { User } from "./user";
 /** This object contains information about an incoming pre-checkout query. */
 @Inspectable()
 export class PreCheckoutQuery {
-	constructor(public payload: Interfaces.TelegramPreCheckoutQuery) {}
+	constructor(public payload: TelegramObjects.TelegramPreCheckoutQuery) {}
 
 	get [Symbol.toStringTag]() {
 		return this.constructor.name;

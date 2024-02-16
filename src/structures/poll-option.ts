@@ -1,11 +1,11 @@
 import { Inspect, Inspectable } from "inspectable";
 
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 
 /** This object contains information about one answer option in a poll. */
 @Inspectable()
 export class PollOption {
-	constructor(public payload: Interfaces.TelegramPollOption) {}
+	constructor(public payload: TelegramObjects.TelegramPollOption) {}
 
 	get [Symbol.toStringTag]() {
 		return this.constructor.name;

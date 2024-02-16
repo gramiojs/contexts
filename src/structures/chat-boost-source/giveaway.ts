@@ -1,4 +1,4 @@
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 import { Inspect, Inspectable } from "inspectable";
 
 import { User } from "../user";
@@ -9,7 +9,7 @@ import { ChatBoostSource } from "./chat-boost-source";
 /** The boost was obtained by the creation of a Telegram Premium giveaway. This boosts the chat 4 times for the duration of the corresponding Telegram Premium subscription. */
 @Inspectable()
 export class ChatBoostSourceGiveaway extends ChatBoostSource {
-	constructor(public payload: Interfaces.TelegramChatBoostSourceGiveaway) {
+	constructor(public payload: TelegramObjects.TelegramChatBoostSourceGiveaway) {
 		super(payload);
 	}
 

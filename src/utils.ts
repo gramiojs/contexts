@@ -1,5 +1,5 @@
 import type { TelegramInputMedia, TelegramUpdate } from "@gramio/types";
-import * as Params from "@gramio/types/params";
+import { TelegramParams } from "@gramio/types";
 import type { Message } from "#structures";
 
 import * as Contexts from "./contexts";
@@ -278,14 +278,20 @@ type id<T, I extends { chat_id: string | number }> = { type: T } & Optional<
 	"chat_id"
 >;
 
-export type tSendAnimation = id<"animation", Params.SendAnimationParams>;
-export type tSendAudio = id<"audio", Params.SendAudioParams>;
-export type tSendDocument = id<"document", Params.SendDocumentParams>;
-export type tSendPhoto = id<"photo", Params.SendPhotoParams>;
-export type tSendSticker = id<"sticker", Params.SendStickerParams>;
-export type tSendVideo = id<"video", Params.SendVideoParams>;
-export type tSendVideoNote = id<"video_note", Params.SendVideoNoteParams>;
-export type tSendVoice = id<"voice", Params.SendVoiceParams>;
+export type tSendAnimation = id<
+	"animation",
+	TelegramParams.SendAnimationParams
+>;
+export type tSendAudio = id<"audio", TelegramParams.SendAudioParams>;
+export type tSendDocument = id<"document", TelegramParams.SendDocumentParams>;
+export type tSendPhoto = id<"photo", TelegramParams.SendPhotoParams>;
+export type tSendSticker = id<"sticker", TelegramParams.SendStickerParams>;
+export type tSendVideo = id<"video", TelegramParams.SendVideoParams>;
+export type tSendVideoNote = id<
+	"video_note",
+	TelegramParams.SendVideoNoteParams
+>;
+export type tSendVoice = id<"voice", TelegramParams.SendVoiceParams>;
 
 export type tSendMethods =
 	| tSendAnimation

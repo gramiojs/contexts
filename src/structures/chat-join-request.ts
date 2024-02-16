@@ -1,6 +1,5 @@
+import { TelegramObjects } from "@gramio/types";
 import { Inspect, Inspectable } from "inspectable";
-
-import * as Interfaces from "@gramio/types/objects";
 
 import { memoizeGetters } from "#utils";
 import { Chat } from "./chat";
@@ -10,7 +9,7 @@ import { User } from "./user";
 /** Represents a join request sent to a chat. */
 @Inspectable()
 export class ChatJoinRequest {
-	constructor(public payload: Interfaces.TelegramChatJoinRequest) {}
+	constructor(public payload: TelegramObjects.TelegramChatJoinRequest) {}
 
 	get [Symbol.toStringTag]() {
 		return this.constructor.name;

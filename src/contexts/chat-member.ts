@@ -1,6 +1,6 @@
 import { inspectable } from "inspectable";
 
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 import { ChatMemberUpdated } from "../structures";
 
 import type { Bot } from "gramio";
@@ -18,14 +18,14 @@ import {
 
 interface ChatMemberContextOptions {
 	bot: Bot;
-	update: Interfaces.TelegramUpdate;
-	payload: Interfaces.TelegramChatMemberUpdated;
+	update: TelegramObjects.TelegramUpdate;
+	payload: TelegramObjects.TelegramChatMemberUpdated;
 	updateId: number;
 	type?: UpdateName;
 }
 
 class ChatMemberContext extends Context {
-	payload: Interfaces.TelegramChatMemberUpdated;
+	payload: TelegramObjects.TelegramChatMemberUpdated;
 
 	constructor(options: ChatMemberContextOptions) {
 		super({

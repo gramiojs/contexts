@@ -1,6 +1,6 @@
 import { Inspect, Inspectable } from "inspectable";
 
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 
 import { Chat } from "../chat";
 
@@ -10,7 +10,7 @@ import { MessageOrigin } from "./message-origin";
 /** The message was originally sent to a channel chat. */
 @Inspectable()
 export class MessageOriginChannel extends MessageOrigin {
-	constructor(public payload: Interfaces.TelegramMessageOriginChannel) {
+	constructor(public payload: TelegramObjects.TelegramMessageOriginChannel) {
 		super(payload);
 	}
 

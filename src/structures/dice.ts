@@ -1,12 +1,12 @@
 import { Inspect, Inspectable } from "inspectable";
 
-import * as Interfaces from "@gramio/types/objects";
-import * as Params from "@gramio/types/params";
+import { TelegramParams } from "@gramio/types";
+import { TelegramObjects } from "@gramio/types";
 
 /** This object represents an animated emoji that displays a random value. */
 @Inspectable()
 export class Dice {
-	constructor(public payload: Interfaces.TelegramDice) {}
+	constructor(public payload: TelegramObjects.TelegramDice) {}
 
 	get [Symbol.toStringTag]() {
 		return this.constructor.name;
@@ -15,7 +15,9 @@ export class Dice {
 	/** Emoji on which the dice throw animation is based */
 	@Inspect()
 	get emoji() {
-		return this.payload.emoji as NonNullable<Params.SendDiceParams["emoji"]>;
+		return this.payload.emoji as NonNullable<
+			TelegramParams.SendDiceParams["emoji"]
+		>;
 	}
 
 	/**

@@ -1,4 +1,4 @@
-import * as Params from "@gramio/types/params";
+import { TelegramParams } from "@gramio/types";
 
 import type { Optional } from "#utils";
 
@@ -10,7 +10,7 @@ import { TargetMixin } from "./target";
 class ChatInviteControlMixin {
 	/** Generates new primary invite link */
 	exportInviteLink(
-		params?: Optional<Params.ExportChatInviteLinkParams, "chat_id">,
+		params?: Optional<TelegramParams.ExportChatInviteLinkParams, "chat_id">,
 	) {
 		return this.bot.api.exportChatInviteLink({
 			chat_id: this.chatId,
@@ -20,7 +20,7 @@ class ChatInviteControlMixin {
 
 	/** Creates an additional invite link */
 	createInviteLink(
-		params?: Optional<Params.CreateChatInviteLinkParams, "chat_id">,
+		params?: Optional<TelegramParams.CreateChatInviteLinkParams, "chat_id">,
 	) {
 		return this.bot.api.createChatInviteLink({
 			chat_id: this.chatId,
@@ -32,7 +32,7 @@ class ChatInviteControlMixin {
 	editInviteLink(
 		link: string,
 		params?: Optional<
-			Params.EditChatInviteLinkParams,
+			TelegramParams.EditChatInviteLinkParams,
 			"chat_id" | "invite_link"
 		>,
 	) {
@@ -47,7 +47,7 @@ class ChatInviteControlMixin {
 	revokeInviteLink(
 		link: string,
 		params?: Optional<
-			Params.RevokeChatInviteLinkParams,
+			TelegramParams.RevokeChatInviteLinkParams,
 			"chat_id" | "invite_link"
 		>,
 	) {

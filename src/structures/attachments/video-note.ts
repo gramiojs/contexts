@@ -1,6 +1,6 @@
 import { Inspect, Inspectable } from "inspectable";
 
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 import type { AttachmentType } from "#utils";
 
 import { PhotoSize } from "../photo-size";
@@ -11,7 +11,7 @@ import { FileAttachment } from "./file-attachment";
 /** This object represents a video message. */
 // TODO: extended: ['fileId', 'fileUniqueId']
 @Inspectable()
-export class VideoNoteAttachment extends FileAttachment<Interfaces.TelegramVideoNote> {
+export class VideoNoteAttachment extends FileAttachment<TelegramObjects.TelegramVideoNote> {
 	attachmentType: AttachmentType = "video_note";
 
 	/**

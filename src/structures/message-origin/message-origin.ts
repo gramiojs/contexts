@@ -1,4 +1,4 @@
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 
 import type { MessageOriginChannel } from "./channel";
 import type { MessageOriginChat } from "./chat";
@@ -13,14 +13,14 @@ interface MessageOriginMapping {
 }
 
 export class MessageOrigin {
-	constructor(public payload: Interfaces.TelegramMessageOrigin) {}
+	constructor(public payload: TelegramObjects.TelegramMessageOrigin) {}
 
 	get [Symbol.toStringTag]() {
 		return this.constructor.name;
 	}
 
 	/** Is this message origin a certain one?  */
-	is<T extends Interfaces.TelegramMessageOrigin["type"]>(
+	is<T extends TelegramObjects.TelegramMessageOrigin["type"]>(
 		type: T,
 	): this is MessageOriginMapping[T] {
 		return this.payload.type === type;

@@ -1,5 +1,5 @@
 import { setTimeout } from "node:timers/promises";
-import * as Params from "@gramio/types/params";
+import { TelegramParams } from "@gramio/types";
 
 import type { Optional } from "#utils";
 
@@ -28,8 +28,8 @@ interface CreateActionControllerParams {
 }
 
 interface ControllerOptions {
-	action: Params.SendChatActionParams["action"];
-	params: Optional<Params.SendChatActionParams, "chat_id" | "action"> &
+	action: TelegramParams.SendChatActionParams["action"];
+	params: Optional<TelegramParams.SendChatActionParams, "chat_id" | "action"> &
 		CreateActionControllerParams;
 	context: Context & SendMixin;
 }
@@ -37,7 +37,7 @@ interface ControllerOptions {
 class ChatActionController {
 	private abortController = new AbortController();
 
-	action: Params.SendChatActionParams["action"];
+	action: TelegramParams.SendChatActionParams["action"];
 	interval: number;
 	wait: number;
 	timeout: number;
@@ -102,8 +102,11 @@ class ChatActionController {
 class ChatActionMixin {
 	/** Creates a controller that when `start()`ed executes `sendChatAction(action)` every `interval` milliseconds until `stop()`ped */
 	createActionController(
-		action: Params.SendChatActionParams["action"],
-		params: Optional<Params.SendChatActionParams, "chat_id" | "action"> &
+		action: TelegramParams.SendChatActionParams["action"],
+		params: Optional<
+			TelegramParams.SendChatActionParams,
+			"chat_id" | "action"
+		> &
 			CreateActionControllerParams = {},
 	) {
 		return new ChatActionController({

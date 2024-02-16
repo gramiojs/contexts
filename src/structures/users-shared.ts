@@ -1,11 +1,11 @@
 import { Inspect, Inspectable } from "inspectable";
 
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 
 /** This object contains information about the user whose identifier was shared with the bot using a `KeyboardButtonRequestUser` button. */
 @Inspectable()
 export class UsersShared {
-	constructor(public payload: Interfaces.TelegramUsersShared) {}
+	constructor(public payload: TelegramObjects.TelegramUsersShared) {}
 
 	get [Symbol.toStringTag]() {
 		return this.constructor.name;

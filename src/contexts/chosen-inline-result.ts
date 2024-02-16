@@ -1,7 +1,7 @@
 import { inspectable } from "inspectable";
 
-import * as Interfaces from "@gramio/types/objects";
-import * as Params from "@gramio/types/params";
+import { TelegramParams } from "@gramio/types";
+import { TelegramObjects } from "@gramio/types";
 
 import type { Bot } from "gramio";
 import { applyMixins, filterPayload } from "#utils";
@@ -13,8 +13,8 @@ import { ChatActionMixin, CloneMixin, SendMixin } from "./mixins";
 
 interface ChosenInlineResultContextOptions {
 	bot: Bot;
-	update: Interfaces.TelegramUpdate;
-	payload: Interfaces.TelegramChosenInlineResult;
+	update: TelegramObjects.TelegramUpdate;
+	payload: TelegramObjects.TelegramChosenInlineResult;
 	updateId: number;
 }
 
@@ -23,7 +23,7 @@ interface ChosenInlineResultContextOptions {
  * a user and sent to their chat partner
  */
 class ChosenInlineResultContext extends Context {
-	payload: Interfaces.TelegramChosenInlineResult;
+	payload: TelegramObjects.TelegramChosenInlineResult;
 
 	constructor(options: ChosenInlineResultContextOptions) {
 		super({
@@ -48,8 +48,8 @@ class ChosenInlineResultContext extends Context {
 
 	/** Edits a callback query messages text */
 	editText(
-		text: Params.EditMessageTextParams["text"],
-		params?: Partial<Params.EditMessageTextParams>,
+		text: TelegramParams.EditMessageTextParams["text"],
+		params?: Partial<TelegramParams.EditMessageTextParams>,
 	) {
 		if (!this.hasInlineMessageId()) {
 			throw new TypeError(
@@ -66,8 +66,8 @@ class ChosenInlineResultContext extends Context {
 
 	/** Edits a callback query messages caption */
 	editCaption(
-		caption: NonNullable<Params.EditMessageCaptionParams["caption"]>,
-		params?: Partial<Params.EditMessageCaptionParams>,
+		caption: NonNullable<TelegramParams.EditMessageCaptionParams["caption"]>,
+		params?: Partial<TelegramParams.EditMessageCaptionParams>,
 	) {
 		if (!this.hasInlineMessageId()) {
 			throw new TypeError(
@@ -84,8 +84,8 @@ class ChosenInlineResultContext extends Context {
 
 	/** Edits a callback query messages media */
 	editMedia(
-		media: Params.EditMessageMediaParams["media"],
-		params?: Partial<Params.EditMessageMediaParams>,
+		media: TelegramParams.EditMessageMediaParams["media"],
+		params?: Partial<TelegramParams.EditMessageMediaParams>,
 	) {
 		if (!this.hasInlineMessageId()) {
 			throw new TypeError(
@@ -101,7 +101,7 @@ class ChosenInlineResultContext extends Context {
 	}
 
 	/** Edits a callback query messages live location */
-	editLiveLocation(params: Params.EditMessageLiveLocationParams) {
+	editLiveLocation(params: TelegramParams.EditMessageLiveLocationParams) {
 		if (!this.hasInlineMessageId()) {
 			throw new TypeError(
 				"cannot edit a message without an `inlineMessageId` property",
@@ -115,7 +115,7 @@ class ChosenInlineResultContext extends Context {
 	}
 
 	/** Stops a callback query messages live location */
-	stopLiveLocation(params?: Params.StopMessageLiveLocationParams) {
+	stopLiveLocation(params?: TelegramParams.StopMessageLiveLocationParams) {
 		if (!this.hasInlineMessageId()) {
 			throw new TypeError(
 				"cannot edit a message without an `inlineMessageId` property",
@@ -130,8 +130,8 @@ class ChosenInlineResultContext extends Context {
 
 	/** Edits a callback query messages reply markup */
 	editReplyMarkup(
-		replyMarkup: Interfaces.TelegramInlineKeyboardMarkup,
-		params?: Partial<Params.EditMessageReplyMarkupParams>,
+		replyMarkup: TelegramObjects.TelegramInlineKeyboardMarkup,
+		params?: Partial<TelegramParams.EditMessageReplyMarkupParams>,
 	) {
 		if (!this.hasInlineMessageId()) {
 			throw new TypeError(

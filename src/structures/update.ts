@@ -1,6 +1,6 @@
 import { Inspect, Inspectable } from "inspectable";
 
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 
 import { CallbackQuery } from "./callback-query";
 
@@ -27,7 +27,7 @@ import { ShippingQuery } from "./shipping-query";
  */
 @Inspectable()
 export class Update {
-	constructor(public payload: Interfaces.TelegramUpdate) {}
+	constructor(public payload: TelegramObjects.TelegramUpdate) {}
 
 	get [Symbol.toStringTag]() {
 		return this.constructor.name;

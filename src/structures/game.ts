@@ -1,6 +1,6 @@
 import { Inspect, Inspectable } from "inspectable";
 
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 
 import { AnimationAttachment } from "./attachments";
 
@@ -11,7 +11,7 @@ import { PhotoSize } from "./photo-size";
 /** This object represents a game. */
 @Inspectable()
 export class Game {
-	constructor(public payload: Interfaces.TelegramGame) {}
+	constructor(public payload: TelegramObjects.TelegramGame) {}
 
 	get [Symbol.toStringTag]() {
 		return this.constructor.name;

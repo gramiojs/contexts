@@ -1,6 +1,6 @@
 import { Inspect, Inspectable } from "inspectable";
 
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 
 /**
  * This object describes the position on faces where a mask should be placed
@@ -8,7 +8,7 @@ import * as Interfaces from "@gramio/types/objects";
  */
 @Inspectable()
 export class MaskPosition {
-	constructor(public payload: Interfaces.TelegramMaskPosition) {}
+	constructor(public payload: TelegramObjects.TelegramMaskPosition) {}
 
 	get [Symbol.toStringTag]() {
 		return this.constructor.name;

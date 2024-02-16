@@ -1,4 +1,4 @@
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 import { Inspect, Inspectable } from "inspectable";
 
 import { memoizeGetters } from "#utils";
@@ -12,7 +12,7 @@ import {
 /** This object represents a boost added to a chat or changed. */
 @Inspectable()
 export class ChatBoostRemoved {
-	constructor(public payload: Interfaces.TelegramChatBoostRemoved) {}
+	constructor(public payload: TelegramObjects.TelegramChatBoostRemoved) {}
 
 	get [Symbol.toStringTag]() {
 		return this.constructor.name;

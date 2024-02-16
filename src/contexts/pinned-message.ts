@@ -1,6 +1,6 @@
 import { inspectable } from "inspectable";
 
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 
 import type { Bot } from "gramio";
 import { applyMixins, memoizeGetters } from "#utils";
@@ -24,13 +24,13 @@ import {
 
 interface PinnedMessageContextOptions {
 	bot: Bot;
-	update: Interfaces.TelegramUpdate;
-	payload: Interfaces.TelegramMessage;
+	update: TelegramObjects.TelegramUpdate;
+	payload: TelegramObjects.TelegramMessage;
 	updateId: number;
 }
 
 class PinnedMessageContext extends Context {
-	payload: Interfaces.TelegramMessage;
+	payload: TelegramObjects.TelegramMessage;
 
 	constructor(options: PinnedMessageContextOptions) {
 		super({
@@ -47,7 +47,7 @@ class PinnedMessageContext extends Context {
 	get eventMessage() {
 		return new MessageContext({
 			bot: this.bot,
-			payload: this.payload.pinned_message as Interfaces.TelegramMessage,
+			payload: this.payload.pinned_message as TelegramObjects.TelegramMessage,
 		});
 	}
 }

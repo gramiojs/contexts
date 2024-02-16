@@ -1,11 +1,11 @@
 import { Inspect, Inspectable } from "inspectable";
 
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 
 /** This object represents a file ready to be downloaded. The file can be downloaded via the link `https://api.telegram.org/file/bot<token>/<file_path>`. It is guaranteed that the link will be valid for at least 1 hour. When the link expires, a new one can be requested by calling `getFile`. */
 @Inspectable()
 export class File {
-	constructor(public payload: Interfaces.TelegramFile) {}
+	constructor(public payload: TelegramObjects.TelegramFile) {}
 
 	get [Symbol.toStringTag]() {
 		return this.constructor.name;

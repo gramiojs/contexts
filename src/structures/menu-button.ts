@@ -1,6 +1,6 @@
 import { Inspect, Inspectable } from "inspectable";
 
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 
 import { type JoinUnion, memoizeGetters } from "#utils";
 import { WebAppInfo } from "./web-app-info";
@@ -8,7 +8,7 @@ import { WebAppInfo } from "./web-app-info";
 /** This object describes the bot's menu button in a private chat. */
 @Inspectable()
 export class MenuButton {
-	constructor(public payload: JoinUnion<Interfaces.TelegramMenuButton>) {}
+	constructor(public payload: JoinUnion<TelegramObjects.TelegramMenuButton>) {}
 
 	get [Symbol.toStringTag]() {
 		return this.constructor.name;

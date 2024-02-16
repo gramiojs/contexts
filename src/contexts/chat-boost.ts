@@ -1,4 +1,4 @@
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 
 import type { Bot } from "gramio";
 import { applyMixins } from "#utils";
@@ -11,14 +11,14 @@ import { CloneMixin, SendMixin } from "./mixins";
 
 interface ChatBoostContextOptions {
 	bot: Bot;
-	update: Interfaces.TelegramUpdate;
-	payload: Interfaces.TelegramChatBoostUpdated;
+	update: TelegramObjects.TelegramUpdate;
+	payload: TelegramObjects.TelegramChatBoostUpdated;
 	updateId: number;
 }
 
 /** This object represents a boost added to a chat or changed. */
 class ChatBoostContext extends Context {
-	payload: Interfaces.TelegramChatBoostUpdated;
+	payload: TelegramObjects.TelegramChatBoostUpdated;
 
 	constructor(options: ChatBoostContextOptions) {
 		super({

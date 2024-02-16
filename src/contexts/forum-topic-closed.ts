@@ -1,4 +1,4 @@
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 import { Message } from "../structures";
 
 import type { Bot } from "gramio";
@@ -23,14 +23,14 @@ import {
 
 interface ForumTopicClosedContextOptions {
 	bot: Bot;
-	update: Interfaces.TelegramUpdate;
-	payload: Interfaces.TelegramMessage;
+	update: TelegramObjects.TelegramUpdate;
+	payload: TelegramObjects.TelegramMessage;
 	updateId: number;
 }
 
 /** This object represents a service message about a forum topic closed in the chat. Currently holds no information. */
 class ForumTopicClosedContext extends Context {
-	payload: Interfaces.TelegramMessage;
+	payload: TelegramObjects.TelegramMessage;
 
 	constructor(options: ForumTopicClosedContextOptions) {
 		super({

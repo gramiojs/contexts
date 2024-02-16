@@ -1,11 +1,11 @@
 import { Inspect, Inspectable } from "inspectable";
 
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 
 /** Contains information about a Web App. */
 @Inspectable()
 export class WebAppInfo {
-	constructor(public payload: Interfaces.TelegramWebAppInfo) {}
+	constructor(public payload: TelegramObjects.TelegramWebAppInfo) {}
 
 	get [Symbol.toStringTag]() {
 		return this.constructor.name;

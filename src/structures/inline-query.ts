@@ -1,6 +1,6 @@
 import { Inspect, Inspectable } from "inspectable";
 
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 
 import { memoizeGetters } from "#utils";
 import { Location } from "./location";
@@ -13,7 +13,7 @@ import { User } from "./user";
  */
 @Inspectable()
 export class InlineQuery {
-	constructor(public payload: Interfaces.TelegramInlineQuery) {}
+	constructor(public payload: TelegramObjects.TelegramInlineQuery) {}
 
 	get [Symbol.toStringTag]() {
 		return this.constructor.name;

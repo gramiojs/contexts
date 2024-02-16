@@ -1,11 +1,11 @@
 import { Inspect, Inspectable } from "inspectable";
 
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 
 /** This object contains basic information about an invoice. */
 @Inspectable()
 export class Invoice {
-	constructor(public payload: Interfaces.TelegramInvoice) {}
+	constructor(public payload: TelegramObjects.TelegramInvoice) {}
 
 	get [Symbol.toStringTag]() {
 		return this.constructor.name;

@@ -1,6 +1,6 @@
 import { Inspect, Inspectable } from "inspectable";
 
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 
 import { memoizeGetters } from "#utils";
 import { EncryptedCredentials } from "./encrypted-credentials";
@@ -12,7 +12,7 @@ import { EncryptedPassportElement } from "./encrypted-passport-element";
  */
 @Inspectable()
 export class PassportData {
-	constructor(public payload: Interfaces.TelegramPassportData) {}
+	constructor(public payload: TelegramObjects.TelegramPassportData) {}
 
 	get [Symbol.toStringTag]() {
 		return this.constructor.name;

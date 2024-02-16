@@ -1,6 +1,6 @@
 import { inspectable } from "inspectable";
 
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 import { Location, Message } from "../structures";
 
 import type { Bot } from "gramio";
@@ -23,13 +23,13 @@ import {
 
 interface LocationContextOptions {
 	bot: Bot;
-	update: Interfaces.TelegramUpdate;
-	payload: Interfaces.TelegramMessage;
+	update: TelegramObjects.TelegramUpdate;
+	payload: TelegramObjects.TelegramMessage;
 	updateId: number;
 }
 
 class LocationContext extends Context {
-	payload: Interfaces.TelegramMessage;
+	payload: TelegramObjects.TelegramMessage;
 
 	constructor(options: LocationContextOptions) {
 		super({
@@ -44,7 +44,9 @@ class LocationContext extends Context {
 
 	/** Location */
 	get eventLocation() {
-		return new Location(this.payload.location as Interfaces.TelegramLocation);
+		return new Location(
+			this.payload.location as TelegramObjects.TelegramLocation,
+		);
 	}
 }
 

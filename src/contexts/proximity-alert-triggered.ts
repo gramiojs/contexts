@@ -1,6 +1,6 @@
 import { inspectable } from "inspectable";
 
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 import { Message, ProximityAlertTriggered } from "../structures";
 
 import type { Bot } from "gramio";
@@ -23,13 +23,13 @@ import {
 
 interface ProximityAlertTriggeredContextOptions {
 	bot: Bot;
-	update: Interfaces.TelegramUpdate;
-	payload: Interfaces.TelegramMessage;
+	update: TelegramObjects.TelegramUpdate;
+	payload: TelegramObjects.TelegramMessage;
 	updateId: number;
 }
 
 class ProximityAlertTriggeredContext extends Context {
-	payload: Interfaces.TelegramMessage;
+	payload: TelegramObjects.TelegramMessage;
 
 	constructor(options: ProximityAlertTriggeredContextOptions) {
 		super({
@@ -50,7 +50,7 @@ class ProximityAlertTriggeredContext extends Context {
 	get proximityAlert() {
 		return new ProximityAlertTriggered(
 			this.payload
-				.proximity_alert_triggered as Interfaces.TelegramProximityAlertTriggered,
+				.proximity_alert_triggered as TelegramObjects.TelegramProximityAlertTriggered,
 		);
 	}
 }

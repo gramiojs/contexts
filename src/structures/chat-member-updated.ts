@@ -1,6 +1,6 @@
 import { Inspect, Inspectable } from "inspectable";
 
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 
 import { memoizeGetters } from "#utils";
 import { Chat } from "./chat";
@@ -11,7 +11,7 @@ import { User } from "./user";
 /** This object represents changes in the status of a chat member. */
 @Inspectable()
 export class ChatMemberUpdated {
-	constructor(public payload: Interfaces.TelegramChatMemberUpdated) {}
+	constructor(public payload: TelegramObjects.TelegramChatMemberUpdated) {}
 
 	get [Symbol.toStringTag]() {
 		return this.constructor.name;

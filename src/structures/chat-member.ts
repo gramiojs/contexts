@@ -1,6 +1,6 @@
 import { Inspect, Inspectable } from "inspectable";
 
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 
 import { type JoinUnion, memoizeGetters } from "#utils";
 import { User } from "./user";
@@ -16,7 +16,7 @@ import { User } from "./user";
  */
 @Inspectable()
 export class ChatMember {
-	constructor(public payload: JoinUnion<Interfaces.TelegramChatMember>) {}
+	constructor(public payload: JoinUnion<TelegramObjects.TelegramChatMember>) {}
 
 	get [Symbol.toStringTag]() {
 		return this.constructor.name;

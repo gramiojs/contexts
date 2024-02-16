@@ -1,6 +1,6 @@
 import { inspectable } from "inspectable";
 
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 import { Message, VideoChatParticipantsInvited } from "../structures";
 
 import type { Bot } from "gramio";
@@ -23,13 +23,13 @@ import {
 
 interface VideoChatParticipantsInvitedContextOptions {
 	bot: Bot;
-	update: Interfaces.TelegramUpdate;
-	payload: Interfaces.TelegramMessage;
+	update: TelegramObjects.TelegramUpdate;
+	payload: TelegramObjects.TelegramMessage;
 	updateId: number;
 }
 
 class VideoChatParticipantsInvitedContext extends Context {
-	payload: Interfaces.TelegramMessage;
+	payload: TelegramObjects.TelegramMessage;
 
 	constructor(options: VideoChatParticipantsInvitedContextOptions) {
 		super({
@@ -46,7 +46,7 @@ class VideoChatParticipantsInvitedContext extends Context {
 	get eventParticipantsInvited() {
 		return new VideoChatParticipantsInvited(
 			this.payload
-				.video_chat_participants_invited as Interfaces.TelegramVideoChatParticipantsInvited,
+				.video_chat_participants_invited as TelegramObjects.TelegramVideoChatParticipantsInvited,
 		);
 	}
 }

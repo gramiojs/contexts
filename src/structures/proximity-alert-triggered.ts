@@ -1,6 +1,6 @@
 import { Inspect, Inspectable } from "inspectable";
 
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 
 import { memoizeGetters } from "#utils";
 import { User } from "./user";
@@ -11,7 +11,9 @@ import { User } from "./user";
  */
 @Inspectable()
 export class ProximityAlertTriggered {
-	constructor(public payload: Interfaces.TelegramProximityAlertTriggered) {}
+	constructor(
+		public payload: TelegramObjects.TelegramProximityAlertTriggered,
+	) {}
 
 	/** User that triggered the alert */
 	@Inspect()

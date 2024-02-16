@@ -1,11 +1,11 @@
 import { Inspect, Inspectable } from "inspectable";
 
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 
 /** This object represents a bot command */
 @Inspectable()
 export class BotCommand {
-	constructor(public payload: Interfaces.TelegramBotCommand) {}
+	constructor(public payload: TelegramObjects.TelegramBotCommand) {}
 
 	get [Symbol.toStringTag]() {
 		return this.constructor.name;

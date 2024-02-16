@@ -1,6 +1,6 @@
 import { Inspect, Inspectable } from "inspectable";
 
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 
 import { memoizeGetters } from "#utils";
 import { Location } from "./location";
@@ -8,7 +8,7 @@ import { Location } from "./location";
 /** Represents a location to which a chat is connected. */
 @Inspectable()
 export class ChatLocation {
-	constructor(public payload: Interfaces.TelegramChatLocation) {}
+	constructor(public payload: TelegramObjects.TelegramChatLocation) {}
 
 	get [Symbol.toStringTag]() {
 		return this.constructor.name;

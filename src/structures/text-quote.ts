@@ -1,4 +1,4 @@
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 import { Inspect, Inspectable } from "inspectable";
 
 import { memoizeGetters } from "#utils";
@@ -7,7 +7,7 @@ import { MessageEntity } from "./message-entity";
 /** This object contains information about the quoted part of a message that is replied to by the given message. */
 @Inspectable()
 export class TextQuote {
-	constructor(public payload: Interfaces.TelegramTextQuote) {}
+	constructor(public payload: TelegramObjects.TelegramTextQuote) {}
 
 	get [Symbol.toStringTag]() {
 		return this.constructor.name;

@@ -1,4 +1,4 @@
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 import { Message } from "../structures";
 
 import type { Bot } from "gramio";
@@ -23,16 +23,16 @@ import {
 
 interface ForumTopicEditedContextOptions {
 	bot: Bot;
-	update: Interfaces.TelegramUpdate;
-	payload: Interfaces.TelegramMessage;
+	update: TelegramObjects.TelegramUpdate;
+	payload: TelegramObjects.TelegramMessage;
 	updateId: number;
 }
 
 /** This object represents a service message about an edited forum topic. */
 class ForumTopicEditedContext extends Context {
-	payload: Interfaces.TelegramMessage;
+	payload: TelegramObjects.TelegramMessage;
 
-	private event: Interfaces.TelegramForumTopicEdited;
+	private event: TelegramObjects.TelegramForumTopicEdited;
 
 	constructor(options: ForumTopicEditedContextOptions) {
 		super({
@@ -44,7 +44,7 @@ class ForumTopicEditedContext extends Context {
 
 		this.payload = options.payload;
 		this.event = this.payload
-			.forum_topic_edited as Interfaces.TelegramForumTopicEdited;
+			.forum_topic_edited as TelegramObjects.TelegramForumTopicEdited;
 	}
 
 	/** New name of the topic, if it was edited */

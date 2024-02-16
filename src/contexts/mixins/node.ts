@@ -1,5 +1,5 @@
-import * as Interfaces from "@gramio/types/objects";
-import * as Params from "@gramio/types/params";
+import { TelegramParams } from "@gramio/types";
+import { TelegramObjects } from "@gramio/types";
 
 import type { MaybeArray, Optional } from "#utils";
 import { MessageId } from "../../structures";
@@ -14,7 +14,7 @@ interface NodeMixinMetadata {
 
 /** Construct a type that has `reply_parameters` `Partial` */
 type WithPartialReplyParameters<T> = Omit<T, "reply_parameters"> & {
-	reply_parameters?: Partial<Interfaces.TelegramReplyParameters>;
+	reply_parameters?: Partial<TelegramObjects.TelegramReplyParameters>;
 };
 
 // biome-ignore lint/complexity/noBannedTypes: <explanation>
@@ -24,9 +24,9 @@ type WithQuote<T = {}> = { quote: string } & T;
 class NodeMixin {
 	/** Replies to current message */
 	reply(
-		text: Params.SendMessageParams["text"],
+		text: TelegramParams.SendMessageParams["text"],
 		params: WithPartialReplyParameters<
-			Optional<Params.SendMessageParams, "chat_id" | "text">
+			Optional<TelegramParams.SendMessageParams, "chat_id" | "text">
 		> = {},
 	) {
 		const { reply_parameters, ...rest } = params;
@@ -42,9 +42,9 @@ class NodeMixin {
 
 	/** Replies to current message with photo */
 	replyWithPhoto(
-		photo: Params.SendPhotoParams["photo"],
+		photo: TelegramParams.SendPhotoParams["photo"],
 		params: WithPartialReplyParameters<
-			Optional<Params.SendPhotoParams, "chat_id" | "photo">
+			Optional<TelegramParams.SendPhotoParams, "chat_id" | "photo">
 		> = {},
 	) {
 		const { reply_parameters, ...rest } = params;
@@ -60,9 +60,9 @@ class NodeMixin {
 
 	/** Replies to current message with document */
 	replyWithDocument(
-		document: Params.SendDocumentParams["document"],
+		document: TelegramParams.SendDocumentParams["document"],
 		params: WithPartialReplyParameters<
-			Optional<Params.SendDocumentParams, "chat_id" | "document">
+			Optional<TelegramParams.SendDocumentParams, "chat_id" | "document">
 		> = {},
 	) {
 		const { reply_parameters, ...rest } = params;
@@ -78,9 +78,9 @@ class NodeMixin {
 
 	/** Replies to current message with audio */
 	replyWithAudio(
-		audio: Params.SendAudioParams["audio"],
+		audio: TelegramParams.SendAudioParams["audio"],
 		params: WithPartialReplyParameters<
-			Optional<Params.SendAudioParams, "chat_id" | "audio">
+			Optional<TelegramParams.SendAudioParams, "chat_id" | "audio">
 		> = {},
 	) {
 		const { reply_parameters, ...rest } = params;
@@ -96,9 +96,9 @@ class NodeMixin {
 
 	/** Replies to current message with video */
 	replyWithVideo(
-		video: Params.SendVideoParams["video"],
+		video: TelegramParams.SendVideoParams["video"],
 		params: WithPartialReplyParameters<
-			Optional<Params.SendVideoParams, "chat_id" | "video">
+			Optional<TelegramParams.SendVideoParams, "chat_id" | "video">
 		> = {},
 	) {
 		const { reply_parameters, ...rest } = params;
@@ -114,9 +114,9 @@ class NodeMixin {
 
 	/** Replies to current message with animation */
 	replyWithAnimation(
-		animation: Params.SendAnimationParams["animation"],
+		animation: TelegramParams.SendAnimationParams["animation"],
 		params: WithPartialReplyParameters<
-			Optional<Params.SendAnimationParams, "chat_id" | "animation">
+			Optional<TelegramParams.SendAnimationParams, "chat_id" | "animation">
 		> = {},
 	) {
 		const { reply_parameters, ...rest } = params;
@@ -132,9 +132,9 @@ class NodeMixin {
 
 	/** Replies to current message with video note */
 	replyWithVideoNote(
-		videoNote: Params.SendVideoNoteParams["video_note"],
+		videoNote: TelegramParams.SendVideoNoteParams["video_note"],
 		params: WithPartialReplyParameters<
-			Optional<Params.SendVideoNoteParams, "chat_id" | "video_note">
+			Optional<TelegramParams.SendVideoNoteParams, "chat_id" | "video_note">
 		> = {},
 	) {
 		const { reply_parameters, ...rest } = params;
@@ -150,9 +150,9 @@ class NodeMixin {
 
 	/** Replies to current message with voice */
 	replyWithVoice(
-		voice: Params.SendVoiceParams["voice"],
+		voice: TelegramParams.SendVoiceParams["voice"],
 		params: WithPartialReplyParameters<
-			Optional<Params.SendVoiceParams, "chat_id" | "voice">
+			Optional<TelegramParams.SendVoiceParams, "chat_id" | "voice">
 		> = {},
 	) {
 		const { reply_parameters, ...rest } = params;
@@ -168,9 +168,9 @@ class NodeMixin {
 
 	/** Replies to current message with media group */
 	replyWithMediaGroup(
-		mediaGroup: Params.SendMediaGroupParams["media"],
+		mediaGroup: TelegramParams.SendMediaGroupParams["media"],
 		params: WithPartialReplyParameters<
-			Optional<Params.SendMediaGroupParams, "chat_id" | "media">
+			Optional<TelegramParams.SendMediaGroupParams, "chat_id" | "media">
 		> = {},
 	) {
 		const { reply_parameters, ...rest } = params;
@@ -189,7 +189,10 @@ class NodeMixin {
 		latitude: number,
 		longitude: number,
 		params: WithPartialReplyParameters<
-			Optional<Params.SendLocationParams, "chat_id" | "latitude" | "longitude">
+			Optional<
+				TelegramParams.SendLocationParams,
+				"chat_id" | "latitude" | "longitude"
+			>
 		> = {},
 	) {
 		const { reply_parameters, ...rest } = params;
@@ -274,9 +277,9 @@ class NodeMixin {
 
 	/** Replies to current message with sticker */
 	replyWithSticker(
-		sticker: Params.SendStickerParams["sticker"],
+		sticker: TelegramParams.SendStickerParams["sticker"],
 		params: WithPartialReplyParameters<
-			Optional<Params.SendStickerParams, "chat_id" | "sticker">
+			Optional<TelegramParams.SendStickerParams, "chat_id" | "sticker">
 		>,
 	) {
 		const { reply_parameters, ...rest } = params;
@@ -292,8 +295,10 @@ class NodeMixin {
 
 	/** Replies to current message with a dice */
 	replyWithDice(
-		emoji: Params.SendDiceParams["emoji"],
-		params: WithPartialReplyParameters<Partial<Params.SendDiceParams>> = {},
+		emoji: TelegramParams.SendDiceParams["emoji"],
+		params: WithPartialReplyParameters<
+			Partial<TelegramParams.SendDiceParams>
+		> = {},
 	) {
 		const { reply_parameters, ...rest } = params;
 
@@ -310,7 +315,7 @@ class NodeMixin {
 	replyWithQuote(
 		params: WithQuote<{ text: string }> &
 			WithPartialReplyParameters<
-				Optional<Params.SendMessageParams, "chat_id" | "text">
+				Optional<TelegramParams.SendMessageParams, "chat_id" | "text">
 			>,
 	) {
 		const { text, quote, reply_parameters, ...rest } = params;
@@ -326,9 +331,9 @@ class NodeMixin {
 
 	/** Replies to current message with a quote and a photo */
 	quoteWithPhoto(
-		params: WithQuote<{ photo: Params.SendPhotoParams["photo"] }> &
+		params: WithQuote<{ photo: TelegramParams.SendPhotoParams["photo"] }> &
 			WithPartialReplyParameters<
-				Optional<Params.SendPhotoParams, "chat_id" | "photo">
+				Optional<TelegramParams.SendPhotoParams, "chat_id" | "photo">
 			>,
 	) {
 		const { photo, quote, reply_parameters, ...rest } = params;
@@ -344,9 +349,11 @@ class NodeMixin {
 
 	/** Replies to current message with a quote and a document */
 	quoteWithDocument(
-		params: WithQuote<{ document: Params.SendDocumentParams["document"] }> &
+		params: WithQuote<{
+			document: TelegramParams.SendDocumentParams["document"];
+		}> &
 			WithPartialReplyParameters<
-				Optional<Params.SendDocumentParams, "chat_id" | "document">
+				Optional<TelegramParams.SendDocumentParams, "chat_id" | "document">
 			>,
 	) {
 		const { document, quote, reply_parameters, ...rest } = params;
@@ -362,9 +369,9 @@ class NodeMixin {
 
 	/** Replies to current message with a quote and an audio */
 	quoteWithAudio(
-		params: WithQuote<{ audio: Params.SendAudioParams["audio"] }> &
+		params: WithQuote<{ audio: TelegramParams.SendAudioParams["audio"] }> &
 			WithPartialReplyParameters<
-				Optional<Params.SendAudioParams, "chat_id" | "audio">
+				Optional<TelegramParams.SendAudioParams, "chat_id" | "audio">
 			>,
 	) {
 		const { audio, quote, reply_parameters, ...rest } = params;
@@ -380,9 +387,9 @@ class NodeMixin {
 
 	/** Replies to current message with a quote and a video */
 	quoteWithVideo(
-		params: WithQuote<{ video: Params.SendVideoParams["video"] }> &
+		params: WithQuote<{ video: TelegramParams.SendVideoParams["video"] }> &
 			WithPartialReplyParameters<
-				Optional<Params.SendVideoParams, "chat_id" | "video">
+				Optional<TelegramParams.SendVideoParams, "chat_id" | "video">
 			>,
 	) {
 		const { video, quote, reply_parameters, ...rest } = params;
@@ -398,9 +405,11 @@ class NodeMixin {
 
 	/** Replies to current message with a quote and an animation */
 	quoteWithAnimation(
-		params: WithQuote<{ animation: Params.SendAnimationParams["animation"] }> &
+		params: WithQuote<{
+			animation: TelegramParams.SendAnimationParams["animation"];
+		}> &
 			WithPartialReplyParameters<
-				Optional<Params.SendAnimationParams, "chat_id" | "animation">
+				Optional<TelegramParams.SendAnimationParams, "chat_id" | "animation">
 			>,
 	) {
 		const { animation, quote, reply_parameters, ...rest } = params;
@@ -417,10 +426,10 @@ class NodeMixin {
 	/** Replies to current message with a quote and a video note */
 	quoteWithVideoNote(
 		params: WithQuote<{
-			videoNote: Params.SendVideoNoteParams["video_note"];
+			videoNote: TelegramParams.SendVideoNoteParams["video_note"];
 		}> &
 			WithPartialReplyParameters<
-				Optional<Params.SendVideoNoteParams, "chat_id" | "video_note">
+				Optional<TelegramParams.SendVideoNoteParams, "chat_id" | "video_note">
 			>,
 	) {
 		const { videoNote, quote, reply_parameters, ...rest } = params;
@@ -436,9 +445,9 @@ class NodeMixin {
 
 	/** Replies to current message with a quote and a voice */
 	quoteWithVoice(
-		params: WithQuote<{ voice: Params.SendVoiceParams["voice"] }> &
+		params: WithQuote<{ voice: TelegramParams.SendVoiceParams["voice"] }> &
 			WithPartialReplyParameters<
-				Optional<Params.SendVoiceParams, "chat_id" | "voice">
+				Optional<TelegramParams.SendVoiceParams, "chat_id" | "voice">
 			>,
 	) {
 		const { voice, quote, reply_parameters, ...rest } = params;
@@ -454,9 +463,11 @@ class NodeMixin {
 
 	/** Replies to current message with a quote and a media group */
 	quoteWithMediaGroup(
-		params: WithQuote<{ mediaGroup: Params.SendMediaGroupParams["media"] }> &
+		params: WithQuote<{
+			mediaGroup: TelegramParams.SendMediaGroupParams["media"];
+		}> &
 			WithPartialReplyParameters<
-				Optional<Params.SendMediaGroupParams, "chat_id" | "media">
+				Optional<TelegramParams.SendMediaGroupParams, "chat_id" | "media">
 			>,
 	) {
 		const { mediaGroup, quote, reply_parameters, ...rest } = params;
@@ -475,7 +486,7 @@ class NodeMixin {
 		params: WithQuote<{ latitude: number; longitude: number }> &
 			WithPartialReplyParameters<
 				Optional<
-					Params.SendLocationParams,
+					TelegramParams.SendLocationParams,
 					"chat_id" | "latitude" | "longitude"
 				>
 			>,
@@ -609,7 +620,9 @@ class NodeMixin {
 	// }
 
 	/** Edits current message live location */
-	async editMessageLiveLocation(params: Params.EditMessageLiveLocationParams) {
+	async editMessageLiveLocation(
+		params: TelegramParams.EditMessageLiveLocationParams,
+	) {
 		const response = await this.bot.api.editMessageLiveLocation({
 			chat_id: this.chatId || this.senderId || 0,
 			message_id: this.id,
@@ -627,12 +640,14 @@ class NodeMixin {
 	}
 
 	/** Edits current message live location. An alias for `editMessageLiveLocation` */
-	editLiveLocation(params: Params.EditMessageLiveLocationParams) {
+	editLiveLocation(params: TelegramParams.EditMessageLiveLocationParams) {
 		return this.editMessageLiveLocation(params);
 	}
 
 	/** Stops current message live location */
-	async stopMessageLiveLocation(params?: Params.StopMessageLiveLocationParams) {
+	async stopMessageLiveLocation(
+		params?: TelegramParams.StopMessageLiveLocationParams,
+	) {
 		const response = await this.bot.api.stopMessageLiveLocation({
 			chat_id: this.chatId || this.senderId || 0,
 			message_id: this.id,
@@ -650,14 +665,14 @@ class NodeMixin {
 	}
 
 	/** Stops current message live location. An alias for `stopMessageLiveLocation` */
-	stopLiveLocation(params?: Params.StopMessageLiveLocationParams) {
+	stopLiveLocation(params?: TelegramParams.StopMessageLiveLocationParams) {
 		return this.stopMessageLiveLocation(params);
 	}
 
 	/** Edits current message text */
 	async editMessageText(
-		text: Params.EditMessageTextParams["text"],
-		params?: Partial<Params.EditMessageTextParams>,
+		text: TelegramParams.EditMessageTextParams["text"],
+		params?: Partial<TelegramParams.EditMessageTextParams>,
 	) {
 		const response = await this.bot.api.editMessageText({
 			chat_id: this.chatId || this.senderId || 0,
@@ -678,16 +693,16 @@ class NodeMixin {
 
 	/** Edits current message text. An alias for `editMessageText` */
 	editText(
-		text: Params.EditMessageTextParams["text"],
-		params?: Partial<Params.EditMessageTextParams>,
+		text: TelegramParams.EditMessageTextParams["text"],
+		params?: Partial<TelegramParams.EditMessageTextParams>,
 	) {
 		return this.editMessageText(text, params);
 	}
 
 	/** Edits current message caption */
 	async editMessageCaption(
-		caption: NonNullable<Params.EditMessageCaptionParams["caption"]>,
-		params?: Partial<Params.EditMessageCaptionParams>,
+		caption: NonNullable<TelegramParams.EditMessageCaptionParams["caption"]>,
+		params?: Partial<TelegramParams.EditMessageCaptionParams>,
 	) {
 		const response = await this.bot.api.editMessageCaption({
 			chat_id: this.chatId || this.senderId || 0,
@@ -708,16 +723,16 @@ class NodeMixin {
 
 	/** Edits current message caption. An alias for `editMessageCaption` */
 	editCaption(
-		caption: NonNullable<Params.EditMessageCaptionParams["caption"]>,
-		params?: Partial<Params.EditMessageCaptionParams>,
+		caption: NonNullable<TelegramParams.EditMessageCaptionParams["caption"]>,
+		params?: Partial<TelegramParams.EditMessageCaptionParams>,
 	) {
 		return this.editMessageCaption(caption, params);
 	}
 
 	/** Edits current message media */
 	async editMessageMedia(
-		media: Params.EditMessageMediaParams["media"],
-		params?: Partial<Params.EditMessageMediaParams>,
+		media: TelegramParams.EditMessageMediaParams["media"],
+		params?: Partial<TelegramParams.EditMessageMediaParams>,
 	) {
 		const response = await this.bot.api.editMessageMedia({
 			chat_id: this.chatId || this.senderId || 0,
@@ -738,16 +753,16 @@ class NodeMixin {
 
 	/** Edits current message media. An alias for `editMessageMedia` */
 	editMedia(
-		media: Params.EditMessageMediaParams["media"],
-		params?: Partial<Params.EditMessageMediaParams>,
+		media: TelegramParams.EditMessageMediaParams["media"],
+		params?: Partial<TelegramParams.EditMessageMediaParams>,
 	) {
 		return this.editMessageMedia(media, params);
 	}
 
 	/** Edits current message reply markup */
 	async editMessageReplyMarkup(
-		replyMarkup: Interfaces.TelegramInlineKeyboardMarkup,
-		params?: Partial<Params.EditMessageReplyMarkupParams>,
+		replyMarkup: TelegramObjects.TelegramInlineKeyboardMarkup,
+		params?: Partial<TelegramParams.EditMessageReplyMarkupParams>,
 	) {
 		const response = await this.bot.api.editMessageReplyMarkup({
 			chat_id: this.chatId || this.senderId || 0,
@@ -768,8 +783,8 @@ class NodeMixin {
 
 	/** Edits current message reply markup. An alias for `editMessageReplyMarkup` */
 	editReplyMarkup(
-		replyMarkup: Interfaces.TelegramInlineKeyboardMarkup,
-		params?: Partial<Params.EditMessageReplyMarkupParams>,
+		replyMarkup: TelegramObjects.TelegramInlineKeyboardMarkup,
+		params?: Partial<TelegramParams.EditMessageReplyMarkupParams>,
 	) {
 		return this.editMessageReplyMarkup(replyMarkup, params);
 	}
@@ -777,7 +792,7 @@ class NodeMixin {
 	/** Copies current message [into other chat if `chatId` is provided] */
 	async copy(
 		params: Optional<
-			Params.CopyMessageParams,
+			TelegramParams.CopyMessageParams,
 			"chat_id" | "from_chat_id" | "message_id"
 		> = {},
 	) {
@@ -794,7 +809,7 @@ class NodeMixin {
 	/** Forwards current message [into other chat if `chatId` is provided] */
 	async forward(
 		params: Optional<
-			Params.ForwardMessageParams,
+			TelegramParams.ForwardMessageParams,
 			"chat_id" | "from_chat_id" | "message_id"
 		> = {},
 	) {
@@ -814,10 +829,10 @@ class NodeMixin {
 	/** Sets a reaction on a message */
 	setReaction(
 		reaction:
-			| Interfaces.TelegramReactionTypeEmoji["emoji"]
-			| Interfaces.TelegramReactionType,
+			| TelegramObjects.TelegramReactionTypeEmoji["emoji"]
+			| TelegramObjects.TelegramReactionType,
 		params: Optional<
-			Params.SetMessageReactionParams,
+			TelegramParams.SetMessageReactionParams,
 			"chat_id" | "message_id"
 		> = {},
 	) {
@@ -839,17 +854,20 @@ class NodeMixin {
 	/** Sets multiple amount of reactions on a message */
 	setReactions(
 		rawReactions: (
-			| Interfaces.TelegramReactionTypeEmoji["emoji"]
-			| Interfaces.TelegramReactionType
+			| TelegramObjects.TelegramReactionTypeEmoji["emoji"]
+			| TelegramObjects.TelegramReactionType
 		)[],
 		params: Optional<
-			Params.SetMessageReactionParams,
+			TelegramParams.SetMessageReactionParams,
 			"chat_id" | "message_id"
 		> = {},
 	) {
 		const reactions = rawReactions.map((r) =>
 			typeof r === "string"
-				? ({ type: "emoji", emoji: r } as Interfaces.TelegramReactionTypeEmoji)
+				? ({
+						type: "emoji",
+						emoji: r,
+				  } as TelegramObjects.TelegramReactionTypeEmoji)
 				: r,
 		);
 
@@ -864,11 +882,11 @@ class NodeMixin {
 	/** Reacts to a message */
 	react(
 		rawReactions: MaybeArray<
-			| Interfaces.TelegramReactionTypeEmoji["emoji"]
-			| Interfaces.TelegramReactionType
+			| TelegramObjects.TelegramReactionTypeEmoji["emoji"]
+			| TelegramObjects.TelegramReactionType
 		>,
 		params: Optional<
-			Params.SetMessageReactionParams,
+			TelegramParams.SetMessageReactionParams,
 			"chat_id" | "message_id"
 		> = {},
 	) {
@@ -876,7 +894,10 @@ class NodeMixin {
 			Array.isArray(rawReactions) ? rawReactions : [rawReactions]
 		).map((r) =>
 			typeof r === "string"
-				? ({ type: "emoji", emoji: r } as Interfaces.TelegramReactionTypeEmoji)
+				? ({
+						type: "emoji",
+						emoji: r,
+				  } as TelegramObjects.TelegramReactionTypeEmoji)
 				: r,
 		);
 
@@ -891,7 +912,7 @@ class NodeMixin {
 	/** Clears reactions from the message */
 	clearReactions(
 		params: Optional<
-			Params.SetMessageReactionParams,
+			TelegramParams.SetMessageReactionParams,
 			"chat_id" | "message_id"
 		> = {},
 	) {

@@ -1,4 +1,4 @@
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 import { Inspect, Inspectable } from "inspectable";
 
 import {
@@ -36,7 +36,7 @@ import { Venue } from "./venue";
 /** This object contains information about a message that is being replied to, which may come from another chat or forum topic. */
 @Inspectable()
 export class ExternalReplyInfo {
-	constructor(public payload: Interfaces.TelegramExternalReplyInfo) {}
+	constructor(public payload: TelegramObjects.TelegramExternalReplyInfo) {}
 
 	get [Symbol.toStringTag]() {
 		return this.constructor.name;

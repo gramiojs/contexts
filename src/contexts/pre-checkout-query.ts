@@ -1,7 +1,7 @@
 import { inspectable } from "inspectable";
 
-import * as Interfaces from "@gramio/types/objects";
-import * as Params from "@gramio/types/params";
+import { TelegramParams } from "@gramio/types";
+import { TelegramObjects } from "@gramio/types";
 
 import type { Bot } from "gramio";
 import { applyMixins, filterPayload } from "#utils";
@@ -13,13 +13,13 @@ import { ChatActionMixin, CloneMixin, SendMixin } from "./mixins";
 
 interface PreCheckoutQueryContextOptions {
 	bot: Bot;
-	update: Interfaces.TelegramUpdate;
-	payload: Interfaces.TelegramPreCheckoutQuery;
+	update: TelegramObjects.TelegramUpdate;
+	payload: TelegramObjects.TelegramPreCheckoutQuery;
 	updateId: number;
 }
 
 class PreCheckoutQueryContext extends Context {
-	payload: Interfaces.TelegramPreCheckoutQuery;
+	payload: TelegramObjects.TelegramPreCheckoutQuery;
 
 	constructor(options: PreCheckoutQueryContextOptions) {
 		super({
@@ -45,7 +45,7 @@ class PreCheckoutQueryContext extends Context {
 	/** Answers to the pending pre-checkout query */
 	answerPreCheckoutQuery(
 		params: Optional<
-			Params.AnswerPreCheckoutQueryParams,
+			TelegramParams.AnswerPreCheckoutQueryParams,
 			"pre_checkout_query_id"
 		>,
 	) {
@@ -58,7 +58,7 @@ class PreCheckoutQueryContext extends Context {
 	/** Answers to the pending pre-checkout query. An alias for `answerPreCheckoutQuery` */
 	answer(
 		params: Optional<
-			Params.AnswerPreCheckoutQueryParams,
+			TelegramParams.AnswerPreCheckoutQueryParams,
 			"pre_checkout_query_id"
 		>,
 	) {

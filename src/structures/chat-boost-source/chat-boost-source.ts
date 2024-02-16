@@ -1,4 +1,4 @@
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 
 import type { ChatBoostSourceGiftCode } from "./gift-code";
 import type { ChatBoostSourceGiveaway } from "./giveaway";
@@ -11,14 +11,14 @@ interface ChatBoostSourceMapping {
 }
 
 export class ChatBoostSource {
-	constructor(public payload: Interfaces.TelegramChatBoostSource) {}
+	constructor(public payload: TelegramObjects.TelegramChatBoostSource) {}
 
 	get [Symbol.toStringTag]() {
 		return this.constructor.name;
 	}
 
 	/** Is this chat boost source a certain one? */
-	is<T extends Interfaces.TelegramChatBoostSource["source"]>(
+	is<T extends TelegramObjects.TelegramChatBoostSource["source"]>(
 		source: T,
 	): this is ChatBoostSourceMapping[T] {
 		return this.payload.source === source;

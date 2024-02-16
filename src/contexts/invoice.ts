@@ -1,6 +1,6 @@
 import { inspectable } from "inspectable";
 
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 import { Invoice, Message } from "../structures";
 
 import type { Bot } from "gramio";
@@ -19,13 +19,13 @@ import {
 
 interface InvoiceContextOptions {
 	bot: Bot;
-	update: Interfaces.TelegramUpdate;
-	payload: Interfaces.TelegramMessage;
+	update: TelegramObjects.TelegramUpdate;
+	payload: TelegramObjects.TelegramMessage;
 	updateId: number;
 }
 
 class InvoiceContext extends Context {
-	payload: Interfaces.TelegramMessage;
+	payload: TelegramObjects.TelegramMessage;
 
 	constructor(options: InvoiceContextOptions) {
 		super({
@@ -40,7 +40,7 @@ class InvoiceContext extends Context {
 
 	/** Invoice */
 	get eventInvoice() {
-		return new Invoice(this.payload.invoice as Interfaces.TelegramInvoice);
+		return new Invoice(this.payload.invoice as TelegramObjects.TelegramInvoice);
 	}
 }
 

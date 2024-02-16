@@ -1,6 +1,6 @@
 import { Inspect, Inspectable } from "inspectable";
 
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 
 /**
  * This object represents a file uploaded to Telegram Passport.
@@ -9,7 +9,7 @@ import * as Interfaces from "@gramio/types/objects";
  */
 @Inspectable()
 export class PassportFile {
-	constructor(public payload: Interfaces.TelegramPassportFile) {}
+	constructor(public payload: TelegramObjects.TelegramPassportFile) {}
 
 	get [Symbol.toStringTag]() {
 		return this.constructor.name;

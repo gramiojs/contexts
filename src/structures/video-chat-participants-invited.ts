@@ -1,6 +1,6 @@
 import { Inspect, Inspectable } from "inspectable";
 
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 
 import { User } from "./user";
 
@@ -8,7 +8,7 @@ import { User } from "./user";
 @Inspectable()
 export class VideoChatParticipantsInvited {
 	constructor(
-		public payload: Interfaces.TelegramVideoChatParticipantsInvited,
+		public payload: TelegramObjects.TelegramVideoChatParticipantsInvited,
 	) {}
 
 	get [Symbol.toStringTag]() {

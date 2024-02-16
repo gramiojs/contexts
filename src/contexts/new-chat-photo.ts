@@ -1,6 +1,6 @@
 import { inspectable } from "inspectable";
 
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 import { Message, PhotoSize } from "../structures";
 
 import type { Bot } from "gramio";
@@ -23,13 +23,13 @@ import {
 
 interface NewChatPhotoContextOptions {
 	bot: Bot;
-	update: Interfaces.TelegramUpdate;
-	payload: Interfaces.TelegramMessage;
+	update: TelegramObjects.TelegramUpdate;
+	payload: TelegramObjects.TelegramMessage;
 	updateId: number;
 }
 
 class NewChatPhotoContext extends Context {
-	payload: Interfaces.TelegramMessage;
+	payload: TelegramObjects.TelegramMessage;
 
 	constructor(options: NewChatPhotoContextOptions) {
 		super({
@@ -44,7 +44,8 @@ class NewChatPhotoContext extends Context {
 
 	/** New chat photo */
 	get eventPhoto() {
-		const sizes = this.payload.new_chat_photo as Interfaces.TelegramPhotoSize[];
+		const sizes = this.payload
+			.new_chat_photo as TelegramObjects.TelegramPhotoSize[];
 
 		return sizes.map((size) => new PhotoSize(size));
 	}

@@ -1,6 +1,6 @@
 import { Inspect, Inspectable } from "inspectable";
 
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 import { type AttachmentType } from "#utils";
 
 import { FileAttachment } from "./file-attachment";
@@ -8,7 +8,7 @@ import { FileAttachment } from "./file-attachment";
 /** This object represents a voice note. */
 // TODO: extended: ['fileId', 'fileUniqueId']
 @Inspectable()
-export class VoiceAttachment extends FileAttachment<Interfaces.TelegramVoice> {
+export class VoiceAttachment extends FileAttachment<TelegramObjects.TelegramVoice> {
 	attachmentType: AttachmentType = "voice";
 
 	/** Duration of the audio in seconds as defined by sender */

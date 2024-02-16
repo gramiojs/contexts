@@ -1,4 +1,4 @@
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 import { inspectable } from "inspectable";
 import { MessageReactionCountUpdated } from "../structures/message-reaction-count-updated";
 
@@ -10,14 +10,14 @@ import { CloneMixin, NodeMixin, SendMixin } from "./mixins";
 
 interface MessageReactionCountContextOptions {
 	bot: Bot;
-	update: Interfaces.TelegramUpdate;
-	payload: Interfaces.TelegramMessageReactionCountUpdated;
+	update: TelegramObjects.TelegramUpdate;
+	payload: TelegramObjects.TelegramMessageReactionCountUpdated;
 	updateId: number;
 }
 
 /** This object represents reaction changes on a message with anonymous reactions. */
 class MessageReactionCountContext extends Context {
-	payload: Interfaces.TelegramMessageReactionCountUpdated;
+	payload: TelegramObjects.TelegramMessageReactionCountUpdated;
 
 	constructor(options: MessageReactionCountContextOptions) {
 		super({

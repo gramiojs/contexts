@@ -1,6 +1,6 @@
 import { Inspect, Inspectable } from "inspectable";
 
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 
 /**
  * Describes actions that a non-administrator user is allowed to take in a
@@ -8,7 +8,7 @@ import * as Interfaces from "@gramio/types/objects";
  */
 @Inspectable()
 export class ChatPermissions {
-	constructor(public payload: Interfaces.TelegramChatPermissions) {}
+	constructor(public payload: TelegramObjects.TelegramChatPermissions) {}
 
 	get [Symbol.toStringTag]() {
 		return this.constructor.name;

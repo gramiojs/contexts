@@ -1,4 +1,4 @@
-import * as Params from "@gramio/types/params";
+import { TelegramParams } from "@gramio/types";
 
 import type { Optional, RequireValue } from "#utils";
 
@@ -25,7 +25,10 @@ class ForumMixin {
 	/** Creates a topic */
 	createTopic(
 		name: string,
-		params?: Optional<Params.CreateForumTopicParams, "chat_id" | "name">,
+		params?: Optional<
+			TelegramParams.CreateForumTopicParams,
+			"chat_id" | "name"
+		>,
 	) {
 		return this.bot.api.createForumTopic({
 			chat_id: this.chatId,
@@ -37,7 +40,7 @@ class ForumMixin {
 	/** Edits topic info */
 	editTopic(
 		params: Optional<
-			Params.EditForumTopicParams,
+			TelegramParams.EditForumTopicParams,
 			"chat_id" | "message_thread_id"
 		>,
 	) {
@@ -56,7 +59,7 @@ class ForumMixin {
 
 	/** Edits General topic info */
 	editGeneralTopic(
-		params: Optional<Params.EditGeneralForumTopicParams, "chat_id">,
+		params: Optional<TelegramParams.EditGeneralForumTopicParams, "chat_id">,
 	) {
 		return this.bot.api.editGeneralForumTopic({
 			chat_id: this.chatId,
@@ -67,7 +70,7 @@ class ForumMixin {
 	/** Closes topic */
 	closeTopic(
 		params?: Optional<
-			Params.CloseForumTopicParams,
+			TelegramParams.CloseForumTopicParams,
 			"chat_id" | "message_thread_id"
 		>,
 	) {
@@ -86,7 +89,7 @@ class ForumMixin {
 
 	/** Closes General topic */
 	closeGeneralTopic(
-		params?: Optional<Params.CloseGeneralForumTopicParams, "chat_id">,
+		params?: Optional<TelegramParams.CloseGeneralForumTopicParams, "chat_id">,
 	) {
 		return this.bot.api.closeGeneralForumTopic({
 			chat_id: this.chatId,
@@ -97,7 +100,7 @@ class ForumMixin {
 	/** Reopens topic */
 	reopenTopic(
 		params?: Optional<
-			Params.ReopenForumTopicParams,
+			TelegramParams.ReopenForumTopicParams,
 			"chat_id" | "message_thread_id"
 		>,
 	) {
@@ -116,7 +119,7 @@ class ForumMixin {
 
 	/** Reopens General topic */
 	reopenGeneralTopic(
-		params?: Optional<Params.ReopenGeneralForumTopicParams, "chat_id">,
+		params?: Optional<TelegramParams.ReopenGeneralForumTopicParams, "chat_id">,
 	) {
 		return this.bot.api.reopenGeneralForumTopic({
 			chat_id: this.chatId,
@@ -127,7 +130,7 @@ class ForumMixin {
 	/** Deletes topic along with all its messages */
 	deleteTopic(
 		params?: Optional<
-			Params.DeleteForumTopicParams,
+			TelegramParams.DeleteForumTopicParams,
 			"chat_id" | "message_thread_id"
 		>,
 	) {
@@ -145,7 +148,7 @@ class ForumMixin {
 	/** Clears the list of pinned messages */
 	unpinAllTopicMessages(
 		params?: Optional<
-			Params.UnpinAllForumTopicMessagesParams,
+			TelegramParams.UnpinAllForumTopicMessagesParams,
 			"chat_id" | "message_thread_id"
 		>,
 	) {
@@ -165,7 +168,7 @@ class ForumMixin {
 	/** Clears the list of pinned messages in a General topic */
 	unpinAllGeneralTopicMessages(
 		params?: Optional<
-			Params.UnpinAllGeneralForumTopicMessagesParams,
+			TelegramParams.UnpinAllGeneralForumTopicMessagesParams,
 			"chat_id"
 		>,
 	) {
@@ -177,7 +180,7 @@ class ForumMixin {
 
 	/** Hides General topic */
 	hideGeneralTopic(
-		params?: Optional<Params.HideGeneralForumTopicParams, "chat_id">,
+		params?: Optional<TelegramParams.HideGeneralForumTopicParams, "chat_id">,
 	) {
 		return this.bot.api.hideGeneralForumTopic({
 			chat_id: this.chatId,
@@ -187,7 +190,7 @@ class ForumMixin {
 
 	/** Unhides General topic */
 	unhideGeneralTopic(
-		params?: Optional<Params.UnhideGeneralForumTopicParams, "chat_id">,
+		params?: Optional<TelegramParams.UnhideGeneralForumTopicParams, "chat_id">,
 	) {
 		return this.bot.api.unhideGeneralForumTopic({
 			chat_id: this.chatId,

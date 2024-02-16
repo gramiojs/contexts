@@ -1,9 +1,9 @@
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 
 import { ReactionType } from "./reaction-type";
 
 export class ReactionTypeEmoji extends ReactionType {
-	constructor(public payload: Interfaces.TelegramReactionTypeEmoji) {
+	constructor(public payload: TelegramObjects.TelegramReactionTypeEmoji) {
 		super(payload);
 	}
 

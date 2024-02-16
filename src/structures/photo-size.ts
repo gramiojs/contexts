@@ -1,11 +1,11 @@
 import { Inspect, Inspectable } from "inspectable";
 
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 
 /** This object represents one size of a photo or a file / sticker thumbnail */
 @Inspectable()
 export class PhotoSize {
-	constructor(public payload: Interfaces.TelegramPhotoSize) {}
+	constructor(public payload: TelegramObjects.TelegramPhotoSize) {}
 
 	get [Symbol.toStringTag]() {
 		return this.constructor.name;

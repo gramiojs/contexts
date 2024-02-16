@@ -1,6 +1,6 @@
 import { inspectable } from "inspectable";
 
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 import { Message, MessageAutoDeleteTimerChanged } from "../structures";
 
 import type { Bot } from "gramio";
@@ -19,13 +19,13 @@ import {
 
 interface MessageAutoDeleteTimerChangedContextOptions {
 	bot: Bot;
-	update: Interfaces.TelegramUpdate;
-	payload: Interfaces.TelegramMessage;
+	update: TelegramObjects.TelegramUpdate;
+	payload: TelegramObjects.TelegramMessage;
 	updateId: number;
 }
 
 class MessageAutoDeleteTimerChangedContext extends Context {
-	payload: Interfaces.TelegramMessage;
+	payload: TelegramObjects.TelegramMessage;
 
 	constructor(options: MessageAutoDeleteTimerChangedContextOptions) {
 		super({
@@ -42,7 +42,7 @@ class MessageAutoDeleteTimerChangedContext extends Context {
 	get autoDeleteTimer() {
 		return new MessageAutoDeleteTimerChanged(
 			this.payload
-				.message_auto_delete_timer_changed as Interfaces.TelegramMessageAutoDeleteTimerChanged,
+				.message_auto_delete_timer_changed as TelegramObjects.TelegramMessageAutoDeleteTimerChanged,
 		);
 	}
 }

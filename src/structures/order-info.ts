@@ -1,6 +1,6 @@
 import { Inspect, Inspectable } from "inspectable";
 
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 
 import { memoizeGetters } from "#utils";
 import { ShippingAddress } from "./shipping-address";
@@ -8,7 +8,7 @@ import { ShippingAddress } from "./shipping-address";
 /** This object represents information about an order. */
 @Inspectable()
 export class OrderInfo {
-	constructor(public payload: Interfaces.TelegramOrderInfo) {}
+	constructor(public payload: TelegramObjects.TelegramOrderInfo) {}
 
 	get [Symbol.toStringTag]() {
 		return this.constructor.name;

@@ -1,11 +1,11 @@
 import { Inspect, Inspectable } from "inspectable";
 
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 
 /** This object represents a point on the map. */
 @Inspectable()
 export class Location {
-	constructor(public payload: Interfaces.TelegramLocation) {}
+	constructor(public payload: TelegramObjects.TelegramLocation) {}
 
 	get [Symbol.toStringTag]() {
 		return this.constructor.name;

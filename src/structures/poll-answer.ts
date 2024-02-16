@@ -1,6 +1,6 @@
 import { Inspect, Inspectable } from "inspectable";
 
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 
 import { memoizeGetters } from "#utils";
 import { Chat } from "./chat";
@@ -9,7 +9,7 @@ import { User } from "./user";
 /** This object represents an answer of a user in a non-anonymous poll. */
 @Inspectable()
 export class PollAnswer {
-	constructor(public payload: Interfaces.TelegramPollAnswer) {}
+	constructor(public payload: TelegramObjects.TelegramPollAnswer) {}
 
 	get [Symbol.toStringTag]() {
 		return this.constructor.name;

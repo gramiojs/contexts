@@ -1,11 +1,11 @@
 import { Inspect, Inspectable } from "inspectable";
 
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 
 /** This object represents a service message about an edited forum topic. */
 @Inspectable()
 export class ForumTopicEdited {
-	constructor(public payload: Interfaces.TelegramForumTopicEdited) {}
+	constructor(public payload: TelegramObjects.TelegramForumTopicEdited) {}
 
 	get [Symbol.toStringTag]() {
 		return this.constructor.name;

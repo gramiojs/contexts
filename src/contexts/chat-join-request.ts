@@ -3,7 +3,7 @@ import { inspectable } from "inspectable";
 import { applyMixins } from "#utils";
 import { type Constructor } from "#utils";
 
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 import { ChatJoinRequest } from "../structures";
 
 import type { Bot } from "gramio";
@@ -19,13 +19,13 @@ import {
 
 interface ChatJoinRequestContextOptions {
 	bot: Bot;
-	update: Interfaces.TelegramUpdate;
-	payload: Interfaces.TelegramChatJoinRequest;
+	update: TelegramObjects.TelegramUpdate;
+	payload: TelegramObjects.TelegramChatJoinRequest;
 	updateId: number;
 }
 
 class ChatJoinRequestContext extends Context {
-	payload: Interfaces.TelegramChatJoinRequest;
+	payload: TelegramObjects.TelegramChatJoinRequest;
 
 	constructor(options: ChatJoinRequestContextOptions) {
 		super({

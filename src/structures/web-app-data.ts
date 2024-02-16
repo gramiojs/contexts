@@ -1,11 +1,11 @@
 import { Inspect, Inspectable } from "inspectable";
 
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 
 /** Contains data sent from a Web App to the bot. */
 @Inspectable()
 export class WebAppData {
-	constructor(public payload: Interfaces.TelegramWebAppData) {}
+	constructor(public payload: TelegramObjects.TelegramWebAppData) {}
 
 	/** The data. Be aware that a bad client can send arbitrary data in this field. */
 	@Inspect()

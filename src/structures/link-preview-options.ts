@@ -1,10 +1,10 @@
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 import { Inspect, Inspectable } from "inspectable";
 
 /** Describes the options used for link preview generation. */
 @Inspectable()
 export class LinkPreviewOptions {
-	constructor(public payload: Interfaces.TelegramLinkPreviewOptions) {}
+	constructor(public payload: TelegramObjects.TelegramLinkPreviewOptions) {}
 
 	get [Symbol.toStringTag]() {
 		return this.constructor.name;

@@ -1,4 +1,4 @@
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 import { Message, WriteAccessAllowed } from "../structures";
 
 import type { Bot } from "gramio";
@@ -18,13 +18,13 @@ import {
 
 interface WriteAccessAllowedContextOptions {
 	bot: Bot;
-	update: Interfaces.TelegramUpdate;
-	payload: Interfaces.TelegramMessage;
+	update: TelegramObjects.TelegramUpdate;
+	payload: TelegramObjects.TelegramMessage;
 	updateId: number;
 }
 
 class WriteAccessAllowedContext extends Context {
-	payload: Interfaces.TelegramMessage;
+	payload: TelegramObjects.TelegramMessage;
 
 	constructor(options: WriteAccessAllowedContextOptions) {
 		super({
@@ -41,7 +41,7 @@ class WriteAccessAllowedContext extends Context {
 	get eventAllowance() {
 		return new WriteAccessAllowed(
 			this.payload
-				.write_access_allowed as Interfaces.TelegramWriteAccessAllowed,
+				.write_access_allowed as TelegramObjects.TelegramWriteAccessAllowed,
 		);
 	}
 }

@@ -1,6 +1,6 @@
 import { inspectable } from "inspectable";
 
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 
 import type { Bot } from "gramio";
 import { applyMixins } from "#utils";
@@ -12,13 +12,13 @@ import { ChatActionMixin, CloneMixin, SendMixin } from "./mixins";
 
 interface PollAnswerContextOptions {
 	bot: Bot;
-	update: Interfaces.TelegramUpdate;
-	payload: Interfaces.TelegramPollAnswer;
+	update: TelegramObjects.TelegramUpdate;
+	payload: TelegramObjects.TelegramPollAnswer;
 	updateId: number;
 }
 
 class PollAnswerContext extends Context {
-	payload: Interfaces.TelegramPollAnswer;
+	payload: TelegramObjects.TelegramPollAnswer;
 
 	constructor(options: PollAnswerContextOptions) {
 		super({

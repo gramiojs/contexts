@@ -1,4 +1,4 @@
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 import { inspectable } from "inspectable";
 
 import type { Bot } from "gramio";
@@ -22,14 +22,14 @@ import {
 
 interface GiveawayWinnersContextOptions {
 	bot: Bot;
-	update: Interfaces.TelegramUpdate;
-	payload: Interfaces.TelegramMessage;
+	update: TelegramObjects.TelegramUpdate;
+	payload: TelegramObjects.TelegramMessage;
 	updateId: number;
 }
 
 /** This object represents a message about the completion of a giveaway with public winners. */
 class GiveawayWinnersContext extends Context {
-	payload: Interfaces.TelegramMessage;
+	payload: TelegramObjects.TelegramMessage;
 
 	constructor(options: GiveawayWinnersContextOptions) {
 		super({

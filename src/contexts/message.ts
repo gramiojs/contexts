@@ -20,7 +20,7 @@ import {
 // import { MediaGroup } from "../media-group";
 import { Message, MessageEntity } from "../structures";
 
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 
 import type { Bot } from "gramio";
 
@@ -56,15 +56,15 @@ import {
 
 interface MessageContextOptions {
 	bot: Bot;
-	update?: Interfaces.TelegramUpdate;
-	payload: Interfaces.TelegramMessage;
+	update?: TelegramObjects.TelegramUpdate;
+	payload: TelegramObjects.TelegramMessage;
 	updateId?: number;
 	type?: UpdateName;
 }
 
 /** Called when `message` event occurs */
 class MessageContext extends Context {
-	payload: Interfaces.TelegramMessage;
+	payload: TelegramObjects.TelegramMessage;
 
 	#text: string | undefined;
 	#caption: string | undefined;
@@ -202,23 +202,25 @@ class MessageContext extends Context {
 
 		if (this.contact) {
 			return new ContactAttachment(
-				this.payload.contact as Interfaces.TelegramContact,
+				this.payload.contact as TelegramObjects.TelegramContact,
 			);
 		}
 
 		if (this.poll) {
-			return new PollAttachment(this.payload.poll as Interfaces.TelegramPoll);
+			return new PollAttachment(
+				this.payload.poll as TelegramObjects.TelegramPoll,
+			);
 		}
 
 		if (this.venue) {
 			return new VenueAttachment(
-				this.payload.venue as Interfaces.TelegramVenue,
+				this.payload.venue as TelegramObjects.TelegramVenue,
 			);
 		}
 
 		if (this.location) {
 			return new LocationAttachment(
-				this.payload.location as Interfaces.TelegramLocation,
+				this.payload.location as TelegramObjects.TelegramLocation,
 			);
 		}
 

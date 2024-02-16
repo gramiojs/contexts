@@ -1,7 +1,7 @@
 import { inspectable } from "inspectable";
 
-import * as Interfaces from "@gramio/types/objects";
-import * as Params from "@gramio/types/params";
+import { TelegramParams } from "@gramio/types";
+import { TelegramObjects } from "@gramio/types";
 
 import type { Bot } from "gramio";
 import { applyMixins, filterPayload } from "#utils";
@@ -13,13 +13,13 @@ import { ChatActionMixin, CloneMixin, SendMixin } from "./mixins";
 
 interface ShippingQueryContextOptions {
 	bot: Bot;
-	update: Interfaces.TelegramUpdate;
-	payload: Interfaces.TelegramShippingQuery;
+	update: TelegramObjects.TelegramUpdate;
+	payload: TelegramObjects.TelegramShippingQuery;
 	updateId: number;
 }
 
 class ShippingQueryContext extends Context {
-	payload: Interfaces.TelegramShippingQuery;
+	payload: TelegramObjects.TelegramShippingQuery;
 
 	constructor(options: ShippingQueryContextOptions) {
 		super({
@@ -36,12 +36,12 @@ class ShippingQueryContext extends Context {
 	answerShippingQuery<Ok extends boolean>(
 		ok: Ok = true as Ok,
 		params?: Optional<
-			Params.AnswerShippingQueryParams,
+			TelegramParams.AnswerShippingQueryParams,
 			"shipping_query_id" | "ok"
 		> &
 			Required<
 				Pick<
-					Params.AnswerShippingQueryParams,
+					TelegramParams.AnswerShippingQueryParams,
 					true extends Ok ? "shipping_options" : "error_message"
 				>
 			>,
@@ -57,12 +57,12 @@ class ShippingQueryContext extends Context {
 	answer<Ok extends boolean>(
 		ok: Ok = true as Ok,
 		params?: Optional<
-			Params.AnswerShippingQueryParams,
+			TelegramParams.AnswerShippingQueryParams,
 			"shipping_query_id" | "ok"
 		> &
 			Required<
 				Pick<
-					Params.AnswerShippingQueryParams,
+					TelegramParams.AnswerShippingQueryParams,
 					true extends Ok ? "shipping_options" : "error_message"
 				>
 			>,

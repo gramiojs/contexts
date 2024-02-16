@@ -1,4 +1,4 @@
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 import { Inspect, Inspectable } from "inspectable";
 
 import { memoizeGetters } from "#utils";
@@ -7,7 +7,7 @@ import { ReactionTypeCustomEmoji, ReactionTypeEmoji } from "./reaction-type";
 /** Represents a reaction added to a message along with the number of times it was added. */
 @Inspectable()
 export class ReactionCount {
-	constructor(public payload: Interfaces.TelegramReactionCount) {}
+	constructor(public payload: TelegramObjects.TelegramReactionCount) {}
 
 	get [Symbol.toStringTag]() {
 		return this.constructor.name;

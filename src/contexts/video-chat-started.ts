@@ -1,6 +1,6 @@
 import { inspectable } from "inspectable";
 
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 import { Message, VideoChatStarted } from "../structures";
 
 import type { Bot } from "gramio";
@@ -23,13 +23,13 @@ import {
 
 interface VideoChatStartedContextOptions {
 	bot: Bot;
-	update: Interfaces.TelegramUpdate;
-	payload: Interfaces.TelegramMessage;
+	update: TelegramObjects.TelegramUpdate;
+	payload: TelegramObjects.TelegramMessage;
 	updateId: number;
 }
 
 class VideoChatStartedContext extends Context {
-	payload: Interfaces.TelegramMessage;
+	payload: TelegramObjects.TelegramMessage;
 
 	constructor(options: VideoChatStartedContextOptions) {
 		super({
@@ -45,7 +45,8 @@ class VideoChatStartedContext extends Context {
 	/** Service message: video chat started */
 	get eventStarted() {
 		return new VideoChatStarted(
-			this.payload.video_chat_started as Interfaces.TelegramVideoChatStarted,
+			this.payload
+				.video_chat_started as TelegramObjects.TelegramVideoChatStarted,
 		);
 	}
 }

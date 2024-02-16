@@ -1,5 +1,5 @@
-import * as Objects from "@gramio/types/objects";
-import * as Params from "@gramio/types/params";
+import { TelegramParams } from "@gramio/types";
+import { TelegramObjects } from "@gramio/types";
 
 import type { Optional } from "#utils";
 
@@ -13,7 +13,7 @@ class ChatControlMixin {
 	setCustomTitle(
 		title: string,
 		params?: Optional<
-			Params.SetChatAdministratorCustomTitleParams,
+			TelegramParams.SetChatAdministratorCustomTitleParams,
 			"chat_id" | "user_id"
 		>,
 	) {
@@ -27,9 +27,9 @@ class ChatControlMixin {
 
 	/** Sets default chat permissions */
 	setChatDefaultPermissions(
-		permissions: Objects.TelegramChatPermissions,
+		permissions: TelegramObjects.TelegramChatPermissions,
 		params?: Optional<
-			Params.SetChatPermissionsParams,
+			TelegramParams.SetChatPermissionsParams,
 			"chat_id" | "permissions"
 		>,
 	) {
@@ -42,8 +42,8 @@ class ChatControlMixin {
 
 	/** Sets a new profile photo for the chat */
 	setChatPhoto(
-		photo: Params.SetChatPhotoParams["photo"],
-		params?: Optional<Params.SetChatPhotoParams, "chat_id" | "photo">,
+		photo: TelegramParams.SetChatPhotoParams["photo"],
+		params?: Optional<TelegramParams.SetChatPhotoParams, "chat_id" | "photo">,
 	) {
 		return this.bot.api.setChatPhoto({
 			chat_id: this.chatId,
@@ -54,7 +54,9 @@ class ChatControlMixin {
 
 	/** Deletes a chat photo */
 	// INFO: had to rename it from `deleteChatPhoto` because of `TelegramMessage.delete_chat_photo` 😤😤
-	removeChatPhoto(params?: Optional<Params.DeleteChatPhotoParams, "chat_id">) {
+	removeChatPhoto(
+		params?: Optional<TelegramParams.DeleteChatPhotoParams, "chat_id">,
+	) {
 		return this.bot.api.deleteChatPhoto({
 			chat_id: this.chatId,
 			...params,
@@ -64,7 +66,7 @@ class ChatControlMixin {
 	/** Changes chat title */
 	setChatTitle(
 		title: string,
-		params?: Optional<Params.SetChatTitleParams, "chat_id" | "title">,
+		params?: Optional<TelegramParams.SetChatTitleParams, "chat_id" | "title">,
 	) {
 		return this.bot.api.setChatTitle({
 			chat_id: this.chatId,
@@ -77,7 +79,7 @@ class ChatControlMixin {
 	setChatDescription(
 		description: string,
 		params?: Optional<
-			Params.SetChatDescriptionParams,
+			TelegramParams.SetChatDescriptionParams,
 			"chat_id" | "description"
 		>,
 	) {
@@ -92,7 +94,7 @@ class ChatControlMixin {
 	setChatStickerSet(
 		name: string,
 		params?: Optional<
-			Params.SetChatStickerSetParams,
+			TelegramParams.SetChatStickerSetParams,
 			"chat_id" | "sticker_set_name"
 		>,
 	) {
@@ -105,7 +107,7 @@ class ChatControlMixin {
 
 	/** Deletes group stickerset */
 	deleteChatStickerSet(
-		params?: Optional<Params.DeleteChatStickerSetParams, "chat_id">,
+		params?: Optional<TelegramParams.DeleteChatStickerSetParams, "chat_id">,
 	) {
 		return this.bot.api.deleteChatStickerSet({
 			chat_id: this.chatId,

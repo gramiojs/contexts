@@ -1,11 +1,11 @@
 import { Inspect, Inspectable } from "inspectable";
 
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 
 /** This object represents a unique message identifier. */
 @Inspectable()
 export class MessageId {
-	constructor(public payload: Interfaces.TelegramMessageId) {}
+	constructor(public payload: TelegramObjects.TelegramMessageId) {}
 
 	/** Unique message identifier */
 	@Inspect()

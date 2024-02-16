@@ -1,4 +1,4 @@
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 import { Message } from "../structures";
 
 import type { Bot } from "gramio";
@@ -23,14 +23,14 @@ import {
 
 interface GeneralForumTopicUnhiddenContextOptions {
 	bot: Bot;
-	update: Interfaces.TelegramUpdate;
-	payload: Interfaces.TelegramMessage;
+	update: TelegramObjects.TelegramUpdate;
+	payload: TelegramObjects.TelegramMessage;
 	updateId: number;
 }
 
 /** This object represents a service message about General forum topic unhidden in the chat. Currently holds no information. */
 class GeneralForumTopicUnhiddenContext extends Context {
-	payload: Interfaces.TelegramMessage;
+	payload: TelegramObjects.TelegramMessage;
 
 	constructor(options: GeneralForumTopicUnhiddenContextOptions) {
 		super({

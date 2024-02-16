@@ -1,6 +1,6 @@
 import { Inspect, Inspectable } from "inspectable";
 
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 
 import { User } from "../user";
 
@@ -10,7 +10,7 @@ import { MessageOrigin } from "./message-origin";
 /** The message was originally sent by a known user. */
 @Inspectable()
 export class MessageOriginUser extends MessageOrigin {
-	constructor(public payload: Interfaces.TelegramMessageOriginUser) {
+	constructor(public payload: TelegramObjects.TelegramMessageOriginUser) {
 		super(payload);
 	}
 

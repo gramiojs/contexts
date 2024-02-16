@@ -1,7 +1,7 @@
 import { inspectable } from "inspectable";
 
-import * as Interfaces from "@gramio/types/objects";
-import * as Params from "@gramio/types/params";
+import { TelegramParams } from "@gramio/types";
+import { TelegramObjects } from "@gramio/types";
 
 import type { Bot } from "gramio";
 import { applyMixins, filterPayload } from "#utils";
@@ -13,13 +13,13 @@ import { CloneMixin } from "./mixins";
 
 interface InlineQueryContextOptions {
 	bot: Bot;
-	update: Interfaces.TelegramUpdate;
-	payload: Interfaces.TelegramInlineQuery;
+	update: TelegramObjects.TelegramUpdate;
+	payload: TelegramObjects.TelegramInlineQuery;
 	updateId: number;
 }
 
 class InlineQueryContext extends Context {
-	payload: Interfaces.TelegramInlineQuery;
+	payload: TelegramObjects.TelegramInlineQuery;
 
 	constructor(options: InlineQueryContextOptions) {
 		super({
@@ -44,8 +44,8 @@ class InlineQueryContext extends Context {
 
 	/** Answers to inline query */
 	answerInlineQuery(
-		results: Interfaces.TelegramInlineQueryResult[],
-		params?: Partial<Params.AnswerInlineQueryParams>,
+		results: TelegramObjects.TelegramInlineQueryResult[],
+		params?: Partial<TelegramParams.AnswerInlineQueryParams>,
 	) {
 		return this.bot.api.answerInlineQuery({
 			inline_query_id: this.id,
@@ -56,8 +56,8 @@ class InlineQueryContext extends Context {
 
 	/** Answers to inline query. An alias for `answerInlineQuery` */
 	answer(
-		results: Interfaces.TelegramInlineQueryResult[],
-		params?: Partial<Params.AnswerInlineQueryParams>,
+		results: TelegramObjects.TelegramInlineQueryResult[],
+		params?: Partial<TelegramParams.AnswerInlineQueryParams>,
 	) {
 		return this.answerInlineQuery(results, params);
 	}

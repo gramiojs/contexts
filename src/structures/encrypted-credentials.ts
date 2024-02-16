@@ -1,6 +1,6 @@
 import { Inspect, Inspectable } from "inspectable";
 
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 
 /**
  * Contains data required for decrypting and authenticatin
@@ -9,7 +9,7 @@ import * as Interfaces from "@gramio/types/objects";
  */
 @Inspectable()
 export class EncryptedCredentials {
-	constructor(public payload: Interfaces.TelegramEncryptedCredentials) {}
+	constructor(public payload: TelegramObjects.TelegramEncryptedCredentials) {}
 
 	get [Symbol.toStringTag]() {
 		return this.constructor.name;

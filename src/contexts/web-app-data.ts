@@ -1,6 +1,6 @@
 import { inspectable } from "inspectable";
 
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 
 import type { Bot } from "gramio";
 import { applyMixins } from "#utils";
@@ -18,13 +18,13 @@ import {
 
 interface WebAppDataContextOptions {
 	bot: Bot;
-	update: Interfaces.TelegramUpdate;
-	payload: Interfaces.TelegramMessage;
+	update: TelegramObjects.TelegramUpdate;
+	payload: TelegramObjects.TelegramMessage;
 	updateId: number;
 }
 
 class WebAppDataContext extends Context {
-	payload: Interfaces.TelegramMessage;
+	payload: TelegramObjects.TelegramMessage;
 
 	constructor(options: WebAppDataContextOptions) {
 		super({
@@ -40,7 +40,7 @@ class WebAppDataContext extends Context {
 	/** The data. Be aware that a bad client can send arbitrary data in this field. */
 	get data() {
 		const webAppData = this.payload
-			.web_app_data as Interfaces.TelegramWebAppData;
+			.web_app_data as TelegramObjects.TelegramWebAppData;
 
 		return webAppData.data;
 	}
@@ -51,7 +51,7 @@ class WebAppDataContext extends Context {
 	 */
 	get buttonText() {
 		const webAppData = this.payload
-			.web_app_data as Interfaces.TelegramWebAppData;
+			.web_app_data as TelegramObjects.TelegramWebAppData;
 
 		return webAppData.button_text;
 	}

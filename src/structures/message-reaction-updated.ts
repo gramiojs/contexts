@@ -1,4 +1,4 @@
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 
 import { Inspect, Inspectable } from "inspectable";
 
@@ -9,7 +9,7 @@ import { User } from "./user";
 /** This object represents a change of a reaction on a message performed by a user. */
 @Inspectable()
 export class MessageReactionUpdated {
-	constructor(public payload: Interfaces.TelegramMessageReactionUpdated) {}
+	constructor(public payload: TelegramObjects.TelegramMessageReactionUpdated) {}
 
 	get [Symbol.toStringTag]() {
 		return this.constructor.name;

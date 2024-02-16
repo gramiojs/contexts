@@ -1,6 +1,6 @@
 import { inspectable } from "inspectable";
 
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 import { Message, SuccessfulPayment } from "../structures";
 
 import type { Bot } from "gramio";
@@ -19,13 +19,13 @@ import {
 
 interface SuccessfulPaymentContextOptions {
 	bot: Bot;
-	update: Interfaces.TelegramUpdate;
-	payload: Interfaces.TelegramMessage;
+	update: TelegramObjects.TelegramUpdate;
+	payload: TelegramObjects.TelegramMessage;
 	updateId: number;
 }
 
 class SuccessfulPaymentContext extends Context {
-	payload: Interfaces.TelegramMessage;
+	payload: TelegramObjects.TelegramMessage;
 
 	constructor(options: SuccessfulPaymentContextOptions) {
 		super({
@@ -41,7 +41,8 @@ class SuccessfulPaymentContext extends Context {
 	/** Received payment */
 	get eventPayment() {
 		return new SuccessfulPayment(
-			this.payload.successful_payment as Interfaces.TelegramSuccessfulPayment,
+			this.payload
+				.successful_payment as TelegramObjects.TelegramSuccessfulPayment,
 		);
 	}
 }

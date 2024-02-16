@@ -1,11 +1,11 @@
 import { Inspect, Inspectable } from "inspectable";
 
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 
 /** This object represents a service message about a video chat ended in the chat. */
 @Inspectable()
 export class VideoChatEnded {
-	constructor(public payload: Interfaces.TelegramVideoChatEnded) {}
+	constructor(public payload: TelegramObjects.TelegramVideoChatEnded) {}
 
 	get [Symbol.toStringTag]() {
 		return this.constructor.name;

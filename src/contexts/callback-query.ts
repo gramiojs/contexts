@@ -6,8 +6,8 @@ import { applyMixins, filterPayload, isParsable, memoizeGetters } from "#utils";
 import { type Constructor, type Require } from "#utils";
 import { CallbackQuery } from "../structures";
 
-import * as Interfaces from "@gramio/types/objects";
-import * as Params from "@gramio/types/params";
+import { TelegramParams } from "@gramio/types";
+import { TelegramObjects } from "@gramio/types";
 
 import type { Bot } from "gramio";
 
@@ -17,14 +17,14 @@ import { CloneMixin } from "./mixins";
 
 interface CallbackQueryContextOptions {
 	bot: Bot;
-	update: Interfaces.TelegramUpdate;
-	payload: Interfaces.TelegramCallbackQuery;
+	update: TelegramObjects.TelegramUpdate;
+	payload: TelegramObjects.TelegramCallbackQuery;
 	updateId: number;
 }
 
 /** Called when `callback_query` event occurs */
 class CallbackQueryContext extends Context {
-	payload: Interfaces.TelegramCallbackQuery;
+	payload: TelegramObjects.TelegramCallbackQuery;
 
 	constructor(options: CallbackQueryContextOptions) {
 		super({
@@ -95,7 +95,9 @@ class CallbackQueryContext extends Context {
 	}
 
 	/** Answers to current callback query */
-	answerCallbackQuery(params?: Partial<Params.AnswerCallbackQueryParams>) {
+	answerCallbackQuery(
+		params?: Partial<TelegramParams.AnswerCallbackQueryParams>,
+	) {
 		return this.bot.api.answerCallbackQuery({
 			callback_query_id: this.id,
 			...params,
@@ -103,19 +105,19 @@ class CallbackQueryContext extends Context {
 	}
 
 	/** Sets the result of an interaction with a Web App and sends a corresponding message  */
-	answerWebAppQuery(params: Params.AnswerWebAppQueryParams) {
+	answerWebAppQuery(params: TelegramParams.AnswerWebAppQueryParams) {
 		return this.bot.api.answerWebAppQuery(params);
 	}
 
 	/** Answers to current callback query. An alias for `answerCallbackQuery` */
-	answer(params?: Partial<Params.AnswerCallbackQueryParams>) {
+	answer(params?: Partial<TelegramParams.AnswerCallbackQueryParams>) {
 		return this.answerCallbackQuery(params);
 	}
 
 	/** Edits a callback query messages text */
 	editText(
-		text: Params.EditMessageTextParams["text"],
-		params?: Partial<Params.EditMessageTextParams>,
+		text: TelegramParams.EditMessageTextParams["text"],
+		params?: Partial<TelegramParams.EditMessageTextParams>,
 	) {
 		if (this.hasMessage()) {
 			return this.message.editText(text, params);
@@ -136,8 +138,8 @@ class CallbackQueryContext extends Context {
 
 	/** Edits a callback query messages caption */
 	editCaption(
-		caption: NonNullable<Params.EditMessageCaptionParams["caption"]>,
-		params?: Partial<Params.EditMessageCaptionParams>,
+		caption: NonNullable<TelegramParams.EditMessageCaptionParams["caption"]>,
+		params?: Partial<TelegramParams.EditMessageCaptionParams>,
 	) {
 		if (this.hasMessage()) {
 			return this.message.editCaption(caption, params);
@@ -158,8 +160,8 @@ class CallbackQueryContext extends Context {
 
 	/** Edits a callback query messages media */
 	editMedia(
-		media: Params.EditMessageMediaParams["media"],
-		params?: Partial<Params.EditMessageMediaParams>,
+		media: TelegramParams.EditMessageMediaParams["media"],
+		params?: Partial<TelegramParams.EditMessageMediaParams>,
 	) {
 		if (this.hasMessage()) {
 			return this.message.editMedia(media, params);
@@ -179,7 +181,7 @@ class CallbackQueryContext extends Context {
 	}
 
 	/** Edits a callback query messages live location */
-	editLiveLocation(params: Params.EditMessageLiveLocationParams) {
+	editLiveLocation(params: TelegramParams.EditMessageLiveLocationParams) {
 		if (this.hasMessage()) {
 			return this.message.editLiveLocation(params);
 		}
@@ -197,7 +199,7 @@ class CallbackQueryContext extends Context {
 	}
 
 	/** Stops a callback query messages live location */
-	stopLiveLocation(params?: Params.StopMessageLiveLocationParams) {
+	stopLiveLocation(params?: TelegramParams.StopMessageLiveLocationParams) {
 		if (this.hasMessage()) {
 			return this.message.stopLiveLocation(params);
 		}
@@ -216,8 +218,8 @@ class CallbackQueryContext extends Context {
 
 	/** Edits a callback query messages reply markup */
 	editReplyMarkup(
-		replyMarkup: Interfaces.TelegramInlineKeyboardMarkup,
-		params?: Partial<Params.EditMessageReplyMarkupParams>,
+		replyMarkup: TelegramObjects.TelegramInlineKeyboardMarkup,
+		params?: Partial<TelegramParams.EditMessageReplyMarkupParams>,
 	) {
 		if (this.hasMessage()) {
 			return this.message.editReplyMarkup(replyMarkup, params);

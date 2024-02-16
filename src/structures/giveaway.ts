@@ -1,4 +1,4 @@
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 import { Inspect, Inspectable } from "inspectable";
 
 import { Chat } from "./chat";
@@ -6,7 +6,7 @@ import { Chat } from "./chat";
 /** This object represents a message about a scheduled giveaway. */
 @Inspectable()
 export class Giveaway {
-	constructor(public payload: Interfaces.TelegramGiveaway) {}
+	constructor(public payload: TelegramObjects.TelegramGiveaway) {}
 
 	get [Symbol.toStringTag]() {
 		return this.constructor.name;

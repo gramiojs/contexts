@@ -1,4 +1,4 @@
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 import { inspectable } from "inspectable";
 import { ChatBoostRemoved } from "../structures/chat-boost-removed";
 
@@ -11,14 +11,14 @@ import { CloneMixin, SendMixin } from "./mixins";
 
 interface RemovedChatBoostContextOptions {
 	bot: Bot;
-	update: Interfaces.TelegramUpdate;
-	payload: Interfaces.TelegramChatBoostRemoved;
+	update: TelegramObjects.TelegramUpdate;
+	payload: TelegramObjects.TelegramChatBoostRemoved;
 	updateId: number;
 }
 
 /** This object represents a boost removed from a chat. */
 class RemovedChatBoostContext extends Context {
-	payload: Interfaces.TelegramChatBoostRemoved;
+	payload: TelegramObjects.TelegramChatBoostRemoved;
 
 	constructor(options: RemovedChatBoostContextOptions) {
 		super({

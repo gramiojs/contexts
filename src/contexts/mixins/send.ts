@@ -1,4 +1,4 @@
-import * as Params from "@gramio/types/params";
+import { TelegramParams } from "@gramio/types";
 
 import type { Optional, tSendMethods } from "#utils";
 import { Poll } from "../../structures";
@@ -15,8 +15,8 @@ interface SendMixinMetadata {
 class SendMixin {
 	/** Sends message to current chat */
 	async send(
-		text: Params.SendMessageParams["text"],
-		params?: Optional<Params.SendMessageParams, "chat_id" | "text">,
+		text: TelegramParams.SendMessageParams["text"],
+		params?: Optional<TelegramParams.SendMessageParams, "chat_id" | "text">,
 	) {
 		const response = await this.bot.api.sendMessage({
 			chat_id: this.chatId || this.senderId || 0,
@@ -32,8 +32,8 @@ class SendMixin {
 
 	/** Sends photo to current chat */
 	async sendPhoto(
-		photo: Params.SendPhotoParams["photo"],
-		params?: Optional<Params.SendPhotoParams, "chat_id" | "photo">,
+		photo: TelegramParams.SendPhotoParams["photo"],
+		params?: Optional<TelegramParams.SendPhotoParams, "chat_id" | "photo">,
 	) {
 		const response = await this.bot.api.sendPhoto({
 			chat_id: this.chatId || this.senderId || 0,
@@ -49,8 +49,11 @@ class SendMixin {
 
 	/** Sends document to current chat */
 	async sendDocument(
-		document: Params.SendDocumentParams["document"],
-		params?: Optional<Params.SendDocumentParams, "chat_id" | "document">,
+		document: TelegramParams.SendDocumentParams["document"],
+		params?: Optional<
+			TelegramParams.SendDocumentParams,
+			"chat_id" | "document"
+		>,
 	) {
 		const response = await this.bot.api.sendDocument({
 			chat_id: this.chatId || this.senderId || 0,
@@ -66,8 +69,8 @@ class SendMixin {
 
 	/** Sends audio to current chat */
 	async sendAudio(
-		audio: Params.SendAudioParams["audio"],
-		params?: Optional<Params.SendAudioParams, "chat_id" | "audio">,
+		audio: TelegramParams.SendAudioParams["audio"],
+		params?: Optional<TelegramParams.SendAudioParams, "chat_id" | "audio">,
 	) {
 		const response = await this.bot.api.sendAudio({
 			chat_id: this.chatId || this.senderId || 0,
@@ -83,8 +86,8 @@ class SendMixin {
 
 	/** Sends video to current chat */
 	async sendVideo(
-		video: Params.SendVideoParams["video"],
-		params?: Optional<Params.SendVideoParams, "chat_id" | "video">,
+		video: TelegramParams.SendVideoParams["video"],
+		params?: Optional<TelegramParams.SendVideoParams, "chat_id" | "video">,
 	) {
 		const response = await this.bot.api.sendVideo({
 			chat_id: this.chatId || this.senderId || 0,
@@ -100,8 +103,11 @@ class SendMixin {
 
 	/** Sends animation to current chat */
 	async sendAnimation(
-		animation: Params.SendAnimationParams["animation"],
-		params?: Optional<Params.SendAnimationParams, "chat_id" | "animation">,
+		animation: TelegramParams.SendAnimationParams["animation"],
+		params?: Optional<
+			TelegramParams.SendAnimationParams,
+			"chat_id" | "animation"
+		>,
 	) {
 		const response = await this.bot.api.sendAnimation({
 			chat_id: this.chatId || this.senderId || 0,
@@ -117,8 +123,11 @@ class SendMixin {
 
 	/** Sends video note to current chat */
 	async sendVideoNote(
-		videoNote: Params.SendVideoNoteParams["video_note"],
-		params?: Optional<Params.SendVideoNoteParams, "chat_id" | "video_note">,
+		videoNote: TelegramParams.SendVideoNoteParams["video_note"],
+		params?: Optional<
+			TelegramParams.SendVideoNoteParams,
+			"chat_id" | "video_note"
+		>,
 	) {
 		const response = await this.bot.api.sendVideoNote({
 			chat_id: this.chatId || this.senderId || 0,
@@ -134,8 +143,8 @@ class SendMixin {
 
 	/** Sends voice to current chat */
 	async sendVoice(
-		voice: Params.SendVoiceParams["voice"],
-		params?: Optional<Params.SendVoiceParams, "chat_id" | "voice">,
+		voice: TelegramParams.SendVoiceParams["voice"],
+		params?: Optional<TelegramParams.SendVoiceParams, "chat_id" | "voice">,
 	) {
 		const response = await this.bot.api.sendVoice({
 			chat_id: this.chatId || this.senderId || 0,
@@ -154,7 +163,7 @@ class SendMixin {
 		latitude: number,
 		longitude: number,
 		params?: Optional<
-			Params.SendLocationParams,
+			TelegramParams.SendLocationParams,
 			"chat_id" | "latitude" | "longitude"
 		>,
 	) {
@@ -172,7 +181,9 @@ class SendMixin {
 	}
 
 	/** Sends invoice to current user */
-	async sendInvoice(params: Optional<Params.SendInvoiceParams, "chat_id">) {
+	async sendInvoice(
+		params: Optional<TelegramParams.SendInvoiceParams, "chat_id">,
+	) {
 		const response = await this.bot.api.sendInvoice({
 			chat_id: this.chatId || this.senderId || 0,
 			...params,
@@ -185,7 +196,7 @@ class SendMixin {
 	}
 
 	/** Sends venue to current chat */
-	async sendVenue(params: Optional<Params.SendVenueParams, "chat_id">) {
+	async sendVenue(params: Optional<TelegramParams.SendVenueParams, "chat_id">) {
 		const response = await this.bot.api.sendVenue({
 			chat_id: this.chatId || this.senderId || 0,
 			...params,
@@ -198,7 +209,9 @@ class SendMixin {
 	}
 
 	/** Sends contact to current chat */
-	async sendContact(params: Optional<Params.SendContactParams, "chat_id">) {
+	async sendContact(
+		params: Optional<TelegramParams.SendContactParams, "chat_id">,
+	) {
 		const response = await this.bot.api.sendContact({
 			chat_id: this.chatId || this.senderId || 0,
 			...params,
@@ -211,7 +224,7 @@ class SendMixin {
 	}
 
 	/** Sends poll to current chat */
-	async sendPoll(params: Optional<Params.SendPollParams, "chat_id">) {
+	async sendPoll(params: Optional<TelegramParams.SendPollParams, "chat_id">) {
 		const response = await this.bot.api.sendPoll({
 			chat_id: this.chatId || this.senderId || 0,
 			...params,
@@ -225,8 +238,8 @@ class SendMixin {
 
 	/** Sends sticker */
 	async sendSticker(
-		sticker: Params.SendStickerParams["sticker"],
-		params?: Optional<Params.SendStickerParams, "sticker" | "chat_id">,
+		sticker: TelegramParams.SendStickerParams["sticker"],
+		params?: Optional<TelegramParams.SendStickerParams, "sticker" | "chat_id">,
 	) {
 		const response = await this.bot.api.sendSticker({
 			chat_id: this.chatId || this.senderId || 0,
@@ -241,7 +254,10 @@ class SendMixin {
 	}
 
 	/** Stops poll in current chat */
-	async stopPoll(messageId: number, params?: Partial<Params.StopPollParams>) {
+	async stopPoll(
+		messageId: number,
+		params?: Partial<TelegramParams.StopPollParams>,
+	) {
 		const response = await this.bot.api.stopPoll({
 			chat_id: this.chatId || this.senderId || 0,
 			message_id: messageId,
@@ -253,8 +269,11 @@ class SendMixin {
 
 	/** Sends chat action to current chat */
 	sendChatAction(
-		action: Params.SendChatActionParams["action"],
-		params: Optional<Params.SendChatActionParams, "chat_id" | "action"> = {},
+		action: TelegramParams.SendChatActionParams["action"],
+		params: Optional<
+			TelegramParams.SendChatActionParams,
+			"chat_id" | "action"
+		> = {},
 	) {
 		return this.bot.api.sendChatAction({
 			chat_id: this.chatId || this.senderId || 0,
@@ -265,8 +284,8 @@ class SendMixin {
 
 	/** Sends dice */
 	async sendDice(
-		emoji: Params.SendDiceParams["emoji"],
-		params?: Partial<Params.SendDiceParams>,
+		emoji: TelegramParams.SendDiceParams["emoji"],
+		params?: Partial<TelegramParams.SendDiceParams>,
 	) {
 		const response = await this.bot.api.sendDice({
 			chat_id: this.chatId || this.senderId || 0,
@@ -282,8 +301,8 @@ class SendMixin {
 
 	/** Sends media group to current chat */
 	async sendMediaGroup(
-		mediaGroup: Params.SendMediaGroupParams["media"],
-		params?: Optional<Params.SendMediaGroupParams, "chat_id" | "media">,
+		mediaGroup: TelegramParams.SendMediaGroupParams["media"],
+		params?: Optional<TelegramParams.SendMediaGroupParams, "chat_id" | "media">,
 	) {
 		const response = await this.bot.api.sendMediaGroup({
 			chat_id: this.chatId || this.senderId || 0,

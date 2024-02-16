@@ -1,4 +1,4 @@
-import * as Params from "@gramio/types/params";
+import { TelegramParams } from "@gramio/types";
 import type { Optional } from "#utils";
 
 import { Context } from "../context";
@@ -11,7 +11,7 @@ class ChatSenderControlMixin {
 	banChatSender(
 		senderChatId: number,
 		params?: Optional<
-			Params.BanChatSenderChatParams,
+			TelegramParams.BanChatSenderChatParams,
 			"chat_id" | "sender_chat_id"
 		>,
 	) {
@@ -26,7 +26,7 @@ class ChatSenderControlMixin {
 	unbanChatSender(
 		senderChatId: number,
 		params?: Optional<
-			Params.UnbanChatSenderChatParams,
+			TelegramParams.UnbanChatSenderChatParams,
 			"chat_id" | "sender_chat_id"
 		>,
 	) {

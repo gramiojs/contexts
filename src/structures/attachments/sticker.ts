@@ -1,6 +1,6 @@
 import { Inspect, Inspectable } from "inspectable";
 
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 import type { AttachmentType, Require } from "#utils";
 
 import { File } from "../file";
@@ -13,7 +13,7 @@ import { FileAttachment } from "./file-attachment";
 /** This object represents a sticker. */
 // TODO: extended: ['fileId', 'fileUniqueId']
 @Inspectable()
-export class StickerAttachment extends FileAttachment<Interfaces.TelegramSticker> {
+export class StickerAttachment extends FileAttachment<TelegramObjects.TelegramSticker> {
 	attachmentType: AttachmentType = "sticker";
 
 	/**

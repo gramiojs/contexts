@@ -1,6 +1,6 @@
 import { Inspect, Inspectable } from "inspectable";
 
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 
 import { memoizeGetters } from "#utils";
 import { CallbackGame } from "./callback-game";
@@ -9,7 +9,7 @@ import { LoginUrl } from "./login-url";
 /** This object represents one button of an inline keyboard. You must use exactly one of the optional fields. */
 @Inspectable()
 export class InlineKeyboardButton {
-	constructor(public payload: Interfaces.TelegramInlineKeyboardButton) {}
+	constructor(public payload: TelegramObjects.TelegramInlineKeyboardButton) {}
 
 	get [Symbol.toStringTag]() {
 		return this.constructor.name;

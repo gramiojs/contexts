@@ -1,7 +1,7 @@
 import { inspectable } from "inspectable";
 import { Message, PassportData } from "../structures";
 
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 
 import type { Bot } from "gramio";
 import { applyMixins, memoizeGetters } from "#utils";
@@ -19,13 +19,13 @@ import {
 
 interface PassportDataContextOptions {
 	bot: Bot;
-	update: Interfaces.TelegramUpdate;
-	payload: Interfaces.TelegramMessage;
+	update: TelegramObjects.TelegramUpdate;
+	payload: TelegramObjects.TelegramMessage;
 	updateId: number;
 }
 
 class PassportDataContext extends Context {
-	payload: Interfaces.TelegramMessage;
+	payload: TelegramObjects.TelegramMessage;
 
 	constructor(options: PassportDataContextOptions) {
 		super({
@@ -41,7 +41,7 @@ class PassportDataContext extends Context {
 	/** Telegram Passport data */
 	get passportData() {
 		return new PassportData(
-			this.payload.passport_data as Interfaces.TelegramPassportData,
+			this.payload.passport_data as TelegramObjects.TelegramPassportData,
 		);
 	}
 }

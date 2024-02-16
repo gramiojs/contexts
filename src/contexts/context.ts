@@ -1,6 +1,6 @@
 import { inspectable } from "inspectable";
 
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 
 import type { Bot } from "gramio";
 import { SERVICE_MESSAGE_EVENTS } from "#utils";
@@ -14,7 +14,7 @@ import type {
 
 interface ContextOptions {
 	bot: Bot;
-	update?: Interfaces.TelegramUpdate;
+	update?: TelegramObjects.TelegramUpdate;
 	updateType: UpdateName;
 	updateId?: number;
 }
@@ -22,7 +22,7 @@ interface ContextOptions {
 class Context {
 	bot: Bot;
 	updateId?: number;
-	update?: Interfaces.TelegramUpdate;
+	update?: TelegramObjects.TelegramUpdate;
 
 	protected updateType: UpdateName;
 

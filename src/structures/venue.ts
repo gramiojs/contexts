@@ -1,6 +1,6 @@
 import { Inspect, Inspectable } from "inspectable";
 
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 
 import { memoizeGetters } from "#utils";
 import { Location } from "./location";
@@ -8,7 +8,7 @@ import { Location } from "./location";
 /** This object represents a venue. */
 @Inspectable()
 export class Venue {
-	constructor(public payload: Interfaces.TelegramVenue) {}
+	constructor(public payload: TelegramObjects.TelegramVenue) {}
 
 	get [Symbol.toStringTag]() {
 		return this.constructor.name;

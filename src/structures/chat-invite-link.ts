@@ -1,6 +1,6 @@
 import { Inspect, Inspectable } from "inspectable";
 
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 
 import { memoizeGetters } from "#utils";
 import { User } from "./user";
@@ -8,7 +8,7 @@ import { User } from "./user";
 /** Represents an invite link for a chat. */
 @Inspectable()
 export class ChatInviteLink {
-	constructor(public payload: Interfaces.TelegramChatInviteLink) {}
+	constructor(public payload: TelegramObjects.TelegramChatInviteLink) {}
 
 	get [Symbol.toStringTag]() {
 		return this.constructor.name;

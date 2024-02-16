@@ -1,4 +1,4 @@
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 import { Message } from "../structures";
 
 import type { Bot } from "gramio";
@@ -18,16 +18,16 @@ import {
 
 interface UsersSharedContextOptions {
 	bot: Bot;
-	update: Interfaces.TelegramUpdate;
-	payload: Interfaces.TelegramMessage;
+	update: TelegramObjects.TelegramUpdate;
+	payload: TelegramObjects.TelegramMessage;
 	updateId: number;
 }
 
 /** This object contains information about the users whose identifiers were shared with the bot using a `KeyboardButtonRequestUsers` button. */
 class UsersSharedContext extends Context {
-	payload: Interfaces.TelegramMessage;
+	payload: TelegramObjects.TelegramMessage;
 
-	private event: Interfaces.TelegramUsersShared;
+	private event: TelegramObjects.TelegramUsersShared;
 
 	constructor(options: UsersSharedContextOptions) {
 		super({

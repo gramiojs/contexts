@@ -1,4 +1,4 @@
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 import type { Constructor, Require } from "#utils";
 import { MessageReactionUpdated } from "../structures/message-reaction-updated";
 
@@ -10,14 +10,14 @@ import { CloneMixin, NodeMixin, SendMixin } from "./mixins";
 
 interface MessageReactionContextOptions {
 	bot: Bot;
-	update: Interfaces.TelegramUpdate;
-	payload: Interfaces.TelegramMessageReactionUpdated;
+	update: TelegramObjects.TelegramUpdate;
+	payload: TelegramObjects.TelegramMessageReactionUpdated;
 	updateId: number;
 }
 
 /** This object represents a change of a reaction on a message performed by a user. */
 class MessageReactionContext extends Context {
-	payload: Interfaces.TelegramMessageReactionUpdated;
+	payload: TelegramObjects.TelegramMessageReactionUpdated;
 
 	constructor(options: MessageReactionContextOptions) {
 		super({

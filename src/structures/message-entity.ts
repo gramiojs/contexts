@@ -1,6 +1,6 @@
 import { Inspect, Inspectable } from "inspectable";
 
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 
 import { memoizeGetters } from "#utils";
 import { User } from "./user";
@@ -11,7 +11,7 @@ import { User } from "./user";
  */
 @Inspectable()
 export class MessageEntity {
-	constructor(public payload: Interfaces.TelegramMessageEntity) {}
+	constructor(public payload: TelegramObjects.TelegramMessageEntity) {}
 
 	get [Symbol.toStringTag]() {
 		return this.constructor.name;

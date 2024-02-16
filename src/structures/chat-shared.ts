@@ -1,11 +1,11 @@
 import { Inspect, Inspectable } from "inspectable";
 
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 
 /** This object contains information about the chat whose identifier was shared with the bot using a KeyboardButtonRequestChat button. */
 @Inspectable()
 export class ChatShared {
-	constructor(public payload: Interfaces.TelegramChatShared) {}
+	constructor(public payload: TelegramObjects.TelegramChatShared) {}
 
 	get [Symbol.toStringTag]() {
 		return this.constructor.name;

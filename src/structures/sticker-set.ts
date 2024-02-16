@@ -1,6 +1,6 @@
 import { Inspect, Inspectable } from "inspectable";
 
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 
 import { StickerAttachment } from "./attachments";
 
@@ -10,7 +10,7 @@ import { PhotoSize } from "./photo-size";
 /** This object represents a sticker set. */
 @Inspectable()
 export class StickerSet {
-	constructor(public payload: Interfaces.TelegramStickerSet) {}
+	constructor(public payload: TelegramObjects.TelegramStickerSet) {}
 
 	get [Symbol.toStringTag]() {
 		return this.constructor.name;

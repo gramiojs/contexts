@@ -1,6 +1,6 @@
 import { Inspectable } from "inspectable";
 
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 
 /**
  * This object represents a service message about a video chat started in the chat.
@@ -8,7 +8,7 @@ import * as Interfaces from "@gramio/types/objects";
  */
 @Inspectable()
 export class VideoChatStarted {
-	constructor(public payload: Interfaces.TelegramVideoChatStarted) {}
+	constructor(public payload: TelegramObjects.TelegramVideoChatStarted) {}
 
 	get [Symbol.toStringTag]() {
 		return this.constructor.name;

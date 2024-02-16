@@ -1,4 +1,4 @@
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 import { Message } from "../structures";
 
 import type { Bot } from "gramio";
@@ -23,16 +23,16 @@ import {
 
 interface ForumTopicCreatedContextOptions {
 	bot: Bot;
-	update: Interfaces.TelegramUpdate;
-	payload: Interfaces.TelegramMessage;
+	update: TelegramObjects.TelegramUpdate;
+	payload: TelegramObjects.TelegramMessage;
 	updateId: number;
 }
 
 /** This object represents a service message about a new forum topic created in the chat. */
 class ForumTopicCreatedContext extends Context {
-	payload: Interfaces.TelegramMessage;
+	payload: TelegramObjects.TelegramMessage;
 
-	private event: Interfaces.TelegramForumTopicCreated;
+	private event: TelegramObjects.TelegramForumTopicCreated;
 
 	constructor(options: ForumTopicCreatedContextOptions) {
 		super({
@@ -44,7 +44,7 @@ class ForumTopicCreatedContext extends Context {
 
 		this.payload = options.payload;
 		this.event = this.payload
-			.forum_topic_created as Interfaces.TelegramForumTopicCreated;
+			.forum_topic_created as TelegramObjects.TelegramForumTopicCreated;
 	}
 
 	/** Name of the topic */

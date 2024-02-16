@@ -1,6 +1,6 @@
 import { Inspect, Inspectable } from "inspectable";
 
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 
 import { memoizeGetters } from "#utils";
 import { Location } from "./location";
@@ -9,7 +9,7 @@ import { User } from "./user";
 /** Represents a result of an inline query that was chosen by the user and sent to their chat partner. */
 @Inspectable()
 export class ChosenInlineResult {
-	constructor(public payload: Interfaces.TelegramChosenInlineResult) {}
+	constructor(public payload: TelegramObjects.TelegramChosenInlineResult) {}
 
 	get [Symbol.toStringTag]() {
 		return this.constructor.name;

@@ -1,6 +1,6 @@
 import { Inspect, Inspectable } from "inspectable";
 
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 import { type AttachmentType, memoizeGetters } from "#utils";
 
 import { PhotoSize } from "../photo-size";
@@ -12,7 +12,7 @@ import { FileAttachment } from "./file-attachment";
  */
 // TODO: extended: ['fileId', 'fileUniqueId']
 @Inspectable()
-export class DocumentAttachment extends FileAttachment<Interfaces.TelegramDocument> {
+export class DocumentAttachment extends FileAttachment<TelegramObjects.TelegramDocument> {
 	attachmentType: AttachmentType = "document";
 
 	/** Document thumbnail as defined by sender */

@@ -1,6 +1,6 @@
 import { inspectable } from "inspectable";
 
-import * as Interfaces from "@gramio/types/objects";
+import { TelegramObjects } from "@gramio/types";
 import { Message, User } from "../structures";
 
 import type { Bot } from "gramio";
@@ -23,13 +23,13 @@ import {
 
 interface LeftChatMemberContextOptions {
 	bot: Bot;
-	update: Interfaces.TelegramUpdate;
-	payload: Interfaces.TelegramMessage;
+	update: TelegramObjects.TelegramUpdate;
+	payload: TelegramObjects.TelegramMessage;
 	updateId: number;
 }
 
 class LeftChatMemberContext extends Context {
-	payload: Interfaces.TelegramMessage;
+	payload: TelegramObjects.TelegramMessage;
 
 	constructor(options: LeftChatMemberContextOptions) {
 		super({
@@ -44,7 +44,9 @@ class LeftChatMemberContext extends Context {
 
 	/** Left chat member */
 	get eventMember() {
-		return new User(this.payload.left_chat_member as Interfaces.TelegramUser);
+		return new User(
+			this.payload.left_chat_member as TelegramObjects.TelegramUser,
+		);
 	}
 }
 
