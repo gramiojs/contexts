@@ -10,7 +10,7 @@ import type {
 	MaybeArray,
 	SoftString,
 	UpdateName,
-} from "#utils";
+} from "#types";
 
 interface ContextOptions<Bot extends BotLike> {
 	bot: Bot;

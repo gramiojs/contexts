@@ -2,7 +2,8 @@ import { Inspect, Inspectable } from "inspectable";
 
 import { TelegramObjects } from "@gramio/types";
 
-import { type JoinUnion, memoizeGetters } from "#utils";
+import { JoinUnion } from "#types";
+import { memoizeGetters } from "#utils";
 import { User } from "./user";
 
 /**

@@ -3,8 +3,8 @@ import { inspectable } from "inspectable";
 import { TelegramParams } from "@gramio/types";
 import { TelegramObjects } from "@gramio/types";
 
+import type { Constructor, Require } from "#types";
 import { applyMixins, filterPayload } from "#utils";
-import type { Constructor, Require } from "#utils";
 import { InlineQuery } from "../structures";
 
 import { BotLike } from "#types";

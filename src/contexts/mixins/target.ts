@@ -1,6 +1,6 @@
 import { TelegramMessage } from "@gramio/types";
-import { ChatType, memoizeGetters } from "#utils";
-import type { Require, RequireValue } from "#utils";
+import { ChatType, type Require, type RequireValue } from "#types";
+import { memoizeGetters } from "#utils";
 import { Chat, User } from "../../structures";
 
 /** This object represents a mixin which has sender data (e.g. `senderId`, `from` etc.) */

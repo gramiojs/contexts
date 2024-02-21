@@ -1,6 +1,6 @@
 import { TelegramParams } from "@gramio/types";
 
-import type { Optional, RequireValue } from "#utils";
+import type { Optional, RequireValue } from "#types";
 
 import { BotLike } from "#types";
 import { Context } from "../context";

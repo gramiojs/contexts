@@ -3,8 +3,8 @@ import { inspectable } from "inspectable";
 import { TelegramObjects } from "@gramio/types";
 
 import { BotLike } from "#types";
-import { PollType, applyMixins, filterPayload } from "#utils";
-import type { Constructor, Require, RequireValue } from "#utils";
+import { Constructor, PollType, Require, RequireValue } from "#types";
+import { applyMixins, filterPayload } from "#utils";
 import { Poll } from "../structures";
 import { Context } from "./context";
 import { CloneMixin } from "./mixins";

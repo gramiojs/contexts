@@ -3,8 +3,8 @@ import { inspectable } from "inspectable";
 import { MessageReactionCountUpdated } from "../structures/message-reaction-count-updated";
 
 import { BotLike } from "#types";
+import { type Constructor } from "#types";
 import { applyMixins } from "#utils";
-import { type Constructor } from "#utils";
 import { Context } from "./context";
 import { CloneMixin, NodeMixin, SendMixin } from "./mixins";
 

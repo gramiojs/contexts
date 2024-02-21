@@ -2,8 +2,8 @@ import { inspectable } from "inspectable";
 
 import { TelegramObjects } from "@gramio/types";
 
+import { type Constructor } from "#types";
 import { applyMixins } from "#utils";
-import { type Constructor } from "#utils";
 import { Message } from "../structures";
 
 import { BotLike } from "#types";

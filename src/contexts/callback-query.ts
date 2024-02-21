@@ -3,7 +3,7 @@ import { inspectable } from "inspectable";
 
 import { applyMixins, filterPayload, isParsable, memoizeGetters } from "#utils";
 
-import { type Constructor, type Require } from "#utils";
+import { type Constructor, type Require } from "#types";
 import { CallbackQuery } from "../structures";
 
 import { TelegramParams } from "@gramio/types";

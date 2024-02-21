@@ -4,7 +4,8 @@ import { TelegramObjects } from "@gramio/types";
 
 import { PhotoSize } from "../photo-size";
 
-import { type AttachmentType, memoizeGetters } from "#utils";
+import { AttachmentType } from "#types";
+import { memoizeGetters } from "#utils";
 import { FileAttachment } from "./file-attachment";
 
 /**

@@ -1,6 +1,6 @@
 import { Inspectable } from "inspectable";
 
-import type { AttachmentType } from "#utils";
+import type { AttachmentType } from "#types";
 
 /** Simple attachment */
 @Inspectable()

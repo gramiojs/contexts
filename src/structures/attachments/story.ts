@@ -1,5 +1,5 @@
+import { type AttachmentType } from "#types";
 import { applyMixins } from "#utils";
-import { type AttachmentType } from "#utils";
 import { Story } from "../story";
 
 import { Attachment } from "./attachment";

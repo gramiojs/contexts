@@ -1,6 +1,6 @@
 import { Inspect, Inspectable } from "inspectable";
 
-import type { AttachmentType } from "#utils";
+import type { AttachmentType } from "#types";
 
 import type { PhotoSize } from "../photo-size";
 

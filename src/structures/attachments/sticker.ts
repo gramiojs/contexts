@@ -1,7 +1,7 @@
 import { Inspect, Inspectable } from "inspectable";
 
 import { TelegramObjects } from "@gramio/types";
-import type { AttachmentType, Require } from "#utils";
+import type { AttachmentType, Require } from "#types";
 
 import { File } from "../file";
 import { MaskPosition } from "../mask-position";

@@ -1,6 +1,6 @@
 import { TelegramParams } from "@gramio/types";
 
-import type { Optional, tSendMethods } from "#utils";
+import type { Optional, tSendMethods } from "#types";
 import { Poll } from "../../structures";
 
 import { BotLike } from "#types";

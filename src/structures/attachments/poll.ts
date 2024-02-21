@@ -1,4 +1,5 @@
-import { type AttachmentType, applyMixins } from "#utils";
+import { AttachmentType } from "#types";
+import { applyMixins } from "#utils";
 
 import { Poll } from "../poll";
 

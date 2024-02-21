@@ -1,8 +1,8 @@
 import { TelegramObjects } from "@gramio/types";
 import { Message } from "../structures";
 
+import type { Constructor, Require } from "#types";
 import { applyMixins, filterPayload } from "#utils";
-import type { Constructor, Require } from "#utils";
 
 import { inspectable } from "inspectable";
 import { BotLike } from "#types";

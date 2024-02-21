@@ -1,5 +1,5 @@
 import type { TelegramUpdate } from "@gramio/types";
-import { type Constructor } from "#utils";
+import { type Constructor } from "#types";
 
 import { BotLike } from "#types";
 import { Context } from "../context";

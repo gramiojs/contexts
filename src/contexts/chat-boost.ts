@@ -1,7 +1,7 @@
 import { TelegramObjects } from "@gramio/types";
 
+import { type Constructor } from "#types";
 import { applyMixins } from "#utils";
-import { type Constructor } from "#utils";
 import { ChatBoostUpdated } from "../structures/chat-boost-updated";
 
 import { inspectable } from "inspectable";

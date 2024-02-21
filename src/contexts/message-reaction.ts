@@ -1,5 +1,5 @@
 import { TelegramObjects } from "@gramio/types";
-import type { Constructor, Require } from "#utils";
+import type { Constructor, Require } from "#types";
 import { MessageReactionUpdated } from "../structures/message-reaction-updated";
 
 import { inspectable } from "inspectable";

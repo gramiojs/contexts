@@ -1,5 +1,5 @@
 import { TelegramParams } from "@gramio/types";
-import type { Optional } from "#utils";
+import type { Optional } from "#types";
 
 import { Context } from "../context";
 

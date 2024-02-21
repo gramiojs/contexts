@@ -22,19 +22,17 @@ import { Message, MessageEntity } from "../structures";
 
 import { TelegramObjects } from "@gramio/types";
 
-import { applyMixins, filterPayload, isParsable, memoizeGetters } from "#utils";
 import type {
 	AttachmentType,
+	AttachmentType as AttachmentTypeEnum,
+	AttachmentsMapping,
 	Constructor,
+	EntityType,
 	Require,
 	RequireValue,
 	UpdateName,
-} from "#utils";
-import {
-	type AttachmentType as AttachmentTypeEnum,
-	type AttachmentsMapping,
-	EntityType,
-} from "#utils";
+} from "#types";
+import { applyMixins, filterPayload, isParsable, memoizeGetters } from "#utils";
 import { EVENTS, SERVICE_MESSAGE_EVENTS } from "#utils";
 
 import { BotLike } from "#types";

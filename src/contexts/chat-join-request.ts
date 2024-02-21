@@ -1,7 +1,7 @@
 import { inspectable } from "inspectable";
 
+import { type Constructor } from "#types";
 import { applyMixins } from "#utils";
-import { type Constructor } from "#utils";
 
 import { TelegramObjects } from "@gramio/types";
 import { ChatJoinRequest } from "../structures";
