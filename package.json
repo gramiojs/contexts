@@ -1,6 +1,6 @@
 {
     "name": "@gramio/contexts",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "type": "commonjs",
     "description": "WIP",
     "main": "dist/index.js",
@@ -9,7 +9,7 @@
         "type": "tsc --noEmit",
         "lint": "bunx @biomejs/biome check ./src",
         "lint:fix": "bun lint --apply",
-        "build": "bun tsc && bunx tsc-alias"
+        "prepublishOnly": "bun type && bunx tsup"
     },
     "devDependencies": {
         "@biomejs/biome": "1.5.3",
