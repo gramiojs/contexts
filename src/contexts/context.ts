@@ -52,7 +52,7 @@ class Context<Bot extends BotLike> {
 interface Context<Bot extends BotLike> {
 	is<T extends UpdateName>(
 		rawTypes: MaybeArray<SoftString<T>>,
-	): this is ContextsMapping[T];
+	): this is ContextsMapping<Bot>[T];
 }
 
 inspectable(Context, {
