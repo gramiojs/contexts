@@ -12,6 +12,17 @@ export interface BotLike {
 	api: APIMethods;
 }
 
+export type ContextsMapping<Bot extends BotLike> = {
+	[K in keyof typeof contextsMappings]: (typeof contextsMappings)[K] & {
+		bot: Bot;
+	};
+};
+
+export type ContextType<
+	Bot extends BotLike,
+	Name extends keyof ContextsMapping<Bot>,
+> = InstanceType<(typeof contextsMappings)[Name]>;
+
 export type MessageEventName =
 	| "new_chat_members"
 	| "left_chat_member"
@@ -85,8 +96,6 @@ export type Require<O, K extends keyof O> = { [P in K]-?: NonNullable<O[P]> };
 // biome-ignore lint/complexity/noBannedTypes: <explanation>
 // biome-ignore lint/suspicious/noExplicitAny: <explanation>
 export type Constructor<T = {}> = new (...args: any[]) => T;
-
-export type ContextsMapping = typeof contextsMappings;
 
 /** Like `Require<O, K>` but it sets `V` as the value for `K` values */
 export type RequireValue<O, K extends keyof O, V> = Omit<O, K> & {
