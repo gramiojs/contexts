@@ -4,8 +4,8 @@ import {
 	TelegramParams,
 	TelegramUpdate,
 } from "@gramio/types";
-import { contextsMappings } from "#utils";
 
+import * as Contexts from "./contexts";
 import * as Attachments from "./structures/attachments";
 
 export interface BotLike {
@@ -13,15 +13,64 @@ export interface BotLike {
 }
 
 export type ContextsMapping<Bot extends BotLike> = {
-	[K in keyof typeof contextsMappings]: (typeof contextsMappings)[K] & {
-		bot: Bot;
-	};
+	callback_query: Contexts.CallbackQueryContext<Bot>;
+	chat_join_request: Contexts.ChatJoinRequestContext<Bot>;
+	chat_member: Contexts.ChatMemberContext<Bot>;
+	my_chat_member: Contexts.ChatMemberContext<Bot>;
+	chosen_inline_result: Contexts.ChosenInlineResultContext<Bot>;
+	delete_chat_photo: Contexts.DeleteChatPhotoContext<Bot>;
+	group_chat_created: Contexts.GroupChatCreatedContext<Bot>;
+	inline_query: Contexts.InlineQueryContext<Bot>;
+	invoice: Contexts.InvoiceContext<Bot>;
+	left_chat_member: Contexts.LeftChatMemberContext<Bot>;
+	location: Contexts.LocationContext<Bot>;
+	message_auto_delete_timer_changed: Contexts.MessageAutoDeleteTimerChangedContext<Bot>;
+	message: Contexts.MessageContext<Bot>;
+	channel_post: Contexts.MessageContext<Bot>;
+	edited_message: Contexts.MessageContext<Bot>;
+	edited_channel_post: Contexts.MessageContext<Bot>;
+	migrate_from_chat_id: Contexts.MigrateFromChatIdContext<Bot>;
+	migrate_to_chat_id: Contexts.MigrateToChatIdContext<Bot>;
+	new_chat_members: Contexts.NewChatMembersContext<Bot>;
+	new_chat_photo: Contexts.NewChatPhotoContext<Bot>;
+	new_chat_title: Contexts.NewChatTitleContext<Bot>;
+	passport_data: Contexts.PassportDataContext<Bot>;
+	pinned_message: Contexts.PinnedMessageContext<Bot>;
+	poll_answer: Contexts.PollAnswerContext<Bot>;
+	poll: Contexts.PollContext<Bot>;
+	pre_checkout_query: Contexts.PreCheckoutQueryContext<Bot>;
+	proximity_alert_triggered: Contexts.ProximityAlertTriggeredContext<Bot>;
+	write_access_allowed: Contexts.WriteAccessAllowedContext<Bot>;
+	boost_added: Contexts.BoostAddedContext<Bot>;
+	forum_topic_created: Contexts.ForumTopicCreatedContext<Bot>;
+	forum_topic_edited: Contexts.ForumTopicEditedContext<Bot>;
+	forum_topic_closed: Contexts.ForumTopicClosedContext<Bot>;
+	forum_topic_reopened: Contexts.ForumTopicReopenedContext<Bot>;
+	general_forum_topic_hidden: Contexts.GeneralForumTopicHiddenContext<Bot>;
+	general_forum_topic_unhidden: Contexts.GeneralForumTopicUnhiddenContext<Bot>;
+	shipping_query: Contexts.ShippingQueryContext<Bot>;
+	successful_payment: Contexts.SuccessfulPaymentContext<Bot>;
+	users_shared: Contexts.UsersSharedContext<Bot>;
+	chat_shared: Contexts.ChatSharedContext<Bot>;
+	video_chat_ended: Contexts.VideoChatEndedContext<Bot>;
+	video_chat_participants_invited: Contexts.VideoChatParticipantsInvitedContext<Bot>;
+	video_chat_scheduled: Contexts.VideoChatScheduledContext<Bot>;
+	video_chat_started: Contexts.VideoChatStartedContext<Bot>;
+	web_app_data: Contexts.WebAppDataContext<Bot>;
+	service_message: Contexts.MessageContext<Bot>;
+	message_reaction: Contexts.MessageReactionContext<Bot>;
+	message_reaction_count: Contexts.MessageReactionCountContext<Bot>;
+	chat_boost: Contexts.ChatBoostContext<Bot>;
+	removed_chat_boost: Contexts.RemovedChatBoostContext<Bot>;
+	giveaway_created: Contexts.GiveawayCreatedContext<Bot>;
+	giveaway_completed: Contexts.GiveawayCompletedContext<Bot>;
+	giveaway_winners: Contexts.GiveawayWinnersContext<Bot>;
 };
 
 export type ContextType<
 	Bot extends BotLike,
 	Name extends keyof ContextsMapping<Bot>,
-> = InstanceType<(typeof contextsMappings)[Name]>;
+> = InstanceType<ContextsMapping<Bot>[Name]>;
 
 export type MessageEventName =
 	| "new_chat_members"
