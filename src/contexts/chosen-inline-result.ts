@@ -3,15 +3,15 @@ import { inspectable } from "inspectable";
 import { TelegramParams } from "@gramio/types";
 import { TelegramObjects } from "@gramio/types";
 
-import type { Bot } from "gramio";
 import { applyMixins, filterPayload } from "#utils";
 import { type Constructor, type Require } from "#utils";
 import { ChosenInlineResult } from "../structures";
 
+import { BotLike } from "#types";
 import { Context } from "./context";
 import { ChatActionMixin, CloneMixin, SendMixin } from "./mixins";
 
-interface ChosenInlineResultContextOptions {
+interface ChosenInlineResultContextOptions<Bot extends BotLike> {
 	bot: Bot;
 	update: TelegramObjects.TelegramUpdate;
 	payload: TelegramObjects.TelegramChosenInlineResult;
@@ -22,10 +22,10 @@ interface ChosenInlineResultContextOptions {
  * The result of an inline query that was chosen by
  * a user and sent to their chat partner
  */
-class ChosenInlineResultContext extends Context {
+class ChosenInlineResultContext<Bot extends BotLike> extends Context<Bot> {
 	payload: TelegramObjects.TelegramChosenInlineResult;
 
-	constructor(options: ChosenInlineResultContextOptions) {
+	constructor(options: ChosenInlineResultContextOptions<Bot>) {
 		super({
 			bot: options.bot,
 			updateType: "chosen_inline_result",
@@ -148,12 +148,16 @@ class ChosenInlineResultContext extends Context {
 }
 
 // @ts-expect-error [senderId: number] is not compatible with [senderId: number | undefined] :shrug:
-interface ChosenInlineResultContext
-	extends Constructor<ChosenInlineResultContext>,
+interface ChosenInlineResultContext<Bot extends BotLike>
+	extends Constructor<ChosenInlineResultContext<Bot>>,
 		ChosenInlineResult,
-		SendMixin,
-		ChatActionMixin,
-		CloneMixin<ChosenInlineResultContext, ChosenInlineResultContextOptions> {}
+		SendMixin<Bot>,
+		ChatActionMixin<Bot>,
+		CloneMixin<
+			Bot,
+			ChosenInlineResultContext<Bot>,
+			ChosenInlineResultContextOptions<Bot>
+		> {}
 applyMixins(ChosenInlineResultContext, [
 	ChosenInlineResult,
 	SendMixin,

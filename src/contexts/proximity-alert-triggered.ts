@@ -3,10 +3,10 @@ import { inspectable } from "inspectable";
 import { TelegramObjects } from "@gramio/types";
 import { Message, ProximityAlertTriggered } from "../structures";
 
-import type { Bot } from "gramio";
 import { applyMixins, memoizeGetters } from "#utils";
 import { type Constructor } from "#utils";
 
+import { BotLike } from "#types";
 import { Context } from "./context";
 import {
 	ChatActionMixin,
@@ -21,17 +21,17 @@ import {
 	TargetMixin,
 } from "./mixins";
 
-interface ProximityAlertTriggeredContextOptions {
+interface ProximityAlertTriggeredContextOptions<Bot extends BotLike> {
 	bot: Bot;
 	update: TelegramObjects.TelegramUpdate;
 	payload: TelegramObjects.TelegramMessage;
 	updateId: number;
 }
 
-class ProximityAlertTriggeredContext extends Context {
+class ProximityAlertTriggeredContext<Bot extends BotLike> extends Context<Bot> {
 	payload: TelegramObjects.TelegramMessage;
 
-	constructor(options: ProximityAlertTriggeredContextOptions) {
+	constructor(options: ProximityAlertTriggeredContextOptions<Bot>) {
 		super({
 			bot: options.bot,
 			updateType: "proximity_alert_triggered",
@@ -55,21 +55,22 @@ class ProximityAlertTriggeredContext extends Context {
 	}
 }
 
-interface ProximityAlertTriggeredContext
-	extends Constructor<ProximityAlertTriggeredContext>,
+interface ProximityAlertTriggeredContext<Bot extends BotLike>
+	extends Constructor<ProximityAlertTriggeredContext<Bot>>,
 		Message,
 		TargetMixin,
-		SendMixin,
-		ChatActionMixin,
-		NodeMixin,
-		ChatInviteControlMixin,
-		ChatControlMixin,
-		ChatSenderControlMixin,
-		ChatMemberControlMixin,
-		PinsMixin,
+		SendMixin<Bot>,
+		ChatActionMixin<Bot>,
+		NodeMixin<Bot>,
+		ChatInviteControlMixin<Bot>,
+		ChatControlMixin<Bot>,
+		ChatSenderControlMixin<Bot>,
+		ChatMemberControlMixin<Bot>,
+		PinsMixin<Bot>,
 		CloneMixin<
-			ProximityAlertTriggeredContext,
-			ProximityAlertTriggeredContextOptions
+			Bot,
+			ProximityAlertTriggeredContext<Bot>,
+			ProximityAlertTriggeredContextOptions<Bot>
 		> {}
 applyMixins(ProximityAlertTriggeredContext, [
 	Message,

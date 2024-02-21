@@ -3,10 +3,10 @@ import { inspectable } from "inspectable";
 import { TelegramObjects } from "@gramio/types";
 import { Invoice, Message } from "../structures";
 
-import type { Bot } from "gramio";
 import { applyMixins, memoizeGetters } from "#utils";
 import { type Constructor } from "#utils";
 
+import { BotLike } from "#types";
 import { Context } from "./context";
 import {
 	ChatActionMixin,
@@ -17,17 +17,17 @@ import {
 	TargetMixin,
 } from "./mixins";
 
-interface InvoiceContextOptions {
+interface InvoiceContextOptions<Bot extends BotLike> {
 	bot: Bot;
 	update: TelegramObjects.TelegramUpdate;
 	payload: TelegramObjects.TelegramMessage;
 	updateId: number;
 }
 
-class InvoiceContext extends Context {
+class InvoiceContext<Bot extends BotLike> extends Context<Bot> {
 	payload: TelegramObjects.TelegramMessage;
 
-	constructor(options: InvoiceContextOptions) {
+	constructor(options: InvoiceContextOptions<Bot>) {
 		super({
 			bot: options.bot,
 			updateType: "invoice",
@@ -44,15 +44,15 @@ class InvoiceContext extends Context {
 	}
 }
 
-interface InvoiceContext
-	extends Constructor<InvoiceContext>,
+interface InvoiceContext<Bot extends BotLike>
+	extends Constructor<InvoiceContext<Bot>>,
 		Message,
 		TargetMixin,
-		SendMixin,
-		ChatActionMixin,
-		NodeMixin,
-		PinsMixin,
-		CloneMixin<InvoiceContext, InvoiceContextOptions> {}
+		SendMixin<Bot>,
+		ChatActionMixin<Bot>,
+		NodeMixin<Bot>,
+		PinsMixin<Bot>,
+		CloneMixin<Bot, InvoiceContext<Bot>, InvoiceContextOptions<Bot>> {}
 applyMixins(InvoiceContext, [
 	Message,
 	TargetMixin,

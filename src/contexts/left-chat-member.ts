@@ -3,10 +3,10 @@ import { inspectable } from "inspectable";
 import { TelegramObjects } from "@gramio/types";
 import { Message, User } from "../structures";
 
-import type { Bot } from "gramio";
 import { applyMixins, memoizeGetters } from "#utils";
 import { type Constructor } from "#utils";
 
+import { BotLike } from "#types";
 import { Context } from "./context";
 import {
 	ChatActionMixin,
@@ -21,17 +21,17 @@ import {
 	TargetMixin,
 } from "./mixins";
 
-interface LeftChatMemberContextOptions {
+interface LeftChatMemberContextOptions<Bot extends BotLike> {
 	bot: Bot;
 	update: TelegramObjects.TelegramUpdate;
 	payload: TelegramObjects.TelegramMessage;
 	updateId: number;
 }
 
-class LeftChatMemberContext extends Context {
+class LeftChatMemberContext<Bot extends BotLike> extends Context<Bot> {
 	payload: TelegramObjects.TelegramMessage;
 
-	constructor(options: LeftChatMemberContextOptions) {
+	constructor(options: LeftChatMemberContextOptions<Bot>) {
 		super({
 			bot: options.bot,
 			updateType: "left_chat_member",
@@ -50,19 +50,23 @@ class LeftChatMemberContext extends Context {
 	}
 }
 
-interface LeftChatMemberContext
-	extends Constructor<LeftChatMemberContext>,
+interface LeftChatMemberContext<Bot extends BotLike>
+	extends Constructor<LeftChatMemberContext<Bot>>,
 		Message,
 		TargetMixin,
-		SendMixin,
-		ChatActionMixin,
-		NodeMixin,
-		ChatInviteControlMixin,
-		ChatControlMixin,
-		ChatSenderControlMixin,
-		ChatMemberControlMixin,
-		PinsMixin,
-		CloneMixin<LeftChatMemberContext, LeftChatMemberContextOptions> {}
+		SendMixin<Bot>,
+		ChatActionMixin<Bot>,
+		NodeMixin<Bot>,
+		ChatInviteControlMixin<Bot>,
+		ChatControlMixin<Bot>,
+		ChatSenderControlMixin<Bot>,
+		ChatMemberControlMixin<Bot>,
+		PinsMixin<Bot>,
+		CloneMixin<
+			Bot,
+			LeftChatMemberContext<Bot>,
+			LeftChatMemberContextOptions<Bot>
+		> {}
 applyMixins(LeftChatMemberContext, [
 	Message,
 	TargetMixin,

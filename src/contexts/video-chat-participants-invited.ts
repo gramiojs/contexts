@@ -3,10 +3,10 @@ import { inspectable } from "inspectable";
 import { TelegramObjects } from "@gramio/types";
 import { Message, VideoChatParticipantsInvited } from "../structures";
 
-import type { Bot } from "gramio";
 import { applyMixins, memoizeGetters } from "#utils";
 import { type Constructor } from "#utils";
 
+import { BotLike } from "#types";
 import { Context } from "./context";
 import {
 	ChatActionMixin,
@@ -21,17 +21,19 @@ import {
 	TargetMixin,
 } from "./mixins";
 
-interface VideoChatParticipantsInvitedContextOptions {
+interface VideoChatParticipantsInvitedContextOptions<Bot extends BotLike> {
 	bot: Bot;
 	update: TelegramObjects.TelegramUpdate;
 	payload: TelegramObjects.TelegramMessage;
 	updateId: number;
 }
 
-class VideoChatParticipantsInvitedContext extends Context {
+class VideoChatParticipantsInvitedContext<
+	Bot extends BotLike,
+> extends Context<Bot> {
 	payload: TelegramObjects.TelegramMessage;
 
-	constructor(options: VideoChatParticipantsInvitedContextOptions) {
+	constructor(options: VideoChatParticipantsInvitedContextOptions<Bot>) {
 		super({
 			bot: options.bot,
 			updateType: "video_chat_participants_invited",
@@ -51,21 +53,22 @@ class VideoChatParticipantsInvitedContext extends Context {
 	}
 }
 
-interface VideoChatParticipantsInvitedContext
-	extends Constructor<VideoChatParticipantsInvitedContext>,
+interface VideoChatParticipantsInvitedContext<Bot extends BotLike>
+	extends Constructor<VideoChatParticipantsInvitedContext<Bot>>,
 		Message,
 		TargetMixin,
-		SendMixin,
-		ChatActionMixin,
-		NodeMixin,
-		ChatInviteControlMixin,
-		ChatControlMixin,
-		ChatSenderControlMixin,
-		ChatMemberControlMixin,
-		PinsMixin,
+		SendMixin<Bot>,
+		ChatActionMixin<Bot>,
+		NodeMixin<Bot>,
+		ChatInviteControlMixin<Bot>,
+		ChatControlMixin<Bot>,
+		ChatSenderControlMixin<Bot>,
+		ChatMemberControlMixin<Bot>,
+		PinsMixin<Bot>,
 		CloneMixin<
-			VideoChatParticipantsInvitedContext,
-			VideoChatParticipantsInvitedContextOptions
+			Bot,
+			VideoChatParticipantsInvitedContext<Bot>,
+			VideoChatParticipantsInvitedContextOptions<Bot>
 		> {}
 applyMixins(VideoChatParticipantsInvitedContext, [
 	Message,

@@ -3,10 +3,10 @@ import { inspectable } from "inspectable";
 import { TelegramObjects } from "@gramio/types";
 import { Message, PhotoSize } from "../structures";
 
-import type { Bot } from "gramio";
 import { applyMixins } from "#utils";
 import { type Constructor } from "#utils";
 
+import { BotLike } from "#types";
 import { Context } from "./context";
 import {
 	ChatActionMixin,
@@ -21,17 +21,17 @@ import {
 	TargetMixin,
 } from "./mixins";
 
-interface NewChatPhotoContextOptions {
+interface NewChatPhotoContextOptions<Bot extends BotLike> {
 	bot: Bot;
 	update: TelegramObjects.TelegramUpdate;
 	payload: TelegramObjects.TelegramMessage;
 	updateId: number;
 }
 
-class NewChatPhotoContext extends Context {
+class NewChatPhotoContext<Bot extends BotLike> extends Context<Bot> {
 	payload: TelegramObjects.TelegramMessage;
 
-	constructor(options: NewChatPhotoContextOptions) {
+	constructor(options: NewChatPhotoContextOptions<Bot>) {
 		super({
 			bot: options.bot,
 			updateType: "new_chat_photo",
@@ -51,19 +51,23 @@ class NewChatPhotoContext extends Context {
 	}
 }
 
-interface NewChatPhotoContext
-	extends Constructor<NewChatPhotoContext>,
+interface NewChatPhotoContext<Bot extends BotLike>
+	extends Constructor<NewChatPhotoContext<Bot>>,
 		Message,
 		TargetMixin,
-		SendMixin,
-		ChatActionMixin,
-		NodeMixin,
-		ChatInviteControlMixin,
-		ChatControlMixin,
-		ChatSenderControlMixin,
-		ChatMemberControlMixin,
-		PinsMixin,
-		CloneMixin<NewChatPhotoContext, NewChatPhotoContextOptions> {}
+		SendMixin<Bot>,
+		ChatActionMixin<Bot>,
+		NodeMixin<Bot>,
+		ChatInviteControlMixin<Bot>,
+		ChatControlMixin<Bot>,
+		ChatSenderControlMixin<Bot>,
+		ChatMemberControlMixin<Bot>,
+		PinsMixin<Bot>,
+		CloneMixin<
+			Bot,
+			NewChatPhotoContext<Bot>,
+			NewChatPhotoContextOptions<Bot>
+		> {}
 applyMixins(NewChatPhotoContext, [
 	Message,
 	TargetMixin,

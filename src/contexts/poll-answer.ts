@@ -2,25 +2,25 @@ import { inspectable } from "inspectable";
 
 import { TelegramObjects } from "@gramio/types";
 
-import type { Bot } from "gramio";
 import { applyMixins } from "#utils";
 import type { Constructor, Require } from "#utils";
 import { PollAnswer } from "../structures";
 
+import { BotLike } from "#types";
 import { Context } from "./context";
 import { ChatActionMixin, CloneMixin, SendMixin } from "./mixins";
 
-interface PollAnswerContextOptions {
+interface PollAnswerContextOptions<Bot extends BotLike> {
 	bot: Bot;
 	update: TelegramObjects.TelegramUpdate;
 	payload: TelegramObjects.TelegramPollAnswer;
 	updateId: number;
 }
 
-class PollAnswerContext extends Context {
+class PollAnswerContext<Bot extends BotLike> extends Context<Bot> {
 	payload: TelegramObjects.TelegramPollAnswer;
 
-	constructor(options: PollAnswerContextOptions) {
+	constructor(options: PollAnswerContextOptions<Bot>) {
 		super({
 			bot: options.bot,
 			updateType: "poll_answer",
@@ -43,12 +43,12 @@ class PollAnswerContext extends Context {
 }
 
 // @ts-expect-error [senderId: number] is not compatible with [senderId: number | undefined] :shrug:
-interface PollAnswerContext
-	extends Constructor<PollAnswerContext>,
+interface PollAnswerContext<Bot extends BotLike>
+	extends Constructor<PollAnswerContext<Bot>>,
 		PollAnswer,
-		SendMixin,
-		ChatActionMixin,
-		CloneMixin<PollAnswerContext, PollAnswerContextOptions> {}
+		SendMixin<Bot>,
+		ChatActionMixin<Bot>,
+		CloneMixin<Bot, PollAnswerContext<Bot>, PollAnswerContextOptions<Bot>> {}
 applyMixins(PollAnswerContext, [
 	PollAnswer,
 	SendMixin,

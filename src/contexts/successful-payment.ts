@@ -3,10 +3,10 @@ import { inspectable } from "inspectable";
 import { TelegramObjects } from "@gramio/types";
 import { Message, SuccessfulPayment } from "../structures";
 
-import type { Bot } from "gramio";
 import { applyMixins, memoizeGetters } from "#utils";
 import { type Constructor } from "#utils";
 
+import { BotLike } from "#types";
 import { Context } from "./context";
 import {
 	ChatActionMixin,
@@ -17,17 +17,17 @@ import {
 	TargetMixin,
 } from "./mixins";
 
-interface SuccessfulPaymentContextOptions {
+interface SuccessfulPaymentContextOptions<Bot extends BotLike> {
 	bot: Bot;
 	update: TelegramObjects.TelegramUpdate;
 	payload: TelegramObjects.TelegramMessage;
 	updateId: number;
 }
 
-class SuccessfulPaymentContext extends Context {
+class SuccessfulPaymentContext<Bot extends BotLike> extends Context<Bot> {
 	payload: TelegramObjects.TelegramMessage;
 
-	constructor(options: SuccessfulPaymentContextOptions) {
+	constructor(options: SuccessfulPaymentContextOptions<Bot>) {
 		super({
 			bot: options.bot,
 			updateType: "successful_payment",
@@ -47,15 +47,19 @@ class SuccessfulPaymentContext extends Context {
 	}
 }
 
-interface SuccessfulPaymentContext
-	extends Constructor<SuccessfulPaymentContext>,
+interface SuccessfulPaymentContext<Bot extends BotLike>
+	extends Constructor<SuccessfulPaymentContext<Bot>>,
 		Message,
 		TargetMixin,
-		SendMixin,
-		ChatActionMixin,
-		NodeMixin,
-		PinsMixin,
-		CloneMixin<SuccessfulPaymentContext, SuccessfulPaymentContextOptions> {}
+		SendMixin<Bot>,
+		ChatActionMixin<Bot>,
+		NodeMixin<Bot>,
+		PinsMixin<Bot>,
+		CloneMixin<
+			Bot,
+			SuccessfulPaymentContext<Bot>,
+			SuccessfulPaymentContextOptions<Bot>
+		> {}
 applyMixins(SuccessfulPaymentContext, [
 	Message,
 	TargetMixin,

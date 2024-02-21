@@ -1,15 +1,15 @@
 import { TelegramObjects } from "@gramio/types";
 
-import type { Bot } from "gramio";
 import { applyMixins } from "#utils";
 import { type Constructor } from "#utils";
 import { ChatBoostUpdated } from "../structures/chat-boost-updated";
 
 import { inspectable } from "inspectable";
+import { BotLike } from "#types";
 import { Context } from "./context";
 import { CloneMixin, SendMixin } from "./mixins";
 
-interface ChatBoostContextOptions {
+interface ChatBoostContextOptions<Bot extends BotLike> {
 	bot: Bot;
 	update: TelegramObjects.TelegramUpdate;
 	payload: TelegramObjects.TelegramChatBoostUpdated;
@@ -17,10 +17,10 @@ interface ChatBoostContextOptions {
 }
 
 /** This object represents a boost added to a chat or changed. */
-class ChatBoostContext extends Context {
+class ChatBoostContext<Bot extends BotLike> extends Context<Bot> {
 	payload: TelegramObjects.TelegramChatBoostUpdated;
 
-	constructor(options: ChatBoostContextOptions) {
+	constructor(options: ChatBoostContextOptions<Bot>) {
 		super({
 			bot: options.bot,
 			updateType: "chat_boost",
@@ -32,17 +32,18 @@ class ChatBoostContext extends Context {
 	}
 }
 
-interface ChatBoostContext
-	extends Constructor<ChatBoostContext>,
+interface ChatBoostContext<Bot extends BotLike>
+	extends Constructor<ChatBoostContext<Bot>>,
 		ChatBoostUpdated,
-		SendMixin,
-		CloneMixin<ChatBoostContext, ChatBoostContextOptions> {}
+		SendMixin<Bot>,
+		CloneMixin<Bot, ChatBoostContext<Bot>, ChatBoostContextOptions<Bot>> {}
 applyMixins(ChatBoostContext, [ChatBoostUpdated, SendMixin, CloneMixin]);
 
 export { ChatBoostContext };
 
 inspectable(ChatBoostContext, {
-	serialize(context: ChatBoostContext) {
+	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+	serialize(context: ChatBoostContext<any>) {
 		const payload = {
 			chat: context.chat,
 			boost: context.boost,

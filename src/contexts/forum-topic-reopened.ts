@@ -1,11 +1,11 @@
 import { TelegramObjects } from "@gramio/types";
 import { Message } from "../structures";
 
-import type { Bot } from "gramio";
 import { applyMixins } from "#utils";
 import type { Constructor, RequireValue } from "#utils";
 
 import { inspectable } from "inspectable";
+import { BotLike } from "#types";
 import { Context } from "./context";
 import {
 	ChatActionMixin,
@@ -21,7 +21,7 @@ import {
 	TargetMixin,
 } from "./mixins";
 
-interface ForumTopicReopenedContextOptions {
+interface ForumTopicReopenedContextOptions<Bot extends BotLike> {
 	bot: Bot;
 	update: TelegramObjects.TelegramUpdate;
 	payload: TelegramObjects.TelegramMessage;
@@ -29,10 +29,10 @@ interface ForumTopicReopenedContextOptions {
 }
 
 /** This object represents a service message about a forum topic reopened in the chat. Currently holds no information. */
-class ForumTopicReopenedContext extends Context {
+class ForumTopicReopenedContext<Bot extends BotLike> extends Context<Bot> {
 	payload: TelegramObjects.TelegramMessage;
 
-	constructor(options: ForumTopicReopenedContextOptions) {
+	constructor(options: ForumTopicReopenedContextOptions<Bot>) {
 		super({
 			bot: options.bot,
 			updateType: "forum_topic_reopened",
@@ -49,20 +49,24 @@ class ForumTopicReopenedContext extends Context {
 	}
 }
 
-interface ForumTopicReopenedContext
-	extends Constructor<ForumTopicReopenedContext>,
+interface ForumTopicReopenedContext<Bot extends BotLike>
+	extends Constructor<ForumTopicReopenedContext<Bot>>,
 		Message,
 		TargetMixin,
-		SendMixin,
-		ChatActionMixin,
-		NodeMixin,
-		ForumMixin,
-		ChatInviteControlMixin,
-		ChatControlMixin,
-		ChatSenderControlMixin,
-		ChatMemberControlMixin,
-		PinsMixin,
-		CloneMixin<ForumTopicReopenedContext, ForumTopicReopenedContextOptions> {}
+		SendMixin<Bot>,
+		ChatActionMixin<Bot>,
+		NodeMixin<Bot>,
+		ForumMixin<Bot>,
+		ChatInviteControlMixin<Bot>,
+		ChatControlMixin<Bot>,
+		ChatSenderControlMixin<Bot>,
+		ChatMemberControlMixin<Bot>,
+		PinsMixin<Bot>,
+		CloneMixin<
+			Bot,
+			ForumTopicReopenedContext<Bot>,
+			ForumTopicReopenedContextOptions<Bot>
+		> {}
 applyMixins(ForumTopicReopenedContext, [
 	Message,
 	TargetMixin,

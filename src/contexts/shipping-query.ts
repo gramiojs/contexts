@@ -3,25 +3,25 @@ import { inspectable } from "inspectable";
 import { TelegramParams } from "@gramio/types";
 import { TelegramObjects } from "@gramio/types";
 
-import type { Bot } from "gramio";
 import { applyMixins, filterPayload } from "#utils";
 import type { Constructor, Optional } from "#utils";
 import { ShippingQuery } from "../structures";
 
+import { BotLike } from "#types";
 import { Context } from "./context";
 import { ChatActionMixin, CloneMixin, SendMixin } from "./mixins";
 
-interface ShippingQueryContextOptions {
+interface ShippingQueryContextOptions<Bot extends BotLike> {
 	bot: Bot;
 	update: TelegramObjects.TelegramUpdate;
 	payload: TelegramObjects.TelegramShippingQuery;
 	updateId: number;
 }
 
-class ShippingQueryContext extends Context {
+class ShippingQueryContext<Bot extends BotLike> extends Context<Bot> {
 	payload: TelegramObjects.TelegramShippingQuery;
 
-	constructor(options: ShippingQueryContextOptions) {
+	constructor(options: ShippingQueryContextOptions<Bot>) {
 		super({
 			bot: options.bot,
 			updateType: "shipping_query",
@@ -72,12 +72,16 @@ class ShippingQueryContext extends Context {
 }
 
 // @ts-expect-error [senderId: number] is not compatible with [senderId: number | undefined] :shrug:
-interface ShippingQueryContext
-	extends Constructor<ShippingQueryContext>,
+interface ShippingQueryContext<Bot extends BotLike>
+	extends Constructor<ShippingQueryContext<Bot>>,
 		ShippingQuery,
-		SendMixin,
-		ChatActionMixin,
-		CloneMixin<ShippingQueryContext, ShippingQueryContextOptions> {}
+		SendMixin<Bot>,
+		ChatActionMixin<Bot>,
+		CloneMixin<
+			Bot,
+			ShippingQueryContext<Bot>,
+			ShippingQueryContextOptions<Bot>
+		> {}
 applyMixins(ShippingQueryContext, [
 	ShippingQuery,
 	SendMixin,

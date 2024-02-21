@@ -1,11 +1,11 @@
 import { TelegramObjects } from "@gramio/types";
 import { Message } from "../structures";
 
-import type { Bot } from "gramio";
 import { applyMixins } from "#utils";
 import { type Constructor } from "#utils";
 
 import { inspectable } from "inspectable";
+import { BotLike } from "#types";
 import { Context } from "./context";
 import {
 	ChatActionMixin,
@@ -21,7 +21,7 @@ import {
 	TargetMixin,
 } from "./mixins";
 
-interface BoostAddedContextOptions {
+interface BoostAddedContextOptions<Bot extends BotLike> {
 	bot: Bot;
 	update: TelegramObjects.TelegramUpdate;
 	payload: TelegramObjects.TelegramMessage;
@@ -29,10 +29,10 @@ interface BoostAddedContextOptions {
 }
 
 /** This object represents a service message about a forum topic closed in the chat. Currently holds no information. */
-class BoostAddedContext extends Context {
+class BoostAddedContext<Bot extends BotLike> extends Context<Bot> {
 	payload: TelegramObjects.TelegramMessage;
 
-	constructor(options: BoostAddedContextOptions) {
+	constructor(options: BoostAddedContextOptions<Bot>) {
 		super({
 			bot: options.bot,
 			updateType: "boost_added",
@@ -44,20 +44,20 @@ class BoostAddedContext extends Context {
 	}
 }
 
-interface BoostAddedContext
-	extends Constructor<BoostAddedContext>,
+interface BoostAddedContext<Bot extends BotLike>
+	extends Constructor<BoostAddedContext<Bot>>,
 		Message,
 		TargetMixin,
-		SendMixin,
-		ChatActionMixin,
-		NodeMixin,
-		ForumMixin,
-		ChatInviteControlMixin,
-		ChatControlMixin,
-		ChatSenderControlMixin,
-		ChatMemberControlMixin,
-		PinsMixin,
-		CloneMixin<BoostAddedContext, BoostAddedContextOptions> {}
+		SendMixin<Bot>,
+		ChatActionMixin<Bot>,
+		NodeMixin<Bot>,
+		ForumMixin<Bot>,
+		ChatInviteControlMixin<Bot>,
+		ChatControlMixin<Bot>,
+		ChatSenderControlMixin<Bot>,
+		ChatMemberControlMixin<Bot>,
+		PinsMixin<Bot>,
+		CloneMixin<Bot, BoostAddedContext<Bot>, BoostAddedContextOptions<Bot>> {}
 applyMixins(BoostAddedContext, [
 	Message,
 	TargetMixin,

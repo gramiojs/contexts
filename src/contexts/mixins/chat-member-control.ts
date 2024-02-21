@@ -5,11 +5,12 @@ import type { Optional } from "#utils";
 
 import { Context } from "../context";
 
+import { BotLike } from "#types";
 import { NodeMixin } from "./node";
 import { TargetMixin } from "./target";
 
 /** This object represents a mixin that is able to control member's rights */
-class ChatMemberControlMixin {
+class ChatMemberControlMixin<Bot extends BotLike> {
 	/** Bans a user (o_O) */
 	banMember(
 		params?: Optional<
@@ -69,6 +70,9 @@ class ChatMemberControlMixin {
 	}
 }
 
-interface ChatMemberControlMixin extends Context, TargetMixin, NodeMixin {}
+interface ChatMemberControlMixin<Bot extends BotLike>
+	extends Context<Bot>,
+		TargetMixin,
+		NodeMixin<Bot> {}
 
 export { ChatMemberControlMixin };

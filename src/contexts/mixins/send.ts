@@ -3,6 +3,7 @@ import { TelegramParams } from "@gramio/types";
 import type { Optional, tSendMethods } from "#utils";
 import { Poll } from "../../structures";
 
+import { BotLike } from "#types";
 import { Context } from "../context";
 import { MessageContext } from "../message";
 
@@ -12,7 +13,7 @@ interface SendMixinMetadata {
 }
 
 /** This object represents a mixin which can invoke `chatId`/`senderId`-dependent methods */
-class SendMixin {
+class SendMixin<Bot extends BotLike> {
 	/** Sends message to current chat */
 	async send(
 		text: TelegramParams.SendMessageParams["text"],
@@ -429,6 +430,8 @@ class SendMixin {
 	}
 }
 
-interface SendMixin extends Context, SendMixinMetadata {}
+interface SendMixin<Bot extends BotLike>
+	extends Context<Bot>,
+		SendMixinMetadata {}
 
 export { SendMixin };

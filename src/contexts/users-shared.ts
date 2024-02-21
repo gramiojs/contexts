@@ -1,11 +1,11 @@
 import { TelegramObjects } from "@gramio/types";
 import { Message } from "../structures";
 
-import type { Bot } from "gramio";
 import { applyMixins } from "#utils";
 import { type Constructor } from "#utils";
 
 import { inspectable } from "inspectable";
+import { BotLike } from "#types";
 import { Context } from "./context";
 import {
 	ChatActionMixin,
@@ -16,7 +16,7 @@ import {
 	TargetMixin,
 } from "./mixins";
 
-interface UsersSharedContextOptions {
+interface UsersSharedContextOptions<Bot extends BotLike> {
 	bot: Bot;
 	update: TelegramObjects.TelegramUpdate;
 	payload: TelegramObjects.TelegramMessage;
@@ -24,12 +24,12 @@ interface UsersSharedContextOptions {
 }
 
 /** This object contains information about the users whose identifiers were shared with the bot using a `KeyboardButtonRequestUsers` button. */
-class UsersSharedContext extends Context {
+class UsersSharedContext<Bot extends BotLike> extends Context<Bot> {
 	payload: TelegramObjects.TelegramMessage;
 
 	private event: TelegramObjects.TelegramUsersShared;
 
-	constructor(options: UsersSharedContextOptions) {
+	constructor(options: UsersSharedContextOptions<Bot>) {
 		super({
 			bot: options.bot,
 			updateType: "users_shared",
@@ -52,15 +52,15 @@ class UsersSharedContext extends Context {
 	}
 }
 
-interface UsersSharedContext
-	extends Constructor<UsersSharedContext>,
+interface UsersSharedContext<Bot extends BotLike>
+	extends Constructor<UsersSharedContext<Bot>>,
 		Message,
 		TargetMixin,
-		SendMixin,
-		ChatActionMixin,
-		NodeMixin,
-		PinsMixin,
-		CloneMixin<UsersSharedContext, UsersSharedContextOptions> {}
+		SendMixin<Bot>,
+		ChatActionMixin<Bot>,
+		NodeMixin<Bot>,
+		PinsMixin<Bot>,
+		CloneMixin<Bot, UsersSharedContext<Bot>, UsersSharedContextOptions<Bot>> {}
 applyMixins(UsersSharedContext, [
 	Message,
 	TargetMixin,

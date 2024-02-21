@@ -2,9 +2,9 @@ import { inspectable } from "inspectable";
 
 import { TelegramObjects } from "@gramio/types";
 
-import type { Bot } from "gramio";
 import { SERVICE_MESSAGE_EVENTS } from "#utils";
 
+import { BotLike } from "#types";
 import type {
 	ContextsMapping,
 	MaybeArray,
@@ -12,21 +12,21 @@ import type {
 	UpdateName,
 } from "#utils";
 
-interface ContextOptions {
+interface ContextOptions<Bot extends BotLike> {
 	bot: Bot;
 	update?: TelegramObjects.TelegramUpdate;
 	updateType: UpdateName;
 	updateId?: number;
 }
 
-class Context {
+class Context<Bot extends BotLike> {
 	bot: Bot;
 	updateId?: number;
 	update?: TelegramObjects.TelegramUpdate;
 
 	protected updateType: UpdateName;
 
-	constructor(options: ContextOptions) {
+	constructor(options: ContextOptions<Bot>) {
 		this.bot = options.bot;
 		this.updateType = options.updateType;
 		this.updateId = options.updateId;
@@ -49,7 +49,7 @@ class Context {
 	}
 }
 
-interface Context {
+interface Context<Bot extends BotLike> {
 	is<T extends UpdateName>(
 		rawTypes: MaybeArray<SoftString<T>>,
 	): this is ContextsMapping[T];

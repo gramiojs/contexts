@@ -9,13 +9,12 @@ import { CallbackQuery } from "../structures";
 import { TelegramParams } from "@gramio/types";
 import { TelegramObjects } from "@gramio/types";
 
-import type { Bot } from "gramio";
-
+import { BotLike } from "#types";
 import { Context } from "./context";
 import { MessageContext } from "./message";
 import { CloneMixin } from "./mixins";
 
-interface CallbackQueryContextOptions {
+interface CallbackQueryContextOptions<Bot extends BotLike> {
 	bot: Bot;
 	update: TelegramObjects.TelegramUpdate;
 	payload: TelegramObjects.TelegramCallbackQuery;
@@ -23,10 +22,10 @@ interface CallbackQueryContextOptions {
 }
 
 /** Called when `callback_query` event occurs */
-class CallbackQueryContext extends Context {
+class CallbackQueryContext<Bot extends BotLike> extends Context<Bot> {
 	payload: TelegramObjects.TelegramCallbackQuery;
 
-	constructor(options: CallbackQueryContextOptions) {
+	constructor(options: CallbackQueryContextOptions<Bot>) {
 		super({
 			bot: options.bot,
 			updateType: "callback_query",
@@ -239,10 +238,14 @@ class CallbackQueryContext extends Context {
 	}
 }
 
-interface CallbackQueryContext
-	extends Constructor<CallbackQueryContext>,
+interface CallbackQueryContext<Bot extends BotLike>
+	extends Constructor<CallbackQueryContext<Bot>>,
 		CallbackQuery,
-		CloneMixin<CallbackQueryContext, CallbackQueryContextOptions> {}
+		CloneMixin<
+			Bot,
+			CallbackQueryContext<Bot>,
+			CallbackQueryContextOptions<Bot>
+		> {}
 applyMixins(CallbackQueryContext, [CallbackQuery, CloneMixin]);
 memoizeGetters(CallbackQueryContext, ["message"]);
 

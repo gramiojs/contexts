@@ -4,10 +4,11 @@ import type { Optional } from "#utils";
 
 import { Context } from "../context";
 
+import { BotLike } from "#types";
 import { TargetMixin } from "./target";
 
 /** This object represents a mixin that works with all `*ChatInviteLink` methods */
-class ChatInviteControlMixin {
+class ChatInviteControlMixin<Bot extends BotLike> {
 	/** Generates new primary invite link */
 	exportInviteLink(
 		params?: Optional<TelegramParams.ExportChatInviteLinkParams, "chat_id">,
@@ -59,6 +60,8 @@ class ChatInviteControlMixin {
 	}
 }
 
-interface ChatInviteControlMixin extends Context, TargetMixin {}
+interface ChatInviteControlMixin<Bot extends BotLike>
+	extends Context<Bot>,
+		TargetMixin {}
 
 export { ChatInviteControlMixin };

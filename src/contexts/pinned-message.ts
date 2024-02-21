@@ -2,11 +2,11 @@ import { inspectable } from "inspectable";
 
 import { TelegramObjects } from "@gramio/types";
 
-import type { Bot } from "gramio";
 import { applyMixins, memoizeGetters } from "#utils";
 import { type Constructor } from "#utils";
 import { Message } from "../structures";
 
+import { BotLike } from "#types";
 import { Context } from "./context";
 import { MessageContext } from "./message";
 import {
@@ -22,17 +22,17 @@ import {
 	TargetMixin,
 } from "./mixins";
 
-interface PinnedMessageContextOptions {
+interface PinnedMessageContextOptions<Bot extends BotLike> {
 	bot: Bot;
 	update: TelegramObjects.TelegramUpdate;
 	payload: TelegramObjects.TelegramMessage;
 	updateId: number;
 }
 
-class PinnedMessageContext extends Context {
+class PinnedMessageContext<Bot extends BotLike> extends Context<Bot> {
 	payload: TelegramObjects.TelegramMessage;
 
-	constructor(options: PinnedMessageContextOptions) {
+	constructor(options: PinnedMessageContextOptions<Bot>) {
 		super({
 			bot: options.bot,
 			updateType: "pinned_message",
@@ -52,19 +52,23 @@ class PinnedMessageContext extends Context {
 	}
 }
 
-interface PinnedMessageContext
-	extends Constructor<PinnedMessageContext>,
+interface PinnedMessageContext<Bot extends BotLike>
+	extends Constructor<PinnedMessageContext<Bot>>,
 		Message,
 		TargetMixin,
-		SendMixin,
-		ChatActionMixin,
-		NodeMixin,
-		ChatInviteControlMixin,
-		ChatControlMixin,
-		ChatSenderControlMixin,
-		ChatMemberControlMixin,
-		PinsMixin,
-		CloneMixin<PinnedMessageContext, PinnedMessageContextOptions> {}
+		SendMixin<Bot>,
+		ChatActionMixin<Bot>,
+		NodeMixin<Bot>,
+		ChatInviteControlMixin<Bot>,
+		ChatControlMixin<Bot>,
+		ChatSenderControlMixin<Bot>,
+		ChatMemberControlMixin<Bot>,
+		PinsMixin<Bot>,
+		CloneMixin<
+			Bot,
+			PinnedMessageContext<Bot>,
+			PinnedMessageContextOptions<Bot>
+		> {}
 applyMixins(PinnedMessageContext, [
 	Message,
 	TargetMixin,

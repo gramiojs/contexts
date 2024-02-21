@@ -3,10 +3,10 @@ import { inspectable } from "inspectable";
 import { TelegramObjects } from "@gramio/types";
 import { ChatMemberUpdated } from "../structures";
 
-import type { Bot } from "gramio";
 import { applyMixins } from "#utils";
 import { type Constructor, type Require, type UpdateName } from "#utils";
 
+import { BotLike } from "#types";
 import { Context } from "./context";
 import {
 	ChatActionMixin,
@@ -16,7 +16,7 @@ import {
 	TargetMixin,
 } from "./mixins";
 
-interface ChatMemberContextOptions {
+interface ChatMemberContextOptions<Bot extends BotLike> {
 	bot: Bot;
 	update: TelegramObjects.TelegramUpdate;
 	payload: TelegramObjects.TelegramChatMemberUpdated;
@@ -24,10 +24,10 @@ interface ChatMemberContextOptions {
 	type?: UpdateName;
 }
 
-class ChatMemberContext extends Context {
+class ChatMemberContext<Bot extends BotLike> extends Context<Bot> {
 	payload: TelegramObjects.TelegramChatMemberUpdated;
 
-	constructor(options: ChatMemberContextOptions) {
+	constructor(options: ChatMemberContextOptions<Bot>) {
 		super({
 			bot: options.bot,
 			updateType: options.type ?? "chat_member",
@@ -45,14 +45,14 @@ class ChatMemberContext extends Context {
 }
 
 // @ts-expect-error [senderId: number] is not compatible with [senderId: number | undefined] :shrug:
-interface ChatMemberContext
-	extends Constructor<ChatMemberContext>,
+interface ChatMemberContext<Bot extends BotLike>
+	extends Constructor<ChatMemberContext<Bot>>,
 		ChatMemberUpdated,
 		TargetMixin,
-		SendMixin,
-		ChatActionMixin,
-		ChatControlMixin,
-		CloneMixin<ChatMemberContext, ChatMemberContextOptions> {}
+		SendMixin<Bot>,
+		ChatActionMixin<Bot>,
+		ChatControlMixin<Bot>,
+		CloneMixin<Bot, ChatMemberContext<Bot>, ChatMemberContextOptions<Bot>> {}
 applyMixins(ChatMemberContext, [
 	ChatMemberUpdated,
 	TargetMixin,

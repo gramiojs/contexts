@@ -4,6 +4,7 @@ import { TelegramObjects } from "@gramio/types";
 import type { MaybeArray, Optional } from "#utils";
 import { MessageId } from "../../structures";
 
+import { BotLike } from "#types";
 import { Context } from "../context";
 import { MessageContext } from "../message";
 import { SendMixin } from "./send";
@@ -21,7 +22,7 @@ type WithPartialReplyParameters<T> = Omit<T, "reply_parameters"> & {
 type WithQuote<T = {}> = { quote: string } & T;
 
 /** This object represents a mixin which has `id` field and can invoke `id`-dependent methods */
-class NodeMixin {
+class NodeMixin<Bot extends BotLike> {
 	/** Replies to current message */
 	reply(
 		text: TelegramParams.SendMessageParams["text"],
@@ -924,6 +925,9 @@ class NodeMixin {
 	}
 }
 
-interface NodeMixin extends Context, NodeMixinMetadata, SendMixin {}
+interface NodeMixin<Bot extends BotLike>
+	extends Context<Bot>,
+		NodeMixinMetadata,
+		SendMixin<Bot> {}
 
 export { NodeMixin };

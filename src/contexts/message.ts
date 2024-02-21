@@ -22,8 +22,6 @@ import { Message, MessageEntity } from "../structures";
 
 import { TelegramObjects } from "@gramio/types";
 
-import type { Bot } from "gramio";
-
 import { applyMixins, filterPayload, isParsable, memoizeGetters } from "#utils";
 import type {
 	AttachmentType,
@@ -39,6 +37,7 @@ import {
 } from "#utils";
 import { EVENTS, SERVICE_MESSAGE_EVENTS } from "#utils";
 
+import { BotLike } from "#types";
 import { Context } from "./context";
 import {
 	ChatActionMixin,
@@ -54,7 +53,7 @@ import {
 	TargetMixin,
 } from "./mixins";
 
-interface MessageContextOptions {
+interface MessageContextOptions<Bot extends BotLike> {
 	bot: Bot;
 	update?: TelegramObjects.TelegramUpdate;
 	payload: TelegramObjects.TelegramMessage;
@@ -63,7 +62,7 @@ interface MessageContextOptions {
 }
 
 /** Called when `message` event occurs */
-class MessageContext extends Context {
+class MessageContext<Bot extends BotLike> extends Context<Bot> {
 	payload: TelegramObjects.TelegramMessage;
 
 	#text: string | undefined;
@@ -71,7 +70,7 @@ class MessageContext extends Context {
 
 	// mediaGroup?: MediaGroup;
 
-	constructor(options: MessageContextOptions) {
+	constructor(options: MessageContextOptions<Bot>) {
 		super({
 			bot: options.bot,
 			updateType: options.type ?? "message",
@@ -326,20 +325,20 @@ class MessageContext extends Context {
 	}
 }
 
-interface MessageContext
-	extends Constructor<MessageContext>,
+interface MessageContext<Bot extends BotLike>
+	extends Constructor<MessageContext<Bot>>,
 		Message,
 		TargetMixin,
-		SendMixin,
-		ChatActionMixin,
-		NodeMixin,
-		DownloadMixin,
-		ChatInviteControlMixin,
-		ChatControlMixin,
-		ChatSenderControlMixin,
-		ChatMemberControlMixin,
-		PinsMixin,
-		CloneMixin<MessageContext, MessageContextOptions> {}
+		SendMixin<Bot>,
+		ChatActionMixin<Bot>,
+		NodeMixin<Bot>,
+		DownloadMixin<Bot>,
+		ChatInviteControlMixin<Bot>,
+		ChatControlMixin<Bot>,
+		ChatSenderControlMixin<Bot>,
+		ChatMemberControlMixin<Bot>,
+		PinsMixin<Bot>,
+		CloneMixin<Bot, MessageContext<Bot>, MessageContextOptions<Bot>> {}
 applyMixins(MessageContext, [
 	Message,
 	TargetMixin,

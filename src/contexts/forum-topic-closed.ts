@@ -1,11 +1,11 @@
 import { TelegramObjects } from "@gramio/types";
 import { Message } from "../structures";
 
-import type { Bot } from "gramio";
 import { applyMixins } from "#utils";
 import { type Constructor } from "#utils";
 
 import { inspectable } from "inspectable";
+import { BotLike } from "#types";
 import { Context } from "./context";
 import {
 	ChatActionMixin,
@@ -21,7 +21,7 @@ import {
 	TargetMixin,
 } from "./mixins";
 
-interface ForumTopicClosedContextOptions {
+interface ForumTopicClosedContextOptions<Bot extends BotLike> {
 	bot: Bot;
 	update: TelegramObjects.TelegramUpdate;
 	payload: TelegramObjects.TelegramMessage;
@@ -29,10 +29,10 @@ interface ForumTopicClosedContextOptions {
 }
 
 /** This object represents a service message about a forum topic closed in the chat. Currently holds no information. */
-class ForumTopicClosedContext extends Context {
+class ForumTopicClosedContext<Bot extends BotLike> extends Context<Bot> {
 	payload: TelegramObjects.TelegramMessage;
 
-	constructor(options: ForumTopicClosedContextOptions) {
+	constructor(options: ForumTopicClosedContextOptions<Bot>) {
 		super({
 			bot: options.bot,
 			updateType: "forum_topic_closed",
@@ -44,20 +44,24 @@ class ForumTopicClosedContext extends Context {
 	}
 }
 
-interface ForumTopicClosedContext
-	extends Constructor<ForumTopicClosedContext>,
+interface ForumTopicClosedContext<Bot extends BotLike>
+	extends Constructor<ForumTopicClosedContext<Bot>>,
 		Message,
 		TargetMixin,
-		SendMixin,
-		ChatActionMixin,
-		NodeMixin,
-		ForumMixin,
-		ChatInviteControlMixin,
-		ChatControlMixin,
-		ChatSenderControlMixin,
-		ChatMemberControlMixin,
-		PinsMixin,
-		CloneMixin<ForumTopicClosedContext, ForumTopicClosedContextOptions> {}
+		SendMixin<Bot>,
+		ChatActionMixin<Bot>,
+		NodeMixin<Bot>,
+		ForumMixin<Bot>,
+		ChatInviteControlMixin<Bot>,
+		ChatControlMixin<Bot>,
+		ChatSenderControlMixin<Bot>,
+		ChatMemberControlMixin<Bot>,
+		PinsMixin<Bot>,
+		CloneMixin<
+			Bot,
+			ForumTopicClosedContext<Bot>,
+			ForumTopicClosedContextOptions<Bot>
+		> {}
 applyMixins(ForumTopicClosedContext, [
 	Message,
 	TargetMixin,

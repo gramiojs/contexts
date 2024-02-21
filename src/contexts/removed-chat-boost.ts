@@ -2,14 +2,14 @@ import { TelegramObjects } from "@gramio/types";
 import { inspectable } from "inspectable";
 import { ChatBoostRemoved } from "../structures/chat-boost-removed";
 
-import type { Bot } from "gramio";
 import { applyMixins } from "#utils";
 import { type Constructor } from "#utils";
 
+import { BotLike } from "#types";
 import { Context } from "./context";
 import { CloneMixin, SendMixin } from "./mixins";
 
-interface RemovedChatBoostContextOptions {
+interface RemovedChatBoostContextOptions<Bot extends BotLike> {
 	bot: Bot;
 	update: TelegramObjects.TelegramUpdate;
 	payload: TelegramObjects.TelegramChatBoostRemoved;
@@ -17,10 +17,10 @@ interface RemovedChatBoostContextOptions {
 }
 
 /** This object represents a boost removed from a chat. */
-class RemovedChatBoostContext extends Context {
+class RemovedChatBoostContext<Bot extends BotLike> extends Context<Bot> {
 	payload: TelegramObjects.TelegramChatBoostRemoved;
 
-	constructor(options: RemovedChatBoostContextOptions) {
+	constructor(options: RemovedChatBoostContextOptions<Bot>) {
 		super({
 			bot: options.bot,
 			updateType: "removed_chat_boost",
@@ -32,17 +32,22 @@ class RemovedChatBoostContext extends Context {
 	}
 }
 
-interface RemovedChatBoostContext
-	extends Constructor<RemovedChatBoostContext>,
+interface RemovedChatBoostContext<Bot extends BotLike>
+	extends Constructor<RemovedChatBoostContext<Bot>>,
 		ChatBoostRemoved,
-		SendMixin,
-		CloneMixin<RemovedChatBoostContext, RemovedChatBoostContextOptions> {}
+		SendMixin<Bot>,
+		CloneMixin<
+			Bot,
+			RemovedChatBoostContext<Bot>,
+			RemovedChatBoostContextOptions<Bot>
+		> {}
 applyMixins(RemovedChatBoostContext, [ChatBoostRemoved, SendMixin, CloneMixin]);
 
 export { RemovedChatBoostContext };
 
 inspectable(RemovedChatBoostContext, {
-	serialize(context: RemovedChatBoostContext) {
+	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+	serialize(context: RemovedChatBoostContext<any>) {
 		const payload = {
 			id: context.id,
 			chat: context.chat,

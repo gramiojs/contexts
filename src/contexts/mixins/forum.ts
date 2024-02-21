@@ -2,6 +2,7 @@ import { TelegramParams } from "@gramio/types";
 
 import type { Optional, RequireValue } from "#utils";
 
+import { BotLike } from "#types";
 import { Context } from "../context";
 import { NodeMixin } from "./node";
 
@@ -11,7 +12,7 @@ interface ForumMixinMetadata {
 
 // TODO: there probably is a way to hide all irrelevant methods unless type guard said so
 /** This object represents a mixin that's used in all topic-related updates  */
-class ForumMixin {
+class ForumMixin<Bot extends BotLike> {
 	/** Checks whether this topic is actually a 'General' one */
 	isGeneralTopic(): this is RequireValue<this, "threadId", undefined> {
 		return this.threadId === undefined;
@@ -199,6 +200,9 @@ class ForumMixin {
 	}
 }
 
-interface ForumMixin extends Context, ForumMixinMetadata, NodeMixin {}
+interface ForumMixin<Bot extends BotLike>
+	extends Context<Bot>,
+		ForumMixinMetadata,
+		NodeMixin<Bot> {}
 
 export { ForumMixin };

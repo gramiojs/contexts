@@ -2,11 +2,11 @@ import { inspectable } from "inspectable";
 
 import { TelegramObjects } from "@gramio/types";
 
-import type { Bot } from "gramio";
 import { applyMixins } from "#utils";
 import { type Constructor } from "#utils";
 import { Message } from "../structures";
 
+import { BotLike } from "#types";
 import { Context } from "./context";
 import {
 	ChatActionMixin,
@@ -21,17 +21,17 @@ import {
 	TargetMixin,
 } from "./mixins";
 
-interface GroupChatCreatedContextOptions {
+interface GroupChatCreatedContextOptions<Bot extends BotLike> {
 	bot: Bot;
 	update: TelegramObjects.TelegramUpdate;
 	payload: TelegramObjects.TelegramMessage;
 	updateId: number;
 }
 
-class GroupChatCreatedContext extends Context {
+class GroupChatCreatedContext<Bot extends BotLike> extends Context<Bot> {
 	payload: TelegramObjects.TelegramMessage;
 
-	constructor(options: GroupChatCreatedContextOptions) {
+	constructor(options: GroupChatCreatedContextOptions<Bot>) {
 		super({
 			bot: options.bot,
 			updateType: "group_chat_created",
@@ -43,19 +43,23 @@ class GroupChatCreatedContext extends Context {
 	}
 }
 
-interface GroupChatCreatedContext
-	extends Constructor<GroupChatCreatedContext>,
+interface GroupChatCreatedContext<Bot extends BotLike>
+	extends Constructor<GroupChatCreatedContext<Bot>>,
 		Message,
 		TargetMixin,
-		SendMixin,
-		ChatActionMixin,
-		NodeMixin,
-		ChatInviteControlMixin,
-		ChatControlMixin,
-		ChatSenderControlMixin,
-		ChatMemberControlMixin,
-		PinsMixin,
-		CloneMixin<GroupChatCreatedContext, GroupChatCreatedContextOptions> {}
+		SendMixin<Bot>,
+		ChatActionMixin<Bot>,
+		NodeMixin<Bot>,
+		ChatInviteControlMixin<Bot>,
+		ChatControlMixin<Bot>,
+		ChatSenderControlMixin<Bot>,
+		ChatMemberControlMixin<Bot>,
+		PinsMixin<Bot>,
+		CloneMixin<
+			Bot,
+			GroupChatCreatedContext<Bot>,
+			GroupChatCreatedContextOptions<Bot>
+		> {}
 applyMixins(GroupChatCreatedContext, [
 	Message,
 	TargetMixin,

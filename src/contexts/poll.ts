@@ -2,24 +2,24 @@ import { inspectable } from "inspectable";
 
 import { TelegramObjects } from "@gramio/types";
 
-import type { Bot } from "gramio";
+import { BotLike } from "#types";
 import { PollType, applyMixins, filterPayload } from "#utils";
 import type { Constructor, Require, RequireValue } from "#utils";
 import { Poll } from "../structures";
 import { Context } from "./context";
 import { CloneMixin } from "./mixins";
 
-interface PollContextOptions {
+interface PollContextOptions<Bot extends BotLike> {
 	bot: Bot;
 	update: TelegramObjects.TelegramUpdate;
 	payload: TelegramObjects.TelegramPoll;
 	updateId: number;
 }
 
-class PollContext extends Context {
+class PollContext<Bot extends BotLike> extends Context<Bot> {
 	payload: TelegramObjects.TelegramPoll;
 
-	constructor(options: PollContextOptions) {
+	constructor(options: PollContextOptions<Bot>) {
 		super({
 			bot: options.bot,
 			updateType: "poll",
@@ -67,10 +67,10 @@ class PollContext extends Context {
 }
 
 // TODO: why the fuck is this not a Message.poll?
-interface PollContext
-	extends Constructor<PollContext>,
+interface PollContext<Bot extends BotLike>
+	extends Constructor<PollContext<Bot>>,
 		Poll,
-		CloneMixin<PollContext, PollContextOptions> {}
+		CloneMixin<Bot, PollContext<Bot>, PollContextOptions<Bot>> {}
 applyMixins(PollContext, [Poll, CloneMixin]);
 
 inspectable(PollContext, {

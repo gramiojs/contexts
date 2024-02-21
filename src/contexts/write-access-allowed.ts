@@ -1,11 +1,11 @@
 import { TelegramObjects } from "@gramio/types";
 import { Message, WriteAccessAllowed } from "../structures";
 
-import type { Bot } from "gramio";
 import { applyMixins, memoizeGetters } from "#utils";
 import { type Constructor } from "#utils";
 
 import { inspectable } from "inspectable";
+import { BotLike } from "#types";
 import { Context } from "./context";
 import {
 	ChatActionMixin,
@@ -16,17 +16,17 @@ import {
 	TargetMixin,
 } from "./mixins";
 
-interface WriteAccessAllowedContextOptions {
+interface WriteAccessAllowedContextOptions<Bot extends BotLike> {
 	bot: Bot;
 	update: TelegramObjects.TelegramUpdate;
 	payload: TelegramObjects.TelegramMessage;
 	updateId: number;
 }
 
-class WriteAccessAllowedContext extends Context {
+class WriteAccessAllowedContext<Bot extends BotLike> extends Context<Bot> {
 	payload: TelegramObjects.TelegramMessage;
 
-	constructor(options: WriteAccessAllowedContextOptions) {
+	constructor(options: WriteAccessAllowedContextOptions<Bot>) {
 		super({
 			bot: options.bot,
 			updateType: "write_access_allowed",
@@ -46,15 +46,19 @@ class WriteAccessAllowedContext extends Context {
 	}
 }
 
-interface WriteAccessAllowedContext
-	extends Constructor<WriteAccessAllowedContext>,
+interface WriteAccessAllowedContext<Bot extends BotLike>
+	extends Constructor<WriteAccessAllowedContext<Bot>>,
 		Message,
 		TargetMixin,
-		SendMixin,
-		ChatActionMixin,
-		NodeMixin,
-		PinsMixin,
-		CloneMixin<WriteAccessAllowedContext, WriteAccessAllowedContextOptions> {}
+		SendMixin<Bot>,
+		ChatActionMixin<Bot>,
+		NodeMixin<Bot>,
+		PinsMixin<Bot>,
+		CloneMixin<
+			Bot,
+			WriteAccessAllowedContext<Bot>,
+			WriteAccessAllowedContextOptions<Bot>
+		> {}
 applyMixins(WriteAccessAllowedContext, [
 	Message,
 	TargetMixin,

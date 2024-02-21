@@ -1,3 +1,4 @@
+import { BotLike } from "#types";
 import {
 	Attachment,
 	// MediaInputTo,
@@ -14,7 +15,7 @@ interface DownloadMixinMetadata {
 }
 
 /** This object represents a mixin that can be used to download media files */
-class DownloadMixin {
+class DownloadMixin<Bot extends BotLike> {
 	// /** Downloads attachment */
 	// download(to?: MediaSourceToBuffer): Promise<Buffer | null>;
 	// download(to: MediaSourceToPath): Promise<void | null>;
@@ -27,6 +28,8 @@ class DownloadMixin {
 	// }
 }
 
-interface DownloadMixin extends Context, DownloadMixinMetadata {}
+interface DownloadMixin<Bot extends BotLike>
+	extends Context<Bot>,
+		DownloadMixinMetadata {}
 
 export { DownloadMixin };

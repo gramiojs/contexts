@@ -2,13 +2,13 @@ import { TelegramObjects } from "@gramio/types";
 import type { Constructor, Require } from "#utils";
 import { MessageReactionUpdated } from "../structures/message-reaction-updated";
 
-import type { Bot } from "gramio";
 import { inspectable } from "inspectable";
+import { BotLike } from "#types";
 import { applyMixins, filterPayload } from "#utils";
 import { Context } from "./context";
 import { CloneMixin, NodeMixin, SendMixin } from "./mixins";
 
-interface MessageReactionContextOptions {
+interface MessageReactionContextOptions<Bot extends BotLike> {
 	bot: Bot;
 	update: TelegramObjects.TelegramUpdate;
 	payload: TelegramObjects.TelegramMessageReactionUpdated;
@@ -16,10 +16,10 @@ interface MessageReactionContextOptions {
 }
 
 /** This object represents a change of a reaction on a message performed by a user. */
-class MessageReactionContext extends Context {
+class MessageReactionContext<Bot extends BotLike> extends Context<Bot> {
 	payload: TelegramObjects.TelegramMessageReactionUpdated;
 
-	constructor(options: MessageReactionContextOptions) {
+	constructor(options: MessageReactionContextOptions<Bot>) {
 		super({
 			bot: options.bot,
 			updateType: "message_reaction",
@@ -41,12 +41,16 @@ class MessageReactionContext extends Context {
 	}
 }
 
-interface MessageReactionContext
-	extends Constructor<MessageReactionContext>,
+interface MessageReactionContext<Bot extends BotLike>
+	extends Constructor<MessageReactionContext<Bot>>,
 		MessageReactionUpdated,
-		SendMixin,
-		NodeMixin,
-		CloneMixin<MessageReactionContext, MessageReactionContextOptions> {}
+		SendMixin<Bot>,
+		NodeMixin<Bot>,
+		CloneMixin<
+			Bot,
+			MessageReactionContext<Bot>,
+			MessageReactionContextOptions<Bot>
+		> {}
 applyMixins(MessageReactionContext, [
 	MessageReactionUpdated,
 	SendMixin,
@@ -57,7 +61,8 @@ applyMixins(MessageReactionContext, [
 export { MessageReactionContext };
 
 inspectable(MessageReactionContext, {
-	serialize(context: MessageReactionContext) {
+	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+	serialize(context: MessageReactionContext<any>) {
 		const payload = {
 			id: context.id,
 			chat: context.chat,

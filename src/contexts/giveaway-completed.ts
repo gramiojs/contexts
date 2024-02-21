@@ -1,7 +1,7 @@
 import { TelegramObjects } from "@gramio/types";
 import { inspectable } from "inspectable";
 
-import type { Bot } from "gramio";
+import { BotLike } from "#types";
 import { applyMixins, filterPayload } from "#utils";
 import { type Constructor } from "#utils";
 import { Message } from "../structures/message";
@@ -20,7 +20,7 @@ import {
 	TargetMixin,
 } from "./mixins";
 
-interface GiveawayCompletedContextOptions {
+interface GiveawayCompletedContextOptions<Bot extends BotLike> {
 	bot: Bot;
 	update: TelegramObjects.TelegramUpdate;
 	payload: TelegramObjects.TelegramMessage;
@@ -28,10 +28,10 @@ interface GiveawayCompletedContextOptions {
 }
 
 /** This object represents a service message about the creation of a scheduled giveaway. Currently holds no information. */
-class GiveawayCompletedContext extends Context {
+class GiveawayCompletedContext<Bot extends BotLike> extends Context<Bot> {
 	payload: TelegramObjects.TelegramMessage;
 
-	constructor(options: GiveawayCompletedContextOptions) {
+	constructor(options: GiveawayCompletedContextOptions<Bot>) {
 		super({
 			bot: options.bot,
 			updateType: "giveaway_completed",
@@ -48,20 +48,24 @@ class GiveawayCompletedContext extends Context {
 	}
 }
 
-interface GiveawayCompletedContext
-	extends Constructor<GiveawayCompletedContext>,
+interface GiveawayCompletedContext<Bot extends BotLike>
+	extends Constructor<GiveawayCompletedContext<Bot>>,
 		Message,
 		TargetMixin,
-		SendMixin,
-		ChatActionMixin,
-		NodeMixin,
-		ForumMixin,
-		ChatInviteControlMixin,
-		ChatControlMixin,
-		ChatSenderControlMixin,
-		ChatMemberControlMixin,
-		PinsMixin,
-		CloneMixin<GiveawayCompletedContext, GiveawayCompletedContextOptions> {}
+		SendMixin<Bot>,
+		ChatActionMixin<Bot>,
+		NodeMixin<Bot>,
+		ForumMixin<Bot>,
+		ChatInviteControlMixin<Bot>,
+		ChatControlMixin<Bot>,
+		ChatSenderControlMixin<Bot>,
+		ChatMemberControlMixin<Bot>,
+		PinsMixin<Bot>,
+		CloneMixin<
+			Bot,
+			GiveawayCompletedContext<Bot>,
+			GiveawayCompletedContextOptions<Bot>
+		> {}
 applyMixins(GiveawayCompletedContext, [
 	Message,
 	TargetMixin,
@@ -80,7 +84,8 @@ applyMixins(GiveawayCompletedContext, [
 export { GiveawayCompletedContext };
 
 inspectable(GiveawayCompletedContext, {
-	serialize(context: GiveawayCompletedContext) {
+	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+	serialize(context: GiveawayCompletedContext<any>) {
 		const payload = {
 			id: context.id,
 			createdAt: context.createdAt,

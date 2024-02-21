@@ -1,11 +1,11 @@
 import { TelegramObjects } from "@gramio/types";
 import { Message } from "../structures";
 
-import type { Bot } from "gramio";
 import { applyMixins } from "#utils";
 import type { Constructor, RequireValue } from "#utils";
 
 import { inspectable } from "inspectable";
+import { BotLike } from "#types";
 import { Context } from "./context";
 import {
 	ChatActionMixin,
@@ -21,7 +21,7 @@ import {
 	TargetMixin,
 } from "./mixins";
 
-interface GeneralForumTopicHiddenContextOptions {
+interface GeneralForumTopicHiddenContextOptions<Bot extends BotLike> {
 	bot: Bot;
 	update: TelegramObjects.TelegramUpdate;
 	payload: TelegramObjects.TelegramMessage;
@@ -29,10 +29,10 @@ interface GeneralForumTopicHiddenContextOptions {
 }
 
 /** This object represents a service message about General forum topic hidden in the chat. Currently holds no information. */
-class GeneralForumTopicHiddenContext extends Context {
+class GeneralForumTopicHiddenContext<Bot extends BotLike> extends Context<Bot> {
 	payload: TelegramObjects.TelegramMessage;
 
-	constructor(options: GeneralForumTopicHiddenContextOptions) {
+	constructor(options: GeneralForumTopicHiddenContextOptions<Bot>) {
 		super({
 			bot: options.bot,
 			updateType: "general_forum_topic_hidden",
@@ -49,22 +49,23 @@ class GeneralForumTopicHiddenContext extends Context {
 	}
 }
 
-interface GeneralForumTopicHiddenContext
-	extends Constructor<GeneralForumTopicHiddenContext>,
+interface GeneralForumTopicHiddenContext<Bot extends BotLike>
+	extends Constructor<GeneralForumTopicHiddenContext<Bot>>,
 		Message,
 		TargetMixin,
-		SendMixin,
-		ChatActionMixin,
-		NodeMixin,
-		ForumMixin,
-		ChatInviteControlMixin,
-		ChatControlMixin,
-		ChatSenderControlMixin,
-		ChatMemberControlMixin,
-		PinsMixin,
+		SendMixin<Bot>,
+		ChatActionMixin<Bot>,
+		NodeMixin<Bot>,
+		ForumMixin<Bot>,
+		ChatInviteControlMixin<Bot>,
+		ChatControlMixin<Bot>,
+		ChatSenderControlMixin<Bot>,
+		ChatMemberControlMixin<Bot>,
+		PinsMixin<Bot>,
 		CloneMixin<
-			GeneralForumTopicHiddenContext,
-			GeneralForumTopicHiddenContextOptions
+			Bot,
+			GeneralForumTopicHiddenContext<Bot>,
+			GeneralForumTopicHiddenContextOptions<Bot>
 		> {}
 applyMixins(GeneralForumTopicHiddenContext, [
 	Message,

@@ -2,11 +2,11 @@ import { inspectable } from "inspectable";
 
 import { TelegramObjects } from "@gramio/types";
 
-import type { Bot } from "gramio";
 import { applyMixins } from "#utils";
 import { type Constructor } from "#utils";
 import { Message } from "../structures";
 
+import { BotLike } from "#types";
 import { Context } from "./context";
 import {
 	ChatActionMixin,
@@ -21,17 +21,17 @@ import {
 	TargetMixin,
 } from "./mixins";
 
-interface DeleteChatPhotoContextOptions {
+interface DeleteChatPhotoContextOptions<Bot extends BotLike> {
 	bot: Bot;
 	update: TelegramObjects.TelegramUpdate;
 	payload: TelegramObjects.TelegramMessage;
 	updateId: number;
 }
 
-class DeleteChatPhotoContext extends Context {
+class DeleteChatPhotoContext<Bot extends BotLike> extends Context<Bot> {
 	payload: TelegramObjects.TelegramMessage;
 
-	constructor(options: DeleteChatPhotoContextOptions) {
+	constructor(options: DeleteChatPhotoContextOptions<Bot>) {
 		super({
 			bot: options.bot,
 			updateType: "delete_chat_photo",
@@ -43,19 +43,23 @@ class DeleteChatPhotoContext extends Context {
 	}
 }
 
-interface DeleteChatPhotoContext
-	extends Constructor<DeleteChatPhotoContext>,
+interface DeleteChatPhotoContext<Bot extends BotLike>
+	extends Constructor<DeleteChatPhotoContext<Bot>>,
 		Message,
 		TargetMixin,
-		SendMixin,
-		ChatActionMixin,
-		NodeMixin,
-		ChatInviteControlMixin,
-		ChatControlMixin,
-		ChatSenderControlMixin,
-		ChatMemberControlMixin,
-		PinsMixin,
-		CloneMixin<DeleteChatPhotoContext, DeleteChatPhotoContextOptions> {}
+		SendMixin<Bot>,
+		ChatActionMixin<Bot>,
+		NodeMixin<Bot>,
+		ChatInviteControlMixin<Bot>,
+		ChatControlMixin<Bot>,
+		ChatSenderControlMixin<Bot>,
+		ChatMemberControlMixin<Bot>,
+		PinsMixin<Bot>,
+		CloneMixin<
+			Bot,
+			DeleteChatPhotoContext<Bot>,
+			DeleteChatPhotoContextOptions<Bot>
+		> {}
 applyMixins(DeleteChatPhotoContext, [
 	Message,
 	TargetMixin,

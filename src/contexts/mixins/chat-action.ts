@@ -5,6 +5,7 @@ import type { Optional } from "#utils";
 
 import { Context } from "../context";
 
+import { BotLike } from "#types";
 import { SendMixin } from "./send";
 
 interface CreateActionControllerParams {
@@ -27,14 +28,14 @@ interface CreateActionControllerParams {
 	timeout?: number;
 }
 
-interface ControllerOptions {
+interface ControllerOptions<Bot extends BotLike> {
 	action: TelegramParams.SendChatActionParams["action"];
 	params: Optional<TelegramParams.SendChatActionParams, "chat_id" | "action"> &
 		CreateActionControllerParams;
-	context: Context & SendMixin;
+	context: Context<Bot> & SendMixin<Bot>;
 }
 
-class ChatActionController {
+class ChatActionController<Bot extends BotLike> {
 	private abortController = new AbortController();
 
 	action: TelegramParams.SendChatActionParams["action"];
@@ -42,9 +43,9 @@ class ChatActionController {
 	wait: number;
 	timeout: number;
 
-	private context: Context & SendMixin;
+	private context: Context<Bot> & SendMixin<Bot>;
 
-	constructor(options: ControllerOptions) {
+	constructor(options: ControllerOptions<Bot>) {
 		const { interval = 5_000, wait = 0, timeout = 0 } = options.params;
 
 		this.action = options.action;
@@ -99,7 +100,7 @@ class ChatActionController {
 	}
 }
 
-class ChatActionMixin {
+class ChatActionMixin<Bot extends BotLike> {
 	/** Creates a controller that when `start()`ed executes `sendChatAction(action)` every `interval` milliseconds until `stop()`ped */
 	createActionController(
 		action: TelegramParams.SendChatActionParams["action"],
@@ -117,6 +118,8 @@ class ChatActionMixin {
 	}
 }
 
-interface ChatActionMixin extends Context, SendMixin {}
+interface ChatActionMixin<Bot extends BotLike>
+	extends Context<Bot>,
+		SendMixin<Bot> {}
 
 export { ChatActionMixin };

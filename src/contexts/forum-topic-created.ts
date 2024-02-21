@@ -1,11 +1,11 @@
 import { TelegramObjects } from "@gramio/types";
 import { Message } from "../structures";
 
-import type { Bot } from "gramio";
 import { applyMixins, filterPayload } from "#utils";
 import type { Constructor, Require } from "#utils";
 
 import { inspectable } from "inspectable";
+import { BotLike } from "#types";
 import { Context } from "./context";
 import {
 	ChatActionMixin,
@@ -21,7 +21,7 @@ import {
 	TargetMixin,
 } from "./mixins";
 
-interface ForumTopicCreatedContextOptions {
+interface ForumTopicCreatedContextOptions<Bot extends BotLike> {
 	bot: Bot;
 	update: TelegramObjects.TelegramUpdate;
 	payload: TelegramObjects.TelegramMessage;
@@ -29,12 +29,12 @@ interface ForumTopicCreatedContextOptions {
 }
 
 /** This object represents a service message about a new forum topic created in the chat. */
-class ForumTopicCreatedContext extends Context {
+class ForumTopicCreatedContext<Bot extends BotLike> extends Context<Bot> {
 	payload: TelegramObjects.TelegramMessage;
 
 	private event: TelegramObjects.TelegramForumTopicCreated;
 
-	constructor(options: ForumTopicCreatedContextOptions) {
+	constructor(options: ForumTopicCreatedContextOptions<Bot>) {
 		super({
 			bot: options.bot,
 			updateType: "forum_topic_created",
@@ -68,20 +68,24 @@ class ForumTopicCreatedContext extends Context {
 	}
 }
 
-interface ForumTopicCreatedContext
-	extends Constructor<ForumTopicCreatedContext>,
+interface ForumTopicCreatedContext<Bot extends BotLike>
+	extends Constructor<ForumTopicCreatedContext<Bot>>,
 		Message,
 		TargetMixin,
-		SendMixin,
-		ChatActionMixin,
-		NodeMixin,
-		ForumMixin,
-		ChatInviteControlMixin,
-		ChatControlMixin,
-		ChatSenderControlMixin,
-		ChatMemberControlMixin,
-		PinsMixin,
-		CloneMixin<ForumTopicCreatedContext, ForumTopicCreatedContextOptions> {}
+		SendMixin<Bot>,
+		ChatActionMixin<Bot>,
+		NodeMixin<Bot>,
+		ForumMixin<Bot>,
+		ChatInviteControlMixin<Bot>,
+		ChatControlMixin<Bot>,
+		ChatSenderControlMixin<Bot>,
+		ChatMemberControlMixin<Bot>,
+		PinsMixin<Bot>,
+		CloneMixin<
+			Bot,
+			ForumTopicCreatedContext<Bot>,
+			ForumTopicCreatedContextOptions<Bot>
+		> {}
 applyMixins(ForumTopicCreatedContext, [
 	Message,
 	TargetMixin,

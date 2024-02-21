@@ -3,25 +3,25 @@ import { inspectable } from "inspectable";
 import { TelegramParams } from "@gramio/types";
 import { TelegramObjects } from "@gramio/types";
 
-import type { Bot } from "gramio";
 import { applyMixins, filterPayload } from "#utils";
 import type { Constructor, Require } from "#utils";
 import { InlineQuery } from "../structures";
 
+import { BotLike } from "#types";
 import { Context } from "./context";
 import { CloneMixin } from "./mixins";
 
-interface InlineQueryContextOptions {
+interface InlineQueryContextOptions<Bot extends BotLike> {
 	bot: Bot;
 	update: TelegramObjects.TelegramUpdate;
 	payload: TelegramObjects.TelegramInlineQuery;
 	updateId: number;
 }
 
-class InlineQueryContext extends Context {
+class InlineQueryContext<Bot extends BotLike> extends Context<Bot> {
 	payload: TelegramObjects.TelegramInlineQuery;
 
-	constructor(options: InlineQueryContextOptions) {
+	constructor(options: InlineQueryContextOptions<Bot>) {
 		super({
 			bot: options.bot,
 			updateType: "inline_query",
@@ -63,10 +63,10 @@ class InlineQueryContext extends Context {
 	}
 }
 
-interface InlineQueryContext
-	extends Constructor<InlineQueryContext>,
+interface InlineQueryContext<Bot extends BotLike>
+	extends Constructor<InlineQueryContext<Bot>>,
 		InlineQuery,
-		CloneMixin<InlineQueryContext, InlineQueryContextOptions> {}
+		CloneMixin<Bot, InlineQueryContext<Bot>, InlineQueryContextOptions<Bot>> {}
 applyMixins(InlineQueryContext, [InlineQuery, CloneMixin]);
 
 inspectable(InlineQueryContext, {

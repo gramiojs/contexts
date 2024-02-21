@@ -2,11 +2,11 @@ import { inspectable } from "inspectable";
 
 import { TelegramObjects } from "@gramio/types";
 
-import type { Bot } from "gramio";
 import { applyMixins } from "#utils";
 import { type Constructor } from "#utils";
 import { Message } from "../structures";
 
+import { BotLike } from "#types";
 import { Context } from "./context";
 import {
 	ChatActionMixin,
@@ -18,17 +18,17 @@ import {
 	TargetMixin,
 } from "./mixins";
 
-interface MigrateToChatIdContextOptions {
+interface MigrateToChatIdContextOptions<Bot extends BotLike> {
 	bot: Bot;
 	update: TelegramObjects.TelegramUpdate;
 	payload: TelegramObjects.TelegramMessage;
 	updateId: number;
 }
 
-class MigrateToChatIdContext extends Context {
+class MigrateToChatIdContext<Bot extends BotLike> extends Context<Bot> {
 	payload: TelegramObjects.TelegramMessage;
 
-	constructor(options: MigrateToChatIdContextOptions) {
+	constructor(options: MigrateToChatIdContextOptions<Bot>) {
 		super({
 			bot: options.bot,
 			updateType: "migrate_to_chat_id",
@@ -45,16 +45,20 @@ class MigrateToChatIdContext extends Context {
 	}
 }
 
-interface MigrateToChatIdContext
-	extends Constructor<MigrateToChatIdContext>,
+interface MigrateToChatIdContext<Bot extends BotLike>
+	extends Constructor<MigrateToChatIdContext<Bot>>,
 		Message,
 		TargetMixin,
-		SendMixin,
-		ChatActionMixin,
-		NodeMixin,
-		PinsMixin,
-		ChatInviteControlMixin,
-		CloneMixin<MigrateToChatIdContext, MigrateToChatIdContextOptions> {}
+		SendMixin<Bot>,
+		ChatActionMixin<Bot>,
+		NodeMixin<Bot>,
+		PinsMixin<Bot>,
+		ChatInviteControlMixin<Bot>,
+		CloneMixin<
+			Bot,
+			MigrateToChatIdContext<Bot>,
+			MigrateToChatIdContextOptions<Bot>
+		> {}
 applyMixins(MigrateToChatIdContext, [
 	Message,
 	TargetMixin,

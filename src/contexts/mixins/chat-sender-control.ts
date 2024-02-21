@@ -3,10 +3,11 @@ import type { Optional } from "#utils";
 
 import { Context } from "../context";
 
+import { BotLike } from "#types";
 import { TargetMixin } from "./target";
 
 /** This object is a mixin that does all the chat-sender stuff, right? */
-class ChatSenderControlMixin {
+class ChatSenderControlMixin<Bot extends BotLike> {
 	/** Bans a channel chat */
 	banChatSender(
 		senderChatId: number,
@@ -38,6 +39,8 @@ class ChatSenderControlMixin {
 	}
 }
 
-interface ChatSenderControlMixin extends Context, TargetMixin {}
+interface ChatSenderControlMixin<Bot extends BotLike>
+	extends Context<Bot>,
+		TargetMixin {}
 
 export { ChatSenderControlMixin };

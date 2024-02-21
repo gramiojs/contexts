@@ -3,10 +3,10 @@ import { inspectable } from "inspectable";
 import { TelegramObjects } from "@gramio/types";
 import { Message, MessageAutoDeleteTimerChanged } from "../structures";
 
-import type { Bot } from "gramio";
 import { applyMixins, memoizeGetters } from "#utils";
 import { type Constructor } from "#utils";
 
+import { BotLike } from "#types";
 import { Context } from "./context";
 import {
 	ChatActionMixin,
@@ -17,17 +17,19 @@ import {
 	TargetMixin,
 } from "./mixins";
 
-interface MessageAutoDeleteTimerChangedContextOptions {
+interface MessageAutoDeleteTimerChangedContextOptions<Bot extends BotLike> {
 	bot: Bot;
 	update: TelegramObjects.TelegramUpdate;
 	payload: TelegramObjects.TelegramMessage;
 	updateId: number;
 }
 
-class MessageAutoDeleteTimerChangedContext extends Context {
+class MessageAutoDeleteTimerChangedContext<
+	Bot extends BotLike,
+> extends Context<Bot> {
 	payload: TelegramObjects.TelegramMessage;
 
-	constructor(options: MessageAutoDeleteTimerChangedContextOptions) {
+	constructor(options: MessageAutoDeleteTimerChangedContextOptions<Bot>) {
 		super({
 			bot: options.bot,
 			updateType: "message_auto_delete_timer_changed",
@@ -47,17 +49,18 @@ class MessageAutoDeleteTimerChangedContext extends Context {
 	}
 }
 
-interface MessageAutoDeleteTimerChangedContext
-	extends Constructor<MessageAutoDeleteTimerChangedContext>,
+interface MessageAutoDeleteTimerChangedContext<Bot extends BotLike>
+	extends Constructor<MessageAutoDeleteTimerChangedContext<Bot>>,
 		Message,
 		TargetMixin,
-		SendMixin,
-		ChatActionMixin,
-		NodeMixin,
-		PinsMixin,
+		SendMixin<Bot>,
+		ChatActionMixin<Bot>,
+		NodeMixin<Bot>,
+		PinsMixin<Bot>,
 		CloneMixin<
-			MessageAutoDeleteTimerChangedContext,
-			MessageAutoDeleteTimerChangedContextOptions
+			Bot,
+			MessageAutoDeleteTimerChangedContext<Bot>,
+			MessageAutoDeleteTimerChangedContextOptions<Bot>
 		> {}
 applyMixins(MessageAutoDeleteTimerChangedContext, [
 	Message,

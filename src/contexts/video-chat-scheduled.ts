@@ -3,10 +3,10 @@ import { inspectable } from "inspectable";
 import { TelegramObjects } from "@gramio/types";
 import { Message, VideoChatScheduled } from "../structures";
 
-import type { Bot } from "gramio";
 import { applyMixins, memoizeGetters } from "#utils";
 import { type Constructor } from "#utils";
 
+import { BotLike } from "#types";
 import { Context } from "./context";
 import {
 	ChatActionMixin,
@@ -21,17 +21,17 @@ import {
 	TargetMixin,
 } from "./mixins";
 
-interface VideoChatScheduledContextOptions {
+interface VideoChatScheduledContextOptions<Bot extends BotLike> {
 	bot: Bot;
 	update: TelegramObjects.TelegramUpdate;
 	payload: TelegramObjects.TelegramMessage;
 	updateId: number;
 }
 
-class VideoChatScheduledContext extends Context {
+class VideoChatScheduledContext<Bot extends BotLike> extends Context<Bot> {
 	payload: TelegramObjects.TelegramMessage;
 
-	constructor(options: VideoChatScheduledContextOptions) {
+	constructor(options: VideoChatScheduledContextOptions<Bot>) {
 		super({
 			bot: options.bot,
 			updateType: "video_chat_scheduled",
@@ -51,19 +51,23 @@ class VideoChatScheduledContext extends Context {
 	}
 }
 
-interface VideoChatScheduledContext
-	extends Constructor<VideoChatScheduledContext>,
+interface VideoChatScheduledContext<Bot extends BotLike>
+	extends Constructor<VideoChatScheduledContext<Bot>>,
 		Message,
 		TargetMixin,
-		SendMixin,
-		ChatActionMixin,
-		NodeMixin,
-		ChatInviteControlMixin,
-		ChatControlMixin,
-		ChatSenderControlMixin,
-		ChatMemberControlMixin,
-		PinsMixin,
-		CloneMixin<VideoChatScheduledContext, VideoChatScheduledContextOptions> {}
+		SendMixin<Bot>,
+		ChatActionMixin<Bot>,
+		NodeMixin<Bot>,
+		ChatInviteControlMixin<Bot>,
+		ChatControlMixin<Bot>,
+		ChatSenderControlMixin<Bot>,
+		ChatMemberControlMixin<Bot>,
+		PinsMixin<Bot>,
+		CloneMixin<
+			Bot,
+			VideoChatScheduledContext<Bot>,
+			VideoChatScheduledContextOptions<Bot>
+		> {}
 applyMixins(VideoChatScheduledContext, [
 	Message,
 	TargetMixin,

@@ -2,11 +2,11 @@ import { inspectable } from "inspectable";
 
 import { TelegramObjects } from "@gramio/types";
 
-import type { Bot } from "gramio";
 import { applyMixins } from "#utils";
 import { type Constructor } from "#utils";
 import { Message } from "../structures";
 
+import { BotLike } from "#types";
 import { Context } from "./context";
 import {
 	ChatActionMixin,
@@ -16,17 +16,17 @@ import {
 	TargetMixin,
 } from "./mixins";
 
-interface WebAppDataContextOptions {
+interface WebAppDataContextOptions<Bot extends BotLike> {
 	bot: Bot;
 	update: TelegramObjects.TelegramUpdate;
 	payload: TelegramObjects.TelegramMessage;
 	updateId: number;
 }
 
-class WebAppDataContext extends Context {
+class WebAppDataContext<Bot extends BotLike> extends Context<Bot> {
 	payload: TelegramObjects.TelegramMessage;
 
-	constructor(options: WebAppDataContextOptions) {
+	constructor(options: WebAppDataContextOptions<Bot>) {
 		super({
 			bot: options.bot,
 			updateType: "web_app_data",
@@ -57,14 +57,14 @@ class WebAppDataContext extends Context {
 	}
 }
 
-interface WebAppDataContext
-	extends Constructor<WebAppDataContext>,
+interface WebAppDataContext<Bot extends BotLike>
+	extends Constructor<WebAppDataContext<Bot>>,
 		Message,
 		TargetMixin,
-		SendMixin,
-		ChatActionMixin,
-		NodeMixin,
-		CloneMixin<WebAppDataContext, WebAppDataContextOptions> {}
+		SendMixin<Bot>,
+		ChatActionMixin<Bot>,
+		NodeMixin<Bot>,
+		CloneMixin<Bot, WebAppDataContext<Bot>, WebAppDataContextOptions<Bot>> {}
 applyMixins(WebAppDataContext, [
 	Message,
 	TargetMixin,

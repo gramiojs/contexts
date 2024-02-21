@@ -3,25 +3,25 @@ import { inspectable } from "inspectable";
 import { TelegramParams } from "@gramio/types";
 import { TelegramObjects } from "@gramio/types";
 
-import type { Bot } from "gramio";
 import { applyMixins, filterPayload } from "#utils";
 import type { Constructor, Optional, Require } from "#utils";
 import { PreCheckoutQuery } from "../structures";
 
+import { BotLike } from "#types";
 import { Context } from "./context";
 import { ChatActionMixin, CloneMixin, SendMixin } from "./mixins";
 
-interface PreCheckoutQueryContextOptions {
+interface PreCheckoutQueryContextOptions<Bot extends BotLike> {
 	bot: Bot;
 	update: TelegramObjects.TelegramUpdate;
 	payload: TelegramObjects.TelegramPreCheckoutQuery;
 	updateId: number;
 }
 
-class PreCheckoutQueryContext extends Context {
+class PreCheckoutQueryContext<Bot extends BotLike> extends Context<Bot> {
 	payload: TelegramObjects.TelegramPreCheckoutQuery;
 
-	constructor(options: PreCheckoutQueryContextOptions) {
+	constructor(options: PreCheckoutQueryContextOptions<Bot>) {
 		super({
 			bot: options.bot,
 			updateType: "pre_checkout_query",
@@ -67,12 +67,16 @@ class PreCheckoutQueryContext extends Context {
 }
 
 // @ts-expect-error [senderId: number] is not compatible with [senderId: number | undefined] :shrug:
-interface PreCheckoutQueryContext
-	extends Constructor<PreCheckoutQueryContext>,
+interface PreCheckoutQueryContext<Bot extends BotLike>
+	extends Constructor<PreCheckoutQueryContext<Bot>>,
 		PreCheckoutQuery,
-		SendMixin,
-		ChatActionMixin,
-		CloneMixin<PreCheckoutQueryContext, PreCheckoutQueryContextOptions> {}
+		SendMixin<Bot>,
+		ChatActionMixin<Bot>,
+		CloneMixin<
+			Bot,
+			PreCheckoutQueryContext<Bot>,
+			PreCheckoutQueryContextOptions<Bot>
+		> {}
 applyMixins(PreCheckoutQueryContext, [
 	PreCheckoutQuery,
 	SendMixin,

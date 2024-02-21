@@ -6,8 +6,7 @@ import { type Constructor } from "#utils";
 import { TelegramObjects } from "@gramio/types";
 import { ChatJoinRequest } from "../structures";
 
-import type { Bot } from "gramio";
-
+import { BotLike } from "#types";
 import { Context } from "./context";
 import {
 	ChatActionMixin,
@@ -17,17 +16,17 @@ import {
 	TargetMixin,
 } from "./mixins";
 
-interface ChatJoinRequestContextOptions {
+interface ChatJoinRequestContextOptions<Bot extends BotLike> {
 	bot: Bot;
 	update: TelegramObjects.TelegramUpdate;
 	payload: TelegramObjects.TelegramChatJoinRequest;
 	updateId: number;
 }
 
-class ChatJoinRequestContext extends Context {
+class ChatJoinRequestContext<Bot extends BotLike> extends Context<Bot> {
 	payload: TelegramObjects.TelegramChatJoinRequest;
 
-	constructor(options: ChatJoinRequestContextOptions) {
+	constructor(options: ChatJoinRequestContextOptions<Bot>) {
 		super({
 			bot: options.bot,
 			updateType: "chat_join_request",
@@ -56,14 +55,18 @@ class ChatJoinRequestContext extends Context {
 }
 
 // @ts-expect-error [senderId: number] is not compatible with [senderId: number | undefined] :shrug:
-interface ChatJoinRequestContext
-	extends Constructor<ChatJoinRequestContext>,
+interface ChatJoinRequestContext<Bot extends BotLike>
+	extends Constructor<ChatJoinRequestContext<Bot>>,
 		ChatJoinRequest,
 		TargetMixin,
-		SendMixin,
-		ChatActionMixin,
-		ChatInviteControlMixin,
-		CloneMixin<ChatJoinRequestContext, ChatJoinRequestContextOptions> {}
+		SendMixin<Bot>,
+		ChatActionMixin<Bot>,
+		ChatInviteControlMixin<Bot>,
+		CloneMixin<
+			Bot,
+			ChatJoinRequestContext<Bot>,
+			ChatJoinRequestContextOptions<Bot>
+		> {}
 applyMixins(ChatJoinRequestContext, [
 	ChatJoinRequest,
 	TargetMixin,

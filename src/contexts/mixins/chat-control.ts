@@ -3,12 +3,13 @@ import { TelegramObjects } from "@gramio/types";
 
 import type { Optional } from "#utils";
 
+import { BotLike } from "#types";
 import { Context } from "../context";
 import { NodeMixin } from "./node";
 import { TargetMixin } from "./target";
 
 /** This object represents a mixin that is responsible for all the chat management methods */
-class ChatControlMixin {
+class ChatControlMixin<Bot extends BotLike> {
 	/** Sets a custom title */
 	setCustomTitle(
 		title: string,
@@ -116,6 +117,9 @@ class ChatControlMixin {
 	}
 }
 
-interface ChatControlMixin extends Context, TargetMixin, NodeMixin {}
+interface ChatControlMixin<Bot extends BotLike>
+	extends Context<Bot>,
+		TargetMixin,
+		NodeMixin<Bot> {}
 
 export { ChatControlMixin };

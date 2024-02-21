@@ -1,6 +1,7 @@
 import type { TelegramUpdate } from "@gramio/types";
 import { type Constructor } from "#utils";
 
+import { BotLike } from "#types";
 import { Context } from "../context";
 
 interface CloneMixinMetadata<P> {
@@ -9,7 +10,8 @@ interface CloneMixinMetadata<P> {
 
 /** This object represents a mixin which has `clone(options?)` method */
 class CloneMixin<
-	C extends Context & Constructor<C>,
+	Bot extends BotLike,
+	C extends Context<Bot> & Constructor<C>,
 	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 	Options extends Record<string, any>,
 > {
@@ -25,8 +27,8 @@ class CloneMixin<
 	}
 }
 
-interface CloneMixin<C, Options>
-	extends Context,
+interface CloneMixin<Bot extends BotLike, C, Options>
+	extends Context<Bot>,
 		CloneMixinMetadata<Options["payload"]> {}
 
 export { CloneMixin };

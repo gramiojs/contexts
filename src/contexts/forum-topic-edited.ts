@@ -1,11 +1,11 @@
 import { TelegramObjects } from "@gramio/types";
 import { Message } from "../structures";
 
-import type { Bot } from "gramio";
 import { applyMixins, filterPayload } from "#utils";
 import type { Constructor, Require, RequireValue } from "#utils";
 
 import { inspectable } from "inspectable";
+import { BotLike } from "#types";
 import { Context } from "./context";
 import {
 	ChatActionMixin,
@@ -21,7 +21,7 @@ import {
 	TargetMixin,
 } from "./mixins";
 
-interface ForumTopicEditedContextOptions {
+interface ForumTopicEditedContextOptions<Bot extends BotLike> {
 	bot: Bot;
 	update: TelegramObjects.TelegramUpdate;
 	payload: TelegramObjects.TelegramMessage;
@@ -29,12 +29,12 @@ interface ForumTopicEditedContextOptions {
 }
 
 /** This object represents a service message about an edited forum topic. */
-class ForumTopicEditedContext extends Context {
+class ForumTopicEditedContext<Bot extends BotLike> extends Context<Bot> {
 	payload: TelegramObjects.TelegramMessage;
 
 	private event: TelegramObjects.TelegramForumTopicEdited;
 
-	constructor(options: ForumTopicEditedContextOptions) {
+	constructor(options: ForumTopicEditedContextOptions<Bot>) {
 		super({
 			bot: options.bot,
 			updateType: "forum_topic_edited",
@@ -68,20 +68,24 @@ class ForumTopicEditedContext extends Context {
 	}
 }
 
-interface ForumTopicEditedContext
-	extends Constructor<ForumTopicEditedContext>,
+interface ForumTopicEditedContext<Bot extends BotLike>
+	extends Constructor<ForumTopicEditedContext<Bot>>,
 		Message,
 		TargetMixin,
-		SendMixin,
-		ChatActionMixin,
-		NodeMixin,
-		ForumMixin,
-		ChatInviteControlMixin,
-		ChatControlMixin,
-		ChatSenderControlMixin,
-		ChatMemberControlMixin,
-		PinsMixin,
-		CloneMixin<ForumTopicEditedContext, ForumTopicEditedContextOptions> {}
+		SendMixin<Bot>,
+		ChatActionMixin<Bot>,
+		NodeMixin<Bot>,
+		ForumMixin<Bot>,
+		ChatInviteControlMixin<Bot>,
+		ChatControlMixin<Bot>,
+		ChatSenderControlMixin<Bot>,
+		ChatMemberControlMixin<Bot>,
+		PinsMixin<Bot>,
+		CloneMixin<
+			Bot,
+			ForumTopicEditedContext<Bot>,
+			ForumTopicEditedContextOptions<Bot>
+		> {}
 applyMixins(ForumTopicEditedContext, [
 	Message,
 	TargetMixin,
