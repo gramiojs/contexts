@@ -1,6 +1,6 @@
 {
     "name": "@gramio/contexts",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "type": "commonjs",
     "description": "WIP",
     "main": "dist/index.js",
