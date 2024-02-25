@@ -1,32 +1,30 @@
 {
-    "name": "@gramio/contexts",
-    "version": "0.0.5",
-    "type": "commonjs",
-    "description": "WIP",
-    "main": "dist/index.js",
-    "types": "dist/index.d.ts",
-    "scripts": {
-        "type": "tsc --noEmit",
-        "lint": "bunx @biomejs/biome check ./src",
-        "lint:fix": "bun lint --apply",
-        "prepublishOnly": "bun type && bunx tsup",
-        "circular": "bunx madge --circular ./src --extensions=ts"
-    },
-    "devDependencies": {
-        "@biomejs/biome": "1.5.3",
-        "@gramio/types": "^7.1.2",
-        "@types/bun": "^1.0.6",
-        "inspectable": "^2.1.0",
-        "madge": "^6.1.0",
-        "middleware-io": "^2.8.1",
-        "reflect-metadata": "^0.2.1",
-        "tsup": "^8.0.2",
-        "typescript": "^5.3.3"
-    },
-    "peerDependencies": {
-        "@gramio/types": "^7.1.2",
-        "inspectable": "^2.1.0",
-        "middleware-io": "^2.8.1",
-        "reflect-metadata": "^0.2.1"
-    }
+  "name": "@gramio/contexts",
+  "version": "0.0.5",
+  "main": "dist/index.js",
+  "devDependencies": {
+    "@biomejs/biome": "1.5.3",
+    "@gramio/types": "^7.1.2",
+    "@types/bun": "^1.0.6",
+    "inspectable": "^3.0.0",
+    "madge": "^6.1.0",
+    "middleware-io": "^2.8.1",
+    "tsup": "^8.0.2",
+    "typescript": "^5.3.3"
+  },
+  "peerDependencies": {
+    "@gramio/types": "^7.1.2",
+    "inspectable": "^3.0.0",
+    "middleware-io": "^2.8.1"
+  },
+  "description": "WIP",
+  "scripts": {
+    "type": "tsc --noEmit",
+    "lint": "bunx @biomejs/biome check ./src",
+    "lint:fix": "bun lint --apply",
+    "prepublishOnly": "tsc && bunx tsc-alias",
+    "circular": "bunx madge --circular ./src --extensions=ts"
+  },
+  "type": "commonjs",
+  "types": "dist/index.d.ts"
 }
