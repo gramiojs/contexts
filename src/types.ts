@@ -9,6 +9,8 @@ import * as Contexts from "./contexts";
 import * as Attachments from "./structures/attachments";
 
 export interface BotLike {
+	// biome-ignore lint/complexity/noBannedTypes: <explanation>
+	__Derives?: Record<UpdateName | "global", {}>;
 	api: APIMethods;
 }
 

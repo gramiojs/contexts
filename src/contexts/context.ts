@@ -5,12 +5,7 @@ import { TelegramObjects } from "@gramio/types";
 import { SERVICE_MESSAGE_EVENTS } from "#utils";
 
 import { BotLike } from "#types";
-import type {
-	ContextsMapping,
-	MaybeArray,
-	SoftString,
-	UpdateName,
-} from "#types";
+import type { ContextType, MaybeArray, SoftString, UpdateName } from "#types";
 
 interface ContextOptions<Bot extends BotLike> {
 	bot: Bot;
@@ -52,7 +47,12 @@ class Context<Bot extends BotLike> {
 interface Context<Bot extends BotLike> {
 	is<T extends UpdateName>(
 		rawTypes: MaybeArray<SoftString<T>>,
-	): this is ContextsMapping<Bot>[T];
+	): this is ContextType<Bot, T> &
+		// biome-ignore lint/complexity/noBannedTypes: <explanation>
+		(Bot["__Derives"] extends {}
+			? Bot["__Derives"]["global"] & Bot["__Derives"][T]
+			: // biome-ignore lint/complexity/noBannedTypes: <explanation>
+			  {});
 }
 
 inspectable(Context, {
