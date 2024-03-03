@@ -1,7 +1,10 @@
 {
     "name": "@gramio/contexts",
-    "version": "0.0.6",
+    "version": "0.0.7",
     "main": "dist/index.js",
+    "files": [
+        "dist"
+    ],
     "devDependencies": {
         "@biomejs/biome": "1.5.3",
         "@gramio/types": "^7.1.2",
@@ -17,7 +20,7 @@
         "inspectable": "^3.0.0",
         "middleware-io": "^2.8.1"
     },
-    "description": "WIP",
+    "description": "Contexts for GramIO framework",
     "scripts": {
         "type": "tsc --noEmit",
         "lint": "bunx @biomejs/biome check ./src",
