@@ -2,6 +2,16 @@
     "name": "@gramio/contexts",
     "version": "0.0.7",
     "main": "dist/index.js",
+    "keywords": [
+        "gramio",
+        "contexts",
+        "updates",
+        "events",
+        "telegram",
+        "telegram-bot",
+        "telegram-bot-api",
+        "bot"
+    ],
     "files": [
         "dist"
     ],
