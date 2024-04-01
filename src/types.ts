@@ -1,12 +1,12 @@
-import {
+import type {
 	APIMethods,
 	TelegramInputMedia,
 	TelegramParams,
 	TelegramUpdate,
 } from "@gramio/types";
 
-import * as Contexts from "./contexts";
-import * as Attachments from "./structures/attachments";
+import type * as Contexts from "./contexts";
+import type * as Attachments from "./structures/attachments";
 
 export interface BotLike {
 	// biome-ignore lint/complexity/noBannedTypes: <explanation>
@@ -31,6 +31,8 @@ export type ContextsMapping<Bot extends BotLike> = {
 	channel_post: Contexts.MessageContext<Bot>;
 	edited_message: Contexts.MessageContext<Bot>;
 	edited_channel_post: Contexts.MessageContext<Bot>;
+	business_message: Contexts.MessageContext<Bot>;
+	edited_business_message: Contexts.MessageContext<Bot>;
 	migrate_from_chat_id: Contexts.MigrateFromChatIdContext<Bot>;
 	migrate_to_chat_id: Contexts.MigrateToChatIdContext<Bot>;
 	new_chat_members: Contexts.NewChatMembersContext<Bot>;
@@ -118,9 +120,9 @@ export type UpdateName =
 
 export type JoinUnion<T> = T extends infer U
 	? // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-	  U extends any
+		U extends any
 		? // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-		  Record<string, any> & U
+			Record<string, any> & U
 		: never
 	: never;
 

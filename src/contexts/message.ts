@@ -18,9 +18,9 @@ import {
 } from "../structures/attachments";
 
 // import { MediaGroup } from "../media-group";
-import { Message, MessageEntity } from "../structures";
+import { Message, type MessageEntity } from "../structures";
 
-import { TelegramObjects } from "@gramio/types";
+import type { TelegramObjects } from "@gramio/types";
 
 import type {
 	AttachmentType,
@@ -35,7 +35,7 @@ import type {
 import { applyMixins, filterPayload, isParsable, memoizeGetters } from "#utils";
 import { EVENTS, SERVICE_MESSAGE_EVENTS } from "#utils";
 
-import { BotLike } from "#types";
+import type { BotLike } from "#types";
 import { Context } from "./context";
 import {
 	ChatActionMixin,

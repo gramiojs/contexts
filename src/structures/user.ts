@@ -1,6 +1,6 @@
 import { Inspect, Inspectable } from "inspectable";
 
-import { TelegramObjects } from "@gramio/types";
+import type { TelegramObjects } from "@gramio/types";
 
 /** This object represents a Telegram user or bot. */
 @Inspectable()
@@ -89,5 +89,15 @@ export class User {
 	@Inspect({ nullable: false })
 	get supportsInlineQueries() {
 		return this.payload.supports_inline_queries;
+	}
+
+	/**
+	 * `true`, if the bot can be connected to a Telegram Business account to receive its messages.
+	 *
+	 * Returned only in `getMe`.
+	 */
+	@Inspect({ nullable: false })
+	get canConnectToBusiness() {
+		return this.payload.can_connect_to_business;
 	}
 }

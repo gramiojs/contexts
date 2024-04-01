@@ -1,6 +1,6 @@
 import { Inspect, Inspectable } from "inspectable";
 
-import { TelegramObjects } from "@gramio/types";
+import type { TelegramObjects } from "@gramio/types";
 import { Message } from "./message";
 
 import { memoizeGetters } from "#utils";
@@ -89,6 +89,35 @@ export class Chat {
 	@Inspect({ nullable: false })
 	get activeUsernames() {
 		return this.payload.active_usernames;
+	}
+
+	/**
+	 * For private chats, the date of birth of the user.
+	 */
+	@Inspect({ nullable: false })
+	get birthdate() {
+		return this.payload.birthdate;
+	}
+
+	/**
+	 * For private chats, the date of birth of the user.
+	 */
+	@Inspect({ nullable: false })
+	get businessIntro() {
+		// TODO: add structure
+		return this.payload.business_intro;
+	}
+
+	/**
+	 * For private chats, the personal channel of the user. Returned only in `getChat`.
+	 */
+	@Inspect({ nullable: false })
+	get personalChat(): Chat | undefined {
+		const { personal_chat } = this.payload;
+
+		if (!personal_chat) return undefined;
+
+		return new Chat(personal_chat);
 	}
 
 	/**

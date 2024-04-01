@@ -1,13 +1,13 @@
-import { TelegramParams } from "@gramio/types";
-import { TelegramObjects } from "@gramio/types";
+import type { TelegramParams } from "@gramio/types";
+import type { TelegramObjects } from "@gramio/types";
 
 import type { MaybeArray, Optional } from "#types";
 import { MessageId } from "../../structures";
 
-import { BotLike } from "#types";
-import { Context } from "../context";
+import type { BotLike } from "#types";
+import type { Context } from "../context";
 import { MessageContext } from "../message";
-import { SendMixin } from "./send";
+import type { SendMixin } from "./send";
 
 interface NodeMixinMetadata {
 	get id(): number;
@@ -930,4 +930,4 @@ interface NodeMixin<Bot extends BotLike>
 		NodeMixinMetadata,
 		SendMixin<Bot> {}
 
-export { NodeMixin };
+export type { NodeMixin };

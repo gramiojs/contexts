@@ -8,8 +8,12 @@ export * from "./utils";
 export * from "./types";
 
 import * as Contexts from "./contexts";
+import type { BotLike, ContextsMapping, MessageEventName } from "./types";
 
-export const contextsMappings = {
+export const contextsMappings: Record<
+	keyof ContextsMapping<any> | MessageEventName,
+	any
+> = {
 	callback_query: Contexts.CallbackQueryContext,
 	chat_join_request: Contexts.ChatJoinRequestContext,
 	chat_member: Contexts.ChatMemberContext,
@@ -27,6 +31,8 @@ export const contextsMappings = {
 	channel_post: Contexts.MessageContext,
 	edited_message: Contexts.MessageContext,
 	edited_channel_post: Contexts.MessageContext,
+	business_message: Contexts.MessageContext,
+	edited_business_message: Contexts.MessageContext,
 	migrate_from_chat_id: Contexts.MigrateFromChatIdContext,
 	migrate_to_chat_id: Contexts.MigrateToChatIdContext,
 	new_chat_members: Contexts.NewChatMembersContext,
