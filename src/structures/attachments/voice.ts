@@ -1,7 +1,7 @@
 import { Inspect, Inspectable } from "inspectable";
 
-import { TelegramObjects } from "@gramio/types";
-import { type AttachmentType } from "#types";
+import type { TelegramObjects } from "@gramio/types";
+import type { AttachmentType } from "#types";
 
 import { FileAttachment } from "./file-attachment";
 

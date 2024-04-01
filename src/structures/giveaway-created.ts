@@ -1,4 +1,4 @@
-import { TelegramObjects } from "@gramio/types";
+import type { TelegramObjects } from "@gramio/types";
 import { Inspectable } from "inspectable";
 
 /** This object represents a service message about the creation of a scheduled giveaway. Currently holds no information. */

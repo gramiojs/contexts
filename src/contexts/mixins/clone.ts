@@ -1,8 +1,8 @@
 import type { TelegramUpdate } from "@gramio/types";
-import { type Constructor } from "#types";
+import type { Constructor } from "#types";
 
-import { BotLike } from "#types";
-import { Context } from "../context";
+import type { BotLike } from "#types";
+import type { Context } from "../context";
 
 interface CloneMixinMetadata<P> {
 	payload: P;

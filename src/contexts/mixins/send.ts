@@ -1,10 +1,10 @@
-import { TelegramParams } from "@gramio/types";
+import type { TelegramParams } from "@gramio/types";
 
 import type { Optional, tSendMethods } from "#types";
 import { Poll } from "../../structures";
 
-import { BotLike } from "#types";
-import { Context } from "../context";
+import type { BotLike } from "#types";
+import type { Context } from "../context";
 import { MessageContext } from "../message";
 
 interface SendMixinMetadata {
@@ -338,20 +338,20 @@ class SendMixin<Bot extends BotLike> {
 		T extends "animation"
 			? typeof this.sendAnimation
 			: T extends "audio"
-			  ? typeof this.sendAudio
-			  : T extends "document"
-				  ? typeof this.sendDocument
-				  : T extends "photo"
-					  ? typeof this.sendPhoto
-					  : T extends "sticker"
-						  ? typeof this.sendSticker
-						  : T extends "video_note"
-							  ? typeof this.sendVideoNote
-							  : T extends "video"
-								  ? typeof this.sendVideo
-								  : T extends "voice"
-									  ? typeof this.sendVoice
-									  : () => never
+				? typeof this.sendAudio
+				: T extends "document"
+					? typeof this.sendDocument
+					: T extends "photo"
+						? typeof this.sendPhoto
+						: T extends "sticker"
+							? typeof this.sendSticker
+							: T extends "video_note"
+								? typeof this.sendVideoNote
+								: T extends "video"
+									? typeof this.sendVideo
+									: T extends "voice"
+										? typeof this.sendVoice
+										: () => never
 	>;
 
 	sendMedia<T extends { type: string }>(
@@ -360,20 +360,20 @@ class SendMixin<Bot extends BotLike> {
 		T extends { type: "animation" }
 			? typeof this.sendAnimation
 			: T extends { type: "audio" }
-			  ? typeof this.sendAudio
-			  : T extends { type: "document" }
-				  ? typeof this.sendDocument
-				  : T extends { type: "photo" }
-					  ? typeof this.sendPhoto
-					  : T extends { type: "sticker" }
-						  ? typeof this.sendSticker
-						  : T extends { type: "video_note" }
-							  ? typeof this.sendVideoNote
-							  : T extends { type: "video" }
-								  ? typeof this.sendVideo
-								  : T extends { type: "voice" }
-									  ? typeof this.sendVoice
-									  : () => never
+				? typeof this.sendAudio
+				: T extends { type: "document" }
+					? typeof this.sendDocument
+					: T extends { type: "photo" }
+						? typeof this.sendPhoto
+						: T extends { type: "sticker" }
+							? typeof this.sendSticker
+							: T extends { type: "video_note" }
+								? typeof this.sendVideoNote
+								: T extends { type: "video" }
+									? typeof this.sendVideo
+									: T extends { type: "voice" }
+										? typeof this.sendVoice
+										: () => never
 	>;
 
 	sendMedia(query: tSendMethods) {

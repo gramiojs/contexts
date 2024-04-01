@@ -1,6 +1,6 @@
 import { Inspect, Inspectable } from "inspectable";
 
-import { TelegramObjects } from "@gramio/types";
+import type { TelegramObjects } from "@gramio/types";
 
 /** This object contains information about one answer option in a poll. */
 @Inspectable()

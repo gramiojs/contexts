@@ -1,11 +1,11 @@
-import { TelegramParams } from "@gramio/types";
+import type { TelegramParams } from "@gramio/types";
 
 import type { Optional } from "#types";
 
-import { BotLike } from "#types";
-import { Context } from "../context";
-import { NodeMixin } from "./node";
-import { TargetMixin } from "./target";
+import type { BotLike } from "#types";
+import type { Context } from "../context";
+import type { NodeMixin } from "./node";
+import type { TargetMixin } from "./target";
 
 /** This object represents a mixin that ensures you have methods to pin/unpin messages in the chat */
 class PinsMixin<Bot extends BotLike> {

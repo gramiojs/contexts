@@ -1,4 +1,4 @@
-import { TelegramObjects } from "@gramio/types";
+import type { TelegramObjects } from "@gramio/types";
 
 import type { ChatBoostSourceGiftCode } from "./gift-code";
 import type { ChatBoostSourceGiveaway } from "./giveaway";

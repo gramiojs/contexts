@@ -1,11 +1,11 @@
-import { TelegramObjects } from "@gramio/types";
+import type { TelegramObjects } from "@gramio/types";
 import { inspectable } from "inspectable";
 import { ChatBoostRemoved } from "../structures/chat-boost-removed";
 
-import { type Constructor } from "#types";
+import type { Constructor } from "#types";
 import { applyMixins } from "#utils";
 
-import { BotLike } from "#types";
+import type { BotLike } from "#types";
 import { Context } from "./context";
 import { CloneMixin, SendMixin } from "./mixins";
 

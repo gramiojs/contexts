@@ -1,6 +1,6 @@
 import { Inspect, Inspectable } from "inspectable";
 
-import { TelegramObjects } from "@gramio/types";
+import type { TelegramObjects } from "@gramio/types";
 
 /**
  * Contains data required for decrypting and authenticatin

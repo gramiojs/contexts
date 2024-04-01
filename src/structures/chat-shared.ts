@@ -1,6 +1,6 @@
 import { Inspect, Inspectable } from "inspectable";
 
-import { TelegramObjects } from "@gramio/types";
+import type { TelegramObjects } from "@gramio/types";
 
 /** This object contains information about the chat whose identifier was shared with the bot using a KeyboardButtonRequestChat button. */
 @Inspectable()

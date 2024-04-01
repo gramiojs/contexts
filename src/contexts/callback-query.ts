@@ -3,13 +3,13 @@ import { inspectable } from "inspectable";
 
 import { applyMixins, filterPayload, isParsable, memoizeGetters } from "#utils";
 
-import { type Constructor, type Require } from "#types";
+import type { Constructor, Require } from "#types";
 import { CallbackQuery } from "../structures";
 
-import { TelegramParams } from "@gramio/types";
-import { TelegramObjects } from "@gramio/types";
+import type { TelegramParams } from "@gramio/types";
+import type { TelegramObjects } from "@gramio/types";
 
-import { BotLike } from "#types";
+import type { BotLike } from "#types";
 import { Context } from "./context";
 import { MessageContext } from "./message";
 import { CloneMixin } from "./mixins";

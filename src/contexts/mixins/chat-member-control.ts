@@ -1,13 +1,13 @@
-import { TelegramParams } from "@gramio/types";
-import { TelegramObjects } from "@gramio/types";
+import type { TelegramParams } from "@gramio/types";
+import type { TelegramObjects } from "@gramio/types";
 
 import type { Optional } from "#types";
 
-import { Context } from "../context";
+import type { Context } from "../context";
 
-import { BotLike } from "#types";
-import { NodeMixin } from "./node";
-import { TargetMixin } from "./target";
+import type { BotLike } from "#types";
+import type { NodeMixin } from "./node";
+import type { TargetMixin } from "./target";
 
 /** This object represents a mixin that is able to control member's rights */
 class ChatMemberControlMixin<Bot extends BotLike> {

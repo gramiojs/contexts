@@ -1,4 +1,4 @@
-import { TelegramMessage } from "@gramio/types";
+import type { TelegramMessage } from "@gramio/types";
 import { ChatType, type Require, type RequireValue } from "#types";
 import { memoizeGetters } from "#utils";
 import { Chat, User } from "../../structures";

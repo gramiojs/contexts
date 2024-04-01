@@ -1,5 +1,5 @@
-import { BotLike } from "#types";
-import {
+import type { BotLike } from "#types";
+import type {
 	Attachment,
 	// MediaInputTo,
 	// MediaSourceTo,
@@ -8,7 +8,7 @@ import {
 	// MediaSourceToStream,
 } from "../../structures/attachments";
 
-import { Context } from "../context";
+import type { Context } from "../context";
 
 interface DownloadMixinMetadata {
 	get attachment(): Attachment | undefined;

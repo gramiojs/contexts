@@ -1,7 +1,7 @@
 import { Inspect, Inspectable } from "inspectable";
 
-import { TelegramParams } from "@gramio/types";
-import { TelegramObjects } from "@gramio/types";
+import type { TelegramParams } from "@gramio/types";
+import type { TelegramObjects } from "@gramio/types";
 
 /** This object represents an animated emoji that displays a random value. */
 @Inspectable()

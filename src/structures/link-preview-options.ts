@@ -1,4 +1,4 @@
-import { TelegramObjects } from "@gramio/types";
+import type { TelegramObjects } from "@gramio/types";
 import { Inspect, Inspectable } from "inspectable";
 
 /** Describes the options used for link preview generation. */

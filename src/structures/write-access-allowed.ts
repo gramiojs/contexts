@@ -1,6 +1,6 @@
 import { Inspect, Inspectable } from "inspectable";
 
-import { TelegramObjects } from "@gramio/types";
+import type { TelegramObjects } from "@gramio/types";
 
 /** This object represents a service message about a user allowing a bot added to the attachment menu to write messages. Currently holds no information. */
 @Inspectable()

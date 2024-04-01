@@ -1,12 +1,12 @@
 import { setTimeout } from "node:timers/promises";
-import { TelegramParams } from "@gramio/types";
+import type { TelegramParams } from "@gramio/types";
 
 import type { Optional } from "#types";
 
-import { Context } from "../context";
+import type { Context } from "../context";
 
-import { BotLike } from "#types";
-import { SendMixin } from "./send";
+import type { BotLike } from "#types";
+import type { SendMixin } from "./send";
 
 interface CreateActionControllerParams {
 	/**

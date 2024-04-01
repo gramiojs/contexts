@@ -1,10 +1,10 @@
-import { TelegramParams } from "@gramio/types";
+import type { TelegramParams } from "@gramio/types";
 
 import type { Optional, RequireValue } from "#types";
 
-import { BotLike } from "#types";
-import { Context } from "../context";
-import { NodeMixin } from "./node";
+import type { BotLike } from "#types";
+import type { Context } from "../context";
+import type { NodeMixin } from "./node";
 
 interface ForumMixinMetadata {
 	get threadId(): number | undefined;

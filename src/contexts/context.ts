@@ -1,10 +1,10 @@
 import { inspectable } from "inspectable";
 
-import { TelegramObjects } from "@gramio/types";
+import type { TelegramObjects } from "@gramio/types";
 
 import { SERVICE_MESSAGE_EVENTS } from "#utils";
 
-import { BotLike } from "#types";
+import type { BotLike } from "#types";
 import type { ContextType, MaybeArray, SoftString, UpdateName } from "#types";
 
 interface ContextOptions<Bot extends BotLike> {
@@ -52,7 +52,7 @@ interface Context<Bot extends BotLike> {
 		(Bot["__Derives"] extends {}
 			? Bot["__Derives"]["global"] & Bot["__Derives"][T]
 			: // biome-ignore lint/complexity/noBannedTypes: <explanation>
-			  {});
+				{});
 }
 
 inspectable(Context, {

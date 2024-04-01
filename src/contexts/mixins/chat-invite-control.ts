@@ -1,11 +1,11 @@
-import { TelegramParams } from "@gramio/types";
+import type { TelegramParams } from "@gramio/types";
 
 import type { Optional } from "#types";
 
-import { Context } from "../context";
+import type { Context } from "../context";
 
-import { BotLike } from "#types";
-import { TargetMixin } from "./target";
+import type { BotLike } from "#types";
+import type { TargetMixin } from "./target";
 
 /** This object represents a mixin that works with all `*ChatInviteLink` methods */
 class ChatInviteControlMixin<Bot extends BotLike> {

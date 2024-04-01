@@ -1,4 +1,4 @@
-import { TelegramObjects } from "@gramio/types";
+import type { TelegramObjects } from "@gramio/types";
 
 import type { MessageOriginChannel } from "./channel";
 import type { MessageOriginChat } from "./chat";

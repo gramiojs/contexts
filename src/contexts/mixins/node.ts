@@ -845,7 +845,7 @@ class NodeMixin<Bot extends BotLike> {
 					? {
 							type: "emoji",
 							emoji: reaction,
-					  }
+						}
 					: reaction,
 			],
 			...params,
@@ -868,7 +868,7 @@ class NodeMixin<Bot extends BotLike> {
 				? ({
 						type: "emoji",
 						emoji: r,
-				  } as TelegramObjects.TelegramReactionTypeEmoji)
+					} as TelegramObjects.TelegramReactionTypeEmoji)
 				: r,
 		);
 
@@ -898,7 +898,7 @@ class NodeMixin<Bot extends BotLike> {
 				? ({
 						type: "emoji",
 						emoji: r,
-				  } as TelegramObjects.TelegramReactionTypeEmoji)
+					} as TelegramObjects.TelegramReactionTypeEmoji)
 				: r,
 		);
 
@@ -930,4 +930,4 @@ interface NodeMixin<Bot extends BotLike>
 		NodeMixinMetadata,
 		SendMixin<Bot> {}
 
-export type { NodeMixin };
+export { NodeMixin };

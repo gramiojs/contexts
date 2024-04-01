@@ -1,6 +1,6 @@
 import { Inspectable } from "inspectable";
 
-import { TelegramObjects } from "@gramio/types";
+import type { TelegramObjects } from "@gramio/types";
 
 /** This object represents a service message about General forum topic hidden in the chat. Currently holds no information. */
 @Inspectable()

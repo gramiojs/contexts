@@ -1,11 +1,11 @@
-import { TelegramObjects } from "@gramio/types";
+import type { TelegramObjects } from "@gramio/types";
 import { Message, WriteAccessAllowed } from "../structures";
 
-import { type Constructor } from "#types";
+import type { Constructor } from "#types";
 import { applyMixins, memoizeGetters } from "#utils";
 
 import { inspectable } from "inspectable";
-import { BotLike } from "#types";
+import type { BotLike } from "#types";
 import { Context } from "./context";
 import {
 	ChatActionMixin,

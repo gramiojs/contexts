@@ -1,4 +1,4 @@
-import { TelegramObjects } from "@gramio/types";
+import type { TelegramObjects } from "@gramio/types";
 
 import type { ReactionTypeCustomEmoji } from "./custom-emoji";
 import type { ReactionTypeEmoji } from "./emoji";

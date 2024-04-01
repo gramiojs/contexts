@@ -1,6 +1,6 @@
 import type { Message } from "#structures";
 
-import { MessageEventName } from "#types";
+import type { MessageEventName } from "#types";
 
 export function memoizeGetters<T>(
 	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
