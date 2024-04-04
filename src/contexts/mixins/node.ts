@@ -281,7 +281,7 @@ class NodeMixin<Bot extends BotLike> {
 		sticker: TelegramParams.SendStickerParams["sticker"],
 		params: WithPartialReplyParameters<
 			Optional<TelegramParams.SendStickerParams, "chat_id" | "sticker">
-		>,
+		> = {},
 	) {
 		const { reply_parameters, ...rest } = params;
 

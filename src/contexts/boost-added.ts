@@ -42,6 +42,11 @@ class BoostAddedContext<Bot extends BotLike> extends Context<Bot> {
 
 		this.payload = options.payload;
 	}
+
+	/** Number of boosts added by the user */
+	get boostCount() {
+		return this.payload.boost_added?.boost_count || 0;
+	}
 }
 
 interface BoostAddedContext<Bot extends BotLike>
@@ -51,7 +56,6 @@ interface BoostAddedContext<Bot extends BotLike>
 		SendMixin<Bot>,
 		ChatActionMixin<Bot>,
 		NodeMixin<Bot>,
-		ForumMixin<Bot>,
 		ChatInviteControlMixin<Bot>,
 		ChatControlMixin<Bot>,
 		ChatSenderControlMixin<Bot>,
@@ -64,7 +68,6 @@ applyMixins(BoostAddedContext, [
 	SendMixin,
 	ChatActionMixin,
 	NodeMixin,
-	ForumMixin,
 	ChatInviteControlMixin,
 	ChatControlMixin,
 	ChatSenderControlMixin,
@@ -75,7 +78,16 @@ applyMixins(BoostAddedContext, [
 
 inspectable(BoostAddedContext, {
 	serialize(context) {
-		return {};
+		return {
+			id: context.id,
+			from: context.from,
+			senderId: context.senderId,
+			createdAt: context.createdAt,
+			chat: context.chat,
+			chatId: context.chatId,
+			chatType: context.chatType,
+			boostCount: context.boostCount,
+		};
 	},
 });
 

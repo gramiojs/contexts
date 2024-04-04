@@ -108,6 +108,12 @@ export class Message {
 		return new Chat(sender_chat);
 	}
 
+	/** If the sender of the message boosted the chat, the number of boosts added by the user */
+	@Inspect({ nullable: false })
+	get senderBoostCount() {
+		return this.payload.sender_boost_count;
+	}
+
 	/** Date the message was sent in Unix time */
 	@Inspect()
 	get createdAt() {
