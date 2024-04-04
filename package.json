@@ -1,44 +1,44 @@
 {
-  "name": "@gramio/contexts",
-  "version": "0.0.7",
-  "main": "dist/index.js",
-  "keywords": [
-    "gramio",
-    "contexts",
-    "updates",
-    "events",
-    "telegram",
-    "telegram-bot",
-    "telegram-bot-api",
-    "bot"
-  ],
-  "files": [
-    "dist"
-  ],
-  "devDependencies": {
-    "@biomejs/biome": "1.6.3",
-    "@types/bun": "^1.0.12",
-    "inspectable": "^3.0.0",
-    "madge": "^6.1.0",
-    "middleware-io": "^2.8.1",
-    "tsup": "^8.0.2",
-    "typescript": "^5.4.3"
-  },
-  "peerDependencies": {
-    "inspectable": "^3.0.0",
-    "middleware-io": "^2.8.1"
-  },
-  "description": "Contexts for GramIO framework",
-  "scripts": {
-    "type": "tsc --noEmit",
-    "lint": "bunx @biomejs/biome check ./src",
-    "lint:fix": "bun lint --apply",
-    "prepublishOnly": "tsc && bunx tsc-alias",
-    "circular": "bunx madge --circular ./src --extensions=ts"
-  },
-  "type": "commonjs",
-  "types": "dist/index.d.ts",
-  "dependencies": {
-    "@gramio/types": "^7.2.1"
-  }
+    "name": "@gramio/contexts",
+    "version": "0.0.8",
+    "main": "dist/index.js",
+    "keywords": [
+        "gramio",
+        "contexts",
+        "updates",
+        "events",
+        "telegram",
+        "telegram-bot",
+        "telegram-bot-api",
+        "bot"
+    ],
+    "files": [
+        "dist"
+    ],
+    "devDependencies": {
+        "@biomejs/biome": "1.6.3",
+        "@types/bun": "^1.0.12",
+        "inspectable": "^3.0.0",
+        "madge": "^6.1.0",
+        "middleware-io": "^2.8.1",
+        "tsup": "^8.0.2",
+        "typescript": "^5.4.3"
+    },
+    "peerDependencies": {
+        "inspectable": "^3.0.0",
+        "middleware-io": "^2.8.1"
+    },
+    "description": "Contexts for GramIO framework",
+    "scripts": {
+        "type": "tsc --noEmit",
+        "lint": "bunx @biomejs/biome check ./src",
+        "lint:fix": "bun lint --apply",
+        "prepublishOnly": "tsc && bunx tsc-alias",
+        "circular": "bunx madge --circular ./src --extensions=ts"
+    },
+    "type": "commonjs",
+    "types": "dist/index.d.ts",
+    "dependencies": {
+        "@gramio/types": "^7.2.1"
+    }
 }
