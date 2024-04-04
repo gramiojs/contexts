@@ -63,6 +63,10 @@ class TargetMixin {
 	get chatId() {
 		return this.chat.id;
 	}
+	/** Unique identifier of the business connection from which the message was received. If non-empty, the message belongs to a chat of the corresponding business account that is independent from any potential bot chat which might share the same identifier. */
+	get businessConnectionId() {
+		return this.payload.business_connection_id as string | undefined;
+	}
 
 	/** Chat type */
 	get chatType() {

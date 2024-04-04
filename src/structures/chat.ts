@@ -4,6 +4,10 @@ import type { TelegramObjects } from "@gramio/types";
 import { Message } from "./message";
 
 import { memoizeGetters } from "#utils";
+import { Birthdate } from "./birthdate";
+import { BusinessIntro } from "./business-intro";
+import { BusinessLocation } from "./business-location";
+import { BusinessOpeningHours } from "./business-opening-hours";
 import { ChatLocation } from "./chat-location";
 import { ChatPermissions } from "./chat-permissions";
 import { ChatPhoto } from "./chat-photo";
@@ -92,20 +96,43 @@ export class Chat {
 	}
 
 	/**
-	 * For private chats, the date of birth of the user.
+	 * For private chats, the date of birth of the user. Returned only in [getChat](https://core.telegram.org/bots/api/#getchat).
 	 */
 	@Inspect({ nullable: false })
 	get birthdate() {
-		return this.payload.birthdate;
+		return this.payload.birthdate
+			? new Birthdate(this.payload.birthdate)
+			: undefined;
 	}
 
 	/**
-	 * For private chats, the date of birth of the user.
+	 * For private chats with business accounts, the intro of the business. Returned only in [getChat](https://core.telegram.org/bots/api/#getchat).
 	 */
 	@Inspect({ nullable: false })
 	get businessIntro() {
-		// TODO: add structure
-		return this.payload.business_intro;
+		return this.payload.business_intro
+			? new BusinessIntro(this.payload.business_intro)
+			: undefined;
+	}
+
+	/**
+	 * For private chats with business accounts, the location of the business. Returned only in [getChat](https://core.telegram.org/bots/api/#getchat).
+	 */
+	@Inspect({ nullable: false })
+	get businessLocation() {
+		return this.payload.business_location
+			? new BusinessLocation(this.payload.business_location)
+			: undefined;
+	}
+
+	/**
+	 * For private chats with business accounts, the opening hours of the business. Returned only in [getChat](https://core.telegram.org/bots/api/#getchat).
+	 */
+	@Inspect({ nullable: false })
+	get businessOpeningHours() {
+		return this.payload.business_opening_hours
+			? new BusinessOpeningHours(this.payload.business_opening_hours)
+			: undefined;
 	}
 
 	/**

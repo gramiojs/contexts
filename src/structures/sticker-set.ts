@@ -34,18 +34,6 @@ export class StickerSet {
 		return this.payload.sticker_type;
 	}
 
-	/** `true`, if the sticker set contains animated stickers */
-	@Inspect({ compute: true })
-	isAnimated() {
-		return this.payload.is_animated;
-	}
-
-	/** `true`, if the sticker set contains video stickers */
-	@Inspect({ compute: true })
-	isVideo() {
-		return this.payload.is_video;
-	}
-
 	/** List of all set stickers */
 	@Inspect({ nullable: false })
 	get stickers() {

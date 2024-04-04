@@ -1,6 +1,7 @@
 import { Inspect, Inspectable } from "inspectable";
 
 import type { TelegramObjects } from "@gramio/types";
+import { SharedUser } from "./shared-user";
 
 /** This object contains information about the user whose identifier was shared with the bot using a `KeyboardButtonRequestUser` button. */
 @Inspectable()
@@ -17,9 +18,9 @@ export class UsersShared {
 		return this.payload.request_id;
 	}
 
-	/** Identifier of the shared user. This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a 64-bit integer or double-precision float type are safe for storing this identifier. The bot may not have access to the user and could be unable to use this identifier, unless the user is already known to the bot by some other means. */
+	/** Information about users shared with the bot. */
 	@Inspect()
-	get userIds() {
-		return this.payload.user_ids;
+	get users() {
+		return this.payload.users.map((user) => new SharedUser(user));
 	}
 }

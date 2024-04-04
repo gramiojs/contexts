@@ -86,8 +86,8 @@ export class User {
 	 *
 	 * Returned only in `getMe`.
 	 */
-	@Inspect({ nullable: false })
-	get supportsInlineQueries() {
+	@Inspect({ compute: true, nullable: false })
+	supportsInlineQueries() {
 		return this.payload.supports_inline_queries;
 	}
 
@@ -96,8 +96,8 @@ export class User {
 	 *
 	 * Returned only in `getMe`.
 	 */
-	@Inspect({ nullable: false })
-	get canConnectToBusiness() {
+	@Inspect({ compute: true, nullable: false })
+	canConnectToBusiness() {
 		return this.payload.can_connect_to_business;
 	}
 }

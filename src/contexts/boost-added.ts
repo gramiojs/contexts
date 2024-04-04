@@ -14,7 +14,6 @@ import {
 	ChatMemberControlMixin,
 	ChatSenderControlMixin,
 	CloneMixin,
-	ForumMixin,
 	NodeMixin,
 	PinsMixin,
 	SendMixin,

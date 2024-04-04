@@ -114,11 +114,25 @@ export class Message {
 		return this.payload.sender_boost_count;
 	}
 
+	/** The bot that actually sent the message on behalf of the business account. Available only for outgoing messages sent on behalf of the connected business account. */
+	@Inspect({ nullable: false })
+	get senderBusinessBot() {
+		return this.payload.sender_business_bot
+			? new User(this.payload.sender_business_bot)
+			: undefined;
+	}
+
 	/** Date the message was sent in Unix time */
 	@Inspect()
 	get createdAt() {
 		return this.payload.date;
 	}
+
+	// /** Unique identifier of the business connection from which the message was received. If non-empty, the message belongs to a chat of the corresponding business account that is independent from any potential bot chat which might share the same identifier. */
+	// @Inspect()
+	// get businessConnectionId() {
+	// 	return this.payload.business_connection_id;
+	// }
 
 	/** Conversation the message belongs to */
 	@Inspect()
@@ -224,6 +238,12 @@ export class Message {
 	@Inspect({ compute: true, nullable: false })
 	hasProtectedContent() {
 		return this.payload.has_protected_content as true | undefined;
+	}
+
+	/** `true`, True, if the message was sent by an implicit action, for example, as an away or a greeting business message, or as a scheduled message */
+	@Inspect({ compute: true, nullable: false })
+	isFromOffline() {
+		return this.payload.is_from_offline as true | undefined;
 	}
 
 	/** The unique identifier of a media message group this message belongs to */

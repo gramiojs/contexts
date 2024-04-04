@@ -9,6 +9,7 @@ import { MessageContext } from "../message";
 
 interface SendMixinMetadata {
 	get chatId(): number;
+	get businessConnectionId(): string | undefined;
 	get senderId(): number | undefined;
 }
 
@@ -20,6 +21,7 @@ class SendMixin<Bot extends BotLike> {
 		params?: Optional<TelegramParams.SendMessageParams, "chat_id" | "text">,
 	) {
 		const response = await this.bot.api.sendMessage({
+			business_connection_id: this.businessConnectionId,
 			chat_id: this.chatId || this.senderId || 0,
 			text,
 			...params,
@@ -37,6 +39,7 @@ class SendMixin<Bot extends BotLike> {
 		params?: Optional<TelegramParams.SendPhotoParams, "chat_id" | "photo">,
 	) {
 		const response = await this.bot.api.sendPhoto({
+			business_connection_id: this.businessConnectionId,
 			chat_id: this.chatId || this.senderId || 0,
 			photo,
 			...params,
@@ -57,6 +60,7 @@ class SendMixin<Bot extends BotLike> {
 		>,
 	) {
 		const response = await this.bot.api.sendDocument({
+			business_connection_id: this.businessConnectionId,
 			chat_id: this.chatId || this.senderId || 0,
 			document,
 			...params,
@@ -74,6 +78,7 @@ class SendMixin<Bot extends BotLike> {
 		params?: Optional<TelegramParams.SendAudioParams, "chat_id" | "audio">,
 	) {
 		const response = await this.bot.api.sendAudio({
+			business_connection_id: this.businessConnectionId,
 			chat_id: this.chatId || this.senderId || 0,
 			audio,
 			...params,
@@ -91,6 +96,7 @@ class SendMixin<Bot extends BotLike> {
 		params?: Optional<TelegramParams.SendVideoParams, "chat_id" | "video">,
 	) {
 		const response = await this.bot.api.sendVideo({
+			business_connection_id: this.businessConnectionId,
 			chat_id: this.chatId || this.senderId || 0,
 			video,
 			...params,
@@ -111,6 +117,7 @@ class SendMixin<Bot extends BotLike> {
 		>,
 	) {
 		const response = await this.bot.api.sendAnimation({
+			business_connection_id: this.businessConnectionId,
 			chat_id: this.chatId || this.senderId || 0,
 			animation,
 			...params,
@@ -131,6 +138,7 @@ class SendMixin<Bot extends BotLike> {
 		>,
 	) {
 		const response = await this.bot.api.sendVideoNote({
+			business_connection_id: this.businessConnectionId,
 			chat_id: this.chatId || this.senderId || 0,
 			video_note: videoNote,
 			...params,
@@ -148,6 +156,7 @@ class SendMixin<Bot extends BotLike> {
 		params?: Optional<TelegramParams.SendVoiceParams, "chat_id" | "voice">,
 	) {
 		const response = await this.bot.api.sendVoice({
+			business_connection_id: this.businessConnectionId,
 			chat_id: this.chatId || this.senderId || 0,
 			voice,
 			...params,
@@ -169,6 +178,7 @@ class SendMixin<Bot extends BotLike> {
 		>,
 	) {
 		const response = await this.bot.api.sendLocation({
+			business_connection_id: this.businessConnectionId,
 			chat_id: this.chatId || this.senderId || 0,
 			latitude,
 			longitude,
@@ -199,6 +209,7 @@ class SendMixin<Bot extends BotLike> {
 	/** Sends venue to current chat */
 	async sendVenue(params: Optional<TelegramParams.SendVenueParams, "chat_id">) {
 		const response = await this.bot.api.sendVenue({
+			business_connection_id: this.businessConnectionId,
 			chat_id: this.chatId || this.senderId || 0,
 			...params,
 		});
@@ -214,6 +225,7 @@ class SendMixin<Bot extends BotLike> {
 		params: Optional<TelegramParams.SendContactParams, "chat_id">,
 	) {
 		const response = await this.bot.api.sendContact({
+			business_connection_id: this.businessConnectionId,
 			chat_id: this.chatId || this.senderId || 0,
 			...params,
 		});
@@ -227,6 +239,7 @@ class SendMixin<Bot extends BotLike> {
 	/** Sends poll to current chat */
 	async sendPoll(params: Optional<TelegramParams.SendPollParams, "chat_id">) {
 		const response = await this.bot.api.sendPoll({
+			business_connection_id: this.businessConnectionId,
 			chat_id: this.chatId || this.senderId || 0,
 			...params,
 		});
@@ -243,6 +256,7 @@ class SendMixin<Bot extends BotLike> {
 		params?: Optional<TelegramParams.SendStickerParams, "sticker" | "chat_id">,
 	) {
 		const response = await this.bot.api.sendSticker({
+			business_connection_id: this.businessConnectionId,
 			chat_id: this.chatId || this.senderId || 0,
 			sticker,
 			...params,
@@ -277,6 +291,7 @@ class SendMixin<Bot extends BotLike> {
 		> = {},
 	) {
 		return this.bot.api.sendChatAction({
+			business_connection_id: this.businessConnectionId,
 			chat_id: this.chatId || this.senderId || 0,
 			action,
 			...params,
@@ -289,6 +304,7 @@ class SendMixin<Bot extends BotLike> {
 		params?: Partial<TelegramParams.SendDiceParams>,
 	) {
 		const response = await this.bot.api.sendDice({
+			business_connection_id: this.businessConnectionId,
 			chat_id: this.chatId || this.senderId || 0,
 			emoji,
 			...params,
@@ -306,6 +322,7 @@ class SendMixin<Bot extends BotLike> {
 		params?: Optional<TelegramParams.SendMediaGroupParams, "chat_id" | "media">,
 	) {
 		const response = await this.bot.api.sendMediaGroup({
+			business_connection_id: this.businessConnectionId,
 			chat_id: this.chatId || this.senderId || 0,
 			media: mediaGroup,
 			...params,

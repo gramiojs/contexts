@@ -33,6 +33,8 @@ export type ContextsMapping<Bot extends BotLike> = {
 	edited_channel_post: Contexts.MessageContext<Bot>;
 	business_message: Contexts.MessageContext<Bot>;
 	edited_business_message: Contexts.MessageContext<Bot>;
+	deleted_business_messages: Contexts.BusinessMessagesDeletedContext<Bot>;
+	business_connection: Contexts.BusinessConnectionContext<Bot>;
 	migrate_from_chat_id: Contexts.MigrateFromChatIdContext<Bot>;
 	migrate_to_chat_id: Contexts.MigrateToChatIdContext<Bot>;
 	new_chat_members: Contexts.NewChatMembersContext<Bot>;

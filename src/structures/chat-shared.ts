@@ -1,6 +1,7 @@
 import { Inspect, Inspectable } from "inspectable";
 
 import type { TelegramObjects } from "@gramio/types";
+import { PhotoSize } from "./photo-size";
 
 /** This object contains information about the chat whose identifier was shared with the bot using a KeyboardButtonRequestChat button. */
 @Inspectable()
@@ -21,5 +22,23 @@ export class ChatShared {
 	@Inspect()
 	get chatId() {
 		return this.payload.chat_id;
+	}
+
+	/** Title of the chat, if the title was requested by the bot. */
+	@Inspect()
+	get title() {
+		return this.payload.title;
+	}
+
+	/** Username of the chat, if the username was requested by the bot and available. */
+	@Inspect()
+	get username() {
+		return this.payload.username;
+	}
+
+	/** Available sizes of the chat photo, if the photo was requested by the bot. */
+	@Inspect()
+	get photo() {
+		return this.payload.photo?.map((size) => new PhotoSize(size));
 	}
 }
