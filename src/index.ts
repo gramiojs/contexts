@@ -10,12 +10,7 @@ export * from "./types";
 import * as Contexts from "./contexts";
 import type { BotLike, ContextsMapping, MessageEventName } from "./types";
 
-export const contextsMappings: Record<
-	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-	keyof ContextsMapping<any> | MessageEventName,
-	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-	any
-> = {
+export const contextsMappings = {
 	callback_query: Contexts.CallbackQueryContext,
 	chat_join_request: Contexts.ChatJoinRequestContext,
 	chat_member: Contexts.ChatMemberContext,
@@ -74,4 +69,9 @@ export const contextsMappings: Record<
 	giveaway_created: Contexts.GiveawayCreatedContext,
 	giveaway_completed: Contexts.GiveawayCompletedContext,
 	giveaway_winners: Contexts.GiveawayWinnersContext,
-};
+} satisfies Record<
+	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+	keyof ContextsMapping<any> | MessageEventName,
+	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+	any
+>;
