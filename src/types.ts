@@ -1,17 +1,76 @@
 import type {
+	APIMethodParams,
+	APIMethodReturn,
 	APIMethods,
 	TelegramInputMedia,
 	TelegramParams,
+	TelegramResponseParameters,
 	TelegramUpdate,
 } from "@gramio/types";
 
 import type * as Contexts from "./contexts";
 import type * as Attachments from "./structures/attachments";
 
+interface Suppress<IsSuppressed extends boolean | undefined = undefined> {
+	/**
+	 * Pass `true` if you want to suppress throwing errors of this method.
+	 *
+	 * **But this does not undo getting into the `onResponseError` hook**.
+	 *
+	 * @example
+	 * ```ts
+	 * const response = await bot.api.sendMessage({
+	 * 		suppress: true,
+	 * 		chat_id: "@not_found",
+	 * 		text: "Suppressed method"
+	 * });
+	 *
+	 * if(response instanceof TelegramError) console.error("sendMessage returns an error...")
+	 * else console.log("Message has been sent successfully");
+	 * ```
+	 *
+	 * */
+	suppress?: IsSuppressed;
+}
+
+type SuppressedParams<
+	Method extends keyof APIMethods,
+	IsSuppressed extends boolean | undefined = undefined,
+> = APIMethodParams<Method> & Suppress<IsSuppressed>;
+
+interface TelegramError<T extends keyof APIMethods> extends Error {
+	method: T;
+	params: APIMethodParams<T>;
+	code: number;
+	payload?: TelegramResponseParameters;
+}
+
+type SuppressedReturn<
+	Method extends keyof APIMethods,
+	IsSuppressed extends boolean | undefined = undefined,
+> = true extends IsSuppressed
+	? TelegramError<Method> | APIMethodReturn<Method>
+	: APIMethodReturn<Method>;
+
+type SuppressedAPIMethods<Methods extends keyof APIMethods = keyof APIMethods> =
+	{
+		[APIMethod in Methods]: APIMethodParams<APIMethod> extends undefined
+			? <IsSuppressed extends boolean | undefined = undefined>(
+					params?: Suppress<IsSuppressed>,
+				) => Promise<SuppressedReturn<APIMethod, IsSuppressed>>
+			: undefined extends APIMethodParams<APIMethod>
+				? <IsSuppressed extends boolean | undefined = undefined>(
+						params?: SuppressedParams<APIMethod, IsSuppressed>,
+					) => Promise<SuppressedReturn<APIMethod, IsSuppressed>>
+				: <IsSuppressed extends boolean | undefined = undefined>(
+						params: SuppressedParams<APIMethod, IsSuppressed>,
+					) => Promise<SuppressedReturn<APIMethod, IsSuppressed>>;
+	};
+
 export interface BotLike {
 	// biome-ignore lint/complexity/noBannedTypes: <explanation>
 	__Derives?: Record<UpdateName | "global", {}>;
-	api: APIMethods;
+	api: SuppressedAPIMethods;
 }
 
 export type ContextsMapping<Bot extends BotLike> = {

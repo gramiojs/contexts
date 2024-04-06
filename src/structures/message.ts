@@ -128,11 +128,11 @@ export class Message {
 		return this.payload.date;
 	}
 
-	// /** Unique identifier of the business connection from which the message was received. If non-empty, the message belongs to a chat of the corresponding business account that is independent from any potential bot chat which might share the same identifier. */
-	// @Inspect()
-	// get businessConnectionId() {
-	// 	return this.payload.business_connection_id;
-	// }
+	/** Unique identifier of the business connection from which the message was received. If non-empty, the message belongs to a chat of the corresponding business account that is independent from any potential bot chat which might share the same identifier. */
+	@Inspect()
+	get businessConnectionId() {
+		return this.payload.business_connection_id;
+	}
 
 	/** Conversation the message belongs to */
 	@Inspect()
