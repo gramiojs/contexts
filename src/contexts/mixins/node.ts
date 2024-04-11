@@ -762,7 +762,7 @@ class NodeMixin<Bot extends BotLike> {
 
 	/** Edits current message reply markup */
 	async editMessageReplyMarkup(
-		replyMarkup: TelegramObjects.TelegramInlineKeyboardMarkup,
+		replyMarkup: TelegramParams.EditMessageReplyMarkupParams["reply_markup"],
 		params?: Partial<TelegramParams.EditMessageReplyMarkupParams>,
 	) {
 		const response = await this.bot.api.editMessageReplyMarkup({
@@ -784,7 +784,7 @@ class NodeMixin<Bot extends BotLike> {
 
 	/** Edits current message reply markup. An alias for `editMessageReplyMarkup` */
 	editReplyMarkup(
-		replyMarkup: TelegramObjects.TelegramInlineKeyboardMarkup,
+		replyMarkup: TelegramParams.EditMessageReplyMarkupParams["reply_markup"],
 		params?: Partial<TelegramParams.EditMessageReplyMarkupParams>,
 	) {
 		return this.editMessageReplyMarkup(replyMarkup, params);

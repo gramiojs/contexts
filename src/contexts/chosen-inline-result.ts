@@ -130,7 +130,7 @@ class ChosenInlineResultContext<Bot extends BotLike> extends Context<Bot> {
 
 	/** Edits a callback query messages reply markup */
 	editReplyMarkup(
-		replyMarkup: TelegramObjects.TelegramInlineKeyboardMarkup,
+		replyMarkup: TelegramParams.EditMessageReplyMarkupParams["reply_markup"],
 		params?: Partial<TelegramParams.EditMessageReplyMarkupParams>,
 	) {
 		if (!this.hasInlineMessageId()) {
