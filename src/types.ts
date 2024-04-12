@@ -71,6 +71,23 @@ export interface BotLike {
 	// biome-ignore lint/complexity/noBannedTypes: <explanation>
 	__Derives?: Record<UpdateName | "global", {}>;
 	api: SuppressedAPIMethods;
+	downloadFile(
+		attachment:
+			| Attachments.Attachment
+			| {
+					file_id: string;
+			  }
+			| string,
+	): Promise<ArrayBuffer>;
+	downloadFile(
+		attachment:
+			| Attachments.Attachment
+			| {
+					file_id: string;
+			  }
+			| string,
+		path: string,
+	): Promise<string>;
 }
 
 export type ContextsMapping<Bot extends BotLike> = {
