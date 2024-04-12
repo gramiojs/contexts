@@ -1,6 +1,6 @@
 {
     "name": "@gramio/contexts",
-    "version": "0.0.10",
+    "version": "0.0.11",
     "main": "dist/index.js",
     "keywords": [
         "gramio",
@@ -16,17 +16,18 @@
         "dist"
     ],
     "devDependencies": {
-        "@biomejs/biome": "1.6.3",
+        "@biomejs/biome": "1.6.4",
         "@types/bun": "^1.0.12",
-        "inspectable": "^3.0.0",
-        "madge": "^6.1.0",
+        "madge": "^7.0.0",
         "middleware-io": "^2.8.1",
         "tsup": "^8.0.2",
-        "typescript": "^5.4.3"
+        "typescript": "^5.4.5",
+        "@gramio/types": "^7.2.1"
     },
     "peerDependencies": {
         "inspectable": "^3.0.0",
-        "middleware-io": "^2.8.1"
+        "middleware-io": "^2.8.1",
+        "@gramio/types": "^7.2.1"
     },
     "description": "Contexts for GramIO framework",
     "scripts": {
@@ -37,8 +38,5 @@
         "circular": "bunx madge --circular ./src --extensions=ts"
     },
     "type": "commonjs",
-    "types": "dist/index.d.ts",
-    "dependencies": {
-        "@gramio/types": "^7.2.1"
-    }
+    "types": "dist/index.d.ts"
 }
