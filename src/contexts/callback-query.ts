@@ -95,8 +95,12 @@ class CallbackQueryContext<Bot extends BotLike> extends Context<Bot> {
 
 	/** Answers to current callback query */
 	answerCallbackQuery(
-		params?: Partial<TelegramParams.AnswerCallbackQueryParams>,
+		params?: string | Partial<TelegramParams.AnswerCallbackQueryParams>,
 	) {
+		if (typeof params == 'string') {
+			params = { text: params }
+		}
+
 		return this.bot.api.answerCallbackQuery({
 			callback_query_id: this.id,
 			...params,
@@ -109,7 +113,7 @@ class CallbackQueryContext<Bot extends BotLike> extends Context<Bot> {
 	}
 
 	/** Answers to current callback query. An alias for `answerCallbackQuery` */
-	answer(params?: Partial<TelegramParams.AnswerCallbackQueryParams>) {
+	answer(params?: string | Partial<TelegramParams.AnswerCallbackQueryParams>) {
 		return this.answerCallbackQuery(params);
 	}
 
