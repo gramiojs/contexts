@@ -97,8 +97,9 @@ class CallbackQueryContext<Bot extends BotLike> extends Context<Bot> {
 	answerCallbackQuery(
 		params?: string | Partial<TelegramParams.AnswerCallbackQueryParams>,
 	) {
-		if (typeof params == 'string') {
-			params = { text: params }
+		if (typeof params === "string") {
+			// biome-ignore lint/style/noParameterAssign:
+			params = { text: params };
 		}
 
 		return this.bot.api.answerCallbackQuery({
