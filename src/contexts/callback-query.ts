@@ -12,7 +12,7 @@ import type { TelegramObjects } from "@gramio/types";
 import type { BotLike } from "#types";
 import { Context } from "./context";
 import { MessageContext } from "./message";
-import { CloneMixin } from "./mixins";
+import { CloneMixin, SendMixin } from "./mixins";
 
 interface CallbackQueryContextOptions<Bot extends BotLike> {
 	bot: Bot;
@@ -238,15 +238,17 @@ class CallbackQueryContext<Bot extends BotLike> extends Context<Bot> {
 	}
 }
 
+//@ts-expect-error
 interface CallbackQueryContext<Bot extends BotLike>
 	extends Constructor<CallbackQueryContext<Bot>>,
 		CallbackQuery,
+		SendMixin<Bot>,
 		CloneMixin<
 			Bot,
 			CallbackQueryContext<Bot>,
 			CallbackQueryContextOptions<Bot>
 		> {}
-applyMixins(CallbackQueryContext, [CallbackQuery, CloneMixin]);
+applyMixins(CallbackQueryContext, [CallbackQuery, SendMixin, CloneMixin]);
 memoizeGetters(CallbackQueryContext, ["message"]);
 
 inspectable(CallbackQueryContext, {
