@@ -627,16 +627,6 @@ class NodeMixin<Bot extends BotLike> {
 		});
 	}
 
-	/** @deprecated use `delete()` instead */
-	deleteMessage(
-		params?: Optional<
-			TelegramParams.DeleteMessageParams,
-			"chat_id" | "message_id"
-		>,
-	) {
-		return this.delete(params);
-	}
-
 	/** Deletes current message */
 	delete(
 		params: Optional<
@@ -648,6 +638,14 @@ class NodeMixin<Bot extends BotLike> {
 			chat_id: this.chatId || this.senderId || 0,
 			message_id: this.id,
 			...params,
+		});
+	}
+
+	/** Deletes messages in current chat */
+	deleteMessages(ids: TelegramParams.DeleteMessagesParams["message_ids"]) {
+		return this.bot.api.deleteMessages({
+			chat_id: this.chatId || this.senderId || 0,
+			message_ids: ids,
 		});
 	}
 
@@ -838,6 +836,25 @@ class NodeMixin<Bot extends BotLike> {
 		return new MessageId(response);
 	}
 
+	/** Copies messages from current chat and sends to another */
+	async copyMessages(
+		chatId: TelegramParams.CopyMessagesParams["chat_id"],
+		ids: TelegramParams.CopyMessagesParams["message_ids"],
+		params: Optional<
+			TelegramParams.CopyMessagesParams,
+			"chat_id" | "from_chat_id" | "message_ids"
+		> = {},
+	) {
+		const response = await this.bot.api.copyMessages({
+			chat_id: chatId,
+			from_chat_id: this.chatId || this.senderId || 0,
+			message_ids: ids,
+			...params,
+		});
+
+		return response.map((x) => new MessageId(x));
+	}
+
 	/** Forwards current message [into other chat if `chatId` is provided] */
 	async forward(
 		params: Optional<
@@ -856,6 +873,25 @@ class NodeMixin<Bot extends BotLike> {
 			bot: this.bot,
 			payload: response,
 		});
+	}
+
+	/** Forwards messages from current chat to another */
+	async forwardMessages(
+		chatId: TelegramParams.ForwardMessagesParams["chat_id"],
+		ids: TelegramParams.ForwardMessagesParams["message_ids"],
+		params: Optional<
+			TelegramParams.ForwardMessagesParams,
+			"chat_id" | "from_chat_id" | "message_ids"
+		> = {},
+	) {
+		const messages = await this.bot.api.forwardMessages({
+			chat_id: chatId,
+			from_chat_id: this.chatId || this.senderId || 0,
+			message_ids: ids,
+			...params,
+		});
+
+		return messages.map((x) => new MessageId(x));
 	}
 
 	/** Sets a reaction on a message */
