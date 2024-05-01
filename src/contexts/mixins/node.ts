@@ -14,7 +14,7 @@ interface NodeMixinMetadata {
 }
 
 /** Construct a type that has `reply_parameters` `Partial` */
-type WithPartialReplyParameters<T> = Omit<T, "reply_parameters"> & {
+type WithPartialReplyParameters<T> = T & {
 	reply_parameters?: Partial<TelegramObjects.TelegramReplyParameters>;
 };
 
@@ -209,72 +209,72 @@ class NodeMixin<Bot extends BotLike> {
 
 	/** Replies to current message with invoice */
 	// TODO:
-	// replyWithInvoice(
-	// 	params: WithPartialReplyParameters<
-	// 		Optional<Params.SendInvoiceParams, "chat_id">
-	// 	>,
-	// ) {
-	// 	const { reply_parameters, ...rest } = params;
+	replyWithInvoice(
+		params: WithPartialReplyParameters<
+			Optional<TelegramParams.SendInvoiceParams, "chat_id">
+		>,
+	) {
+		const { reply_parameters, ...rest } = params;
 
-	// 	return this.sendInvoice({
-	// 		reply_parameters: {
-	// 			message_id: this.id,
-	// 			...reply_parameters,
-	// 		},
-	// 		...rest,
-	// 	});
-	// }
+		return this.sendInvoice({
+			reply_parameters: {
+				message_id: this.id,
+				...reply_parameters,
+			},
+			...rest,
+		});
+	}
 
-	// /** Replies to current message with venue */
-	// replyWithVenue(
-	// 	params: WithPartialReplyParameters<
-	// 		Optional<Params.SendVenueParams, "chat_id">
-	// 	>,
-	// ) {
-	// 	const { reply_parameters, ...rest } = params;
+	/** Replies to current message with venue */
+	replyWithVenue(
+		params: WithPartialReplyParameters<
+			Optional<TelegramParams.SendVenueParams, "chat_id">
+		>,
+	) {
+		const { reply_parameters, ...rest } = params;
 
-	// 	return this.sendVenue({
-	// 		reply_parameters: {
-	// 			message_id: this.id,
-	// 			...reply_parameters,
-	// 		},
-	// 		...rest,
-	// 	});
-	// }
+		return this.sendVenue({
+			reply_parameters: {
+				message_id: this.id,
+				...reply_parameters,
+			},
+			...rest,
+		});
+	}
 
-	// /** Replies to current message with contact */
-	// replyWithContact(
-	// 	params: WithPartialReplyParameters<
-	// 		Optional<Params.SendContactParams, "chat_id">
-	// 	>,
-	// ) {
-	// 	const { reply_parameters, ...rest } = params;
+	/** Replies to current message with contact */
+	replyWithContact(
+		params: WithPartialReplyParameters<
+			Optional<TelegramParams.SendContactParams, "chat_id">
+		>,
+	) {
+		const { reply_parameters, ...rest } = params;
 
-	// 	return this.sendContact({
-	// 		reply_parameters: {
-	// 			message_id: this.id,
-	// 			...reply_parameters,
-	// 		},
-	// 		...rest,
-	// 	});
-	// }
+		return this.sendContact({
+			reply_parameters: {
+				message_id: this.id,
+				...reply_parameters,
+			},
+			...rest,
+		});
+	}
 
-	// /** Replies to current message with poll */
-	// replyWithPoll(
-	// 	params: WithPartialReplyParameters<
-	// 		Optional<Params.SendPollParams, "chat_id">
-	// 	>,
-	// ) {
-	// 	const { reply_parameters, ...rest } = params;
+	/** Replies to current message with poll */
+	replyWithPoll(
+		params: WithPartialReplyParameters<
+			Optional<TelegramParams.SendPollParams, "chat_id">
+		>,
+	) {
+		const { reply_parameters, ...rest } = params;
 
-	// 	return this.sendPoll({
-	// 		reply_parameters: {
-	// 			message_id: this.id,
-	// 			...reply_parameters,
-	// 		},
-	// 		...rest,
-	// 	});
-	// }
+		return this.sendPoll({
+			reply_parameters: {
+				message_id: this.id,
+				...reply_parameters,
+			},
+			...rest,
+		});
+	}
 
 	/** Replies to current message with sticker */
 	replyWithSticker(
@@ -323,6 +323,7 @@ class NodeMixin<Bot extends BotLike> {
 
 		return this.reply(text, {
 			reply_parameters: {
+				message_id: this.id,
 				quote,
 				...reply_parameters,
 			},
@@ -341,6 +342,7 @@ class NodeMixin<Bot extends BotLike> {
 
 		return this.replyWithPhoto(photo, {
 			reply_parameters: {
+				message_id: this.id,
 				quote,
 				...reply_parameters,
 			},
@@ -361,6 +363,7 @@ class NodeMixin<Bot extends BotLike> {
 
 		return this.replyWithDocument(document, {
 			reply_parameters: {
+				message_id: this.id,
 				quote,
 				...reply_parameters,
 			},
@@ -379,6 +382,7 @@ class NodeMixin<Bot extends BotLike> {
 
 		return this.replyWithAudio(audio, {
 			reply_parameters: {
+				message_id: this.id,
 				quote,
 				...reply_parameters,
 			},
@@ -397,6 +401,7 @@ class NodeMixin<Bot extends BotLike> {
 
 		return this.replyWithVideo(video, {
 			reply_parameters: {
+				message_id: this.id,
 				quote,
 				...reply_parameters,
 			},
@@ -417,6 +422,7 @@ class NodeMixin<Bot extends BotLike> {
 
 		return this.replyWithAnimation(animation, {
 			reply_parameters: {
+				message_id: this.id,
 				quote,
 				...reply_parameters,
 			},
@@ -437,6 +443,7 @@ class NodeMixin<Bot extends BotLike> {
 
 		return this.replyWithVideoNote(videoNote, {
 			reply_parameters: {
+				message_id: this.id,
 				quote,
 				...reply_parameters,
 			},
@@ -455,6 +462,7 @@ class NodeMixin<Bot extends BotLike> {
 
 		return this.replyWithVoice(voice, {
 			reply_parameters: {
+				message_id: this.id,
 				quote,
 				...reply_parameters,
 			},
@@ -475,6 +483,7 @@ class NodeMixin<Bot extends BotLike> {
 
 		return this.replyWithMediaGroup(mediaGroup, {
 			reply_parameters: {
+				message_id: this.id,
 				quote,
 				...reply_parameters,
 			},
@@ -496,6 +505,7 @@ class NodeMixin<Bot extends BotLike> {
 
 		return this.replyWithLocation(latitude, longitude, {
 			reply_parameters: {
+				message_id: this.id,
 				quote,
 				...reply_parameters,
 			},
@@ -503,122 +513,143 @@ class NodeMixin<Bot extends BotLike> {
 		});
 	}
 
-	//TODO:
-	// /** Replies to current message with a quote and an invoice */
-	// quoteWithInvoice(
-	// 	params: WithQuote &
-	// 		WithPartialReplyParameters<Optional<Params.SendInvoiceParams, "chat_id">>,
-	// ) {
-	// 	const { quote, reply_parameters, ...rest } = params;
+	/** Replies to current message with a quote and an invoice */
+	quoteWithInvoice(
+		params: WithQuote &
+			WithPartialReplyParameters<
+				Optional<TelegramParams.SendInvoiceParams, "chat_id">
+			>,
+	) {
+		const { quote, reply_parameters, ...rest } = params;
 
-	// 	return this.replyWithInvoice({
-	// 		reply_parameters: {
-	// 			quote,
-	// 			...reply_parameters,
-	// 		},
-	// 		...rest,
-	// 	});
-	// }
+		return this.replyWithInvoice({
+			reply_parameters: {
+				message_id: this.id,
+				quote,
+				...reply_parameters,
+			},
+			...rest,
+		});
+	}
 
-	// /** Replies to current message with a quote and a venue */
-	// quoteWithVenue(
-	// 	params: WithQuote &
-	// 		WithPartialReplyParameters<Optional<Params.SendVenueParams, "chat_id">>,
-	// ) {
-	// 	const { quote, reply_parameters, ...rest } = params;
+	/** Replies to current message with a quote and a venue */
+	quoteWithVenue(
+		params: WithQuote &
+			WithPartialReplyParameters<
+				Optional<TelegramParams.SendVenueParams, "chat_id">
+			>,
+	) {
+		const { quote, reply_parameters, ...rest } = params;
 
-	// 	return this.replyWithVenue({
-	// 		reply_parameters: {
-	// 			quote,
-	// 			...reply_parameters,
-	// 		},
-	// 		...rest,
-	// 	});
-	// }
+		return this.replyWithVenue({
+			reply_parameters: {
+				message_id: this.id,
+				quote,
+				...reply_parameters,
+			},
+			...rest,
+		});
+	}
 
-	// /** Replies to current message with a quote and a contact */
-	// quoteWithContact(
-	// 	params: WithQuote &
-	// 		WithPartialReplyParameters<Optional<Params.SendContactParams, "chat_id">>,
-	// ) {
-	// 	const { quote, reply_parameters, ...rest } = params;
+	/** Replies to current message with a quote and a contact */
+	quoteWithContact(
+		params: WithQuote &
+			WithPartialReplyParameters<
+				Optional<TelegramParams.SendContactParams, "chat_id">
+			>,
+	) {
+		const { quote, reply_parameters, ...rest } = params;
 
-	// 	return this.replyWithContact({
-	// 		reply_parameters: {
-	// 			quote,
-	// 			...reply_parameters,
-	// 		},
-	// 		...rest,
-	// 	});
-	// }
+		return this.replyWithContact({
+			reply_parameters: {
+				message_id: this.id,
+				quote,
+				...reply_parameters,
+			},
+			...rest,
+		});
+	}
 
-	// /** Replies to current message with a quote and a poll */
-	// quoteWithPoll(
-	// 	params: WithQuote &
-	// 		WithPartialReplyParameters<Optional<Params.SendPollParams, "chat_id">>,
-	// ) {
-	// 	const { quote, reply_parameters, ...rest } = params;
+	/** Replies to current message with a quote and a poll */
+	quoteWithPoll(
+		params: WithQuote &
+			WithPartialReplyParameters<
+				Optional<TelegramParams.SendPollParams, "chat_id">
+			>,
+	) {
+		const { quote, reply_parameters, ...rest } = params;
 
-	// 	return this.replyWithPoll({
-	// 		reply_parameters: {
-	// 			quote,
-	// 			...reply_parameters,
-	// 		},
-	// 		...rest,
-	// 	});
-	// }
+		return this.replyWithPoll({
+			reply_parameters: {
+				message_id: this.id,
+				quote,
+				...reply_parameters,
+			},
+			...rest,
+		});
+	}
 
-	// /** Replies to current message with a quote and a sticker */
-	// quoteWithSticker(
-	// 	params: WithQuote<{ sticker: Params.SendStickerParams["sticker"] }> &
-	// 		WithPartialReplyParameters<
-	// 			Optional<Params.SendStickerParams, "chat_id" | "sticker">
-	// 		>,
-	// ) {
-	// 	const { sticker, quote, reply_parameters, ...rest } = params;
+	/** Replies to current message with a quote and a sticker */
+	quoteWithSticker(
+		params: WithQuote<{
+			sticker: TelegramParams.SendStickerParams["sticker"];
+		}> &
+			WithPartialReplyParameters<
+				Optional<TelegramParams.SendStickerParams, "chat_id" | "sticker">
+			>,
+	) {
+		const { sticker, quote, reply_parameters, ...rest } = params;
 
-	// 	return this.replyWithSticker(sticker, {
-	// 		reply_parameters: {
-	// 			quote,
-	// 			...reply_parameters,
-	// 		},
-	// 		...rest,
-	// 	});
-	// }
+		return this.replyWithSticker(sticker, {
+			reply_parameters: {
+				message_id: this.id,
+				quote,
+				...reply_parameters,
+			},
+			...rest,
+		});
+	}
 
-	// /** Replies to current message with a quote and a dice */
-	// quoteWithDice(
-	// 	params: WithQuote<{ emoji: Params.SendDiceParams["emoji"] }> &
-	// 		WithPartialReplyParameters<Partial<Params.SendDiceParams>>,
-	// ) {
-	// 	const { emoji, quote, reply_parameters, ...rest } = params;
+	/** Replies to current message with a quote and a dice */
+	quoteWithDice(
+		params: WithQuote<{ emoji: TelegramParams.SendDiceParams["emoji"] }> &
+			WithPartialReplyParameters<Partial<TelegramParams.SendDiceParams>>,
+	) {
+		const { emoji, quote, reply_parameters, ...rest } = params;
 
-	// 	return this.replyWithDice(emoji, {
-	// 		reply_parameters: {
-	// 			quote,
-	// 			...reply_parameters,
-	// 		},
-	// 		...rest,
-	// 	});
-	// }
+		return this.replyWithDice(emoji, {
+			reply_parameters: {
+				message_id: this.id,
+				quote,
+				...reply_parameters,
+			},
+			...rest,
+		});
+	}
 
-	// /** @deprecated use `delete()` instead */
-	// deleteMessage(
-	// 	params?: Optional<Params.DeleteMessageParams, "chat_id" | "message_id">,
-	// ) {
-	// 	return this.delete(params);
-	// }
+	/** @deprecated use `delete()` instead */
+	deleteMessage(
+		params?: Optional<
+			TelegramParams.DeleteMessageParams,
+			"chat_id" | "message_id"
+		>,
+	) {
+		return this.delete(params);
+	}
 
-	// /** Deletes current message */
-	// delete(
-	// 	params: Optional<Params.DeleteMessageParams, "chat_id" | "message_id"> = {},
-	// ) {
-	// 	return this.bot.api.deleteMessage({
-	// 		chat_id: this.chatId || this.senderId || 0,
-	// 		message_id: this.id,
-	// 		...params,
-	// 	});
-	// }
+	/** Deletes current message */
+	delete(
+		params: Optional<
+			TelegramParams.DeleteMessageParams,
+			"chat_id" | "message_id"
+		> = {},
+	) {
+		return this.bot.api.deleteMessage({
+			chat_id: this.chatId || this.senderId || 0,
+			message_id: this.id,
+			...params,
+		});
+	}
 
 	/** Edits current message live location */
 	async editMessageLiveLocation(
