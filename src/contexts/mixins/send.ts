@@ -409,28 +409,6 @@ class SendMixin<Bot extends BotLike> {
 										: () => never
 	>;
 
-	sendMedia<T extends { type: string }>(
-		media: T,
-	): ReturnType<
-		T extends { type: "animation" }
-			? typeof this.sendAnimation
-			: T extends { type: "audio" }
-				? typeof this.sendAudio
-				: T extends { type: "document" }
-					? typeof this.sendDocument
-					: T extends { type: "photo" }
-						? typeof this.sendPhoto
-						: T extends { type: "sticker" }
-							? typeof this.sendSticker
-							: T extends { type: "video_note" }
-								? typeof this.sendVideoNote
-								: T extends { type: "video" }
-									? typeof this.sendVideo
-									: T extends { type: "voice" }
-										? typeof this.sendVoice
-										: () => never
-	>;
-
 	sendMedia(query: tSendMethods) {
 		// INFO: kind of a hack for interoperability between TelegramInputMedia objects and sendMedia
 

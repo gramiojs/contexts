@@ -1,9 +1,11 @@
-import { Inspect, Inspectable } from "inspectable";
-
 import type { TelegramObjects } from "@gramio/types";
+import { Inspect, Inspectable } from "inspectable";
+import { memoizeGetters } from "#utils";
 import { Location } from "./location";
 
 /**
+ *
+ *
  * [Documentation](https://core.telegram.org/bots/api/#businesslocation)
  */
 @Inspectable()
@@ -14,13 +16,17 @@ export class BusinessLocation {
 		return this.constructor.name;
 	}
 
-	/** Address of the business */
+	/**
+	 * Address of the business
+	 */
 	@Inspect()
 	get address() {
 		return this.payload.address;
 	}
 
-	/** Location of the business */
+	/**
+	 * *Optional*. Location of the business
+	 */
 	@Inspect()
 	get location() {
 		return this.payload.location
@@ -28,3 +34,4 @@ export class BusinessLocation {
 			: undefined;
 	}
 }
+memoizeGetters(BusinessLocation, ["location"]);
