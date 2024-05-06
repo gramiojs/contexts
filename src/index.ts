@@ -45,6 +45,7 @@ export const contextsMappings = {
 	proximity_alert_triggered: Contexts.ProximityAlertTriggeredContext,
 	write_access_allowed: Contexts.WriteAccessAllowedContext,
 	boost_added: Contexts.BoostAddedContext,
+	chat_background_set: Contexts.ChatBackgroundSetContext,
 	forum_topic_created: Contexts.ForumTopicCreatedContext,
 	forum_topic_edited: Contexts.ForumTopicEditedContext,
 	forum_topic_closed: Contexts.ForumTopicClosedContext,

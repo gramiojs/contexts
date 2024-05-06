@@ -48,3 +48,4 @@ export * from "./write-access-allowed";
 export * from "./boost-added";
 export * from "./business-connection";
 export * from "./business-messages-deleted";
+export * from "./chat-background-set";

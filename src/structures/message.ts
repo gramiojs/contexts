@@ -55,6 +55,7 @@ import {
 } from "./attachments";
 
 import { memoizeGetters } from "#utils";
+import { ChatBackground } from "./chat-background";
 import { ChatBoostAdded } from "./chat-boost-added";
 import { Giveaway } from "./giveaway";
 import { GiveawayCompleted } from "./giveaway-completed";
@@ -716,6 +717,16 @@ export class Message {
 		if (!boost_added) return undefined;
 
 		return new ChatBoostAdded(boost_added);
+	}
+
+	/** Service message: chat background set */
+	@Inspect({ nullable: false })
+	get chatBackgroundSet() {
+		const { chat_background_set } = this.payload;
+
+		if (!chat_background_set) return undefined;
+
+		return new ChatBackground(chat_background_set);
 	}
 
 	/** Service message: forum topic created */

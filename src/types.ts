@@ -124,6 +124,7 @@ export type ContextsMapping<Bot extends BotLike> = {
 	proximity_alert_triggered: Contexts.ProximityAlertTriggeredContext<Bot>;
 	write_access_allowed: Contexts.WriteAccessAllowedContext<Bot>;
 	boost_added: Contexts.BoostAddedContext<Bot>;
+	chat_background_set: Contexts.ChatBackgroundSetContext<Bot>;
 	forum_topic_created: Contexts.ForumTopicCreatedContext<Bot>;
 	forum_topic_edited: Contexts.ForumTopicEditedContext<Bot>;
 	forum_topic_closed: Contexts.ForumTopicClosedContext<Bot>;
@@ -187,7 +188,8 @@ export type MessageEventName =
 	| "giveaway_created"
 	| "giveaway_completed"
 	| "giveaway_winners"
-	| "boost_added";
+	| "boost_added"
+	| "chat_background_set";
 // | "removed_chat_boost";
 
 export type CustomEventName = "service_message";

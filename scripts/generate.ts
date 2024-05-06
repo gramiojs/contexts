@@ -29,7 +29,6 @@ const objectToGenerate: string[] = [
 	// "ChatBackground",
 	// "BackgroundFill",
 	// "BackgroundType",
-
 	"InputMessageContent",
 	"ChatPermissions",
 	"Birthdate",
@@ -37,7 +36,8 @@ const objectToGenerate: string[] = [
 	"BusinessLocation",
 	"BusinessOpeningHoursInterval",
 	"InlineQueryResultLocation",
-	"InputLocationMessageContent",
+	"Chat",
+	"ChatFullInfo",
 ];
 
 for (const object of schema.objects.filter(

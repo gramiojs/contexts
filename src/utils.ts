@@ -122,6 +122,7 @@ export const SERVICE_MESSAGE_EVENTS: MessageEventName[] = [
 	"proximity_alert_triggered",
 	// passport_data?
 	"boost_added",
+	"chat_background_set",
 ];
 
 export const EVENTS: [keyof Message, MessageEventName][] = [
@@ -142,6 +143,7 @@ export const EVENTS: [keyof Message, MessageEventName][] = [
 	["proximityAlertTriggered", "proximity_alert_triggered"],
 	["writeAccessAllowed", "write_access_allowed"],
 	["chatBoostAdded", "boost_added"],
+	["chatBackgroundSet", "chat_background_set"],
 	["forumTopicCreated", "forum_topic_created"],
 	["forumTopicEdited", "forum_topic_edited"],
 	["forumTopicClosed", "forum_topic_closed"],
