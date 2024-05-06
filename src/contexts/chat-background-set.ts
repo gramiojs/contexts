@@ -5,6 +5,7 @@ import type { Constructor } from "#types";
 import { applyMixins } from "#utils";
 
 import { inspectable } from "inspectable";
+import { backgroundTypeMap } from "#structures/background-type";
 import type { BotLike } from "#types";
 import { Context } from "./context";
 import {
@@ -44,7 +45,10 @@ class ChatBackgroundSetContext<Bot extends BotLike> extends Context<Bot> {
 
 	/** Type of the background */
 	get type() {
-		return this.payload.chat_background_set!.type;
+		return new backgroundTypeMap[this.payload.chat_background_set!.type.type](
+			// @ts-expect-error
+			this.payload.chat_background_set.type,
+		);
 	}
 }
 

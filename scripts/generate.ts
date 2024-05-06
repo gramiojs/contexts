@@ -38,6 +38,13 @@ const objectToGenerate: string[] = [
 	"InlineQueryResultLocation",
 	"Chat",
 	"ChatFullInfo",
+	"BackgroundTypeFill",
+	"BackgroundTypeWallpaper",
+	"BackgroundTypePattern",
+	"BackgroundTypeChatTheme",
+	"BackgroundFillSolid",
+	"BackgroundFillGradient",
+	"BackgroundFillFreeformGradient",
 ];
 
 for (const object of schema.objects.filter(
