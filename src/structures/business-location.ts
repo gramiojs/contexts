@@ -4,7 +4,7 @@ import { memoizeGetters } from "#utils";
 import { Location } from "./location";
 
 /**
- *
+ * Contains information about the location of a Telegram Business account.
  *
  * [Documentation](https://core.telegram.org/bots/api/#businesslocation)
  */

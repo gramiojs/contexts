@@ -1,10 +1,10 @@
+import type { TelegramObjects } from "@gramio/types";
 import { Inspect, Inspectable } from "inspectable";
 
-import type { TelegramObjects } from "@gramio/types";
-
 /**
- * Describes actions that a non-administrator user is allowed to take in a
- * chat.
+ * Describes actions that a non-administrator user is allowed to take in a chat.
+ *
+ * [Documentation](https://core.telegram.org/bots/api/#chatpermissions)
  */
 @Inspectable()
 export class ChatPermissions {
@@ -15,67 +15,114 @@ export class ChatPermissions {
 	}
 
 	/**
-	 * `true`, if the user is allowed to send text messages, contacts, locations
-	 * and venues
+	 * *Optional*. *True*, if the user is allowed to send text messages, contacts, giveaways, giveaway winners, invoices, locations and venues
 	 */
-	@Inspect({ compute: true, nullable: false })
-	canSendMessages(): boolean | undefined {
+	@Inspect()
+	get canSendMessages() {
 		return this.payload.can_send_messages;
 	}
 
 	/**
-	 * `true`, if the user is allowed to send polls, implies `can_send_messages`
+	 * *Optional*. *True*, if the user is allowed to send audios
 	 */
-	@Inspect({ compute: true, nullable: false })
-	canSendPolls(): boolean | undefined {
+	@Inspect()
+	get canSendAudios() {
+		return this.payload.can_send_audios;
+	}
+
+	/**
+	 * *Optional*. *True*, if the user is allowed to send documents
+	 */
+	@Inspect()
+	get canSendDocuments() {
+		return this.payload.can_send_documents;
+	}
+
+	/**
+	 * *Optional*. *True*, if the user is allowed to send photos
+	 */
+	@Inspect()
+	get canSendPhotos() {
+		return this.payload.can_send_photos;
+	}
+
+	/**
+	 * *Optional*. *True*, if the user is allowed to send videos
+	 */
+	@Inspect()
+	get canSendVideos() {
+		return this.payload.can_send_videos;
+	}
+
+	/**
+	 * *Optional*. *True*, if the user is allowed to send video notes
+	 */
+	@Inspect()
+	get canSendVideoNotes() {
+		return this.payload.can_send_video_notes;
+	}
+
+	/**
+	 * *Optional*. *True*, if the user is allowed to send voice notes
+	 */
+	@Inspect()
+	get canSendVoiceNotes() {
+		return this.payload.can_send_voice_notes;
+	}
+
+	/**
+	 * *Optional*. *True*, if the user is allowed to send polls
+	 */
+	@Inspect()
+	get canSendPolls() {
 		return this.payload.can_send_polls;
 	}
 
 	/**
-	 * `true`, if the user is allowed to send animations, games, stickers and use
-	 * inline bots, implies `can_send_media_messages`
+	 * *Optional*. *True*, if the user is allowed to send animations, games, stickers and use inline bots
 	 */
-	@Inspect({ compute: true, nullable: false })
-	canSendOtherMessages(): boolean | undefined {
+	@Inspect()
+	get canSendOtherMessages() {
 		return this.payload.can_send_other_messages;
 	}
 
 	/**
-	 * `true`, if the user is allowed to add web page previews to their messages,
-	 * implies `can_send_media_messages`
+	 * *Optional*. *True*, if the user is allowed to add web page previews to their messages
 	 */
-	@Inspect({ compute: true, nullable: false })
-	canAddWebPagePreviews(): boolean | undefined {
+	@Inspect()
+	get canAddWebPagePreviews() {
 		return this.payload.can_add_web_page_previews;
 	}
 
 	/**
-	 * `true`, if the user is allowed to change the chat title, photo and other
-	 * settings. Ignored in public supergroups
+	 * *Optional*. *True*, if the user is allowed to change the chat title, photo and other settings. Ignored in public supergroups
 	 */
-	@Inspect({ compute: true, nullable: false })
-	canChangeInfo(): boolean | undefined {
+	@Inspect()
+	get canChangeInfo() {
 		return this.payload.can_change_info;
 	}
 
-	/** `true`, if the user is allowed to invite new users to the chat */
-	@Inspect({ compute: true, nullable: false })
-	canInviteUsers(): boolean | undefined {
+	/**
+	 * *Optional*. *True*, if the user is allowed to invite new users to the chat
+	 */
+	@Inspect()
+	get canInviteUsers() {
 		return this.payload.can_invite_users;
 	}
 
 	/**
-	 * `true`, if the user is allowed to pin messages. Ignored in public
-	 * supergroups
+	 * *Optional*. *True*, if the user is allowed to pin messages. Ignored in public supergroups
 	 */
-	@Inspect({ compute: true, nullable: false })
-	canPinMessages(): boolean | undefined {
+	@Inspect()
+	get canPinMessages() {
 		return this.payload.can_pin_messages;
 	}
 
-	/** `true`, if the user is allowed to create forum topics. If omitted defaults to the value of can_pin_messages */
-	@Inspect({ compute: true, nullable: false })
-	canManageTopics(): boolean | undefined {
+	/**
+	 * *Optional*. *True*, if the user is allowed to create forum topics. If omitted defaults to the value of can\_pin\_messages
+	 */
+	@Inspect()
+	get canManageTopics() {
 		return this.payload.can_manage_topics;
 	}
 }

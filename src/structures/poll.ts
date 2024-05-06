@@ -27,6 +27,16 @@ export class Poll {
 		return this.payload.question;
 	}
 
+	/**
+	 * *Optional*. Special entities that appear in the *question*. Currently, only custom emoji entities are allowed in poll questions
+	 */
+	@Inspect({ nullable: false })
+	get questionEntities() {
+		return this.payload.question_entities
+			? this.payload.question_entities.map((x) => new MessageEntity(x))
+			: undefined;
+	}
+
 	/** List of poll options */
 	@Inspect()
 	get options() {

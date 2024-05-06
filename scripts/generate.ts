@@ -25,11 +25,25 @@ function snakeToCamelCase(str: string) {
 		);
 }
 
-const objectToGenerate: string[] = ["BusinessConnection", "BusinessLocation"];
+const objectToGenerate: string[] = [
+	// "ChatBackground",
+	// "BackgroundFill",
+	// "BackgroundType",
+
+	"InputMessageContent",
+	"ChatPermissions",
+	"Birthdate",
+	"BusinessIntro",
+	"BusinessLocation",
+	"BusinessOpeningHoursInterval",
+	"InlineQueryResultLocation",
+	"InputLocationMessageContent",
+];
 
 for (const object of schema.objects.filter(
 	(x) => objectToGenerate.includes(x.name) && x.properties?.length,
 )) {
+	console.log(object.name);
 	if (
 		!(await fs.exists(`./src/structures/${pascalToKebabCase(object.name)}.ts`))
 	) {
@@ -86,7 +100,7 @@ export class ${object.name} {
 ${
 	refs.length
 		? `memoizeGetters(${object.name}, [${refs
-				.map((x) => `"${x.name}"`)
+				.map((x) => `"${snakeToCamelCase(x.name)}"`)
 				.join(", ")}])`
 		: ""
 }

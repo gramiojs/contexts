@@ -1,9 +1,11 @@
-import { Inspect, Inspectable } from "inspectable";
-
 import type { TelegramObjects } from "@gramio/types";
+import { Inspect, Inspectable } from "inspectable";
+import { memoizeGetters } from "#utils";
 import { StickerAttachment } from "./attachments/sticker";
 
 /**
+ * Contains information about the start page settings of a Telegram Business account.
+ *
  * [Documentation](https://core.telegram.org/bots/api/#businessintro)
  */
 @Inspectable()
@@ -14,19 +16,25 @@ export class BusinessIntro {
 		return this.constructor.name;
 	}
 
-	/** Title text of the business intro */
+	/**
+	 * *Optional*. Title text of the business intro
+	 */
 	@Inspect()
 	get title() {
 		return this.payload.title;
 	}
 
-	/** Message text of the business intro */
+	/**
+	 * *Optional*. Message text of the business intro
+	 */
 	@Inspect()
 	get message() {
 		return this.payload.message;
 	}
 
-	/** Sticker of the business intro */
+	/**
+	 * *Optional*. Sticker of the business intro
+	 */
 	@Inspect()
 	get sticker() {
 		return this.payload.sticker
@@ -34,3 +42,4 @@ export class BusinessIntro {
 			: undefined;
 	}
 }
+memoizeGetters(BusinessIntro, ["sticker"]);

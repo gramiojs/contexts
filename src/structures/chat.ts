@@ -4,9 +4,9 @@ import type { TelegramObjects } from "@gramio/types";
 import { Message } from "./message";
 
 import { memoizeGetters } from "#utils";
-import { Birthdate } from "./birthdate.old";
+import { Birthdate } from "./birthdate";
 import { BusinessIntro } from "./business-intro";
-import { BusinessLocation } from "./business-location.old";
+import { BusinessLocation } from "./business-location";
 import { BusinessOpeningHours } from "./business-opening-hours";
 import { ChatLocation } from "./chat-location";
 import { ChatPermissions } from "./chat-permissions";

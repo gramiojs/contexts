@@ -1,44 +1,44 @@
 {
-  "name": "@gramio/contexts",
-  "version": "0.0.12",
-  "main": "dist/index.js",
-  "keywords": [
-    "gramio",
-    "contexts",
-    "updates",
-    "events",
-    "telegram",
-    "telegram-bot",
-    "telegram-bot-api",
-    "bot"
-  ],
-  "files": [
-    "dist"
-  ],
-  "devDependencies": {
-    "@biomejs/biome": "1.6.4",
-    "@gramio/types": "^7.2.1",
-    "@types/bun": "^1.0.12",
-    "common-tags": "^1.8.2",
-    "madge": "^7.0.0",
-    "middleware-io": "^2.8.1",
-    "tsup": "^8.0.2",
-    "typescript": "^5.4.5"
-  },
-  "peerDependencies": {
-    "inspectable": "^3.0.0",
-    "middleware-io": "^2.8.1",
-    "@gramio/types": "^7.2.1"
-  },
-  "description": "Contexts for GramIO framework",
-  "scripts": {
-    "type": "tsc --noEmit",
-    "lint": "bunx @biomejs/biome check ./src",
-    "lint:fix": "bun lint --apply",
-    "prepublishOnly": "tsc && bunx tsc-alias",
-    "circular": "bunx madge --circular ./src --extensions=ts",
-    "generate": "bun scripts/generate.ts"
-  },
-  "type": "commonjs",
-  "types": "dist/index.d.ts"
+    "name": "@gramio/contexts",
+    "version": "0.0.12",
+    "main": "dist/index.js",
+    "keywords": [
+        "gramio",
+        "contexts",
+        "updates",
+        "events",
+        "telegram",
+        "telegram-bot",
+        "telegram-bot-api",
+        "bot"
+    ],
+    "files": [
+        "dist"
+    ],
+    "devDependencies": {
+        "@biomejs/biome": "1.7.3",
+        "@gramio/types": "^7.3.0",
+        "@types/bun": "^1.1.1",
+        "common-tags": "^1.8.2",
+        "madge": "^7.0.0",
+        "middleware-io": "^2.8.1",
+        "tsup": "^8.0.2",
+        "typescript": "^5.4.5"
+    },
+    "peerDependencies": {
+        "inspectable": "^3.0.0",
+        "middleware-io": "^2.8.1",
+        "@gramio/types": "^7.3.0"
+    },
+    "description": "Contexts for GramIO framework",
+    "scripts": {
+        "type": "tsc --noEmit",
+        "lint": "bunx @biomejs/biome check ./src",
+        "lint:fix": "bun lint --apply",
+        "prepublishOnly": "tsc && bunx tsc-alias",
+        "circular": "bunx madge --circular ./src --extensions=ts",
+        "generate": "bun scripts/generate.ts"
+    },
+    "type": "commonjs",
+    "types": "dist/index.d.ts"
 }

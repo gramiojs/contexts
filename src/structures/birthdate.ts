@@ -2,7 +2,7 @@ import type { TelegramObjects } from "@gramio/types";
 import { Inspect, Inspectable } from "inspectable";
 
 /**
- *
+ * Describes the birthdate of a user.
  *
  * [Documentation](https://core.telegram.org/bots/api/#birthdate)
  */
