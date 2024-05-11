@@ -19,7 +19,7 @@ import {
 	PinsMixin,
 	SendMixin,
 	TargetMixin,
-} from "./mixins";
+} from "./mixins/index";
 
 interface NewChatPhotoContextOptions<Bot extends BotLike> {
 	bot: Bot;

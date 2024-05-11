@@ -17,7 +17,7 @@ import type { TelegramObjects } from "@gramio/types";
 import type { BotLike } from "../types";
 import { Context } from "./context";
 import { MessageContext } from "./message";
-import { CloneMixin, SendMixin } from "./mixins";
+import { CloneMixin, SendMixin } from "./mixins/index";
 
 interface CallbackQueryContextOptions<Bot extends BotLike> {
 	bot: Bot;

@@ -6,7 +6,7 @@ import { inspectable } from "inspectable";
 import type { BotLike } from "../types";
 import { applyMixins, filterPayload } from "../utils";
 import { Context } from "./context";
-import { CloneMixin, NodeMixin, SendMixin } from "./mixins";
+import { CloneMixin, NodeMixin, SendMixin } from "./mixins/index";
 
 interface MessageReactionContextOptions<Bot extends BotLike> {
 	bot: Bot;
