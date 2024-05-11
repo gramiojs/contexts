@@ -29,7 +29,7 @@ export class BackgroundTypeFill {
 	 * The background fill
 	 */
 	@Inspect()
-	get fill() {
+	get fill(): (typeof backgroundFillMap)[keyof typeof backgroundFillMap] {
 		// @ts-expect-error
 		return new backgroundFillMap[this.payload.fill.type](this.payload.fill);
 	}
