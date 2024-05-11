@@ -15,7 +15,7 @@ import {
 	VideoAttachment,
 	VideoNoteAttachment,
 	VoiceAttachment,
-} from "../structures/attachments";
+} from "../structures/attachments/index";
 
 // import { MediaGroup } from "../media-group";
 import { Message, type MessageEntity } from "../structures/index";

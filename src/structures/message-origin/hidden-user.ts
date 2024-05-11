@@ -2,7 +2,7 @@ import { Inspect, Inspectable } from "inspectable";
 
 import type { TelegramObjects } from "@gramio/types";
 
-import { MessageOrigin } from "./message-origin/index";
+import { MessageOrigin } from "./message-origin";
 
 /** The message was originally sent by an unknown user. */
 @Inspectable()
