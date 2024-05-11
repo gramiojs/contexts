@@ -14,7 +14,7 @@ import {
 	PinsMixin,
 	SendMixin,
 	TargetMixin,
-} from "./mixins";
+} from "./mixins/index";
 
 interface ChatSharedContextOptions<Bot extends BotLike> {
 	bot: Bot;

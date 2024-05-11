@@ -8,7 +8,7 @@ import { applyMixins } from "../utils";
 
 import type { BotLike } from "../types";
 import { Context } from "./context";
-import { ChatActionMixin, CloneMixin, SendMixin } from "./mixins";
+import { ChatActionMixin, CloneMixin, SendMixin } from "./mixins/index";
 
 interface PollAnswerContextOptions<Bot extends BotLike> {
 	bot: Bot;

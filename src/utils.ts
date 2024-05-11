@@ -1,4 +1,4 @@
-import type { Message } from "./structures";
+import type { Message } from "./structures/index";
 
 import type { MessageEventName } from "./types";
 

@@ -8,8 +8,8 @@ import type {
 	TelegramUpdate,
 } from "@gramio/types";
 
-import type * as Contexts from "./contexts";
-import type * as Attachments from "./structures/attachments";
+import type * as Contexts from "./contexts/index";
+import type * as Attachments from "./structures/attachments/index";
 
 interface Suppress<IsSuppressed extends boolean | undefined = undefined> {
 	/**
