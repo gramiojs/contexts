@@ -1,4 +1,3 @@
-import { setTimeout } from "node:timers/promises";
 import type { TelegramParams } from "@gramio/types";
 
 import type { Optional } from "../../types";
@@ -7,6 +6,10 @@ import type { Context } from "../context";
 
 import type { BotLike } from "../../types";
 import type { SendMixin } from "./send";
+
+export function sleep(ms: number) {
+	return new Promise((resolve) => setTimeout(resolve, ms));
+}
 
 interface CreateActionControllerParams {
 	/**
@@ -69,7 +72,7 @@ class ChatActionController<Bot extends BotLike> {
 			const start = Date.now();
 
 			if (this.wait > 0) {
-				await setTimeout(this.wait);
+				await sleep(this.wait);
 			}
 
 			while (!this.abortController.signal.aborted) {
@@ -78,7 +81,7 @@ class ChatActionController<Bot extends BotLike> {
 						suppress: true,
 					});
 
-					await setTimeout(this.interval);
+					await sleep(this.interval);
 
 					// stop if we hit the timeout mark
 					if (this.timeout !== 0 && Date.now() - start > this.timeout) {
