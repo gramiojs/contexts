@@ -19,7 +19,7 @@ import {
 	PinsMixin,
 	SendMixin,
 	TargetMixin,
-} from "./mixins/index";
+} from "./mixins";
 
 interface GeneralForumTopicUnhiddenContextOptions<Bot extends BotLike> {
 	bot: Bot;

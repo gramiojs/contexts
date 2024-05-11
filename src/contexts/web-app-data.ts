@@ -14,7 +14,7 @@ import {
 	NodeMixin,
 	SendMixin,
 	TargetMixin,
-} from "./mixins/index";
+} from "./mixins";
 
 interface WebAppDataContextOptions<Bot extends BotLike> {
 	bot: Bot;

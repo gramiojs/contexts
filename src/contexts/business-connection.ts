@@ -6,7 +6,7 @@ import type { Constructor } from "../types";
 import type { BotLike } from "../types";
 import { applyMixins } from "../utils";
 import { Context } from "./context";
-import { CloneMixin } from "./mixins/index";
+import { CloneMixin } from "./mixins";
 
 interface BusinessConnectionContextOptions<Bot extends BotLike> {
 	bot: Bot;

@@ -11,8 +11,8 @@ import {
 	type RequireValue,
 } from "../types";
 import { applyMixins, filterPayload } from "../utils";
-import { Context } from "./"./mixins/index"
-import { CloneMixin } from "./mixins";
+import { Context } from "./context";
+import { CloneMixin } from "./mixins/index";
 
 interface PollContextOptions<Bot extends BotLike> {
 	bot: Bot;

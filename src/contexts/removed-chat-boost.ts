@@ -7,7 +7,7 @@ import { applyMixins } from "../utils";
 
 import type { BotLike } from "../types";
 import { Context } from "./context";
-import { CloneMixin, SendMixin } from "./mixins/index";
+import { CloneMixin, SendMixin } from "./mixins";
 
 interface RemovedChatBoostContextOptions<Bot extends BotLike> {
 	bot: Bot;

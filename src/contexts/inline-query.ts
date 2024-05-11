@@ -9,7 +9,7 @@ import { applyMixins, filterPayload } from "../utils";
 
 import type { BotLike } from "../types";
 import { Context } from "./context";
-import { CloneMixin } from "./mixins/index";
+import { CloneMixin } from "./mixins";
 
 interface InlineQueryContextOptions<Bot extends BotLike> {
 	bot: Bot;

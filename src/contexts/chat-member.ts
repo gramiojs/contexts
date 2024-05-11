@@ -14,7 +14,7 @@ import {
 	CloneMixin,
 	SendMixin,
 	TargetMixin,
-} from "./mixins/index";
+} from "./mixins";
 
 interface ChatMemberContextOptions<Bot extends BotLike> {
 	bot: Bot;

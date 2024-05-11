@@ -6,7 +6,7 @@ import type { BotLike } from "../types";
 import type { Constructor } from "../types";
 import { applyMixins } from "../utils";
 import { Context } from "./context";
-import { CloneMixin, NodeMixin, SendMixin } from "./mixins/index";
+import { CloneMixin, NodeMixin, SendMixin } from "./mixins";
 
 interface MessageReactionCountContextOptions<Bot extends BotLike> {
 	bot: Bot;

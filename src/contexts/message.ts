@@ -54,7 +54,7 @@ import {
 	PinsMixin,
 	SendMixin,
 	TargetMixin,
-} from "./mixins/index";
+} from "./mixins";
 
 interface MessageContextOptions<Bot extends BotLike> {
 	bot: Bot;

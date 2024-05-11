@@ -18,7 +18,7 @@ import {
 	PinsMixin,
 	SendMixin,
 	TargetMixin,
-} from "./mixins/index";
+} from "./mixins";
 
 interface BoostAddedContextOptions<Bot extends BotLike> {
 	bot: Bot;

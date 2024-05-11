@@ -15,7 +15,7 @@ import {
 	PinsMixin,
 	SendMixin,
 	TargetMixin,
-} from "./mixins/index";
+} from "./mixins";
 
 interface PassportDataContextOptions<Bot extends BotLike> {
 	bot: Bot;

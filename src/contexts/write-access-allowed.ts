@@ -14,7 +14,7 @@ import {
 	PinsMixin,
 	SendMixin,
 	TargetMixin,
-} from "./mixins/index";
+} from "./mixins";
 
 interface WriteAccessAllowedContextOptions<Bot extends BotLike> {
 	bot: Bot;

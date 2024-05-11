@@ -7,7 +7,7 @@ import { applyMixins } from "../utils";
 import { inspectable } from "inspectable";
 import type { BotLike } from "../types";
 import { Context } from "./context";
-import { CloneMixin, SendMixin } from "./mixins/index";
+import { CloneMixin, SendMixin } from "./mixins";
 
 interface ChatBoostContextOptions<Bot extends BotLike> {
 	bot: Bot;

@@ -19,7 +19,7 @@ import {
 	PinsMixin,
 	SendMixin,
 	TargetMixin,
-} from "./mixins/index";
+} from "./mixins";
 
 interface ForumTopicEditedContextOptions<Bot extends BotLike> {
 	bot: Bot;
