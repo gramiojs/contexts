@@ -1,4 +1,4 @@
-import type { Attachment } from "../../structures/attachments";
+import type { Attachment } from "../../structures/attachments/index";
 import type { BotLike } from "../../types";
 
 import type { Context } from "../context";

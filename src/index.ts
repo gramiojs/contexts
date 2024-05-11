@@ -8,10 +8,10 @@
 // biome-ignore lint/suspicious/noExplicitAny: <explanation>
 (Symbol as any).metadata ??= Symbol("Symbol.metadata");
 
-// export * from "./contexts/index";
-// export * from "./structures/index";
-// export * from "./utils";
-// export * from "./types";
+export * from "./contexts/index";
+export * from "./structures/index";
+export * from "./utils";
+export * from "./types";
 
 // import * as Contexts from "./contexts/index";
 // import type { BotLike, ContextsMapping, MessageEventName } from "./types";

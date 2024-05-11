@@ -4,8 +4,9 @@
         "target": "ES2022",
         "module": "NodeNext",
         "moduleDetection": "force",
-        "moduleResolution": "NodeNext",
+
         /* Bundler mode */
+        "moduleResolution": "NodeNext",
         "declaration": true,
         /* Linting */
         "skipLibCheck": true,
@@ -14,7 +15,10 @@
         "forceConsistentCasingInFileNames": true,
         "baseUrl": "./src",
         "rootDir": "./src",
-        "outDir": "./dist"
+        "outDir": "./dist",
+        "paths": {
+            "#*": ["./*"]
+        }
     },
     "include": ["src/**/*.ts"]
 }

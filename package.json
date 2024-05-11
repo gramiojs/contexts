@@ -23,7 +23,8 @@
         "madge": "^7.0.0",
         "middleware-io": "^2.8.1",
         "tsup": "^8.0.2",
-        "typescript": "^5.4.5"
+        "typescript": "^5.4.5",
+        "inspectable": "^3.0.1"
     },
     "peerDependencies": {
         "inspectable": "^3.0.1",

@@ -1,5 +1,5 @@
 {
-    "name": "@gramio/format",
+    "name": "@gramio/contexts",
     "version": "0.0.13",
     "exports": "./src/index.ts",
     "publish": {
@@ -7,12 +7,13 @@
             "deno.json",
             "src",
             "README.md",
-            "tsconfig.json"
+            "tsconfig.json",
+            "package.json"
         ]
     },
     "imports": {
         "@gramio/types": "jsr:@gramio/types@^7.3.4",
-        "inspectable": "npm:inspectable@^3.0.0",
+        "inspectable": "npm:inspectable@^3.0.1",
         "middleware-io": "npm:middleware-io@^2.8.1"
     }
 }
