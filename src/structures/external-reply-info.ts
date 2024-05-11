@@ -12,7 +12,7 @@ import {
 	VideoAttachment,
 	VideoNoteAttachment,
 	VoiceAttachment,
-} from "./attachments";
+} from "./attachments/index";
 
 import { memoizeGetters } from "../utils";
 import { Chat } from "./chat";
@@ -28,7 +28,7 @@ import {
 	MessageOriginChat,
 	MessageOriginHiddenUser,
 	MessageOriginUser,
-} from "./message-origin";
+} from "./message-origin/index";
 import { PhotoSize } from "./photo-size";
 import { Poll } from "./poll";
 import { Venue } from "./venue";

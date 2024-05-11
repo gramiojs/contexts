@@ -7,7 +7,7 @@ import {
 	ChatBoostSourceGiftCode,
 	ChatBoostSourceGiveaway,
 	ChatBoostSourcePremium,
-} from "./chat-boost-source";
+} from "./chat-boost-source/index";
 
 /** This object represents a boost added to a chat or changed. */
 @Inspectable()

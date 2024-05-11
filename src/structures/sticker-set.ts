@@ -2,7 +2,7 @@ import { Inspect, Inspectable } from "inspectable";
 
 import type { TelegramObjects } from "@gramio/types";
 
-import { StickerAttachment } from "./attachments";
+import { StickerAttachment } from "./attachments/index";
 
 import { memoizeGetters } from "../utils";
 import { PhotoSize } from "./photo-size";

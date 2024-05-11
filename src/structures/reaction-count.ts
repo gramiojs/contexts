@@ -2,7 +2,10 @@ import type { TelegramObjects } from "@gramio/types";
 import { Inspect, Inspectable } from "inspectable";
 
 import { memoizeGetters } from "../utils";
-import { ReactionTypeCustomEmoji, ReactionTypeEmoji } from "./reaction-type";
+import {
+	ReactionTypeCustomEmoji,
+	ReactionTypeEmoji,
+} from "./reaction-type/index";
 
 /** Represents a reaction added to a message along with the number of times it was added. */
 @Inspectable()

@@ -5,7 +5,7 @@ import type { TelegramObjects } from "@gramio/types";
 import { Chat } from "../chat";
 
 import { memoizeGetters } from "../../utils";
-import { MessageOrigin } from "./message-origin";
+import { MessageOrigin } from "./message-origin/index";
 
 /** The message was originally sent to a channel chat. */
 @Inspectable()

@@ -26,7 +26,7 @@ import {
 	MessageOriginChat,
 	MessageOriginHiddenUser,
 	MessageOriginUser,
-} from "./message-origin";
+} from "./message-origin/index";
 import { PassportData } from "./passport-data";
 import { PhotoSize } from "./photo-size";
 import { Poll } from "./poll";
@@ -52,7 +52,7 @@ import {
 	VideoAttachment,
 	VideoNoteAttachment,
 	VoiceAttachment,
-} from "./attachments";
+} from "./attachments/index";
 
 import { memoizeGetters } from "../utils";
 import { ChatBackground } from "./chat-background";

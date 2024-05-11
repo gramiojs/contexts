@@ -3,7 +3,10 @@ import { Inspect, Inspectable } from "inspectable";
 
 import { memoizeGetters } from "../utils";
 import { Chat } from "./chat";
-import { ReactionTypeCustomEmoji, ReactionTypeEmoji } from "./reaction-type";
+import {
+	ReactionTypeCustomEmoji,
+	ReactionTypeEmoji,
+} from "./reaction-type/index";
 import type { ReactionType } from "./reaction-type/reaction-type";
 
 /** This object represents reaction changes on a message with anonymous reactions. */
