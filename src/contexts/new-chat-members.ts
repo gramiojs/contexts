@@ -30,6 +30,7 @@ interface NewChatMembersContextOptions<Bot extends BotLike> {
 
 /**  New members that were added to the group or supergroup and information about them (the bot itself may be one of these members) */
 class NewChatMembersContext<Bot extends BotLike> extends Context<Bot> {
+	/** The raw data that is used for this Context */
 	payload: TelegramObjects.TelegramMessage;
 
 	constructor(options: NewChatMembersContextOptions<Bot>) {

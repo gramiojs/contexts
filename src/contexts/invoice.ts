@@ -30,6 +30,7 @@ interface InvoiceContextOptions<Bot extends BotLike> {
  * [Documentation](https://core.telegram.org/bots/api/#invoice)
  */
 class InvoiceContext<Bot extends BotLike> extends Context<Bot> {
+	/** The raw data that is used for this Context */
 	payload: TelegramObjects.TelegramMessage;
 
 	constructor(options: InvoiceContextOptions<Bot>) {

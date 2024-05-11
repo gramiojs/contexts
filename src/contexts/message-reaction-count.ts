@@ -17,6 +17,7 @@ interface MessageReactionCountContextOptions<Bot extends BotLike> {
 
 /** This object represents reaction changes on a message with anonymous reactions. */
 class MessageReactionCountContext<Bot extends BotLike> extends Context<Bot> {
+	/** The raw data that is used for this Context */
 	payload: TelegramObjects.TelegramMessageReactionCountUpdated;
 
 	constructor(options: MessageReactionCountContextOptions<Bot>) {

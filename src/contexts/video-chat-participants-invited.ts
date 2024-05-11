@@ -36,6 +36,7 @@ interface VideoChatParticipantsInvitedContextOptions<Bot extends BotLike> {
 class VideoChatParticipantsInvitedContext<
 	Bot extends BotLike,
 > extends Context<Bot> {
+	/** The raw data that is used for this Context */
 	payload: TelegramObjects.TelegramMessage;
 
 	constructor(options: VideoChatParticipantsInvitedContextOptions<Bot>) {

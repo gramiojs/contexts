@@ -30,6 +30,7 @@ interface NewChatPhotoContextOptions<Bot extends BotLike> {
 
 /** A chat photo was change to this value */
 class NewChatPhotoContext<Bot extends BotLike> extends Context<Bot> {
+	/** The raw data that is used for this Context */
 	payload: TelegramObjects.TelegramMessage;
 
 	constructor(options: NewChatPhotoContextOptions<Bot>) {

@@ -32,6 +32,7 @@ interface MessageAutoDeleteTimerChangedContextOptions<Bot extends BotLike> {
 class MessageAutoDeleteTimerChangedContext<
 	Bot extends BotLike,
 > extends Context<Bot> {
+	/** The raw data that is used for this Context */
 	payload: TelegramObjects.TelegramMessage;
 
 	constructor(options: MessageAutoDeleteTimerChangedContextOptions<Bot>) {

@@ -28,6 +28,7 @@ interface CallbackQueryContextOptions<Bot extends BotLike> {
 
 /** Called when `callback_query` event occurs */
 class CallbackQueryContext<Bot extends BotLike> extends Context<Bot> {
+	/** The raw data that is used for this Context */
 	payload: TelegramObjects.TelegramCallbackQuery;
 
 	constructor(options: CallbackQueryContextOptions<Bot>) {

@@ -32,6 +32,7 @@ interface GeneralForumTopicUnhiddenContextOptions<Bot extends BotLike> {
 class GeneralForumTopicUnhiddenContext<
 	Bot extends BotLike,
 > extends Context<Bot> {
+	/** The raw data that is used for this Context */
 	payload: TelegramObjects.TelegramMessage;
 
 	constructor(options: GeneralForumTopicUnhiddenContextOptions<Bot>) {

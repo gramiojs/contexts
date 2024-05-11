@@ -17,6 +17,7 @@ interface MessageReactionContextOptions<Bot extends BotLike> {
 
 /** This object represents a change of a reaction on a message performed by a user. */
 class MessageReactionContext<Bot extends BotLike> extends Context<Bot> {
+	/** The raw data that is used for this Context */
 	payload: TelegramObjects.TelegramMessageReactionUpdated;
 
 	constructor(options: MessageReactionContextOptions<Bot>) {

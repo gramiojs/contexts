@@ -31,6 +31,7 @@ interface PinnedMessageContextOptions<Bot extends BotLike> {
 
 /** Specified message was pinned. Note that the Message object in this field will not contain further *reply\_to\_message* fields even if it itself is a reply. */
 class PinnedMessageContext<Bot extends BotLike> extends Context<Bot> {
+	/** The raw data that is used for this Context */
 	payload: TelegramObjects.TelegramMessage;
 
 	constructor(options: PinnedMessageContextOptions<Bot>) {

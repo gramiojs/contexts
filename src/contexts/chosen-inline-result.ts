@@ -23,6 +23,7 @@ interface ChosenInlineResultContextOptions<Bot extends BotLike> {
  * a user and sent to their chat partner
  */
 class ChosenInlineResultContext<Bot extends BotLike> extends Context<Bot> {
+	/** The raw data that is used for this Context */
 	payload: TelegramObjects.TelegramChosenInlineResult;
 
 	constructor(options: ChosenInlineResultContextOptions<Bot>) {

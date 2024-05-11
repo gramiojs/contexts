@@ -30,6 +30,7 @@ interface ForumTopicEditedContextOptions<Bot extends BotLike> {
 
 /** This object represents a service message about an edited forum topic. */
 class ForumTopicEditedContext<Bot extends BotLike> extends Context<Bot> {
+	/** The raw data that is used for this Context */
 	payload: TelegramObjects.TelegramMessage;
 
 	private event: TelegramObjects.TelegramForumTopicEdited;

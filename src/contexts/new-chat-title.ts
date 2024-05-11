@@ -30,6 +30,7 @@ interface NewChatTitleContextOptions<Bot extends BotLike> {
 
 /** A chat title was changed to this value */
 class NewChatTitleContext<Bot extends BotLike> extends Context<Bot> {
+	/** The raw data that is used for this Context */
 	payload: TelegramObjects.TelegramMessage;
 
 	constructor(options: NewChatTitleContextOptions<Bot>) {

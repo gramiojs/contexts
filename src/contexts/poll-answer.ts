@@ -23,6 +23,7 @@ interface PollAnswerContextOptions<Bot extends BotLike> {
  * [Documentation](https://core.telegram.org/bots/api/#pollanswer)
  */
 class PollAnswerContext<Bot extends BotLike> extends Context<Bot> {
+	/** The raw data that is used for this Context */
 	payload: TelegramObjects.TelegramPollAnswer;
 
 	constructor(options: PollAnswerContextOptions<Bot>) {

@@ -30,6 +30,7 @@ interface GroupChatCreatedContextOptions<Bot extends BotLike> {
 
 /** service message: the group has been created */
 class GroupChatCreatedContext<Bot extends BotLike> extends Context<Bot> {
+	/** The raw data that is used for this Context */
 	payload: TelegramObjects.TelegramMessage;
 
 	constructor(options: GroupChatCreatedContextOptions<Bot>) {

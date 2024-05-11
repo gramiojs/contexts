@@ -29,6 +29,7 @@ interface ChatJoinRequestContextOptions<Bot extends BotLike> {
  * [Documentation](https://core.telegram.org/bots/api/#chatjoinrequest)
  */
 class ChatJoinRequestContext<Bot extends BotLike> extends Context<Bot> {
+	/** The raw data that is used for this Context */
 	payload: TelegramObjects.TelegramChatJoinRequest;
 
 	constructor(options: ChatJoinRequestContextOptions<Bot>) {

@@ -17,8 +17,10 @@ interface BusinessMessagesDeletedContextOptions<Bot extends BotLike> {
 
 /** This object represents a boost added to a chat or changed. */
 class BusinessMessagesDeletedContext<Bot extends BotLike> extends Context<Bot> {
+	/** The raw data that is used for this Context */
 	payload: TelegramObjects.TelegramBusinessMessagesDeleted;
 
+	/** Create new BusinessMessagesDeletedContext */
 	constructor(options: BusinessMessagesDeletedContextOptions<Bot>) {
 		super({
 			bot: options.bot,

@@ -29,6 +29,7 @@ interface GiveawayCompletedContextOptions<Bot extends BotLike> {
 
 /** This object represents a service message about the creation of a scheduled giveaway. Currently holds no information. */
 class GiveawayCompletedContext<Bot extends BotLike> extends Context<Bot> {
+	/** The raw data that is used for this Context */
 	payload: TelegramObjects.TelegramMessage;
 
 	constructor(options: GiveawayCompletedContextOptions<Bot>) {

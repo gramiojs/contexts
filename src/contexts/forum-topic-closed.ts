@@ -30,6 +30,7 @@ interface ForumTopicClosedContextOptions<Bot extends BotLike> {
 
 /** This object represents a service message about a forum topic closed in the chat. Currently holds no information. */
 class ForumTopicClosedContext<Bot extends BotLike> extends Context<Bot> {
+	/** The raw data that is used for this Context */
 	payload: TelegramObjects.TelegramMessage;
 
 	constructor(options: ForumTopicClosedContextOptions<Bot>) {

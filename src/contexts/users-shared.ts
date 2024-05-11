@@ -25,6 +25,7 @@ interface UsersSharedContextOptions<Bot extends BotLike> {
 
 /** This object contains information about the users whose identifiers were shared with the bot using a `KeyboardButtonRequestUsers` button. */
 class UsersSharedContext<Bot extends BotLike> extends Context<Bot> {
+	/** The raw data that is used for this Context */
 	payload: TelegramObjects.TelegramMessage;
 
 	private event: TelegramObjects.TelegramUsersShared;

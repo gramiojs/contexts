@@ -18,6 +18,7 @@ interface RemovedChatBoostContextOptions<Bot extends BotLike> {
 
 /** This object represents a boost removed from a chat. */
 class RemovedChatBoostContext<Bot extends BotLike> extends Context<Bot> {
+	/** The raw data that is used for this Context */
 	payload: TelegramObjects.TelegramChatBoostRemoved;
 
 	constructor(options: RemovedChatBoostContextOptions<Bot>) {

@@ -30,6 +30,7 @@ interface GeneralForumTopicHiddenContextOptions<Bot extends BotLike> {
 
 /** This object represents a service message about General forum topic hidden in the chat. Currently holds no information. */
 class GeneralForumTopicHiddenContext<Bot extends BotLike> extends Context<Bot> {
+	/** The raw data that is used for this Context */
 	payload: TelegramObjects.TelegramMessage;
 
 	constructor(options: GeneralForumTopicHiddenContextOptions<Bot>) {

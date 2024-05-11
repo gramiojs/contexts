@@ -17,8 +17,10 @@ interface BusinessConnectionContextOptions<Bot extends BotLike> {
 
 /** This object  Describes the connection of the bot with a business account. */
 class BusinessConnectionContext<Bot extends BotLike> extends Context<Bot> {
+	/** The raw data that is used for this Context */
 	payload: TelegramObjects.TelegramBusinessConnection;
 
+	/** Create new BusinessConnectionContext */
 	constructor(options: BusinessConnectionContextOptions<Bot>) {
 		super({
 			bot: options.bot,

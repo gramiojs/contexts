@@ -18,6 +18,7 @@ interface ChatBoostContextOptions<Bot extends BotLike> {
 
 /** This object represents a boost added to a chat or changed. */
 class ChatBoostContext<Bot extends BotLike> extends Context<Bot> {
+	/** The raw data that is used for this Context */
 	payload: TelegramObjects.TelegramChatBoostUpdated;
 
 	constructor(options: ChatBoostContextOptions<Bot>) {

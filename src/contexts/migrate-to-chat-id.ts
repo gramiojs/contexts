@@ -27,6 +27,7 @@ interface MigrateToChatIdContextOptions<Bot extends BotLike> {
 
 /** The group has been migrated to a supergroup with the specified identifier. This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this identifier. */
 class MigrateToChatIdContext<Bot extends BotLike> extends Context<Bot> {
+	/** The raw data that is used for this Context */
 	payload: TelegramObjects.TelegramMessage;
 
 	constructor(options: MigrateToChatIdContextOptions<Bot>) {

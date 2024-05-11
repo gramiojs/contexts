@@ -5,6 +5,7 @@ import type { BotLike } from "../../types";
 import type { Context } from "../context";
 
 interface CloneMixinMetadata<P> {
+	/** The raw data that is used for this Context */
 	payload: P;
 }
 

@@ -30,6 +30,7 @@ interface ChatBackgroundSetContextOptions<Bot extends BotLike> {
 
 /** This object represents a service message about chat background set. */
 class ChatBackgroundSetContext<Bot extends BotLike> extends Context<Bot> {
+	/** The raw data that is used for this Context */
 	payload: TelegramObjects.TelegramMessage;
 
 	constructor(options: ChatBackgroundSetContextOptions<Bot>) {

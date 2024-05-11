@@ -30,6 +30,7 @@ interface ForumTopicReopenedContextOptions<Bot extends BotLike> {
 
 /** This object represents a service message about a forum topic reopened in the chat. Currently holds no information. */
 class ForumTopicReopenedContext<Bot extends BotLike> extends Context<Bot> {
+	/** The raw data that is used for this Context */
 	payload: TelegramObjects.TelegramMessage;
 
 	constructor(options: ForumTopicReopenedContextOptions<Bot>) {

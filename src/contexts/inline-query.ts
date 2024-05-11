@@ -24,6 +24,7 @@ interface InlineQueryContextOptions<Bot extends BotLike> {
  * [Documentation](https://core.telegram.org/bots/api/#inlinequery)
  */
 class InlineQueryContext<Bot extends BotLike> extends Context<Bot> {
+	/** The raw data that is used for this Context */
 	payload: TelegramObjects.TelegramInlineQuery;
 
 	constructor(options: InlineQueryContextOptions<Bot>) {

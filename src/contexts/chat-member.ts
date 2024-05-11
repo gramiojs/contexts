@@ -30,6 +30,7 @@ interface ChatMemberContextOptions<Bot extends BotLike> {
  * [Documentation](https://core.telegram.org/bots/api/#chatmemberupdated)
  */
 class ChatMemberContext<Bot extends BotLike> extends Context<Bot> {
+	/** The raw data that is used for this Context */
 	payload: TelegramObjects.TelegramChatMemberUpdated;
 
 	constructor(options: ChatMemberContextOptions<Bot>) {

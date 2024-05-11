@@ -24,6 +24,7 @@ interface ShippingQueryContextOptions<Bot extends BotLike> {
  * [Documentation](https://core.telegram.org/bots/api/#shippingquery)
  */
 class ShippingQueryContext<Bot extends BotLike> extends Context<Bot> {
+	/** The raw data that is used for this Context */
 	payload: TelegramObjects.TelegramShippingQuery;
 
 	constructor(options: ShippingQueryContextOptions<Bot>) {

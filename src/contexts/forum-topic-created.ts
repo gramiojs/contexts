@@ -30,6 +30,7 @@ interface ForumTopicCreatedContextOptions<Bot extends BotLike> {
 
 /** This object represents a service message about a new forum topic created in the chat. */
 class ForumTopicCreatedContext<Bot extends BotLike> extends Context<Bot> {
+	/** The raw data that is used for this Context */
 	payload: TelegramObjects.TelegramMessage;
 
 	private event: TelegramObjects.TelegramForumTopicCreated;

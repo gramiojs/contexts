@@ -66,6 +66,7 @@ interface MessageContextOptions<Bot extends BotLike> {
 
 /** Called when `message` event occurs */
 class MessageContext<Bot extends BotLike> extends Context<Bot> {
+	/** The raw data that is used for this Context */
 	payload: TelegramObjects.TelegramMessage;
 
 	#text: string | undefined;

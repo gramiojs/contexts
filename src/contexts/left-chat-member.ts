@@ -30,6 +30,7 @@ interface LeftChatMemberContextOptions<Bot extends BotLike> {
 
 /** A member was removed from the group, information about them (this member may be the bot itself) */
 class LeftChatMemberContext<Bot extends BotLike> extends Context<Bot> {
+	/** The raw data that is used for this Context */
 	payload: TelegramObjects.TelegramMessage;
 
 	constructor(options: LeftChatMemberContextOptions<Bot>) {

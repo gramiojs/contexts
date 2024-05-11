@@ -25,6 +25,7 @@ interface ChatSharedContextOptions<Bot extends BotLike> {
 
 /** This object contains information about the chat whose identifier was shared with the bot using a `KeyboardButtonRequestChat` button. */
 class ChatSharedContext<Bot extends BotLike> extends Context<Bot> {
+	/** The raw data that is used for this Context */
 	payload: TelegramObjects.TelegramMessage;
 
 	private event: TelegramObjects.TelegramChatShared;
