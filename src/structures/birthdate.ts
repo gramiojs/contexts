@@ -10,6 +10,7 @@ import { Inspect, Inspectable } from "inspectable";
 export class Birthdate {
 	constructor(public payload: TelegramObjects.TelegramBirthdate) {}
 
+	/** [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/toStringTag) */
 	get [Symbol.toStringTag]() {
 		return this.constructor.name;
 	}

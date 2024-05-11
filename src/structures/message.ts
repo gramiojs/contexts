@@ -68,6 +68,7 @@ import { Story } from "./story";
 export class Message {
 	constructor(public payload: TelegramObjects.TelegramMessage) {}
 
+	/** [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/toStringTag) */
 	get [Symbol.toStringTag]() {
 		return this.constructor.name;
 	}

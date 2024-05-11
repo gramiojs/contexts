@@ -9,6 +9,7 @@ import type { TelegramObjects } from "@gramio/types";
 export class VideoChatScheduled {
 	constructor(public payload: TelegramObjects.TelegramVideoChatScheduled) {}
 
+	/** [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/toStringTag) */
 	get [Symbol.toStringTag]() {
 		return this.constructor.name;
 	}

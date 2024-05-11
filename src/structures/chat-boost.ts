@@ -13,6 +13,7 @@ import {
 export class ChatBoost {
 	constructor(public payload: TelegramObjects.TelegramChatBoost) {}
 
+	/** [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/toStringTag) */
 	get [Symbol.toStringTag]() {
 		return this.constructor.name;
 	}

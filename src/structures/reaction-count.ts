@@ -12,6 +12,7 @@ import {
 export class ReactionCount {
 	constructor(public payload: TelegramObjects.TelegramReactionCount) {}
 
+	/** [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/toStringTag) */
 	get [Symbol.toStringTag]() {
 		return this.constructor.name;
 	}

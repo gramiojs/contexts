@@ -13,6 +13,7 @@ import { PhotoSize } from "./photo-size";
 export class Game {
 	constructor(public payload: TelegramObjects.TelegramGame) {}
 
+	/** [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/toStringTag) */
 	get [Symbol.toStringTag]() {
 		return this.constructor.name;
 	}

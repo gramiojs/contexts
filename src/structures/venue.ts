@@ -10,6 +10,7 @@ import { Location } from "./location";
 export class Venue {
 	constructor(public payload: TelegramObjects.TelegramVenue) {}
 
+	/** [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/toStringTag) */
 	get [Symbol.toStringTag]() {
 		return this.constructor.name;
 	}

@@ -10,6 +10,7 @@ import { ChatBoost } from "./chat-boost";
 export class ChatBoostUpdated {
 	constructor(public payload: TelegramObjects.TelegramChatBoostUpdated) {}
 
+	/** [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/toStringTag) */
 	get [Symbol.toStringTag]() {
 		return this.constructor.name;
 	}

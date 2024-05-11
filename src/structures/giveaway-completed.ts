@@ -9,6 +9,7 @@ import { Message } from "./message";
 export class GiveawayCompleted {
 	constructor(public payload: TelegramObjects.TelegramGiveawayCompleted) {}
 
+	/** [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/toStringTag) */
 	get [Symbol.toStringTag]() {
 		return this.constructor.name;
 	}

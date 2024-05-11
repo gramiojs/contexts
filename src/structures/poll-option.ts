@@ -11,6 +11,7 @@ import { MessageEntity } from "./message-entity";
 export class PollOption {
 	constructor(public payload: TelegramObjects.TelegramPollOption) {}
 
+	/** [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/toStringTag) */
 	get [Symbol.toStringTag]() {
 		return this.constructor.name;
 	}

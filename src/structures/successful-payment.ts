@@ -10,6 +10,7 @@ import { OrderInfo } from "./order-info";
 export class SuccessfulPayment {
 	constructor(public payload: TelegramObjects.TelegramSuccessfulPayment) {}
 
+	/** [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/toStringTag) */
 	get [Symbol.toStringTag]() {
 		return this.constructor.name;
 	}

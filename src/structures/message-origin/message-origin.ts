@@ -15,6 +15,7 @@ interface MessageOriginMapping {
 export class MessageOrigin {
 	constructor(public payload: TelegramObjects.TelegramMessageOrigin) {}
 
+	/** [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/toStringTag) */
 	get [Symbol.toStringTag]() {
 		return this.constructor.name;
 	}

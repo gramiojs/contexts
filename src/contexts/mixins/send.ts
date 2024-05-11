@@ -11,6 +11,7 @@ interface SendMixinMetadata {
 	get chatId(): number;
 	get businessConnectionId(): string | undefined;
 	get senderId(): number | undefined;
+	get threadId(): number | undefined;
 }
 
 /** This object represents a mixin which can invoke `chatId`/`senderId`-dependent methods */
@@ -20,8 +21,10 @@ class SendMixin<Bot extends BotLike> {
 		text: TelegramParams.SendMessageParams["text"],
 		params: Optional<TelegramParams.SendMessageParams, "chat_id" | "text"> = {},
 	) {
-		if (this.businessConnectionId)
+		if (this.businessConnectionId && !params.business_connection_id)
 			params.business_connection_id = this.businessConnectionId;
+		if (this.threadId && !params.message_thread_id)
+			params.message_thread_id = this.threadId;
 
 		const response = await this.bot.api.sendMessage({
 			chat_id: this.chatId || this.senderId || 0,
@@ -40,8 +43,10 @@ class SendMixin<Bot extends BotLike> {
 		photo: TelegramParams.SendPhotoParams["photo"],
 		params: Optional<TelegramParams.SendPhotoParams, "chat_id" | "photo"> = {},
 	) {
-		if (this.businessConnectionId)
+		if (this.businessConnectionId && !params.business_connection_id)
 			params.business_connection_id = this.businessConnectionId;
+		if (this.threadId && !params.message_thread_id)
+			params.message_thread_id = this.threadId;
 
 		const response = await this.bot.api.sendPhoto({
 			chat_id: this.chatId || this.senderId || 0,
@@ -63,8 +68,10 @@ class SendMixin<Bot extends BotLike> {
 			"chat_id" | "document"
 		> = {},
 	) {
-		if (this.businessConnectionId)
+		if (this.businessConnectionId && !params.business_connection_id)
 			params.business_connection_id = this.businessConnectionId;
+		if (this.threadId && !params.message_thread_id)
+			params.message_thread_id = this.threadId;
 
 		const response = await this.bot.api.sendDocument({
 			chat_id: this.chatId || this.senderId || 0,
@@ -83,8 +90,10 @@ class SendMixin<Bot extends BotLike> {
 		audio: TelegramParams.SendAudioParams["audio"],
 		params: Optional<TelegramParams.SendAudioParams, "chat_id" | "audio"> = {},
 	) {
-		if (this.businessConnectionId)
+		if (this.businessConnectionId && !params.business_connection_id)
 			params.business_connection_id = this.businessConnectionId;
+		if (this.threadId && !params.message_thread_id)
+			params.message_thread_id = this.threadId;
 
 		const response = await this.bot.api.sendAudio({
 			chat_id: this.chatId || this.senderId || 0,
@@ -103,8 +112,10 @@ class SendMixin<Bot extends BotLike> {
 		video: TelegramParams.SendVideoParams["video"],
 		params: Optional<TelegramParams.SendVideoParams, "chat_id" | "video"> = {},
 	) {
-		if (this.businessConnectionId)
+		if (this.businessConnectionId && !params.business_connection_id)
 			params.business_connection_id = this.businessConnectionId;
+		if (this.threadId && !params.message_thread_id)
+			params.message_thread_id = this.threadId;
 
 		const response = await this.bot.api.sendVideo({
 			chat_id: this.chatId || this.senderId || 0,
@@ -126,8 +137,10 @@ class SendMixin<Bot extends BotLike> {
 			"chat_id" | "animation"
 		> = {},
 	) {
-		if (this.businessConnectionId)
+		if (this.businessConnectionId && !params.business_connection_id)
 			params.business_connection_id = this.businessConnectionId;
+		if (this.threadId && !params.message_thread_id)
+			params.message_thread_id = this.threadId;
 
 		const response = await this.bot.api.sendAnimation({
 			chat_id: this.chatId || this.senderId || 0,
@@ -149,8 +162,10 @@ class SendMixin<Bot extends BotLike> {
 			"chat_id" | "video_note"
 		> = {},
 	) {
-		if (this.businessConnectionId)
+		if (this.businessConnectionId && !params.business_connection_id)
 			params.business_connection_id = this.businessConnectionId;
+		if (this.threadId && !params.message_thread_id)
+			params.message_thread_id = this.threadId;
 
 		const response = await this.bot.api.sendVideoNote({
 			chat_id: this.chatId || this.senderId || 0,
@@ -169,8 +184,10 @@ class SendMixin<Bot extends BotLike> {
 		voice: TelegramParams.SendVoiceParams["voice"],
 		params: Optional<TelegramParams.SendVoiceParams, "chat_id" | "voice"> = {},
 	) {
-		if (this.businessConnectionId)
+		if (this.businessConnectionId && !params.business_connection_id)
 			params.business_connection_id = this.businessConnectionId;
+		if (this.threadId && !params.message_thread_id)
+			params.message_thread_id = this.threadId;
 
 		const response = await this.bot.api.sendVoice({
 			chat_id: this.chatId || this.senderId || 0,
@@ -193,8 +210,10 @@ class SendMixin<Bot extends BotLike> {
 			"chat_id" | "latitude" | "longitude"
 		> = {},
 	) {
-		if (this.businessConnectionId)
+		if (this.businessConnectionId && !params.business_connection_id)
 			params.business_connection_id = this.businessConnectionId;
+		if (this.threadId && !params.message_thread_id)
+			params.message_thread_id = this.threadId;
 
 		const response = await this.bot.api.sendLocation({
 			chat_id: this.chatId || this.senderId || 0,
@@ -226,8 +245,10 @@ class SendMixin<Bot extends BotLike> {
 
 	/** Sends venue to current chat */
 	async sendVenue(params: Optional<TelegramParams.SendVenueParams, "chat_id">) {
-		if (this.businessConnectionId)
+		if (this.businessConnectionId && !params.business_connection_id)
 			params.business_connection_id = this.businessConnectionId;
+		if (this.threadId && !params.message_thread_id)
+			params.message_thread_id = this.threadId;
 
 		const response = await this.bot.api.sendVenue({
 			chat_id: this.chatId || this.senderId || 0,
@@ -244,8 +265,10 @@ class SendMixin<Bot extends BotLike> {
 	async sendContact(
 		params: Optional<TelegramParams.SendContactParams, "chat_id">,
 	) {
-		if (this.businessConnectionId)
+		if (this.businessConnectionId && !params.business_connection_id)
 			params.business_connection_id = this.businessConnectionId;
+		if (this.threadId && !params.message_thread_id)
+			params.message_thread_id = this.threadId;
 
 		const response = await this.bot.api.sendContact({
 			chat_id: this.chatId || this.senderId || 0,
@@ -260,8 +283,10 @@ class SendMixin<Bot extends BotLike> {
 
 	/** Sends poll to current chat */
 	async sendPoll(params: Optional<TelegramParams.SendPollParams, "chat_id">) {
-		if (this.businessConnectionId)
+		if (this.businessConnectionId && !params.business_connection_id)
 			params.business_connection_id = this.businessConnectionId;
+		if (this.threadId && !params.message_thread_id)
+			params.message_thread_id = this.threadId;
 
 		const response = await this.bot.api.sendPoll({
 			chat_id: this.chatId || this.senderId || 0,
@@ -282,8 +307,10 @@ class SendMixin<Bot extends BotLike> {
 			"sticker" | "chat_id"
 		> = {},
 	) {
-		if (this.businessConnectionId)
+		if (this.businessConnectionId && !params.business_connection_id)
 			params.business_connection_id = this.businessConnectionId;
+		if (this.threadId && !params.message_thread_id)
+			params.message_thread_id = this.threadId;
 
 		const response = await this.bot.api.sendSticker({
 			chat_id: this.chatId || this.senderId || 0,
@@ -319,8 +346,10 @@ class SendMixin<Bot extends BotLike> {
 			"chat_id" | "action"
 		> = {},
 	) {
-		if (this.businessConnectionId)
+		if (this.businessConnectionId && !params.business_connection_id)
 			params.business_connection_id = this.businessConnectionId;
+		if (this.threadId && !params.message_thread_id)
+			params.message_thread_id = this.threadId;
 
 		return this.bot.api.sendChatAction({
 			chat_id: this.chatId || this.senderId || 0,
@@ -334,8 +363,10 @@ class SendMixin<Bot extends BotLike> {
 		emoji: TelegramParams.SendDiceParams["emoji"],
 		params: Partial<TelegramParams.SendDiceParams> = {},
 	) {
-		if (this.businessConnectionId)
+		if (this.businessConnectionId && !params.business_connection_id)
 			params.business_connection_id = this.businessConnectionId;
+		if (this.threadId && !params.message_thread_id)
+			params.message_thread_id = this.threadId;
 
 		const response = await this.bot.api.sendDice({
 			chat_id: this.chatId || this.senderId || 0,
@@ -357,8 +388,10 @@ class SendMixin<Bot extends BotLike> {
 			"chat_id" | "media"
 		> = {},
 	) {
-		if (this.businessConnectionId)
+		if (this.businessConnectionId && !params.business_connection_id)
 			params.business_connection_id = this.businessConnectionId;
+		if (this.threadId && !params.message_thread_id)
+			params.message_thread_id = this.threadId;
 
 		const response = await this.bot.api.sendMediaGroup({
 			chat_id: this.chatId || this.senderId || 0,

@@ -11,6 +11,7 @@ export class VideoChatParticipantsInvited {
 		public payload: TelegramObjects.TelegramVideoChatParticipantsInvited,
 	) {}
 
+	/** [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/toStringTag) */
 	get [Symbol.toStringTag]() {
 		return this.constructor.name;
 	}

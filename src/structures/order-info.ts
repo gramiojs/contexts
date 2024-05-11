@@ -10,6 +10,7 @@ import { ShippingAddress } from "./shipping-address";
 export class OrderInfo {
 	constructor(public payload: TelegramObjects.TelegramOrderInfo) {}
 
+	/** [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/toStringTag) */
 	get [Symbol.toStringTag]() {
 		return this.constructor.name;
 	}

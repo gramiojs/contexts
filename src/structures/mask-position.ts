@@ -10,6 +10,7 @@ import type { TelegramObjects } from "@gramio/types";
 export class MaskPosition {
 	constructor(public payload: TelegramObjects.TelegramMaskPosition) {}
 
+	/** [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/toStringTag) */
 	get [Symbol.toStringTag]() {
 		return this.constructor.name;
 	}

@@ -9,6 +9,7 @@ import { InlineKeyboardButton } from "./inline-keyboard-button";
 export class InlineKeyboardMarkup {
 	constructor(public payload: TelegramObjects.TelegramInlineKeyboardMarkup) {}
 
+	/** [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/toStringTag) */
 	get [Symbol.toStringTag]() {
 		return this.constructor.name;
 	}

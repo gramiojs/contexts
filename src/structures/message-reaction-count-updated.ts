@@ -16,6 +16,7 @@ export class MessageReactionCountUpdated {
 		public payload: TelegramObjects.TelegramMessageReactionCountUpdated,
 	) {}
 
+	/** [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/toStringTag) */
 	get [Symbol.toStringTag]() {
 		return this.constructor.name;
 	}

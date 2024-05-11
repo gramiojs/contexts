@@ -13,6 +13,7 @@ import { Chat } from "./chat";
 export class InaccessibleMessage {
 	constructor(public payload: TelegramObjects.TelegramInaccessibleMessage) {}
 
+	/** [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/toStringTag) */
 	get [Symbol.toStringTag]() {
 		return this.constructor.name;
 	}

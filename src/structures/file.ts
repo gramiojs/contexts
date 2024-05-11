@@ -7,6 +7,7 @@ import type { TelegramObjects } from "@gramio/types";
 export class File {
 	constructor(public payload: TelegramObjects.TelegramFile) {}
 
+	/** [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/toStringTag) */
 	get [Symbol.toStringTag]() {
 		return this.constructor.name;
 	}

@@ -11,6 +11,7 @@ import { LoginUrl } from "./login-url";
 export class InlineKeyboardButton {
 	constructor(public payload: TelegramObjects.TelegramInlineKeyboardButton) {}
 
+	/** [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/toStringTag) */
 	get [Symbol.toStringTag]() {
 		return this.constructor.name;
 	}

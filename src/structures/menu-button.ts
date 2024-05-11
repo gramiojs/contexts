@@ -11,6 +11,7 @@ import { WebAppInfo } from "./web-app-info";
 export class MenuButton {
 	constructor(public payload: JoinUnion<TelegramObjects.TelegramMenuButton>) {}
 
+	/** [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/toStringTag) */
 	get [Symbol.toStringTag]() {
 		return this.constructor.name;
 	}

@@ -14,6 +14,7 @@ export class BackgroundTypeWallpaper {
 		public payload: TelegramObjects.TelegramBackgroundTypeWallpaper,
 	) {}
 
+	/** [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/toStringTag) */
 	get [Symbol.toStringTag]() {
 		return this.constructor.name;
 	}
