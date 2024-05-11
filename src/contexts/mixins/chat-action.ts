@@ -34,7 +34,7 @@ interface ControllerOptions<Bot extends BotLike> {
 		CreateActionControllerParams;
 	context: Context<Bot> & SendMixin<Bot>;
 }
-
+/** This object represent ChatAction mixin */
 class ChatActionController<Bot extends BotLike> {
 	private abortController = new AbortController();
 

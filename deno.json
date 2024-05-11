@@ -1,0 +1,35 @@
+{
+    "name": "@gramio/format",
+    "version": "0.0.13",
+    "exports": "./src/index.ts",
+    "publish": {
+        "include": [
+            "deno.json",
+            "src",
+            "README.md",
+            "tsconfig.json"
+        ]
+    },
+    "imports": {
+        "@gramio/types": "jsr:@gramio/types@^7.3.4",
+        "inspectable": "npm:inspectable@^3.0.0",
+        "middleware-io": "npm:middleware-io@^2.8.1"
+    },
+    "compilerOptions": {
+        "target": "ESNext",
+        "module": "ESNext",
+        "moduleDetection": "force",
+        "allowJs": true,
+        "esModuleInterop": true,
+        "experimentalDecorators": false,
+        "inlineSourceMap": true,
+        "isolatedModules": true,
+        "strict": true,
+        "useDefineForClassFields": true,
+        "paths": {
+            "#*": [
+                "./*"
+            ]
+        }
+    }
+}

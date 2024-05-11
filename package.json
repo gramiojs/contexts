@@ -17,7 +17,7 @@
     ],
     "devDependencies": {
         "@biomejs/biome": "1.7.3",
-        "@gramio/types": "^7.3.0",
+        "@gramio/types": "^7.3.4",
         "@types/bun": "^1.1.1",
         "common-tags": "^1.8.2",
         "madge": "^7.0.0",
@@ -26,9 +26,9 @@
         "typescript": "^5.4.5"
     },
     "peerDependencies": {
-        "inspectable": "^3.0.0",
+        "inspectable": "^3.0.1",
         "middleware-io": "^2.8.1",
-        "@gramio/types": "^7.3.0"
+        "@gramio/types": "^7.3.4"
     },
     "description": "Contexts for GramIO framework",
     "scripts": {
@@ -37,7 +37,8 @@
         "lint:fix": "bun lint --apply",
         "prepublishOnly": "tsc && bunx tsc-alias",
         "circular": "bunx madge --circular ./src --extensions=ts",
-        "generate": "bun scripts/generate.ts"
+        "generate": "bun scripts/generate.ts",
+        "jsr": "bun scripts/release-jsr.ts"
     },
     "type": "commonjs",
     "types": "dist/index.d.ts"

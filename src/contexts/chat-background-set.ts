@@ -28,7 +28,7 @@ interface ChatBackgroundSetContextOptions<Bot extends BotLike> {
 	updateId: number;
 }
 
-/** This object represents a service message about a forum topic closed in the chat. Currently holds no information. */
+/** This object represents a service message about chat background set. */
 class ChatBackgroundSetContext<Bot extends BotLike> extends Context<Bot> {
 	payload: TelegramObjects.TelegramMessage;
 

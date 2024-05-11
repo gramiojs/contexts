@@ -15,7 +15,7 @@ interface BusinessConnectionContextOptions<Bot extends BotLike> {
 	updateId: number;
 }
 
-/** This object represents a boost added to a chat or changed. */
+/** This object  Describes the connection of the bot with a business account. */
 class BusinessConnectionContext<Bot extends BotLike> extends Context<Bot> {
 	payload: TelegramObjects.TelegramBusinessConnection;
 

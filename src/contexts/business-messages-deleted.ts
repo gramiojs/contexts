@@ -1,7 +1,7 @@
 import type { TelegramObjects } from "@gramio/types";
 
 import { inspectable } from "inspectable";
-import { BusinessConnection } from "#structures/business-connection";
+import { BusinessMessagesDeleted } from "#structures";
 import type { Constructor } from "#types";
 import type { BotLike } from "#types";
 import { applyMixins } from "#utils";
@@ -11,13 +11,13 @@ import { CloneMixin } from "./mixins";
 interface BusinessMessagesDeletedContextOptions<Bot extends BotLike> {
 	bot: Bot;
 	update: TelegramObjects.TelegramUpdate;
-	payload: TelegramObjects.TelegramBusinessConnection;
+	payload: TelegramObjects.TelegramBusinessMessagesDeleted;
 	updateId: number;
 }
 
 /** This object represents a boost added to a chat or changed. */
 class BusinessMessagesDeletedContext<Bot extends BotLike> extends Context<Bot> {
-	payload: TelegramObjects.TelegramBusinessConnection;
+	payload: TelegramObjects.TelegramBusinessMessagesDeleted;
 
 	constructor(options: BusinessMessagesDeletedContextOptions<Bot>) {
 		super({
@@ -33,13 +33,16 @@ class BusinessMessagesDeletedContext<Bot extends BotLike> extends Context<Bot> {
 
 interface BusinessMessagesDeletedContext<Bot extends BotLike>
 	extends Constructor<BusinessMessagesDeletedContext<Bot>>,
-		BusinessConnection,
+		BusinessMessagesDeleted,
 		CloneMixin<
 			Bot,
 			BusinessMessagesDeletedContext<Bot>,
 			BusinessMessagesDeletedContextOptions<Bot>
 		> {}
-applyMixins(BusinessMessagesDeletedContext, [BusinessConnection, CloneMixin]);
+applyMixins(BusinessMessagesDeletedContext, [
+	BusinessMessagesDeleted,
+	CloneMixin,
+]);
 
 export { BusinessMessagesDeletedContext };
 
