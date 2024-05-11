@@ -16,6 +16,7 @@ export * from "./types";
 import * as Contexts from "./contexts/index";
 import type { BotLike, ContextsMapping, MessageEventName } from "./types";
 
+/** Mapping UpdateNames to their contexts */
 export const contextsMappings = {
 	callback_query: Contexts.CallbackQueryContext,
 	chat_join_request: Contexts.ChatJoinRequestContext,
