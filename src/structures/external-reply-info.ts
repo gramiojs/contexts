@@ -14,7 +14,7 @@ import {
 	VoiceAttachment,
 } from "./attachments";
 
-import { memoizeGetters } from "#utils";
+import { memoizeGetters } from "../utils";
 import { Chat } from "./chat";
 import { Dice } from "./dice";
 import { Game } from "./game";

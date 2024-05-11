@@ -2,7 +2,7 @@ import { Inspect, Inspectable } from "inspectable";
 
 import type { TelegramObjects } from "@gramio/types";
 
-import { memoizeGetters } from "#utils";
+import { memoizeGetters } from "../utils";
 import { User } from "./user";
 
 /** Represents an invite link for a chat. */

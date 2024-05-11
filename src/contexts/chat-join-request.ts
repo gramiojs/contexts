@@ -1,12 +1,12 @@
 import { inspectable } from "inspectable";
 
-import type { Constructor } from "#types";
-import { applyMixins } from "#utils";
+import type { Constructor } from "../types";
+import { applyMixins } from "../utils";
 
 import type { TelegramObjects } from "@gramio/types";
 import { ChatJoinRequest } from "../structures";
 
-import type { BotLike } from "#types";
+import type { BotLike } from "../types";
 import { Context } from "./context";
 import {
 	ChatActionMixin,

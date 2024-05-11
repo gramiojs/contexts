@@ -1,9 +1,9 @@
 import type { TelegramParams } from "@gramio/types";
-import type { Optional } from "#types";
+import type { Optional } from "../../types";
 
 import type { Context } from "../context";
 
-import type { BotLike } from "#types";
+import type { BotLike } from "../../types";
 import type { TargetMixin } from "./target";
 
 /** This object is a mixin that does all the chat-sender stuff, right? */

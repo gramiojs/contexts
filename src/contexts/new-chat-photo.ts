@@ -3,10 +3,10 @@ import { inspectable } from "inspectable";
 import type { TelegramObjects } from "@gramio/types";
 import { Message, PhotoSize } from "../structures";
 
-import type { Constructor } from "#types";
-import { applyMixins } from "#utils";
+import type { Constructor } from "../types";
+import { applyMixins } from "../utils";
 
-import type { BotLike } from "#types";
+import type { BotLike } from "../types";
 import { Context } from "./context";
 import {
 	ChatActionMixin,

@@ -54,7 +54,7 @@ import {
 	VoiceAttachment,
 } from "./attachments";
 
-import { memoizeGetters } from "#utils";
+import { memoizeGetters } from "../utils";
 import { ChatBackground } from "./chat-background";
 import { ChatBoostAdded } from "./chat-boost-added";
 import { Giveaway } from "./giveaway";

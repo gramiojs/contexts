@@ -3,10 +3,10 @@ import { Message, PassportData } from "../structures";
 
 import type { TelegramObjects } from "@gramio/types";
 
-import type { Constructor } from "#types";
-import { applyMixins, memoizeGetters } from "#utils";
+import type { Constructor } from "../types";
+import { applyMixins, memoizeGetters } from "../utils";
 
-import type { BotLike } from "#types";
+import type { BotLike } from "../types";
 import { Context } from "./context";
 import {
 	ChatActionMixin,

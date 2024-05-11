@@ -1,5 +1,5 @@
-import type { BotLike } from "#types";
 import type { Attachment } from "../../structures/attachments";
+import type { BotLike } from "../../types";
 
 import type { Context } from "../context";
 

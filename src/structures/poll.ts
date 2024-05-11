@@ -2,7 +2,7 @@ import { Inspect, Inspectable } from "inspectable";
 
 import type { TelegramObjects } from "@gramio/types";
 
-import { memoizeGetters } from "#utils";
+import { memoizeGetters } from "../utils";
 import { MessageEntity } from "./message-entity";
 import { PollOption } from "./poll-option";
 

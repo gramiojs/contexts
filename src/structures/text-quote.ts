@@ -1,7 +1,7 @@
 import type { TelegramObjects } from "@gramio/types";
 import { Inspect, Inspectable } from "inspectable";
 
-import { memoizeGetters } from "#utils";
+import { memoizeGetters } from "../utils";
 import { MessageEntity } from "./message-entity";
 
 /** This object contains information about the quoted part of a message that is replied to by the given message. */

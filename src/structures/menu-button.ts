@@ -2,8 +2,8 @@ import { Inspect, Inspectable } from "inspectable";
 
 import type { TelegramObjects } from "@gramio/types";
 
-import type { JoinUnion } from "#types";
-import { memoizeGetters } from "#utils";
+import type { JoinUnion } from "../types";
+import { memoizeGetters } from "../utils";
 import { WebAppInfo } from "./web-app-info";
 
 /** This object describes the bot's menu button in a private chat. */

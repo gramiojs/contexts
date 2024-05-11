@@ -1,12 +1,12 @@
-import type { Message } from "#structures";
+import type { Message } from "./structures";
 
-import type { MessageEventName } from "#types";
+import type { MessageEventName } from "./types";
 
 export function memoizeGetters<T>(
 	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 	cls: new (...args: any[]) => T,
 	fields: (keyof T)[],
-) {
+): void {
 	for (const field of fields) {
 		const desc = Object.getOwnPropertyDescriptor(cls.prototype, field);
 		if (!desc) continue;
@@ -33,7 +33,10 @@ export function memoizeGetters<T>(
 }
 
 // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-export const applyMixins = (derivedCtor: any, baseCtors: any[]) => {
+export const applyMixins: (derivedCtor: any, baseCtors: any[]) => void = (
+	derivedCtor: any,
+	baseCtors: any[],
+) => {
 	for (const baseCtor of baseCtors) {
 		for (const name of Object.getOwnPropertyNames(baseCtor.prototype)) {
 			if (name === "constructor") {
@@ -56,11 +59,14 @@ export const applyMixins = (derivedCtor: any, baseCtors: any[]) => {
 };
 
 // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-export const isPlainObject = (object: object): object is Record<string, any> =>
-	Object.prototype.toString.call(object) === "[object Object]";
+export const isPlainObject: (object: object) => object is Record<string, any> =
+	(object: object): object is Record<string, any> =>
+		Object.prototype.toString.call(object) === "[object Object]";
 
 // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-export const filterPayload = (payload: Record<string, any>) => {
+export const filterPayload: (
+	payload: Record<string, any>,
+) => Record<string, unknown> = (payload: Record<string, any>) => {
 	const filteredPayload: Record<string, unknown> = {};
 
 	for (const [key, value] of Object.entries(payload)) {
@@ -80,7 +86,7 @@ export const filterPayload = (payload: Record<string, any>) => {
 	return filteredPayload;
 };
 
-export const isParsable = (source: string) => {
+export const isParsable: (source: string) => boolean = (source: string) => {
 	try {
 		JSON.parse(source);
 	} catch (e) {

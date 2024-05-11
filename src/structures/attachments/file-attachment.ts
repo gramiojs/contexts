@@ -1,6 +1,6 @@
 import { Inspect, Inspectable } from "inspectable";
 
-import type { AttachmentType } from "#types";
+import type { AttachmentType } from "../../types";
 
 import { Attachment } from "./attachment";
 

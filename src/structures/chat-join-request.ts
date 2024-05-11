@@ -1,7 +1,7 @@
 import type { TelegramObjects } from "@gramio/types";
 import { Inspect, Inspectable } from "inspectable";
 
-import { memoizeGetters } from "#utils";
+import { memoizeGetters } from "../utils";
 import { Chat } from "./chat";
 import { ChatInviteLink } from "./chat-invite-link";
 import { User } from "./user";

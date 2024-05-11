@@ -2,7 +2,7 @@ import { Inspect, Inspectable } from "inspectable";
 
 import type { TelegramObjects } from "@gramio/types";
 
-import { memoizeGetters } from "#utils";
+import { memoizeGetters } from "../utils";
 import { Location } from "./location";
 
 /** Represents a location to which a chat is connected. */

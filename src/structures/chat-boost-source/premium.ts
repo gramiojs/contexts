@@ -3,7 +3,7 @@ import { Inspect, Inspectable } from "inspectable";
 
 import { User } from "../user";
 
-import { memoizeGetters } from "#utils";
+import { memoizeGetters } from "../../utils";
 import { ChatBoostSource } from "./chat-boost-source";
 
 /** The boost was obtained by subscribing to Telegram Premium or by gifting a Telegram Premium subscription to another user. */

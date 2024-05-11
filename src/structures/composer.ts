@@ -1,7 +1,7 @@
 import { Inspectable } from "inspectable";
 import { Composer as MiddlewareComposer } from "middleware-io";
 
-import type { Context } from "#contexts/context";
+import type { Context } from "../contexts/context";
 
 @Inspectable()
 // @ts-expect-error Composer does not like MiddlewareComposer...

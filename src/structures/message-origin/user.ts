@@ -4,7 +4,7 @@ import type { TelegramObjects } from "@gramio/types";
 
 import { User } from "../user";
 
-import { memoizeGetters } from "#utils";
+import { memoizeGetters } from "../../utils";
 import { MessageOrigin } from "./message-origin";
 
 /** The message was originally sent by a known user. */

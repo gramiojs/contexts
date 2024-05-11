@@ -1,11 +1,11 @@
 import type { TelegramParams } from "@gramio/types";
 import type { TelegramObjects } from "@gramio/types";
 
-import type { Optional } from "#types";
+import type { Optional } from "../../types";
 
 import type { Context } from "../context";
 
-import type { BotLike } from "#types";
+import type { BotLike } from "../../types";
 import type { NodeMixin } from "./node";
 import type { TargetMixin } from "./target";
 

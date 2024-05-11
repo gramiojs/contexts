@@ -4,7 +4,7 @@ import type { TelegramObjects } from "@gramio/types";
 
 import { StickerAttachment } from "./attachments";
 
-import { memoizeGetters } from "#utils";
+import { memoizeGetters } from "../utils";
 import { PhotoSize } from "./photo-size";
 
 /** This object represents a sticker set. */

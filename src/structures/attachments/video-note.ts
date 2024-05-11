@@ -1,11 +1,11 @@
 import { Inspect, Inspectable } from "inspectable";
 
 import type { TelegramObjects } from "@gramio/types";
-import type { AttachmentType } from "#types";
+import type { AttachmentType } from "../../types";
 
 import { PhotoSize } from "../photo-size";
 
-import { memoizeGetters } from "#utils";
+import { memoizeGetters } from "../../utils";
 import { FileAttachment } from "./file-attachment";
 
 /** This object represents a video message. */

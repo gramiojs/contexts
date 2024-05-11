@@ -1,6 +1,6 @@
 import type { TelegramObjects } from "@gramio/types";
 import { Inspect, Inspectable } from "inspectable";
-import { memoizeGetters } from "#utils";
+import { memoizeGetters } from "../utils";
 import { Birthdate } from "./birthdate";
 import { BusinessIntro } from "./business-intro";
 import { BusinessLocation } from "./business-location";

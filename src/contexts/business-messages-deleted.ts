@@ -1,10 +1,10 @@
 import type { TelegramObjects } from "@gramio/types";
 
 import { inspectable } from "inspectable";
-import { BusinessMessagesDeleted } from "#structures";
-import type { Constructor } from "#types";
-import type { BotLike } from "#types";
-import { applyMixins } from "#utils";
+import { BusinessMessagesDeleted } from "../structures";
+import type { Constructor } from "../types";
+import type { BotLike } from "../types";
+import { applyMixins } from "../utils";
 import { Context } from "./context";
 import { CloneMixin } from "./mixins";
 

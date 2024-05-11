@@ -2,10 +2,10 @@ import { inspectable } from "inspectable";
 
 import type { TelegramObjects } from "@gramio/types";
 
-import { SERVICE_MESSAGE_EVENTS } from "#utils";
+import { SERVICE_MESSAGE_EVENTS } from "../utils";
 
-import type { BotLike } from "#types";
-import type { ContextType, MaybeArray, SoftString, UpdateName } from "#types";
+import type { BotLike } from "../types";
+import type { ContextType, MaybeArray, SoftString, UpdateName } from "../types";
 
 interface ContextOptions<Bot extends BotLike> {
 	bot: Bot;

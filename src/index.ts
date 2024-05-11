@@ -16,7 +16,7 @@ export * from "./types";
 import * as Contexts from "./contexts";
 import type { BotLike, ContextsMapping, MessageEventName } from "./types";
 
-export const contextsMappings = {
+export const contextsMappings: { callback_query: any; chat_join_request: any; chat_member: any; my_chat_member: any; chosen_inline_result: any; delete_chat_photo: any; group_chat_created: any; inline_query: any; invoice: any; left_chat_member: any; location: any; message_auto_delete_timer_changed: any; message: any; channel_post: any; edited_message: any; edited_channel_post: any; business_message: any; edited_business_message: any; deleted_business_messages: any; business_connection: any; migrate_from_chat_id: any; migrate_to_chat_id: any; new_chat_members: any; new_chat_photo: any; new_chat_title: any; passport_data: any; pinned_message: any; poll_answer: any; poll: any; pre_checkout_query: any; proximity_alert_triggered: any; write_access_allowed: any; boost_added: any; chat_background_set: any; forum_topic_created: any; forum_topic_edited: any; forum_topic_closed: any; forum_topic_reopened: any; general_forum_topic_hidden: any; general_forum_topic_unhidden: any; shipping_query: any; successful_payment: any; users_shared: any; chat_shared: any; video_chat_ended: any; video_chat_participants_invited: any; video_chat_scheduled: any; video_chat_started: any; web_app_data: any; service_message: any; message_reaction: any; message_reaction_count: any; chat_boost: any; removed_chat_boost: any; giveaway_created: any; giveaway_completed: any; giveaway_winners: any; } = {
 	callback_query: Contexts.CallbackQueryContext,
 	chat_join_request: Contexts.ChatJoinRequestContext,
 	chat_member: Contexts.ChatMemberContext,

@@ -31,11 +31,16 @@ import type {
 	Require,
 	RequireValue,
 	UpdateName,
-} from "#types";
-import { applyMixins, filterPayload, isParsable, memoizeGetters } from "#utils";
-import { EVENTS, SERVICE_MESSAGE_EVENTS } from "#utils";
+} from "../types";
+import {
+	applyMixins,
+	filterPayload,
+	isParsable,
+	memoizeGetters,
+} from "../utils";
+import { EVENTS, SERVICE_MESSAGE_EVENTS } from "../utils";
 
-import type { BotLike } from "#types";
+import type { BotLike } from "../types";
 import { Context } from "./context";
 import {
 	ChatActionMixin,

@@ -1,5 +1,5 @@
-import type { AttachmentType } from "#types";
-import { applyMixins } from "#utils";
+import type { AttachmentType } from "../../types";
+import { applyMixins } from "../../utils";
 
 import { Venue } from "../venue";
 
