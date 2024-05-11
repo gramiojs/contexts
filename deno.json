@@ -1,6 +1,6 @@
 {
     "name": "@gramio/contexts",
-    "version": "0.0.13",
+    "version": "0.0.15",
     "exports": "./src/index.ts",
     "publish": {
         "include": [
