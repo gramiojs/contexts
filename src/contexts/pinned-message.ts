@@ -29,6 +29,7 @@ interface PinnedMessageContextOptions<Bot extends BotLike> {
 	updateId: number;
 }
 
+/** Specified message was pinned. Note that the Message object in this field will not contain further *reply\_to\_message* fields even if it itself is a reply. */
 class PinnedMessageContext<Bot extends BotLike> extends Context<Bot> {
 	payload: TelegramObjects.TelegramMessage;
 

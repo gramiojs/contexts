@@ -38,7 +38,6 @@ export * from "./chat-photo";
 export * from "./chat-shared";
 export * from "./chat";
 export * from "./chosen-inline-result";
-export * from "./composer";
 export * from "./contact";
 export * from "./dice";
 export * from "./encrypted-credentials";

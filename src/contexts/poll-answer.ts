@@ -17,6 +17,11 @@ interface PollAnswerContextOptions<Bot extends BotLike> {
 	updateId: number;
 }
 
+/**
+ * This object represents an answer of a user in a non-anonymous poll.
+ *
+ * [Documentation](https://core.telegram.org/bots/api/#pollanswer)
+ */
 class PollAnswerContext<Bot extends BotLike> extends Context<Bot> {
 	payload: TelegramObjects.TelegramPollAnswer;
 

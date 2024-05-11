@@ -28,6 +28,7 @@ interface NewChatPhotoContextOptions<Bot extends BotLike> {
 	updateId: number;
 }
 
+/** A chat photo was change to this value */
 class NewChatPhotoContext<Bot extends BotLike> extends Context<Bot> {
 	payload: TelegramObjects.TelegramMessage;
 

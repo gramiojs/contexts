@@ -28,6 +28,11 @@ interface VideoChatParticipantsInvitedContextOptions<Bot extends BotLike> {
 	updateId: number;
 }
 
+/**
+ * This object represents a service message about new members invited to a video chat.
+ *
+ * [Documentation](https://core.telegram.org/bots/api/#videochatparticipantsinvited)
+ */
 class VideoChatParticipantsInvitedContext<
 	Bot extends BotLike,
 > extends Context<Bot> {

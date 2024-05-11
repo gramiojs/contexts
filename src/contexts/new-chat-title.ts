@@ -28,6 +28,7 @@ interface NewChatTitleContextOptions<Bot extends BotLike> {
 	updateId: number;
 }
 
+/** A chat title was changed to this value */
 class NewChatTitleContext<Bot extends BotLike> extends Context<Bot> {
 	payload: TelegramObjects.TelegramMessage;
 

@@ -28,6 +28,7 @@ interface DeleteChatPhotoContextOptions<Bot extends BotLike> {
 	updateId: number;
 }
 
+/** Service message: the chat photo was deleted */
 class DeleteChatPhotoContext<Bot extends BotLike> extends Context<Bot> {
 	payload: TelegramObjects.TelegramMessage;
 

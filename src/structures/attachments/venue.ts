@@ -5,6 +5,11 @@ import { Venue } from "../venue";
 
 import { Attachment } from "./attachment";
 
+/**
+ * This object represents a venue.
+ *
+ * [Documentation](https://core.telegram.org/bots/api/#venue)
+ */
 class VenueAttachment extends Venue {
 	attachmentType: AttachmentType = "venue";
 }

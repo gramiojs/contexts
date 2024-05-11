@@ -28,6 +28,11 @@ interface VideoChatEndedContextOptions<Bot extends BotLike> {
 	updateId: number;
 }
 
+/**
+ * This object represents a service message about a video chat ended in the chat.
+ *
+ * [Documentation](https://core.telegram.org/bots/api/#videochatended)
+ */
 class VideoChatEndedContext<Bot extends BotLike> extends Context<Bot> {
 	payload: TelegramObjects.TelegramMessage;
 

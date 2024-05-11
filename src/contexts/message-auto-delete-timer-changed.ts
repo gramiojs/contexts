@@ -24,6 +24,11 @@ interface MessageAutoDeleteTimerChangedContextOptions<Bot extends BotLike> {
 	updateId: number;
 }
 
+/**
+ * This object represents a service message about a change in auto-delete timer settings.
+ *
+ * [Documentation](https://core.telegram.org/bots/api/#messageautodeletetimerchanged)
+ */
 class MessageAutoDeleteTimerChangedContext<
 	Bot extends BotLike,
 > extends Context<Bot> {

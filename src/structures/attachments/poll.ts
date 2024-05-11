@@ -5,6 +5,7 @@ import { Poll } from "../poll";
 
 import { Attachment } from "./attachment";
 
+/** This object contains information about a poll. */
 class PollAttachment extends Poll {
 	attachmentType: AttachmentType = "poll";
 }

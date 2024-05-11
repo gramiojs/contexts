@@ -18,6 +18,11 @@ interface PreCheckoutQueryContextOptions<Bot extends BotLike> {
 	updateId: number;
 }
 
+/**
+ * This object contains information about an incoming pre-checkout query.
+ *
+ * [Documentation](https://core.telegram.org/bots/api/#precheckoutquery)
+ */
 class PreCheckoutQueryContext<Bot extends BotLike> extends Context<Bot> {
 	payload: TelegramObjects.TelegramPreCheckoutQuery;
 

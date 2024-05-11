@@ -3,6 +3,11 @@ import { Inspect, Inspectable } from "inspectable";
 import type { TelegramObjects } from "@gramio/types";
 import { Chat } from "./chat";
 
+/**
+ * This object represents a story.
+ *
+ * [Documentation](https://core.telegram.org/bots/api/#story)
+ */
 @Inspectable()
 export class Story {
 	constructor(public payload: TelegramObjects.TelegramStory) {}

@@ -18,6 +18,11 @@ interface ShippingQueryContextOptions<Bot extends BotLike> {
 	updateId: number;
 }
 
+/**
+ * This object contains information about an incoming shipping query.
+ *
+ * [Documentation](https://core.telegram.org/bots/api/#shippingquery)
+ */
 class ShippingQueryContext<Bot extends BotLike> extends Context<Bot> {
 	payload: TelegramObjects.TelegramShippingQuery;
 

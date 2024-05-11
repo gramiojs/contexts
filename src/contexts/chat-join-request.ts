@@ -23,6 +23,11 @@ interface ChatJoinRequestContextOptions<Bot extends BotLike> {
 	updateId: number;
 }
 
+/**
+ * Represents a join request sent to a chat.
+ *
+ * [Documentation](https://core.telegram.org/bots/api/#chatjoinrequest)
+ */
 class ChatJoinRequestContext<Bot extends BotLike> extends Context<Bot> {
 	payload: TelegramObjects.TelegramChatJoinRequest;
 

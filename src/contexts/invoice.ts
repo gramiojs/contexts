@@ -24,6 +24,11 @@ interface InvoiceContextOptions<Bot extends BotLike> {
 	updateId: number;
 }
 
+/**
+ * Message is an invoice for a [payment](https://core.telegram.org/bots/api/#payments), information about the invoice. [More about payments »](https://core.telegram.org/bots/api/#payments)
+ *
+ * [Documentation](https://core.telegram.org/bots/api/#invoice)
+ */
 class InvoiceContext<Bot extends BotLike> extends Context<Bot> {
 	payload: TelegramObjects.TelegramMessage;
 

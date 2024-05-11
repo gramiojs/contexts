@@ -27,7 +27,11 @@ interface VideoChatScheduledContextOptions<Bot extends BotLike> {
 	payload: TelegramObjects.TelegramMessage;
 	updateId: number;
 }
-
+/**
+ * This object represents a service message about a video chat scheduled in the chat.
+ *
+ * [Documentation](https://core.telegram.org/bots/api/#videochatscheduled)
+ */
 class VideoChatScheduledContext<Bot extends BotLike> extends Context<Bot> {
 	payload: TelegramObjects.TelegramMessage;
 

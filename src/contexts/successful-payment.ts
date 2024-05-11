@@ -24,6 +24,11 @@ interface SuccessfulPaymentContextOptions<Bot extends BotLike> {
 	updateId: number;
 }
 
+/**
+ * This object contains basic information about a successful payment.
+ *
+ * [Documentation](https://core.telegram.org/bots/api/#successfulpayment)
+ */
 class SuccessfulPaymentContext<Bot extends BotLike> extends Context<Bot> {
 	payload: TelegramObjects.TelegramMessage;
 

@@ -4,6 +4,7 @@ import type { AttachmentType } from "../../types";
 
 import { Attachment } from "./attachment";
 
+/** Base interface for attachment */
 export interface DefaultAttachment {
 	file_id: string;
 	file_unique_id: string;

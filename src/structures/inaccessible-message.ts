@@ -4,6 +4,11 @@ import { Inspect, Inspectable } from "inspectable";
 import { memoizeGetters } from "../utils";
 import { Chat } from "./chat";
 
+/**
+ * This object describes a message that was deleted or is otherwise inaccessible to the bot.
+ *
+ * [Documentation](https://core.telegram.org/bots/api/#inaccessiblemessage)
+ */
 @Inspectable()
 export class InaccessibleMessage {
 	constructor(public payload: TelegramObjects.TelegramInaccessibleMessage) {}

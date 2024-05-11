@@ -28,6 +28,11 @@ interface LocationContextOptions<Bot extends BotLike> {
 	updateId: number;
 }
 
+/**
+ * This object represents a point on the map.
+ *
+ * [Documentation](https://core.telegram.org/bots/api/#location)
+ */
 class LocationContext<Bot extends BotLike> extends Context<Bot> {
 	payload: TelegramObjects.TelegramMessage;
 

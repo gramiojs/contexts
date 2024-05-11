@@ -2,6 +2,11 @@ import type { TelegramObjects } from "@gramio/types";
 
 import { ReactionType } from "./reaction-type";
 
+/**
+ * The reaction is based on an emoji.
+ *
+ * [Documentation](https://core.telegram.org/bots/api/#reactiontypeemoji)
+ */
 export class ReactionTypeEmoji extends ReactionType {
 	constructor(public payload: TelegramObjects.TelegramReactionTypeEmoji) {
 		super(payload);

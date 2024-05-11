@@ -14,6 +14,7 @@ interface ContextOptions<Bot extends BotLike> {
 	updateId?: number;
 }
 
+/** Main base context */
 class Context<Bot extends BotLike> {
 	bot: Bot;
 	updateId?: number;

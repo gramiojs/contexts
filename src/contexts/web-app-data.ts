@@ -23,6 +23,11 @@ interface WebAppDataContextOptions<Bot extends BotLike> {
 	updateId: number;
 }
 
+/**
+ * Describes data sent from a [Web App](https://core.telegram.org/bots/webapps) to the bot.
+ *
+ * [Documentation](https://core.telegram.org/bots/api/#webappdata)
+ */
 class WebAppDataContext<Bot extends BotLike> extends Context<Bot> {
 	payload: TelegramObjects.TelegramMessage;
 

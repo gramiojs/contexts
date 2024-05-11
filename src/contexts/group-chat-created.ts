@@ -28,6 +28,7 @@ interface GroupChatCreatedContextOptions<Bot extends BotLike> {
 	updateId: number;
 }
 
+/** service message: the group has been created */
 class GroupChatCreatedContext<Bot extends BotLike> extends Context<Bot> {
 	payload: TelegramObjects.TelegramMessage;
 

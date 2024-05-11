@@ -67,6 +67,7 @@ type SuppressedAPIMethods<Methods extends keyof APIMethods = keyof APIMethods> =
 					) => Promise<SuppressedReturn<APIMethod, IsSuppressed>>;
 	};
 
+/** The required object that the contexts are based on */
 export interface BotLike {
 	// biome-ignore lint/complexity/noBannedTypes: <explanation>
 	__Derives?: Record<UpdateName | "global", {}>;
@@ -90,6 +91,7 @@ export interface BotLike {
 	): Promise<string>;
 }
 
+/** Mapping events to their contexts */
 export type ContextsMapping<Bot extends BotLike> = {
 	callback_query: Contexts.CallbackQueryContext<Bot>;
 	chat_join_request: Contexts.ChatJoinRequestContext<Bot>;
@@ -150,11 +152,13 @@ export type ContextsMapping<Bot extends BotLike> = {
 	giveaway_winners: Contexts.GiveawayWinnersContext<Bot>;
 };
 
+/** Type util to get type of Context */
 export type ContextType<
 	Bot extends BotLike,
 	Name extends keyof ContextsMapping<Bot>,
 > = InstanceType<ContextsMapping<Bot>[Name]>;
 
+/** Union type of MessageEvent names */
 export type MessageEventName =
 	| "new_chat_members"
 	| "left_chat_member"
@@ -192,12 +196,15 @@ export type MessageEventName =
 	| "chat_background_set";
 // | "removed_chat_boost";
 
+/** Custom Event Name */
 export type CustomEventName = "service_message";
+/** Union type of Update names */
 export type UpdateName =
 	| Exclude<keyof TelegramUpdate, "update_id">
 	| MessageEventName
 	| CustomEventName;
 
+/** Type helper to join union type */
 export type JoinUnion<T> = T extends infer U
 	? // biome-ignore lint/suspicious/noExplicitAny: <explanation>
 		U extends any
@@ -206,8 +213,10 @@ export type JoinUnion<T> = T extends infer U
 		: never
 	: never;
 
+/** Type helper to add array and non-array type */
 export type MaybeArray<T> = T | T[];
 
+/** Union type of attachments type */
 export type AttachmentType =
 	| TelegramInputMedia["type"]
 	| "sticker"
@@ -225,6 +234,7 @@ export type SoftString<S extends string> = (string & {}) | S;
 /** Like `Required<T>` but for specified keys of `T` */
 export type Require<O, K extends keyof O> = { [P in K]-?: NonNullable<O[P]> };
 
+/** Type helper constructor */
 // biome-ignore lint/complexity/noBannedTypes: <explanation>
 // biome-ignore lint/suspicious/noExplicitAny: <explanation>
 export type Constructor<T = {}> = new (...args: any[]) => T;
@@ -234,6 +244,7 @@ export type RequireValue<O, K extends keyof O, V> = Omit<O, K> & {
 	[P in K]-?: V;
 };
 
+/** Make some keys optional */
 export type Optional<
 	T,
 	K extends keyof T,
@@ -248,26 +259,36 @@ Pick<
 	[key: string]: any;
 };
 
+/** Type util to make chat_id optional and add type property */
 type id<T, I extends { chat_id: string | number }> = { type: T } & Optional<
 	I,
 	"chat_id"
 >;
 
+/** This type represent SendAnimationParams and used by {@link Contexts.MessageContext.sendMedia} */
 export type tSendAnimation = id<
 	"animation",
 	TelegramParams.SendAnimationParams
 >;
+/** This type represent SendAudioParams and used by {@link Contexts.MessageContext.sendMedia} */
 export type tSendAudio = id<"audio", TelegramParams.SendAudioParams>;
+/** This type represent SendDocumentParams and used by {@link Contexts.MessageContext.sendMedia} */
 export type tSendDocument = id<"document", TelegramParams.SendDocumentParams>;
+/** This type represent SendPhotoParams and used by {@link Contexts.MessageContext.sendMedia} */
 export type tSendPhoto = id<"photo", TelegramParams.SendPhotoParams>;
+/** This type represent SendStickerParams and used by {@link Contexts.MessageContext.sendMedia} */
 export type tSendSticker = id<"sticker", TelegramParams.SendStickerParams>;
+/** This type represent SendVideoParams and used by {@link Contexts.MessageContext.sendMedia} */
 export type tSendVideo = id<"video", TelegramParams.SendVideoParams>;
+/** This type represent SendVideoNoteParams and used by {@link Contexts.MessageContext.sendMedia} */
 export type tSendVideoNote = id<
 	"video_note",
 	TelegramParams.SendVideoNoteParams
 >;
+/** This type represent SendVoiceParams and used by {@link Contexts.MessageContext.sendMedia} */
 export type tSendVoice = id<"voice", TelegramParams.SendVoiceParams>;
 
+/** This Union type represent a media that can be sended and used by {@link Contexts.MessageContext.sendMedia} */
 export type tSendMethods =
 	| tSendAnimation
 	| tSendAudio
@@ -278,6 +299,7 @@ export type tSendMethods =
 	| tSendVideoNote
 	| tSendVoice;
 
+/** Enum of ChatType property */
 export enum ChatType {
 	Private = "private",
 	Group = "group",
@@ -285,11 +307,13 @@ export enum ChatType {
 	Channel = "channel",
 }
 
+/** Enum of PollType property */
 export enum PollType {
 	Regular = "regular",
 	Quiz = "quiz",
 }
 
+/** Mapping attachments type to their structures */
 export interface AttachmentsMapping {
 	animation: Attachments.AnimationAttachment;
 	audio: Attachments.AudioAttachment;
@@ -306,6 +330,7 @@ export interface AttachmentsMapping {
 	voice: Attachments.VoiceAttachment;
 }
 
+/** Enum of EntityType property */
 export enum EntityType {
 	Mention = "mention",
 	Hashtag = "hashtag",

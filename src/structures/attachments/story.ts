@@ -8,6 +8,11 @@ class StoryAttachment extends Story {
 	attachmentType: AttachmentType = "story";
 }
 
+/**
+ * This object represents a story.
+ *
+ * [Documentation](https://core.telegram.org/bots/api/#story)
+ */
 interface StoryAttachment extends Attachment {}
 applyMixins(StoryAttachment, [Attachment]);
 

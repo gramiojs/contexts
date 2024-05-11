@@ -24,6 +24,11 @@ interface ChatMemberContextOptions<Bot extends BotLike> {
 	type?: UpdateName;
 }
 
+/**
+ * This object represents changes in the status of a chat member.
+ *
+ * [Documentation](https://core.telegram.org/bots/api/#chatmemberupdated)
+ */
 class ChatMemberContext<Bot extends BotLike> extends Context<Bot> {
 	payload: TelegramObjects.TelegramChatMemberUpdated;
 

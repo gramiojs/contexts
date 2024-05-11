@@ -28,6 +28,11 @@ interface VideoChatStartedContextOptions<Bot extends BotLike> {
 	updateId: number;
 }
 
+/**
+ * This object represents a service message about a video chat started in the chat.
+ *
+ * [Documentation](https://core.telegram.org/bots/api/#videochatstarted)
+ */
 class VideoChatStartedContext<Bot extends BotLike> extends Context<Bot> {
 	payload: TelegramObjects.TelegramMessage;
 

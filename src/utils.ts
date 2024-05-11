@@ -2,6 +2,7 @@ import type { Message } from "./structures/index";
 
 import type { MessageEventName } from "./types";
 
+/** Helper for getters memoization */
 export function memoizeGetters<T>(
 	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 	cls: new (...args: any[]) => T,
@@ -32,6 +33,7 @@ export function memoizeGetters<T>(
 	}
 }
 
+/** Helper for construct mixins */
 // biome-ignore lint/suspicious/noExplicitAny: <explanation>
 export const applyMixins = (derivedCtor: any, baseCtors: any[]) => {
 	for (const baseCtor of baseCtors) {
@@ -55,10 +57,12 @@ export const applyMixins = (derivedCtor: any, baseCtors: any[]) => {
 	}
 };
 
+/** Guard to check is it play object */
 // biome-ignore lint/suspicious/noExplicitAny: <explanation>
 export const isPlainObject = (object: object): object is Record<string, any> =>
 	Object.prototype.toString.call(object) === "[object Object]";
 
+/** Helper for filter objects */
 // biome-ignore lint/suspicious/noExplicitAny: <explanation>
 export const filterPayload = (payload: Record<string, any>) => {
 	const filteredPayload: Record<string, unknown> = {};
@@ -80,6 +84,7 @@ export const filterPayload = (payload: Record<string, any>) => {
 	return filteredPayload;
 };
 
+/** Guard to check is string can be parsed via {@link JSON.parse} */
 export const isParsable = (source: string) => {
 	try {
 		JSON.parse(source);
@@ -90,6 +95,7 @@ export const isParsable = (source: string) => {
 	return true;
 };
 
+/** Array of SERVICE_MESSAGE_EVENTS */
 export const SERVICE_MESSAGE_EVENTS: MessageEventName[] = [
 	"new_chat_members",
 	"left_chat_member",
@@ -125,6 +131,7 @@ export const SERVICE_MESSAGE_EVENTS: MessageEventName[] = [
 	"chat_background_set",
 ];
 
+/** Array of EVENTS */
 export const EVENTS: [keyof Message, MessageEventName][] = [
 	["newChatMembers", "new_chat_members"],
 	["leftChatMember", "left_chat_member"],

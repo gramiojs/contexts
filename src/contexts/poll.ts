@@ -21,6 +21,11 @@ interface PollContextOptions<Bot extends BotLike> {
 	updateId: number;
 }
 
+/**
+ * This object contains information about a poll.
+ *
+ * [Documentation](https://core.telegram.org/bots/api/#poll)
+ */
 class PollContext<Bot extends BotLike> extends Context<Bot> {
 	payload: TelegramObjects.TelegramPoll;
 

@@ -18,6 +18,11 @@ interface InlineQueryContextOptions<Bot extends BotLike> {
 	updateId: number;
 }
 
+/**
+ * This object represents an incoming inline query. When the user sends an empty query, your bot could return some default or trending results.
+ *
+ * [Documentation](https://core.telegram.org/bots/api/#inlinequery)
+ */
 class InlineQueryContext<Bot extends BotLike> extends Context<Bot> {
 	payload: TelegramObjects.TelegramInlineQuery;
 
