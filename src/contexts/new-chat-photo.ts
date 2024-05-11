@@ -1,7 +1,7 @@
 import { inspectable } from "inspectable";
 
 import type { TelegramObjects } from "@gramio/types";
-import { Message, PhotoSize } from "../structures";
+import { Message, PhotoSize } from "../structures/index";
 
 import type { Constructor } from "../types";
 import { applyMixins } from "../utils";

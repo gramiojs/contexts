@@ -1,5 +1,5 @@
 import type { TelegramObjects } from "@gramio/types";
-import { Message, SharedUser } from "../structures";
+import { Message, SharedUser } from "../structures/index";
 
 import type { Constructor } from "../types";
 import { applyMixins } from "../utils";

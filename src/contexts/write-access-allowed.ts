@@ -1,5 +1,5 @@
 import type { TelegramObjects } from "@gramio/types";
-import { Message, WriteAccessAllowed } from "../structures";
+import { Message, WriteAccessAllowed } from "../structures/index";
 
 import type { Constructor } from "../types";
 import { applyMixins, memoizeGetters } from "../utils";

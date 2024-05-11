@@ -2,7 +2,7 @@ import { inspectable } from "inspectable";
 
 import type { TelegramObjects } from "@gramio/types";
 
-import { PollAnswer } from "../structures";
+import { PollAnswer } from "../structures/index";
 import type { Constructor, Require } from "../types";
 import { applyMixins } from "../utils";
 

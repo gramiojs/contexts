@@ -1,7 +1,7 @@
 import type { TelegramObjects } from "@gramio/types";
 
 import { inspectable } from "inspectable";
-import { BusinessMessagesDeleted } from "../structures";
+import { BusinessMessagesDeleted } from "../structures/index";
 import type { Constructor } from "../types";
 import type { BotLike } from "../types";
 import { applyMixins } from "../utils";

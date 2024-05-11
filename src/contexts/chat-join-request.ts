@@ -4,7 +4,7 @@ import type { Constructor } from "../types";
 import { applyMixins } from "../utils";
 
 import type { TelegramObjects } from "@gramio/types";
-import { ChatJoinRequest } from "../structures";
+import { ChatJoinRequest } from "../structures/index";
 
 import type { BotLike } from "../types";
 import { Context } from "./context";

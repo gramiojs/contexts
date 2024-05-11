@@ -1,5 +1,5 @@
 import type { TelegramObjects } from "@gramio/types";
-import { Message } from "../structures";
+import { Message } from "../structures/index";
 
 import type { Constructor, RequireValue } from "../types";
 import { applyMixins } from "../utils";

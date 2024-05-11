@@ -1,7 +1,7 @@
 import { inspectable } from "inspectable";
 
 import type { TelegramObjects } from "@gramio/types";
-import { Message, MessageAutoDeleteTimerChanged } from "../structures";
+import { Message, MessageAutoDeleteTimerChanged } from "../structures/index";
 
 import type { Constructor } from "../types";
 import { applyMixins, memoizeGetters } from "../utils";

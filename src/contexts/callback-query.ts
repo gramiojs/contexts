@@ -8,7 +8,7 @@ import {
 	memoizeGetters,
 } from "../utils";
 
-import { CallbackQuery } from "../structures";
+import { CallbackQuery } from "../structures/index";
 import type { Constructor, Require } from "../types";
 
 import type { TelegramParams } from "@gramio/types";

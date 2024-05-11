@@ -1,5 +1,5 @@
 import { inspectable } from "inspectable";
-import { Message, PassportData } from "../structures";
+import { Message, PassportData } from "../structures/index";
 
 import type { TelegramObjects } from "@gramio/types";
 

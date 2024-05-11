@@ -18,7 +18,7 @@ import {
 } from "../structures/attachments";
 
 // import { MediaGroup } from "../media-group";
-import { Message, type MessageEntity } from "../structures";
+import { Message, type MessageEntity } from "../structures/index";
 
 import type { TelegramObjects } from "@gramio/types";
 

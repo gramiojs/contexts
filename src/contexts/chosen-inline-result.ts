@@ -3,7 +3,7 @@ import { inspectable } from "inspectable";
 import type { TelegramParams } from "@gramio/types";
 import type { TelegramObjects } from "@gramio/types";
 
-import { ChosenInlineResult } from "../structures";
+import { ChosenInlineResult } from "../structures/index";
 import type { Constructor, Require } from "../types";
 import { applyMixins, filterPayload } from "../utils";
 
