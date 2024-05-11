@@ -1,6 +1,6 @@
 {
     "name": "@gramio/contexts",
-    "version": "0.0.14",
+    "version": "0.0.15",
     "main": "dist/index.js",
     "keywords": [
         "gramio",
@@ -21,14 +21,12 @@
         "@types/bun": "^1.1.1",
         "common-tags": "^1.8.2",
         "madge": "^7.0.0",
-        "middleware-io": "^2.8.1",
         "tsup": "^8.0.2",
         "typescript": "^5.4.5",
         "inspectable": "^3.0.1"
     },
     "peerDependencies": {
         "inspectable": "^3.0.1",
-        "middleware-io": "^2.8.1",
         "@gramio/types": "^7.3.4"
     },
     "description": "Contexts for GramIO framework",
