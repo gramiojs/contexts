@@ -37,7 +37,25 @@ interface ControllerOptions<Bot extends BotLike> {
 		CreateActionControllerParams;
 	context: Context<Bot> & SendMixin<Bot>;
 }
-/** This object represent ChatAction mixin */
+/**
+ * This object represent ChatAction mixin
+ *
+ * @example
+ * ```typescript
+ * bot.on("message", (context) => {
+ * 		const controller = context.createActionController('typing');
+ *
+ *		controller.start();
+ *
+ *		await sleep(10_000)
+ *
+ *		controller.stop();
+ *
+ *		return context.send("soo sleepy...")
+ * });
+ * ```
+ *
+ *  */
 class ChatActionController<Bot extends BotLike> {
 	private abortController = new AbortController();
 

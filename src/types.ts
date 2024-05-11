@@ -152,7 +152,15 @@ export type ContextsMapping<Bot extends BotLike> = {
 	giveaway_winners: Contexts.GiveawayWinnersContext<Bot>;
 };
 
-/** Type util to get type of Context */
+/**
+ * Type util to get type of Context
+ *
+ * @example
+ * ```ts
+ * type Message = ContextType<Bot, "message">;
+ * ```
+ *
+ *  */
 export type ContextType<
 	Bot extends BotLike,
 	Name extends keyof ContextsMapping<Bot>,
