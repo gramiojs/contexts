@@ -288,6 +288,10 @@ class MessageContext<Bot extends BotLike> extends Context<Bot> {
 			(event) => this.payload[event] !== undefined,
 		);
 	}
+	/** Is this message in topic */
+	isTopicMessage() {
+		return !!this.payload.is_topic_message;
+	}
 
 	/** Does this message have a forward origin? */
 	hasForwardOrigin(): this is Require<this, "forwardOrigin"> {
