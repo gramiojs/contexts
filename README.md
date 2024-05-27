@@ -8,7 +8,7 @@ Contexts is a great work of the [puregram](https://github.com/nitreojs/puregram)
 
 Currently, support [Telegram Bot API 7.3](https://core.telegram.org/bots/api-changelog#may-6-2024).
 
-This library used under the hood in the GramIO framework (Please see [documentation](https://gramio.netlify.app/)).
+This library used under the hood in the GramIO framework (Please see [documentation](https://gramio.dev/)).
 
 ## TypeScript
 
