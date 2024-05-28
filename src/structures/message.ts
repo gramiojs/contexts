@@ -294,6 +294,12 @@ export class Message {
 		return new LinkPreviewOptions(link_preview_options);
 	}
 
+	/** Unique identifier of the message effect added to the message */
+	@Inspect({ nullable: false })
+	get effectId() {
+		return this.payload.effect_id;
+	}
+
 	/**
 	 * Message is an animation, information about the animation. For backward
 	 * compatibility, when this field is set, the `document` field will also be set
@@ -407,6 +413,14 @@ export class Message {
 		if (!caption_entities) return undefined;
 
 		return caption_entities.map((entity) => new MessageEntity(entity));
+	}
+
+	/**
+	 * True, if the caption must be shown above the message media
+	 */
+	@Inspect({ compute: true, nullable: false })
+	isShowCaptionAboveMedia() {
+		return !!this.payload.show_caption_above_media;
 	}
 
 	/** `true`, if the message media is covered by a spoiler animation */
