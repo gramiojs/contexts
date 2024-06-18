@@ -127,7 +127,7 @@ class CallbackQueryContext<Bot extends BotLike> extends Context<Bot> {
 	/** Edits a callback query messages text */
 	editText(
 		text: TelegramParams.EditMessageTextParams["text"],
-		params?: Partial<TelegramParams.EditMessageTextParams>,
+		params: Partial<TelegramParams.EditMessageTextParams> = {},
 	) {
 		if (this.hasMessage()) {
 			return this.message.editText(text, params);
@@ -138,6 +138,8 @@ class CallbackQueryContext<Bot extends BotLike> extends Context<Bot> {
 				"cannot edit a message without `message` and `inlineMessageId` properties",
 			);
 		}
+		if (this.businessConnectionId && !params.business_connection_id)
+			params.business_connection_id = this.businessConnectionId;
 
 		return this.bot.api.editMessageText({
 			inline_message_id: this.inlineMessageId,
@@ -149,7 +151,7 @@ class CallbackQueryContext<Bot extends BotLike> extends Context<Bot> {
 	/** Edits a callback query messages caption */
 	editCaption(
 		caption: NonNullable<TelegramParams.EditMessageCaptionParams["caption"]>,
-		params?: Partial<TelegramParams.EditMessageCaptionParams>,
+		params: Partial<TelegramParams.EditMessageCaptionParams> = {},
 	) {
 		if (this.hasMessage()) {
 			return this.message.editCaption(caption, params);
@@ -161,6 +163,9 @@ class CallbackQueryContext<Bot extends BotLike> extends Context<Bot> {
 			);
 		}
 
+		if (this.businessConnectionId && !params.business_connection_id)
+			params.business_connection_id = this.businessConnectionId;
+
 		return this.bot.api.editMessageCaption({
 			inline_message_id: this.inlineMessageId,
 			caption,
@@ -171,7 +176,7 @@ class CallbackQueryContext<Bot extends BotLike> extends Context<Bot> {
 	/** Edits a callback query messages media */
 	editMedia(
 		media: TelegramParams.EditMessageMediaParams["media"],
-		params?: Partial<TelegramParams.EditMessageMediaParams>,
+		params: Partial<TelegramParams.EditMessageMediaParams> = {},
 	) {
 		if (this.hasMessage()) {
 			return this.message.editMedia(media, params);
@@ -182,6 +187,8 @@ class CallbackQueryContext<Bot extends BotLike> extends Context<Bot> {
 				"cannot edit a message without `message` and `inlineMessageId` properties",
 			);
 		}
+		if (this.businessConnectionId && !params.business_connection_id)
+			params.business_connection_id = this.businessConnectionId;
 
 		return this.bot.api.editMessageMedia({
 			inline_message_id: this.inlineMessageId,
@@ -201,6 +208,9 @@ class CallbackQueryContext<Bot extends BotLike> extends Context<Bot> {
 				"cannot edit a message without `message` and `inlineMessageId` properties",
 			);
 		}
+
+		if (this.businessConnectionId && !params.business_connection_id)
+			params.business_connection_id = this.businessConnectionId;
 
 		return this.bot.api.editMessageLiveLocation({
 			inline_message_id: this.inlineMessageId,
@@ -229,7 +239,7 @@ class CallbackQueryContext<Bot extends BotLike> extends Context<Bot> {
 	/** Edits a callback query messages reply markup */
 	editReplyMarkup(
 		replyMarkup: TelegramParams.EditMessageReplyMarkupParams["reply_markup"],
-		params?: Partial<TelegramParams.EditMessageReplyMarkupParams>,
+		params: Partial<TelegramParams.EditMessageReplyMarkupParams> = {},
 	) {
 		if (this.hasMessage()) {
 			return this.message.editReplyMarkup(replyMarkup, params);
@@ -240,6 +250,9 @@ class CallbackQueryContext<Bot extends BotLike> extends Context<Bot> {
 				"cannot edit a message without `message` and `inlineMessageId` properties",
 			);
 		}
+
+		if (this.businessConnectionId && !params.business_connection_id)
+			params.business_connection_id = this.businessConnectionId;
 
 		return this.bot.api.editMessageReplyMarkup({
 			inline_message_id: this.inlineMessageId,

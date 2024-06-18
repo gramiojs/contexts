@@ -653,6 +653,9 @@ class NodeMixin<Bot extends BotLike> {
 	async editMessageLiveLocation(
 		params: TelegramParams.EditMessageLiveLocationParams,
 	) {
+		if (this.businessConnectionId && !params.business_connection_id)
+			params.business_connection_id = this.businessConnectionId;
+
 		const response = await this.bot.api.editMessageLiveLocation({
 			chat_id: this.chatId || this.senderId || 0,
 			message_id: this.id,
@@ -702,8 +705,11 @@ class NodeMixin<Bot extends BotLike> {
 	/** Edits current message text */
 	async editMessageText(
 		text: TelegramParams.EditMessageTextParams["text"],
-		params?: Partial<TelegramParams.EditMessageTextParams>,
+		params: Partial<TelegramParams.EditMessageTextParams> = {},
 	) {
+		if (this.businessConnectionId && !params.business_connection_id)
+			params.business_connection_id = this.businessConnectionId;
+
 		const response = await this.bot.api.editMessageText({
 			chat_id: this.chatId || this.senderId || 0,
 			message_id: this.id,
@@ -732,8 +738,11 @@ class NodeMixin<Bot extends BotLike> {
 	/** Edits current message caption */
 	async editMessageCaption(
 		caption: NonNullable<TelegramParams.EditMessageCaptionParams["caption"]>,
-		params?: Partial<TelegramParams.EditMessageCaptionParams>,
+		params: Partial<TelegramParams.EditMessageCaptionParams> = {},
 	) {
+		if (this.businessConnectionId && !params.business_connection_id)
+			params.business_connection_id = this.businessConnectionId;
+
 		const response = await this.bot.api.editMessageCaption({
 			chat_id: this.chatId || this.senderId || 0,
 			message_id: this.id,
@@ -762,8 +771,11 @@ class NodeMixin<Bot extends BotLike> {
 	/** Edits current message media */
 	async editMessageMedia(
 		media: TelegramParams.EditMessageMediaParams["media"],
-		params?: Partial<TelegramParams.EditMessageMediaParams>,
+		params: Partial<TelegramParams.EditMessageMediaParams> = {},
 	) {
+		if (this.businessConnectionId && !params.business_connection_id)
+			params.business_connection_id = this.businessConnectionId;
+
 		const response = await this.bot.api.editMessageMedia({
 			chat_id: this.chatId || this.senderId || 0,
 			message_id: this.id,
@@ -792,8 +804,11 @@ class NodeMixin<Bot extends BotLike> {
 	/** Edits current message reply markup */
 	async editMessageReplyMarkup(
 		replyMarkup: TelegramParams.EditMessageReplyMarkupParams["reply_markup"],
-		params?: Partial<TelegramParams.EditMessageReplyMarkupParams>,
+		params: Partial<TelegramParams.EditMessageReplyMarkupParams> = {},
 	) {
+		if (this.businessConnectionId && !params.business_connection_id)
+			params.business_connection_id = this.businessConnectionId;
+
 		const response = await this.bot.api.editMessageReplyMarkup({
 			chat_id: this.chatId || this.senderId || 0,
 			message_id: this.id,

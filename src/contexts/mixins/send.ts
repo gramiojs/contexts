@@ -328,8 +328,11 @@ class SendMixin<Bot extends BotLike> {
 	/** Stops poll in current chat */
 	async stopPoll(
 		messageId: number,
-		params?: Partial<TelegramParams.StopPollParams>,
+		params: Partial<TelegramParams.StopPollParams> = {},
 	) {
+		if (this.businessConnectionId && !params?.business_connection_id)
+			params.business_connection_id = this.businessConnectionId;
+
 		const response = await this.bot.api.stopPoll({
 			chat_id: this.chatId || this.senderId || 0,
 			message_id: messageId,
