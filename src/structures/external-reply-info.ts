@@ -29,6 +29,7 @@ import {
 	MessageOriginHiddenUser,
 	MessageOriginUser,
 } from "./message-origin/index";
+import { PaidMediaInfo } from "./paid-media-info";
 import { PhotoSize } from "./photo-size";
 import { Poll } from "./poll";
 import { Venue } from "./venue";
@@ -315,6 +316,13 @@ export class ExternalReplyInfo {
 		}
 
 		return new Venue(venue);
+	}
+
+	@Inspect()
+	get paidMedia() {
+		return this.payload.paid_media
+			? new PaidMediaInfo(this.payload.paid_media)
+			: undefined;
 	}
 }
 

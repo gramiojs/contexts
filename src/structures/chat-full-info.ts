@@ -355,6 +355,13 @@ export class ChatFullInfo {
 	 * *Optional*. *True*, if the bot can change the group sticker set
 	 */
 	@Inspect()
+	get canSendPaidMedia() {
+		return this.payload.can_send_paid_media;
+	}
+	/**
+	 * *Optional*. *True*, if the bot can change the group sticker set
+	 */
+	@Inspect()
 	get canSetStickerSet() {
 		return this.payload.can_set_sticker_set;
 	}

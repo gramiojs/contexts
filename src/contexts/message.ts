@@ -1,4 +1,4 @@
-import { inspectable } from "inspectable";
+import { Inspect, inspectable } from "inspectable";
 
 import {
 	AnimationAttachment,
@@ -40,6 +40,7 @@ import {
 } from "../utils";
 import { EVENTS, SERVICE_MESSAGE_EVENTS } from "../utils";
 
+import { PaidMediaInfo } from "#structures/paid-media-info";
 import type { BotLike } from "../types";
 import { Context } from "./context";
 import {
@@ -192,6 +193,12 @@ class MessageContext<Bot extends BotLike> extends Context<Bot> {
 		return this.captionEntities.some((entity) => entity.type === type);
 	}
 
+	@Inspect()
+	get paidMedia() {
+		return this.payload.paid_media
+			? new PaidMediaInfo(this.payload.paid_media)
+			: undefined;
+	}
 	// /** Checks whether current message contains a media group (`mergeMediaEvents` must be on) */
 	// isMediaGroup(): this is Require<this, "mediaGroupId" | "mediaGroup"> {
 	// 	return this.mediaGroupId !== undefined;
