@@ -65,7 +65,7 @@ for (const object of schema.objects.filter(
 			stripIndents /* ts */`
 import { Inspect, Inspectable } from "inspectable";
 import type { TelegramObjects } from "@gramio/types";
-${refs.length ? `import { memoizeGetters } from "#utils";` : ""}
+${refs.length ? `import { memoizeGetters } from "../utils";` : ""}
 ${refs
 	.map(
 		(x) =>
