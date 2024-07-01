@@ -40,7 +40,7 @@ import {
 } from "../utils";
 import { EVENTS, SERVICE_MESSAGE_EVENTS } from "../utils";
 
-import { PaidMediaInfo } from "#structures/paid-media-info";
+import { PaidMediaInfo } from "../structures/paid-media-info";
 import type { BotLike } from "../types";
 import { Context } from "./context";
 import {

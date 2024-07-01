@@ -15,10 +15,7 @@
         "forceConsistentCasingInFileNames": true,
         "baseUrl": "./src",
         "rootDir": "./src",
-        "outDir": "./dist",
-        "paths": {
-            "#*": ["./*"]
-        }
+        "outDir": "./dist"
     },
     "include": ["src/**/*.ts"]
 }
