@@ -1,6 +1,6 @@
 {
     "name": "@gramio/contexts",
-    "version": "0.0.18",
+    "version": "0.0.19",
     "main": "dist/index.js",
     "keywords": [
         "gramio",
@@ -17,13 +17,13 @@
     ],
     "devDependencies": {
         "@biomejs/biome": "1.7.3",
-        "@gramio/types": "^7.6.0",
+        "@gramio/types": "^7.7.0",
         "@types/bun": "^1.1.6",
         "common-tags": "^1.8.2",
         "inspectable": "^3.0.2",
         "madge": "^7.0.0",
         "tsup": "^8.1.0",
-        "typescript": "^5.5.2"
+        "typescript": "^5.5.3"
     },
     "peerDependencies": {
         "inspectable": "^3.0.1"

@@ -135,6 +135,7 @@ export type ContextsMapping<Bot extends BotLike> = {
 	general_forum_topic_unhidden: Contexts.GeneralForumTopicUnhiddenContext<Bot>;
 	shipping_query: Contexts.ShippingQueryContext<Bot>;
 	successful_payment: Contexts.SuccessfulPaymentContext<Bot>;
+	refunded_payment: Contexts.RefundedPaymentContext<Bot>;
 	users_shared: Contexts.UsersSharedContext<Bot>;
 	chat_shared: Contexts.ChatSharedContext<Bot>;
 	video_chat_ended: Contexts.VideoChatEndedContext<Bot>;
@@ -180,6 +181,7 @@ export type MessageEventName =
 	| "pinned_message"
 	| "invoice"
 	| "successful_payment"
+	| "refunded_payment"
 	| "users_shared"
 	| "chat_shared"
 	| "proximity_alert_triggered"

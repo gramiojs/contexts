@@ -26,10 +26,7 @@ function snakeToCamelCase(str: string) {
 }
 
 const objectToGenerate: string[] = [
-	"PaidMediaInfo",
-	"PaidMediaPreview",
-	"PaidMediaPhoto",
-	"PaidMediaVideo",
+	"RefundedPayment",
 	// "ChatBackground",
 	// "BackgroundFill",
 	// "BackgroundType",

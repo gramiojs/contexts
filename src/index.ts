@@ -69,6 +69,7 @@ export const contextsMappings = {
 	general_forum_topic_unhidden: Contexts.GeneralForumTopicUnhiddenContext,
 	shipping_query: Contexts.ShippingQueryContext,
 	successful_payment: Contexts.SuccessfulPaymentContext,
+	refunded_payment: Contexts.RefundedPaymentContext,
 	users_shared: Contexts.UsersSharedContext,
 	chat_shared: Contexts.ChatSharedContext,
 	video_chat_ended: Contexts.VideoChatEndedContext,
