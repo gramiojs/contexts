@@ -12,7 +12,7 @@
         ]
     },
     "imports": {
-        "@gramio/types": "jsr:@gramio/types@^7.6.0",
+        "@gramio/types": "jsr:@gramio/types@^7.7.0",
         "inspectable": "npm:inspectable@^3.0.2"
     }
 }

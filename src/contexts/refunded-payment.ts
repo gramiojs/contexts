@@ -45,8 +45,12 @@ class RefundedPaymentContext<Bot extends BotLike> extends Context<Bot> {
 		this.payload = options.payload;
 	}
 
-	/** Received payment */
-	get eventPayment() {
+	/**
+	 * This object contains basic information about a refunded payment.
+	 *
+	 * [Documentation](https://core.telegram.org/bots/api/#refundedpayment)
+	 */
+	get eventRefundedPayment() {
 		return new RefundedPayment(
 			this.payload.refunded_payment as TelegramObjects.TelegramRefundedPayment,
 		);
@@ -75,7 +79,7 @@ applyMixins(RefundedPaymentContext, [
 	PinsMixin,
 	CloneMixin,
 ]);
-memoizeGetters(RefundedPaymentContext, ["eventPayment"]);
+memoizeGetters(RefundedPaymentContext, ["eventRefundedPayment"]);
 
 inspectable(RefundedPaymentContext, {
 	serialize(context) {
@@ -87,7 +91,7 @@ inspectable(RefundedPaymentContext, {
 			chat: context.chat,
 			chatId: context.chatId,
 			chatType: context.chatType,
-			eventPayment: context.eventPayment,
+			eventRefundedPayment: context.eventRefundedPayment,
 		};
 	},
 });
