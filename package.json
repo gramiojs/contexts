@@ -1,43 +1,46 @@
 {
-    "name": "@gramio/contexts",
-    "version": "0.0.20",
-    "main": "dist/index.js",
-    "keywords": [
-        "gramio",
-        "contexts",
-        "updates",
-        "events",
-        "telegram",
-        "telegram-bot",
-        "telegram-bot-api",
-        "bot"
-    ],
-    "files": [
-        "dist"
-    ],
-    "devDependencies": {
-        "@biomejs/biome": "1.7.3",
-        "@gramio/types": "^7.7.0",
-        "@types/bun": "^1.1.6",
-        "common-tags": "^1.8.2",
-        "inspectable": "^3.0.2",
-        "madge": "^7.0.0",
-        "tsup": "^8.1.0",
-        "typescript": "^5.5.3"
-    },
-    "peerDependencies": {
-        "inspectable": "^3.0.1"
-    },
-    "description": "Contexts for GramIO framework",
-    "scripts": {
-        "type": "tsc --noEmit",
-        "lint": "bunx @biomejs/biome check ./src",
-        "lint:fix": "bun lint --apply",
-        "prepublishOnly": "tsc && bunx tsc-alias",
-        "circular": "bunx madge --circular ./src --extensions=ts",
-        "generate": "bun scripts/generate.ts",
-        "jsr": "bun scripts/release-jsr.ts"
-    },
-    "type": "commonjs",
-    "types": "dist/index.d.ts"
+  "name": "@gramio/contexts",
+  "version": "0.0.20",
+  "main": "dist/index.js",
+  "keywords": [
+    "gramio",
+    "contexts",
+    "updates",
+    "events",
+    "telegram",
+    "telegram-bot",
+    "telegram-bot-api",
+    "bot"
+  ],
+  "files": [
+    "dist"
+  ],
+  "devDependencies": {
+    "@biomejs/biome": "1.7.3",
+    "@gramio/types": "^7.7.0",
+    "@types/bun": "^1.1.6",
+    "common-tags": "^1.8.2",
+    "inspectable": "^3.0.2",
+    "madge": "^7.0.0",
+    "tsup": "^8.1.0",
+    "typescript": "^5.5.3"
+  },
+  "peerDependencies": {
+    "inspectable": "^3.0.1"
+  },
+  "description": "Contexts for GramIO framework",
+  "scripts": {
+    "type": "tsc --noEmit",
+    "lint": "bunx @biomejs/biome check ./src",
+    "lint:fix": "bun lint --apply",
+    "prepublishOnly": "tsc && bunx tsc-alias",
+    "circular": "bunx madge --circular ./src --extensions=ts",
+    "generate": "bun scripts/generate.ts",
+    "jsr": "bun scripts/release-jsr.ts"
+  },
+  "type": "commonjs",
+  "types": "dist/index.d.ts",
+  "dependencies": {
+    "tslib": "^2.6.3"
+  }
 }
