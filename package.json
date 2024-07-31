@@ -25,7 +25,6 @@
 	},
 	"peerDependencies": {
 		"inspectable": "^3.0.1",
-    
 		"@gramio/types": "^7.8.0"
 	},
 	"description": "Contexts for GramIO framework",
@@ -40,6 +39,7 @@
 	},
 	"type": "commonjs",
 	"types": "dist/index.d.ts",
+  l
 	"dependencies": {
 		"tslib": "^2.6.3"
 	}
