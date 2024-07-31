@@ -96,6 +96,7 @@ class ChatActionController<Bot extends BotLike> {
 			while (!this.abortController.signal.aborted) {
 				try {
 					await this.context.sendChatAction(this.action, {
+						// @ts-expect-error fix later
 						suppress: true,
 					});
 

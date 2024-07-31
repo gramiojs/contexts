@@ -265,8 +265,8 @@ Pick<
 > /** Then, we take our `K` fields and mark them as optional */ & {
 	[P in K]?: T[P];
 } /** Lastly, we add `[key: string]: any;` */ /** Lastly, we add `[key: string]: any;` */ & {
-	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-	[key: string]: any;
+	// // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+	// [key: string]: any;
 };
 
 /** Type util to make chat_id optional and add type property */

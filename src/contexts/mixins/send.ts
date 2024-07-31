@@ -450,6 +450,7 @@ class SendMixin<Bot extends BotLike> {
 		// INFO: kind of a hack for interoperability between TelegramInputMedia objects and sendMedia
 
 		if ("media" in query) {
+			// @ts-expect-error
 			query[query.type] = query.media;
 
 			//delete

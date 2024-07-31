@@ -6,7 +6,7 @@
 
 Contexts is a great work of the [puregram](https://github.com/nitreojs/puregram) maintainer! Thank you for many code implementation and ideas. Forked since this [commit](https://github.com/nitreojs/puregram/commit/b431d9303de1696999e7f41f45d7c4d7d264c272). (Jan 28, 2024)
 
-Currently, support [Telegram Bot API 7.7](https://core.telegram.org/bots/api-changelog#july-7-2024).
+Currently, support [Telegram Bot API 7.8](https://core.telegram.org/bots/api-changelog#july-31-2024).
 
 This library used under the hood in the GramIO framework (Please see [documentation](https://gramio.dev/)).
 

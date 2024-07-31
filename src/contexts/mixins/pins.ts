@@ -11,11 +11,14 @@ import type { TargetMixin } from "./target";
 class PinsMixin<Bot extends BotLike> {
 	/** Adds message to the list of pinned messages */
 	pinChatMessage(
-		params?: Optional<
+		params: Optional<
 			TelegramParams.PinChatMessageParams,
 			"chat_id" | "message_id"
-		>,
+		> = {},
 	) {
+		if (this.businessConnectionId && !params.business_connection_id)
+			params.business_connection_id = this.businessConnectionId;
+
 		return this.bot.api.pinChatMessage({
 			chat_id: this.chatId,
 			message_id: this.id,
@@ -25,11 +28,14 @@ class PinsMixin<Bot extends BotLike> {
 
 	/** Removes message from the list of pinned messages  */
 	unpinChatMessage(
-		params?: Optional<
+		params: Optional<
 			TelegramParams.UnpinChatMessageParams,
 			"chat_id" | "message_id"
-		>,
+		> = {},
 	) {
+		if (this.businessConnectionId && !params.business_connection_id)
+			params.business_connection_id = this.businessConnectionId;
+
 		return this.bot.api.unpinChatMessage({
 			chat_id: this.chatId,
 			message_id: this.id,
@@ -39,7 +45,7 @@ class PinsMixin<Bot extends BotLike> {
 
 	/** Clears the list of pinned messages */
 	unpinAllChatMessages(
-		params?: Optional<TelegramParams.UnpinAllChatMessagesParams, "chat_id">,
+		params: Optional<TelegramParams.UnpinAllChatMessagesParams, "chat_id"> = {},
 	) {
 		return this.bot.api.unpinAllChatMessages({
 			chat_id: this.chatId,
