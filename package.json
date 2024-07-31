@@ -39,7 +39,7 @@
 	},
 	"type": "commonjs",
 	"types": "dist/index.d.ts",
-  l
+  "license": "MIT",
 	"dependencies": {
 		"tslib": "^2.6.3"
 	}
