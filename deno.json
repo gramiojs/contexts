@@ -6,7 +6,7 @@
 		"include": ["deno.json", "src", "README.md", "LICENSE", "package.json"]
 	},
 	"imports": {
-		"@gramio/types": "jsr:@gramio/types@^7.7.0",
+		"@gramio/types": "jsr:@gramio/types@^7.9.0",
 		"inspectable": "npm:inspectable@^3.0.2"
 	}
 }
