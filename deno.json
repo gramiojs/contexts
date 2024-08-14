@@ -1,18 +1,12 @@
 {
-    "name": "@gramio/contexts",
-    "version": "0.0.15",
-    "exports": "./src/index.ts",
-    "publish": {
-        "include": [
-            "deno.json",
-            "src",
-            "README.md",
-            "tsconfig.json",
-            "package.json"
-        ]
-    },
-    "imports": {
-        "@gramio/types": "jsr:@gramio/types@^7.7.0",
-        "inspectable": "npm:inspectable@^3.0.2"
-    }
+	"name": "@gramio/contexts",
+	"version": "0.0.15",
+	"exports": "./src/index.ts",
+	"publish": {
+		"include": ["deno.json", "src", "README.md", "LICENSE", "package.json"]
+	},
+	"imports": {
+		"@gramio/types": "jsr:@gramio/types@^7.7.0",
+		"inspectable": "npm:inspectable@^3.0.2"
+	}
 }

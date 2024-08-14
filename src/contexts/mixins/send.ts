@@ -384,6 +384,31 @@ class SendMixin<Bot extends BotLike> {
 		});
 	}
 
+	/** Sends paid media to current chat */
+	async sendPaidMedia(
+		paidMedia: TelegramParams.SendPaidMediaParams["media"],
+		starCount: number,
+		params: Optional<
+			TelegramParams.SendPaidMediaParams,
+			"chat_id" | "media" | "star_count"
+		> = {},
+	) {
+		if (this.businessConnectionId && !params.business_connection_id)
+			params.business_connection_id = this.businessConnectionId;
+
+		const response = await this.bot.api.sendPaidMedia({
+			chat_id: this.chatId || this.senderId || 0,
+			media: paidMedia,
+			star_count: starCount,
+			...params,
+		});
+
+		return new MessageContext({
+			bot: this.bot,
+			payload: response,
+		});
+	}
+
 	/** Sends media group to current chat */
 	async sendMediaGroup(
 		mediaGroup: TelegramParams.SendMediaGroupParams["media"],

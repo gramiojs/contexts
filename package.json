@@ -14,18 +14,18 @@
 	],
 	"files": ["dist"],
 	"devDependencies": {
-		"@biomejs/biome": "1.7.3",
+		"@biomejs/biome": "1.8.3",
 		"@types/bun": "^1.1.6",
 		"common-tags": "^1.8.2",
 		"inspectable": "^3.0.2",
-		"madge": "^7.0.0",
+		"madge": "^8.0.0",
 		"pkgroll": "^2.4.2",
-		"tsup": "^8.2.3",
+		"tsup": "^8.2.4",
 		"typescript": "^5.5.4"
 	},
 	"peerDependencies": {
 		"inspectable": "^3.0.1",
-		"@gramio/types": "^7.8.0"
+		"@gramio/types": "^7.9.0"
 	},
 	"description": "Contexts for GramIO framework",
 	"scripts": {
@@ -39,7 +39,7 @@
 	},
 	"type": "commonjs",
 	"types": "dist/index.d.ts",
-  "license": "MIT",
+	"license": "MIT",
 	"dependencies": {
 		"tslib": "^2.6.3"
 	}
