@@ -156,7 +156,7 @@ export type ContextsMapping<Bot extends BotLike> = {
     giveaway_created: Contexts.GiveawayCreatedContext<Bot>;
     giveaway_completed: Contexts.GiveawayCompletedContext<Bot>;
     giveaway_winners: Contexts.GiveawayWinnersContext<Bot>;
-    paid_media_purchased: Contexts.PaidMediaPurchasedContext<Bot>;
+    purchased_paid_media: Contexts.PaidMediaPurchasedContext<Bot>;
 };
 
 /**
@@ -205,7 +205,7 @@ export type MessageEventName =
     | "web_app_data"
     | "location"
     | "passport_data"
-    | "paid_media_purchased"
+    | "purchased_paid_media"
     | "giveaway_created"
     | "giveaway_completed"
     | "giveaway_winners"

@@ -79,7 +79,7 @@ export const contextsMappings = {
     video_chat_started: Contexts.VideoChatStartedContext,
     web_app_data: Contexts.WebAppDataContext,
     service_message: Contexts.MessageContext,
-    paid_media_purchased: Contexts.PaidMediaPurchasedContext,
+    purchased_paid_media: Contexts.PaidMediaPurchasedContext,
     message_reaction: Contexts.MessageReactionContext,
     message_reaction_count: Contexts.MessageReactionCountContext,
     chat_boost: Contexts.ChatBoostContext,

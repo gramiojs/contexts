@@ -167,4 +167,5 @@ export const EVENTS: [keyof Message, MessageEventName][] = [
 	["giveawayCreated", "giveaway_created"],
 	["giveawayCompleted", "giveaway_completed"],
 	["giveawayWinners", "giveaway_winners"],
+	
 ];

@@ -29,7 +29,7 @@ class PaidMediaPurchasedContext<Bot extends BotLike> extends Context<Bot> {
     constructor(options: PaidMediaPurchasedContextOptions<Bot>) {
         super({
             bot: options.bot,
-            updateType: "passport_data",
+            updateType: "purchased_paid_media",
             updateId: options.updateId,
             update: options.update,
         });
