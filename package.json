@@ -1,6 +1,6 @@
 {
 	"name": "@gramio/contexts",
-	"version": "0.0.22",
+	"version": "0.0.23",
 	"main": "dist/index.js",
 	"keywords": [
 		"gramio",
@@ -15,7 +15,7 @@
 	"files": ["dist"],
 	"devDependencies": {
 		"@biomejs/biome": "1.8.3",
-		"@types/bun": "^1.1.6",
+		"@types/bun": "^1.1.8",
 		"common-tags": "^1.8.2",
 		"inspectable": "^3.0.2",
 		"madge": "^8.0.0",
@@ -41,6 +41,6 @@
 	"types": "dist/index.d.ts",
 	"license": "MIT",
 	"dependencies": {
-		"tslib": "^2.6.3"
+		"tslib": "^2.7.0"
 	}
 }
