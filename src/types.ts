@@ -205,7 +205,6 @@ export type MessageEventName =
     | "web_app_data"
     | "location"
     | "passport_data"
-    | "purchased_paid_media"
     | "giveaway_created"
     | "giveaway_completed"
     | "giveaway_winners"
