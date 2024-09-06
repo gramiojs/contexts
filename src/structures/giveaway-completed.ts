@@ -35,6 +35,9 @@ export class GiveawayCompleted {
 
 		return new Message(giveaway_message);
 	}
+	get isStarGiveaway() {
+		return this.payload.is_star_giveaway
+	}
 }
 
 memoizeGetters(GiveawayCompleted, ["message"]);

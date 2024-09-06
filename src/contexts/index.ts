@@ -50,3 +50,4 @@ export * from "./business-connection";
 export * from "./business-messages-deleted";
 export * from "./chat-background-set";
 export * from "./refunded-payment";
+export * from "./paid-media-purchased"
