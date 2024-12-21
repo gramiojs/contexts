@@ -2,11 +2,11 @@
     "compilerOptions": {
         "lib": ["ESNext"],
         "target": "ES2022",
-        "module": "NodeNext",
+        "module": "ESNext",
         "moduleDetection": "force",
 
         /* Bundler mode */
-        "moduleResolution": "NodeNext",
+        "moduleResolution": "bundler",
         "declaration": true,
         /* Linting */
         "skipLibCheck": true,
@@ -16,7 +16,7 @@
         "baseUrl": "./src",
         "rootDir": "./src",
         "outDir": "./dist",
-        "importHelpers": true
+        "noEmit": true
     },
     "include": ["src/**/*.ts"]
 }

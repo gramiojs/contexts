@@ -13,14 +13,13 @@
 	],
 	"files": ["dist"],
 	"devDependencies": {
-		"@biomejs/biome": "1.8.3",
-		"@types/bun": "^1.1.8",
+		"@biomejs/biome": "1.9.4",
+		"@types/bun": "^1.1.14",
 		"common-tags": "^1.8.2",
 		"inspectable": "^3.0.2",
 		"madge": "^8.0.0",
-		"pkgroll": "^2.4.2",
-		"tsup": "^8.2.4",
-		"typescript": "^5.5.4"
+		"pkgroll": "^2.5.1",
+		"typescript": "^5.7.2"
 	},
 	"peerDependencies": {
 		"inspectable": "^3.0.1",
