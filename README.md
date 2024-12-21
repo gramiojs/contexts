@@ -1,6 +1,7 @@
 # @gramio/contexts
 
 [![npm](https://img.shields.io/npm/v/@gramio/contexts?logo=npm&style=flat&labelColor=000&color=3b82f6)](https://www.npmjs.org/package/@gramio/contexts)
+[![npm downloads](https://img.shields.io/npm/dw/@gramio/contexts?logo=npm&style=flat&labelColor=000&color=3b82f6)](https://www.npmjs.org/package/@gramio/contexts)
 [![JSR](https://jsr.io/badges/@gramio/contexts)](https://jsr.io/@gramio/contexts)
 [![JSR Score](https://jsr.io/badges/@gramio/contexts/score)](https://jsr.io/@gramio/contexts)
 
