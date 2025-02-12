@@ -366,6 +366,11 @@ export class ChatFullInfo {
 		return this.payload.can_set_sticker_set;
 	}
 
+	@Inspect()
+	get canSendGift() {
+		return this.payload.can_send_gift
+	}
+
 	/**
 	 * *Optional*. For supergroups, the name of the group's custom emoji sticker set. Custom emoji from this set can be used by all users and bots in the group.
 	 */

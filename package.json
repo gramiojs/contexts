@@ -1,6 +1,6 @@
 {
 	"name": "@gramio/contexts",
-	"version": "0.1.3",
+	"version": "0.1.4",
 	"keywords": [
 		"gramio",
 		"contexts",
@@ -23,7 +23,7 @@
 	},
 	"peerDependencies": {
 		"inspectable": "^3.0.1",
-		"@gramio/types": "^8.3.1"
+		"@gramio/types": "^8.3.2"
 	},
 	"description": "Contexts for GramIO framework",
 	"scripts": {
