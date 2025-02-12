@@ -59,6 +59,18 @@ export class VideoAttachment extends FileAttachment<TelegramObjects.TelegramVide
 	get fileSize() {
 		return this.payload.file_size;
 	}
+
+	/** Video cover */
+	@Inspect({ nullable: false })
+	get cover() {
+		return this.payload.cover ? this.payload.cover.map((size) => new PhotoSize(size)) : undefined;
+	}
+
+	/** Start timestamp */
+	@Inspect({ nullable: false })
+	get startTimestamp() {
+		return this.payload.start_timestamp;
+	}
 }
 
 memoizeGetters(VideoAttachment, ["thumbnail"]);
