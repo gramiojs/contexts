@@ -3,10 +3,10 @@
 	"version": "0.0.15",
 	"exports": "./src/index.ts",
 	"publish": {
-		"include": [ "src", "README.md", "LICENSE"]
+		"include": ["src", "README.md", "LICENSE"]
 	},
 	"imports": {
-		"@gramio/types": "jsr:@gramio/types@^8.1.0",
+		"@gramio/types": "jsr:@gramio/types@^8.3.2",
 		"inspectable": "npm:inspectable@^3.0.2"
 	}
 }
