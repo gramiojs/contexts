@@ -81,7 +81,11 @@ export class CallbackQuery {
 	 */
 	@Inspect({ nullable: false })
 	get data() {
-		return this.payload.data;
+		return this.payload.data!;
+	}
+
+	set data(data: string) {
+		this.payload.data = data;
 	}
 
 	/**
