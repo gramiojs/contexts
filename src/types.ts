@@ -145,6 +145,7 @@ export type ContextsMapping<Bot extends BotLike> = {
 	chat_shared: Contexts.ChatSharedContext<Bot>;
 	gift: Contexts.GiftContext<Bot>;
 	unique_gift: Contexts.UniqueGiftContext<Bot>;
+	paid_message_price_changed: Contexts.PaidMessagePriceChangedContext<Bot>;
 	video_chat_ended: Contexts.VideoChatEndedContext<Bot>;
 	video_chat_participants_invited: Contexts.VideoChatParticipantsInvitedContext<Bot>;
 	video_chat_scheduled: Contexts.VideoChatScheduledContext<Bot>;
@@ -194,6 +195,7 @@ export type MessageEventName =
 	| "chat_shared"
 	| "gift"
 	| "unique_gift"
+	| "paid_message_price_changed"
 	| "proximity_alert_triggered"
 	| "write_access_allowed"
 	| "forum_topic_created"

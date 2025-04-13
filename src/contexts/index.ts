@@ -36,6 +36,7 @@ export * from "./new-chat-members";
 export * from "./new-chat-photo";
 export * from "./new-chat-title";
 export * from "./paid-media-purchased";
+export * from "./paid-message-price-changed";
 export * from "./passport-data";
 export * from "./pinned-message";
 export * from "./poll-answer";
