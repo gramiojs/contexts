@@ -54,7 +54,7 @@ export class BusinessConnection {
 	 */
 	@Inspect()
 	get canReply() {
-		return this.payload.can_reply;
+		return !!this.payload.rights?.can_reply;
 	}
 
 	/**

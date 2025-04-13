@@ -1,6 +1,7 @@
 import type { TelegramObjects } from "@gramio/types";
 import { Inspect, Inspectable } from "inspectable";
 import { memoizeGetters } from "../utils";
+import { AcceptedGiftTypes } from "./accepted-gift-types";
 import { Birthdate } from "./birthdate";
 import { BusinessIntro } from "./business-intro";
 import { BusinessLocation } from "./business-location";
@@ -10,7 +11,6 @@ import { ChatLocation } from "./chat-location";
 import { ChatPermissions } from "./chat-permissions";
 import { ChatPhoto } from "./chat-photo";
 import { Message } from "./message";
-
 /**
  * This object contains full information about a chat.
  *
@@ -368,7 +368,17 @@ export class ChatFullInfo {
 
 	@Inspect()
 	get canSendGift() {
-		return this.payload.can_send_gift
+		return (
+			this.payload.accepted_gift_types.limited_gifts ||
+			this.payload.accepted_gift_types.unlimited_gifts ||
+			this.payload.accepted_gift_types.premium_subscription ||
+			this.payload.accepted_gift_types.unique_gifts
+		);
+	}
+
+	@Inspect()
+	get acceptedGiftTypes() {
+		return new AcceptedGiftTypes(this.payload.accepted_gift_types);
 	}
 
 	/**
