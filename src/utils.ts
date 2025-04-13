@@ -106,6 +106,8 @@ export const SERVICE_MESSAGE_EVENTS: MessageEventName[] = [
 	"message_auto_delete_timer_changed",
 	"users_shared",
 	"chat_shared",
+	"unique_gift",
+	"gift",
 	"write_access_allowed",
 	"forum_topic_closed",
 	"forum_topic_created",
@@ -148,6 +150,7 @@ export const EVENTS: [keyof Message, MessageEventName][] = [
 	["usersShared", "users_shared"],
 	["chatShared", "chat_shared"],
 	["gift", "gift"],
+	["uniqueGift", "unique_gift"],
 	["proximityAlertTriggered", "proximity_alert_triggered"],
 	["writeAccessAllowed", "write_access_allowed"],
 	["chatBoostAdded", "boost_added"],
@@ -168,5 +171,4 @@ export const EVENTS: [keyof Message, MessageEventName][] = [
 	["giveawayCreated", "giveaway_created"],
 	["giveawayCompleted", "giveaway_completed"],
 	["giveawayWinners", "giveaway_winners"],
-	
 ];

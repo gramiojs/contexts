@@ -63,6 +63,7 @@ import { GiveawayCompleted } from "./giveaway-completed";
 import { GiveawayCreated } from "./giveaway-created";
 import { GiveawayWinners } from "./giveaway-winners";
 import { Story } from "./story";
+import { UniqueGiftInfo } from "./unique-gift-info";
 
 /** This object represents a message. */
 @Inspectable()
@@ -717,6 +718,16 @@ export class Message {
 		if (!gift) return undefined;
 
 		return new GiftInfo(gift);
+	}
+
+	/** Service message: a unique gift was sent to the chat */
+	@Inspect({ nullable: false })
+	get uniqueGift() {
+		const { unique_gift } = this.payload;
+
+		if (!unique_gift) return undefined;
+
+		return new UniqueGiftInfo(unique_gift);
 	}
 
 	/**

@@ -46,6 +46,7 @@ export * from "./refunded-payment";
 export * from "./removed-chat-boost";
 export * from "./shipping-query";
 export * from "./successful-payment";
+export * from "./unique-gift";
 export * from "./users-shared";
 export * from "./video-chat-ended";
 export * from "./video-chat-participants-invited";

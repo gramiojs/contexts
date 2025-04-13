@@ -144,6 +144,7 @@ export type ContextsMapping<Bot extends BotLike> = {
 	users_shared: Contexts.UsersSharedContext<Bot>;
 	chat_shared: Contexts.ChatSharedContext<Bot>;
 	gift: Contexts.GiftContext<Bot>;
+	unique_gift: Contexts.UniqueGiftContext<Bot>;
 	video_chat_ended: Contexts.VideoChatEndedContext<Bot>;
 	video_chat_participants_invited: Contexts.VideoChatParticipantsInvitedContext<Bot>;
 	video_chat_scheduled: Contexts.VideoChatScheduledContext<Bot>;
