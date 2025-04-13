@@ -57,6 +57,7 @@ import {
 import { memoizeGetters } from "../utils";
 import { ChatBackground } from "./chat-background";
 import { ChatBoostAdded } from "./chat-boost-added";
+import { GiftInfo } from "./gift-info";
 import { Giveaway } from "./giveaway";
 import { GiveawayCompleted } from "./giveaway-completed";
 import { GiveawayCreated } from "./giveaway-created";
@@ -261,6 +262,14 @@ export class Message {
 	@Inspect({ nullable: false })
 	get authorSignature() {
 		return this.payload.author_signature;
+	}
+
+	/**
+	 * *Optional*. The number of Telegram Stars that were paid by the sender of the message to send it
+	 */
+	@Inspect()
+	get paidStarCount() {
+		return this.payload.paid_star_count;
 	}
 
 	/**
@@ -698,6 +707,16 @@ export class Message {
 		if (!chat_shared) return undefined;
 
 		return new ChatShared(chat_shared);
+	}
+
+	/** Service message: a gift was sent to the chat */
+	@Inspect({ nullable: false })
+	get gift() {
+		const { gift } = this.payload;
+
+		if (!gift) return undefined;
+
+		return new GiftInfo(gift);
 	}
 
 	/**

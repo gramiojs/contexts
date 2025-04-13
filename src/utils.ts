@@ -147,6 +147,7 @@ export const EVENTS: [keyof Message, MessageEventName][] = [
 	["successfulPayment", "successful_payment"],
 	["usersShared", "users_shared"],
 	["chatShared", "chat_shared"],
+	["gift", "gift"],
 	["proximityAlertTriggered", "proximity_alert_triggered"],
 	["writeAccessAllowed", "write_access_allowed"],
 	["chatBoostAdded", "boost_added"],

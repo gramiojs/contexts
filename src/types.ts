@@ -143,6 +143,7 @@ export type ContextsMapping<Bot extends BotLike> = {
 	refunded_payment: Contexts.RefundedPaymentContext<Bot>;
 	users_shared: Contexts.UsersSharedContext<Bot>;
 	chat_shared: Contexts.ChatSharedContext<Bot>;
+	gift: Contexts.GiftContext<Bot>;
 	video_chat_ended: Contexts.VideoChatEndedContext<Bot>;
 	video_chat_participants_invited: Contexts.VideoChatParticipantsInvitedContext<Bot>;
 	video_chat_scheduled: Contexts.VideoChatScheduledContext<Bot>;
@@ -190,6 +191,8 @@ export type MessageEventName =
 	| "refunded_payment"
 	| "users_shared"
 	| "chat_shared"
+	| "gift"
+	| "unique_gift"
 	| "proximity_alert_triggered"
 	| "write_access_allowed"
 	| "forum_topic_created"
