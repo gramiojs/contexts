@@ -138,7 +138,10 @@ class MessageContext<Bot extends BotLike> extends Context<Bot> {
 		return text.split(" ")[1];
 	}
 
-	/** Parsed value after the `/start` command */
+	/**
+	 * Parsed value ("1" => 1, `{"a": 1}` => {a: 1}) after the `/start` command
+	 * @deprecated Use `rawStartPayload` instead. This property will be reworked and it will be the same as `rawStartPayload`
+	 */
 	get startPayload() {
 		let payload: number | string | undefined = this.rawStartPayload;
 
