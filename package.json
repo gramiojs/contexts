@@ -1,6 +1,6 @@
 {
 	"name": "@gramio/contexts",
-	"version": "0.2.0",
+	"version": "0.2.1",
 	"keywords": [
 		"gramio",
 		"contexts",
@@ -18,7 +18,7 @@
 		"common-tags": "^1.8.2",
 		"inspectable": "^3.0.2",
 		"madge": "^8.0.0",
-		"pkgroll": "^2.12.1",
+		"pkgroll": "2.6.0",
 		"typescript": "^5.8.3"
 	},
 	"peerDependencies": {
@@ -47,6 +47,16 @@
 			"require": {
 				"types": "./dist/index.d.cts",
 				"default": "./dist/index.cjs"
+			}
+		},
+		"./mixins/target": {
+			"import": {
+				"types": "./dist/contexts/mixins/target.d.ts",
+				"default": "./dist/contexts/mixins/target.js"
+			},
+			"require": {
+				"types": "./dist/contexts/mixins/target.d.cts",
+				"default": "./dist/contexts/mixins/target.cjs"
 			}
 		}
 	},

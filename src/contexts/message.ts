@@ -18,7 +18,8 @@ import {
 } from "../structures/attachments/index";
 
 // import { MediaGroup } from "../media-group";
-import { Message, type MessageEntity } from "../structures/index";
+import { Message } from "../structures/message";
+import type { MessageEntity } from "../structures/message-entity";
 
 import type { TelegramObjects } from "@gramio/types";
 
@@ -51,11 +52,11 @@ import {
 	ChatSenderControlMixin,
 	CloneMixin,
 	DownloadMixin,
-	NodeMixin,
 	PinsMixin,
 	SendMixin,
-	TargetMixin,
 } from "./mixins/index";
+import { NodeMixin } from "./mixins/node";
+import { TargetMixin } from "./mixins/target";
 
 interface MessageContextOptions<Bot extends BotLike> {
 	bot: Bot;
