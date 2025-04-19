@@ -180,12 +180,6 @@ export type ContextType<
 > = InstanceType<ContextsMapping<Bot>[Name]> & GetDerives<Bot, Name>;
 
 
-type A = ContextType<BotLike, "message">
-
-const a = {} as A;
-
-a.from
-
 /** Union type of MessageEvent names */
 export type MessageEventName =
 	| "new_chat_members"
