@@ -176,6 +176,7 @@ export type ContextType<
 	Name extends keyof ContextsMapping<Bot>,
 > = InstanceType<ContextsMapping<Bot>[Name]> & GetDerives<Bot, Name>;
 
+
 /** Union type of MessageEvent names */
 export type MessageEventName =
 	| "new_chat_members"
