@@ -96,6 +96,9 @@ export type GetDerives<
 	Event extends keyof ContextsMapping<Bot>,
 > = Bot["__Derives"]["global"] & Bot["__Derives"][Event];
 
+export type MessageContextWithRequiredFrom<Bot extends BotLike> =
+	Constructor<Require<InstanceType<Contexts.MessageContext<Bot>>, "from">	>;
+
 /** Mapping events to their contexts */
 export type ContextsMapping<Bot extends BotLike> = {
 	callback_query: Contexts.CallbackQueryContext<Bot>;
@@ -110,12 +113,12 @@ export type ContextsMapping<Bot extends BotLike> = {
 	left_chat_member: Contexts.LeftChatMemberContext<Bot>;
 	location: Contexts.LocationContext<Bot>;
 	message_auto_delete_timer_changed: Contexts.MessageAutoDeleteTimerChangedContext<Bot>;
-	message: Contexts.MessageContext<Bot>;
+	message: MessageContextWithRequiredFrom<Bot>;
 	channel_post: Contexts.MessageContext<Bot>;
-	edited_message: Contexts.MessageContext<Bot>;
-	edited_channel_post: Contexts.MessageContext<Bot>;
-	business_message: Contexts.MessageContext<Bot>;
-	edited_business_message: Contexts.MessageContext<Bot>;
+	edited_message: MessageContextWithRequiredFrom<Bot>;
+	edited_channel_post: MessageContextWithRequiredFrom<Bot>;
+	business_message: MessageContextWithRequiredFrom<Bot>;
+	edited_business_message: MessageContextWithRequiredFrom<Bot>;
 	deleted_business_messages: Contexts.BusinessMessagesDeletedContext<Bot>;
 	business_connection: Contexts.BusinessConnectionContext<Bot>;
 	migrate_from_chat_id: Contexts.MigrateFromChatIdContext<Bot>;
@@ -176,6 +179,12 @@ export type ContextType<
 	Name extends keyof ContextsMapping<Bot>,
 > = InstanceType<ContextsMapping<Bot>[Name]> & GetDerives<Bot, Name>;
 
+
+type A = ContextType<BotLike, "message">
+
+const a = {} as A;
+
+a.from
 
 /** Union type of MessageEvent names */
 export type MessageEventName =
