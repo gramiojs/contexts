@@ -5,7 +5,7 @@ export default defineConfig({
 	target: "es2022",
 	splitting: true,
 	entry: ["./src/index.ts"],
-	format: ["cjs"],
+	format: ["cjs", "esm"],
 	dts: {
 		resolve: true,
 	},
