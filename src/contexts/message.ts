@@ -342,14 +342,6 @@ class MessageContext<Bot extends BotLike> extends Context<Bot> {
 
 		return this.hasAttachmentType(type);
 	}
-
-	// Implement factory method
-	createMessageContext(payload: TelegramObjects.TelegramMessage) {
-		return new MessageContext({
-			bot: this.bot,
-			payload,
-		});
-	}
 }
 
 interface MessageContext<Bot extends BotLike>
