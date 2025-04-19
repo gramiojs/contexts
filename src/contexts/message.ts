@@ -342,6 +342,14 @@ class MessageContext<Bot extends BotLike> extends Context<Bot> {
 
 		return this.hasAttachmentType(type);
 	}
+
+	// Implement factory method
+	createMessageContext(payload: TelegramObjects.TelegramMessage) {
+		return new MessageContext({
+			bot: this.bot,
+			payload,
+		});
+	}
 }
 
 interface MessageContext<Bot extends BotLike>
@@ -361,7 +369,6 @@ interface MessageContext<Bot extends BotLike>
 applyMixins(MessageContext, [
 	Message,
 	TargetMixin,
-	SendMixin,
 	ChatActionMixin,
 	NodeMixin,
 	DownloadMixin,
@@ -371,6 +378,7 @@ applyMixins(MessageContext, [
 	ChatMemberControlMixin,
 	PinsMixin,
 	CloneMixin,
+	SendMixin,
 ]);
 memoizeGetters(MessageContext, ["attachment"]);
 
