@@ -97,7 +97,7 @@ export type GetDerives<
 > = Bot["__Derives"]["global"] & Bot["__Derives"][Event];
 
 export type MessageContextWithRequiredFrom<Bot extends BotLike> =
-	Constructor<Require<InstanceType<Contexts.MessageContext<Bot>>, "from">	>;
+	Constructor<InstanceType<Contexts.MessageContext<Bot>> & Require<InstanceType<Contexts.MessageContext<Bot>>, "from">	>;
 
 /** Mapping events to their contexts */
 export type ContextsMapping<Bot extends BotLike> = {
