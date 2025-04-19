@@ -18,7 +18,7 @@
 		"common-tags": "^1.8.2",
 		"inspectable": "^3.0.2",
 		"madge": "^8.0.0",
-		"pkgroll": "2.6.0",
+		"pkgroll": "2.8.2",
 		"typescript": "^5.8.3"
 	},
 	"peerDependencies": {
@@ -47,16 +47,6 @@
 			"require": {
 				"types": "./dist/index.d.cts",
 				"default": "./dist/index.cjs"
-			}
-		},
-		"./mixins/target": {
-			"import": {
-				"types": "./dist/contexts/mixins/target.d.ts",
-				"default": "./dist/contexts/mixins/target.js"
-			},
-			"require": {
-				"types": "./dist/contexts/mixins/target.d.cts",
-				"default": "./dist/contexts/mixins/target.cjs"
 			}
 		}
 	},
