@@ -31,7 +31,7 @@
 		"type": "tsc --noEmit",
 		"lint": "bunx @biomejs/biome check ./src",
 		"lint:fix": "bun lint --apply",
-		"prepublishOnly": "bun test && bunx tsup",
+		"prepublishOnly": "bunx pkgroll && bun test",
 		"circular": "bunx madge --circular ./src --extensions=ts",
 		"generate": "bun scripts/generate.ts",
 		"jsr": "bun scripts/release-jsr.ts"

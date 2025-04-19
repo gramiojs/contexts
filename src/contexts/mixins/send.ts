@@ -6,6 +6,7 @@ import type { Optional, tSendMethods } from "../../types";
 import type { BotLike } from "../../types";
 import type { Context } from "../context";
 import { MessageContext } from "../message";
+import { applyMixins } from "utils";
 
 interface SendMixinMetadata {
 	get chatId(): number;
@@ -529,5 +530,7 @@ class SendMixin<Bot extends BotLike> {
 interface SendMixin<Bot extends BotLike>
 	extends Context<Bot>,
 		SendMixinMetadata {}
+
+applyMixins(MessageContext, [SendMixin]);
 
 export { SendMixin };

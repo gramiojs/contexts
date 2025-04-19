@@ -8,6 +8,7 @@ import type { BotLike } from "../../types";
 import type { Context } from "../context";
 import { MessageContext } from "../message";
 import type { SendMixin } from "./send";
+import { applyMixins } from "../../utils";
 
 interface NodeMixinMetadata {
 	get id(): number;
@@ -1013,3 +1014,7 @@ interface NodeMixin<Bot extends BotLike>
 		SendMixin<Bot> {}
 
 export { NodeMixin };
+
+applyMixins(MessageContext, [
+	NodeMixin
+]);

@@ -9,4 +9,5 @@ export default defineConfig({
 	dts: {
 		resolve: true,
 	},
+	keepNames: true,
 });

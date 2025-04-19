@@ -1,6 +1,8 @@
+import { applyMixins } from "utils";
 import type { Attachment } from "../../structures/attachments/index";
 import type { BotLike } from "../../types";
 
+import { MessageContext } from "contexts/message";
 import type { Context } from "../context";
 
 interface DownloadMixinMetadata {
@@ -27,3 +29,5 @@ interface DownloadMixin<Bot extends BotLike>
 		DownloadMixinMetadata {}
 
 export { DownloadMixin };
+
+applyMixins(MessageContext, [DownloadMixin]);

@@ -51,11 +51,11 @@ import {
 	ChatMemberControlMixin,
 	ChatSenderControlMixin,
 	CloneMixin,
-	DownloadMixin,
+	type DownloadMixin,
 	PinsMixin,
 	SendMixin,
 } from "./mixins/index";
-import { NodeMixin } from "./mixins/node";
+import type { NodeMixin } from "./mixins/node";
 import { TargetMixin } from "./mixins/target";
 
 interface MessageContextOptions<Bot extends BotLike> {
@@ -362,15 +362,15 @@ applyMixins(MessageContext, [
 	Message,
 	TargetMixin,
 	ChatActionMixin,
-	NodeMixin,
-	DownloadMixin,
+	// NodeMixin,
+	// DownloadMixin,
 	ChatInviteControlMixin,
 	ChatControlMixin,
 	ChatSenderControlMixin,
 	ChatMemberControlMixin,
 	PinsMixin,
 	CloneMixin,
-	SendMixin,
+	// SendMixin,
 ]);
 memoizeGetters(MessageContext, ["attachment"]);
 
