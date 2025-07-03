@@ -99,6 +99,8 @@ export type GetDerives<
 export type MessageContextWithRequiredFrom<Bot extends BotLike> =
 	Constructor<InstanceType<Contexts.MessageContext<Bot>> & Require<InstanceType<Contexts.MessageContext<Bot>>, "from">	>;
 
+
+
 /** Mapping events to their contexts */
 export type ContextsMapping<Bot extends BotLike> = {
 	callback_query: Contexts.CallbackQueryContext<Bot>;
@@ -135,6 +137,9 @@ export type ContextsMapping<Bot extends BotLike> = {
 	write_access_allowed: Contexts.WriteAccessAllowedContext<Bot>;
 	boost_added: Contexts.BoostAddedContext<Bot>;
 	chat_background_set: Contexts.ChatBackgroundSetContext<Bot>;
+	checklist_tasks_done: Contexts.ChecklistTasksDoneContext<Bot>;
+	checklist_tasks_added: Contexts.ChecklistTasksAddedContext<Bot>;
+	direct_message_price_changed: Contexts.DirectMessagePriceChangedContext<Bot>;
 	forum_topic_created: Contexts.ForumTopicCreatedContext<Bot>;
 	forum_topic_edited: Contexts.ForumTopicEditedContext<Bot>;
 	forum_topic_closed: Contexts.ForumTopicClosedContext<Bot>;
@@ -219,7 +224,10 @@ export type MessageEventName =
 	| "giveaway_completed"
 	| "giveaway_winners"
 	| "boost_added"
-	| "chat_background_set";
+	| "chat_background_set"
+	| "checklist_tasks_done"
+	| "checklist_tasks_added"
+	| "direct_message_price_changed";
 // | "removed_chat_boost";
 
 /** Custom Event Name */

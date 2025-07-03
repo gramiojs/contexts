@@ -74,6 +74,16 @@ class UniqueGiftContext<Bot extends BotLike> extends Context<Bot> {
 	get transferStarCount() {
 		return this.event.transfer_star_count;
 	}
+
+	/**
+	 * *Optional*. Point in time (Unix timestamp) when the gift can be transferred. If it is in the past, then the gift can be transferred now
+	 */
+	@Inspect()
+	get nextTransferDate() {
+		return this.event.next_transfer_date
+			? new Date(this.event.next_transfer_date * 1000)
+			: undefined;
+	}
 }
 
 interface UniqueGiftContext<Bot extends BotLike>

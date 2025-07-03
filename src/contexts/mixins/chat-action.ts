@@ -123,7 +123,7 @@ class ChatActionController<Bot extends BotLike> {
 }
 
 class ChatActionMixin<Bot extends BotLike> {
-	/** Creates a controller that when `start()`ed executes `sendChatAction(action)` every `interval` milliseconds until `stop()`ped */
+	/** @deprecated Creates a controller that when `start()`ed executes `sendChatAction(action)` every `interval` milliseconds until `stop()`ped */
 	createActionController(
 		action: TelegramParams.SendChatActionParams["action"],
 		params: Optional<

@@ -131,6 +131,9 @@ export const SERVICE_MESSAGE_EVENTS: MessageEventName[] = [
 	// passport_data?
 	"boost_added",
 	"chat_background_set",
+	"checklist_tasks_done",
+	"checklist_tasks_added",
+	"direct_message_price_changed",
 ];
 
 /** Array of EVENTS */
@@ -155,6 +158,9 @@ export const EVENTS: [keyof Message, MessageEventName][] = [
 	["writeAccessAllowed", "write_access_allowed"],
 	["chatBoostAdded", "boost_added"],
 	["chatBackgroundSet", "chat_background_set"],
+	["checklistTasksDone", "checklist_tasks_done"],
+	["checklistTasksAdded", "checklist_tasks_added"],
+	["directMessagePriceChanged", "direct_message_price_changed"],
 	["forumTopicCreated", "forum_topic_created"],
 	["forumTopicEdited", "forum_topic_edited"],
 	["forumTopicClosed", "forum_topic_closed"],

@@ -57,6 +57,10 @@ import {
 import { memoizeGetters } from "../utils";
 import { ChatBackground } from "./chat-background";
 import { ChatBoostAdded } from "./chat-boost-added";
+import { Checklist } from "./checklist";
+import { ChecklistTasksAdded } from "./checklist-tasks-added";
+import { ChecklistTasksDone } from "./checklist-tasks-done";
+import { DirectMessagePriceChanged } from "./direct-message-price-changed";
 import { GiftInfo } from "./gift-info";
 import { Giveaway } from "./giveaway";
 import { GiveawayCompleted } from "./giveaway-completed";
@@ -200,6 +204,17 @@ export class Message {
 		if (!reply_to_story) return undefined;
 
 		return new Story(reply_to_story);
+	}
+
+	@Inspect()
+	get checklist() {
+		const { checklist } = this.payload;
+
+		if (!checklist) {
+			return undefined;
+		}
+
+		return new Checklist(checklist);
 	}
 
 	/** Information about the message that is being replied to, which may come from another chat or forum topic */
@@ -772,6 +787,40 @@ export class Message {
 		if (!chat_background_set) return undefined;
 
 		return new ChatBackground(chat_background_set);
+	}
+
+	/** Service message: checklist tasks done */
+	@Inspect({ nullable: false })
+	get checklistTasksDone() {
+		const { checklist_tasks_done } = this.payload;
+
+		if (!checklist_tasks_done) return undefined;
+
+		return new ChecklistTasksDone(checklist_tasks_done);
+	}
+
+	/** Service message: checklist tasks added */
+
+	/** Service message: checklist tasks added */
+	@Inspect({ nullable: false })
+	get checklistTasksAdded() {
+		const { checklist_tasks_added } = this.payload;
+
+		if (!checklist_tasks_added) return undefined;
+
+		return new ChecklistTasksAdded(checklist_tasks_added);
+	}
+
+	/** Service message: direct message price changed */
+
+	/** Service message: direct message price changed */
+	@Inspect({ nullable: false })
+	get directMessagePriceChanged() {
+		const { direct_message_price_changed } = this.payload;
+
+		if (!direct_message_price_changed) return undefined;
+
+		return new DirectMessagePriceChanged(direct_message_price_changed);
 	}
 
 	/** Service message: forum topic created */

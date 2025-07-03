@@ -33,12 +33,20 @@ export class BusinessBotRights {
 
 	/**
 	 * True, if the bot can delete messages sent by the bot
+	 * @deprecated Use `canDeleteSentMessages` instead
 	 */
 	@Inspect()
 	get canDeleteOutgoingMessages() {
-		return !!this.payload.can_delete_outgoing_messages;
+		return !!this.payload.can_delete_sent_messages;
 	}
 
+	/**
+	 * True, if the bot can delete messages sent by the bot
+	 */
+	@Inspect()
+	get canDeleteSentMessages() {
+		return !!this.payload.can_delete_sent_messages;
+	}
 	/**
 	 * True, if the bot can delete all private messages in managed chats
 	 */

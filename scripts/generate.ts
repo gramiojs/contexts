@@ -1,9 +1,10 @@
 import fs from "node:fs/promises";
+import path from "node:path";
 import { stripIndents } from "common-tags";
 // import prettier from "prettier";
 import type { IBotApi } from "./types";
 
-const SCHEMA_FILE_PATH = "./tg-bot-api/public/dev/custom.min.json";
+const SCHEMA_FILE_PATH = path.resolve(import.meta.dirname, "custom.min.json");
 
 const schemaFile = await fs.readFile(SCHEMA_FILE_PATH);
 const schema = JSON.parse(String(schemaFile)) as IBotApi.ISchema;
@@ -26,7 +27,13 @@ function snakeToCamelCase(str: string) {
 }
 
 const objectToGenerate: string[] = [
-	"RefundedPayment",
+	// "DirectMessagePriceChanged",
+	// "ChecklistTasksAdded",
+	// "ChecklistTasksDone",
+	// "Checklist",
+	// "ChecklistTask",
+	"InputChecklistTask",
+	// "DirectMessagePriceChanged",
 	// "ChatBackground",
 	// "BackgroundFill",
 	// "BackgroundType",

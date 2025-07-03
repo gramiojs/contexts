@@ -16,6 +16,7 @@ import {
 
 import { memoizeGetters } from "../utils";
 import { Chat } from "./chat";
+import { Checklist } from "./checklist";
 import { Dice } from "./dice";
 import { Game } from "./game";
 import { Giveaway } from "./giveaway";
@@ -94,6 +95,17 @@ export class ExternalReplyInfo {
 		}
 
 		return new LinkPreviewOptions(link_preview_options);
+	}
+
+	@Inspect()
+	get checklist() {
+		const { checklist } = this.payload;
+
+		if (!checklist) {
+			return undefined;
+		}
+
+		return new Checklist(checklist);
 	}
 
 	/** Message is an animation, information about the animation */

@@ -53,7 +53,7 @@ import {
 	CloneMixin,
 	type DownloadMixin,
 	PinsMixin,
-	SendMixin,
+	type SendMixin,
 } from "./mixins/index";
 import type { NodeMixin } from "./mixins/node";
 import { TargetMixin } from "./mixins/target";

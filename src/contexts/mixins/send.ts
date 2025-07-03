@@ -3,10 +3,10 @@ import type { TelegramParams } from "@gramio/types";
 import { Poll } from "../../structures/index";
 import type { Optional, tSendMethods } from "../../types";
 
+import { applyMixins } from "utils";
 import type { BotLike } from "../../types";
 import type { Context } from "../context";
 import { MessageContext } from "../message";
-import { applyMixins } from "utils";
 
 interface SendMixinMetadata {
 	get chatId(): number;
@@ -291,6 +291,26 @@ class SendMixin<Bot extends BotLike> {
 			params.message_thread_id = this.threadId;
 
 		const response = await this.bot.api.sendPoll({
+			chat_id: this.chatId || this.senderId || 0,
+			...params,
+		});
+
+		return new MessageContext({
+			bot: this.bot,
+			payload: response,
+		});
+	}
+
+	/** Sends checklist to current chat */
+	async sendChecklist(
+		params: Optional<TelegramParams.SendChecklistParams, "chat_id">,
+	) {
+		if (this.businessConnectionId && !params.business_connection_id)
+			params.business_connection_id = this.businessConnectionId;
+		// if (this.threadId && this.isTopicMessage?.() && !params.message_thread_id)
+		// 	params.message_thread_id = this.threadId;
+
+		const response = await this.bot.api.sendChecklist({
 			chat_id: this.chatId || this.senderId || 0,
 			...params,
 		});

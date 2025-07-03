@@ -5,10 +5,10 @@ import { MessageId } from "../../structures/index";
 import type { MaybeArray, Optional } from "../../types";
 
 import type { BotLike } from "../../types";
+import { applyMixins } from "../../utils";
 import type { Context } from "../context";
 import { MessageContext } from "../message";
 import type { SendMixin } from "./send";
-import { applyMixins } from "../../utils";
 
 interface NodeMixinMetadata {
 	get id(): number;
@@ -769,6 +769,31 @@ class NodeMixin<Bot extends BotLike> {
 		return this.editMessageCaption(caption, params);
 	}
 
+	async editChecklist(
+		checklist: TelegramParams.EditMessageChecklistParams["checklist"],
+		params: Partial<TelegramParams.EditMessageChecklistParams> = {},
+	) {
+		if (this.businessConnectionId && !params.business_connection_id)
+			params.business_connection_id = this.businessConnectionId;
+
+		if (!params.business_connection_id) {
+			throw new Error("business_connection_id is required");
+		}
+
+		const response = await this.bot.api.editMessageChecklist({
+			chat_id: this.chatId || this.senderId || 0,
+			message_id: this.id,
+			checklist,
+			...params,
+			business_connection_id: params.business_connection_id,
+		});
+
+		return new MessageContext({
+			bot: this.bot,
+			payload: response,
+		});
+	}
+
 	/** Edits current message media */
 	async editMessageMedia(
 		media: TelegramParams.EditMessageMediaParams["media"],
@@ -1015,6 +1040,4 @@ interface NodeMixin<Bot extends BotLike>
 
 export { NodeMixin };
 
-applyMixins(MessageContext, [
-	NodeMixin
-]);
+applyMixins(MessageContext, [NodeMixin]);
