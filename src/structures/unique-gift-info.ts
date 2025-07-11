@@ -33,6 +33,15 @@ export class UniqueGiftInfo {
 	get origin() {
 		return this.payload.origin;
 	}
+
+	/**
+	 * *Optional*. For gifts bought from other users, the price paid for the gift
+	 */
+	@Inspect()
+	get lastResaleStarCount() {
+		return this.payload.last_resale_star_count;
+	}
+
 	/**
 	 * *Optional*. Unique identifier of the received gift for the bot; only present for gifts received on behalf of business accounts
 	 */
@@ -46,5 +55,12 @@ export class UniqueGiftInfo {
 	@Inspect()
 	get transferStarCount() {
 		return this.payload.transfer_star_count;
+	}
+	/**
+	 * *Optional*. Point in time (Unix timestamp) when the gift can be transferred. If it is in the past, then the gift can be transferred now
+	 */
+	@Inspect()
+	get nextTransferDate() {
+		return this.payload.next_transfer_date;
 	}
 }
