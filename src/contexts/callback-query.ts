@@ -63,6 +63,13 @@ class CallbackQueryContext<Bot extends BotLike> extends Context<Bot> {
 		});
 	}
 
+	/**
+	 * Chat identifier of the message with the callback button that originated the query.
+	 */
+	get chatId() {
+		return this.message?.chat?.id;
+	}
+
 	/** Checks if the query has `queryPayload` property */
 	hasQueryPayload(): this is Require<this, "queryPayload"> {
 		return this.payload.data !== undefined;
