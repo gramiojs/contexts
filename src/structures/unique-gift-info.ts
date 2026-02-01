@@ -35,11 +35,29 @@ export class UniqueGiftInfo {
 	}
 
 	/**
-	 * *Optional*. For gifts bought from other users, the price paid for the gift
+	 * *Optional*. For gifts bought from other users, the currency in which the payment for the gift was done. Currently, one of “XTR” for Telegram Stars or “TON” for toncoins
+	 */
+	@Inspect()
+	get lastResaleCurrency() {
+		return this.payload.last_resale_currency;
+	}
+
+	/**
+	 * *Optional*. For gifts bought from other users, the price paid for the gift in either Telegram Stars or nanotoncoins
+	 */
+	@Inspect()
+	get lastResaleAmount() {
+		return this.payload.last_resale_amount;
+	}
+
+	/**
+	 * *Optional*. For gifts bought from other users, the price paid for the gift in either Telegram Stars or nanotoncoins
 	 */
 	@Inspect()
 	get lastResaleStarCount() {
-		return this.payload.last_resale_star_count;
+		return this.payload.last_resale_currency === "XTR"
+			? this.payload.last_resale_amount
+			: undefined;
 	}
 
 	/**
