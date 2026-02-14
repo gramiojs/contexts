@@ -46,4 +46,12 @@ export class AcceptedGiftTypes {
 	get premiumSubscription() {
 		return this.payload.premium_subscription;
 	}
+
+	/**
+	 * True, if transfers of unique gifts from channels are accepted
+	 */
+	@Inspect()
+	get giftsFromChannels() {
+		return this.payload.gifts_from_channels;
+	}
 }

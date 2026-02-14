@@ -1,6 +1,7 @@
 import type { TelegramObjects } from "@gramio/types";
 import { Inspect, Inspectable } from "inspectable";
 import { memoizeGetters } from "../utils";
+import { Chat } from "./chat";
 import { MessageEntity } from "./message-entity";
 import { User } from "./user";
 
@@ -54,6 +55,16 @@ export class ChecklistTask {
 	}
 
 	/**
+	 * *Optional*. Chat that completed the task; omitted if the task wasn't completed by a chat
+	 */
+	@Inspect()
+	get completedByChat() {
+		return this.payload.completed_by_chat
+			? new Chat(this.payload.completed_by_chat)
+			: undefined;
+	}
+
+	/**
 	 * *Optional*. Point in time (Unix timestamp) when the task was completed; 0 if the task wasn't completed
 	 */
 	@Inspect()
@@ -63,4 +74,8 @@ export class ChecklistTask {
 			: undefined;
 	}
 }
-memoizeGetters(ChecklistTask, ["completedByUser", "textEntities"]);
+memoizeGetters(ChecklistTask, [
+	"completedByUser",
+	"completedByChat",
+	"textEntities",
+]);

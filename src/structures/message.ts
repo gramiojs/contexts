@@ -774,6 +774,16 @@ export class Message {
 		return new GiftInfo(gift);
 	}
 
+	/** Service message: upgrade of a gift was purchased after the gift was sent */
+	@Inspect({ nullable: false })
+	get giftUpgradeSent() {
+		const { gift_upgrade_sent } = this.payload;
+
+		if (!gift_upgrade_sent) return undefined;
+
+		return new GiftInfo(gift_upgrade_sent);
+	}
+
 	/** Service message: a unique gift was sent to the chat */
 	@Inspect({ nullable: false })
 	get uniqueGift() {
@@ -1099,6 +1109,7 @@ memoizeGetters(Message, [
 	"successfulPayment",
 	"usersShared",
 	"chatShared",
+	"giftUpgradeSent",
 	"proximityAlertTriggered",
 	"writeAccessAllowed",
 	"suggestedPostApproved",

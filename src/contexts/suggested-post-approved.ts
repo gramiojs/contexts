@@ -5,9 +5,9 @@ import type { Constructor } from "../types";
 import { applyMixins, memoizeGetters } from "../utils";
 
 import { inspectable } from "inspectable";
-import type { BotLike } from "../types";
 import { SuggestedPostApproved } from "../structures/suggested-post-approved";
 import { SuggestedPostPrice } from "../structures/suggested-post-price";
+import type { BotLike } from "../types";
 import { Context } from "./context";
 import {
 	ChatActionMixin,

@@ -10,29 +10,29 @@ import { PhotoSize } from "./photo-size";
  */
 @Inspectable()
 export class PaidMediaPhoto {
-    constructor(public payload: TelegramObjects.TelegramPaidMediaPhoto) {}
+	constructor(public payload: TelegramObjects.TelegramPaidMediaPhoto) {}
 
-    get [Symbol.toStringTag]() {
-        return this.constructor.name;
-    }
+	get [Symbol.toStringTag]() {
+		return this.constructor.name;
+	}
 
-    /**
-     * Type of the paid media, always “photo”
-     */
-    @Inspect()
-    get type() {
-        return this.payload.type;
-    }
+	/**
+	 * Type of the paid media, always “photo”
+	 */
+	@Inspect()
+	get type() {
+		return this.payload.type;
+	}
 
-    /**
-     * The photo
-     */
-    @Inspect()
-    get photo() {
-        return this.payload.photo
-            ? new PhotoAttachment(
-                  this.payload.photo.map((size) => new PhotoSize(size))
-              )
-            : undefined;
-    }
+	/**
+	 * The photo
+	 */
+	@Inspect()
+	get photo() {
+		return this.payload.photo
+			? new PhotoAttachment(
+					this.payload.photo.map((size) => new PhotoSize(size)),
+				)
+			: undefined;
+	}
 }

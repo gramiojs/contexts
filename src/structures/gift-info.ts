@@ -66,4 +66,16 @@ export class GiftInfo {
 	get isPrivate() {
 		return this.payload.is_private;
 	}
+
+	/** *Optional*. True, if the gift's upgrade was purchased after the gift was sent */
+	@Inspect()
+	get isUpgradeSeparate() {
+		return this.payload.is_upgrade_separate;
+	}
+
+	/** *Optional*. Unique number reserved for this gift when upgraded */
+	@Inspect()
+	get uniqueGiftNumber() {
+		return this.payload.unique_gift_number;
+	}
 }

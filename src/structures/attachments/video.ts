@@ -63,7 +63,9 @@ export class VideoAttachment extends FileAttachment<TelegramObjects.TelegramVide
 	/** Video cover */
 	@Inspect({ nullable: false })
 	get cover() {
-		return this.payload.cover ? this.payload.cover.map((size) => new PhotoSize(size)) : undefined;
+		return this.payload.cover
+			? this.payload.cover.map((size) => new PhotoSize(size))
+			: undefined;
 	}
 
 	/** Start timestamp */

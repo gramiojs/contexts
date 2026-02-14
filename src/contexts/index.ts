@@ -19,6 +19,7 @@ export * from "./forum-topic-edited.ts";
 export * from "./forum-topic-reopened.ts";
 export * from "./general-forum-topic-hidden.ts";
 export * from "./general-forum-topic-unhidden.ts";
+export * from "./gift-upgrade-sent.ts";
 export * from "./gift.ts";
 export * from "./giveaway-completed.ts";
 export * from "./giveaway-created.ts";

@@ -363,6 +363,16 @@ class SendMixin<Bot extends BotLike> {
 		return new Poll(response);
 	}
 
+	/** Sends a message draft to the current private chat */
+	sendMessageDraft(
+		params: Optional<TelegramParams.SendMessageDraftParams, "chat_id">,
+	) {
+		return this.bot.api.sendMessageDraft({
+			chat_id: this.chatId || this.senderId || 0,
+			...params,
+		});
+	}
+
 	/** Sends chat action to current chat */
 	sendChatAction(
 		action: TelegramParams.SendChatActionParams["action"],

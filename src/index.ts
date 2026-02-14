@@ -81,6 +81,7 @@ export const contextsMappings = {
 	users_shared: Contexts.UsersSharedContext,
 	chat_shared: Contexts.ChatSharedContext,
 	gift: Contexts.GiftContext,
+	gift_upgrade_sent: Contexts.GiftUpgradeSentContext,
 	unique_gift: Contexts.UniqueGiftContext,
 	paid_message_price_changed: Contexts.PaidMessagePriceChangedContext,
 	video_chat_ended: Contexts.VideoChatEndedContext,

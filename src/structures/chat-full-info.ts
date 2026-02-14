@@ -11,6 +11,8 @@ import { ChatLocation } from "./chat-location";
 import { ChatPermissions } from "./chat-permissions";
 import { ChatPhoto } from "./chat-photo";
 import { Message } from "./message";
+import { UniqueGiftColors } from "./unique-gift-colors";
+import { UserRating } from "./user-rating";
 /**
  * This object contains full information about a chat.
  *
@@ -424,6 +426,38 @@ export class ChatFullInfo {
 			? new ChatLocation(this.payload.location)
 			: undefined;
 	}
+
+	/**
+	 * *Optional*. For private chats, the rating of the user if any
+	 */
+	@Inspect({ nullable: false })
+	get rating() {
+		const { rating } = this.payload;
+
+		if (!rating) return undefined;
+
+		return new UserRating(rating);
+	}
+
+	/**
+	 * *Optional*. The color scheme based on a unique gift that must be used for the chat's name, message replies and link previews
+	 */
+	@Inspect({ nullable: false })
+	get uniqueGiftColors() {
+		const { unique_gift_colors } = this.payload;
+
+		if (!unique_gift_colors) return undefined;
+
+		return new UniqueGiftColors(unique_gift_colors);
+	}
+
+	/**
+	 * *Optional*. The number of Telegram Stars a general user have to pay to send a message to the chat
+	 */
+	@Inspect({ nullable: false })
+	get paidMessageStarCount() {
+		return this.payload.paid_message_star_count;
+	}
 }
 memoizeGetters(ChatFullInfo, [
 	"photo",
@@ -436,4 +470,6 @@ memoizeGetters(ChatFullInfo, [
 	"pinnedMessage",
 	"permissions",
 	"location",
+	"rating",
+	"uniqueGiftColors",
 ]);

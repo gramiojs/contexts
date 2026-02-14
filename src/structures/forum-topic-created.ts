@@ -29,4 +29,10 @@ export class ForumTopicCreated {
 	get iconCustomEmojiId() {
 		return this.payload.icon_custom_emoji_id;
 	}
+
+	/** *Optional*. True, if the name of the topic wasn't specified explicitly by its creator and likely needs to be changed by the bot */
+	@Inspect({ nullable: false })
+	get isNameImplicit() {
+		return this.payload.is_name_implicit;
+	}
 }

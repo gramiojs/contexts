@@ -96,10 +96,10 @@ export type GetDerives<
 	Event extends keyof ContextsMapping<Bot>,
 > = Bot["__Derives"]["global"] & Bot["__Derives"][Event];
 
-export type MessageContextWithRequiredFrom<Bot extends BotLike> =
-	Constructor<InstanceType<Contexts.MessageContext<Bot>> & Require<InstanceType<Contexts.MessageContext<Bot>>, "from">	>;
-
-
+export type MessageContextWithRequiredFrom<Bot extends BotLike> = Constructor<
+	InstanceType<Contexts.MessageContext<Bot>> &
+		Require<InstanceType<Contexts.MessageContext<Bot>>, "from">
+>;
 
 /** Mapping events to their contexts */
 export type ContextsMapping<Bot extends BotLike> = {
@@ -157,6 +157,7 @@ export type ContextsMapping<Bot extends BotLike> = {
 	users_shared: Contexts.UsersSharedContext<Bot>;
 	chat_shared: Contexts.ChatSharedContext<Bot>;
 	gift: Contexts.GiftContext<Bot>;
+	gift_upgrade_sent: Contexts.GiftUpgradeSentContext<Bot>;
 	unique_gift: Contexts.UniqueGiftContext<Bot>;
 	paid_message_price_changed: Contexts.PaidMessagePriceChangedContext<Bot>;
 	video_chat_ended: Contexts.VideoChatEndedContext<Bot>;
@@ -189,7 +190,6 @@ export type ContextType<
 	Name extends keyof ContextsMapping<Bot>,
 > = InstanceType<ContextsMapping<Bot>[Name]> & GetDerives<Bot, Name>;
 
-
 /** Union type of MessageEvent names */
 export type MessageEventName =
 	| "new_chat_members"
@@ -208,6 +208,7 @@ export type MessageEventName =
 	| "users_shared"
 	| "chat_shared"
 	| "gift"
+	| "gift_upgrade_sent"
 	| "unique_gift"
 	| "paid_message_price_changed"
 	| "proximity_alert_triggered"

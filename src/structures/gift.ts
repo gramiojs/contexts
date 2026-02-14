@@ -2,8 +2,10 @@ import { Inspect, Inspectable } from "inspectable";
 
 import type { TelegramObjects } from "@gramio/types";
 
+import { memoizeGetters } from "../utils";
 import { StickerAttachment } from "./attachments/sticker";
 import { Chat } from "./chat";
+import { GiftBackground } from "./gift-background";
 
 /**
  * Describes a service message about a regular gift that was sent or received.
@@ -49,6 +51,46 @@ export class Gift {
 		return this.payload.remaining_count;
 	}
 
+	/** *Optional*. True, if the gift can only be purchased by Telegram Premium subscribers */
+	@Inspect()
+	get isPremium() {
+		return this.payload.is_premium;
+	}
+
+	/** *Optional*. True, if the gift can be used (after being upgraded) to customize a user's appearance */
+	@Inspect()
+	get hasColors() {
+		return this.payload.has_colors;
+	}
+
+	/** *Optional*. The total number of gifts of this type that can be sent by the bot; for limited gifts only */
+	@Inspect()
+	get personalTotalCount() {
+		return this.payload.personal_total_count;
+	}
+
+	/** *Optional*. The number of remaining gifts of this type that can be sent by the bot; for limited gifts only */
+	@Inspect()
+	get personalRemainingCount() {
+		return this.payload.personal_remaining_count;
+	}
+
+	/** *Optional*. Background of the gift */
+	@Inspect({ nullable: false })
+	get background() {
+		const { background } = this.payload;
+
+		if (!background) return undefined;
+
+		return new GiftBackground(background);
+	}
+
+	/** *Optional*. The total number of different unique gifts that can be obtained by upgrading the gift */
+	@Inspect()
+	get uniqueGiftVariantCount() {
+		return this.payload.unique_gift_variant_count;
+	}
+
 	/** Information about the gift */
 	@Inspect()
 	get id() {
@@ -65,3 +107,4 @@ export class Gift {
 		return new Chat(publisher_chat);
 	}
 }
+memoizeGetters(Gift, ["sticker", "background", "publisherChat"]);

@@ -166,7 +166,19 @@ For each new **message sub-event** (service message field on `TelegramMessage`):
 
 For new **top-level update types**, follow "How to Add a New Top-Level Update Context" instead.
 
-### Step 6: Verify
+### Step 6: Update README.md
+
+Update the Bot API version badge in `README.md`. The line looks like:
+
+```
+Currently, support [Telegram Bot API X.Y+](https://core.telegram.org/bots/api-changelog#...).
+```
+
+Change the version number and the anchor link to match the new Bot API version. The changelog anchors can be found at https://core.telegram.org/bots/api-changelog (format: `#month-day-year` e.g. `#december-31-2025`).
+
+**IMPORTANT:** Never update the version to a higher Bot API version than what the user explicitly requested. Only set the version that was asked to sync with.
+
+### Step 7: Verify
 
 ```bash
 bun install                    # Install updated types
@@ -188,6 +200,7 @@ When adding a new message sub-event, you must update ALL of these files:
 | `src/index.ts` | Entry in `contextsMappings` |
 | `src/types.ts` | Entry in `ContextsMapping<Bot>` + `MessageEventName` union |
 | `src/utils.ts` | Entry in `EVENTS` array + `SERVICE_MESSAGE_EVENTS` (if applicable) |
+| `README.md` | Update Bot API version badge (always do this on any sync) |
 
 ## Context Pattern Summary
 
