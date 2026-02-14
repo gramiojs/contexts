@@ -134,6 +134,11 @@ export const SERVICE_MESSAGE_EVENTS: MessageEventName[] = [
 	"checklist_tasks_done",
 	"checklist_tasks_added",
 	"direct_message_price_changed",
+	"suggested_post_approved",
+	"suggested_post_approval_failed",
+	"suggested_post_declined",
+	"suggested_post_paid",
+	"suggested_post_refunded",
 ];
 
 /** Array of EVENTS */
@@ -161,6 +166,11 @@ export const EVENTS: [keyof Message, MessageEventName][] = [
 	["checklistTasksDone", "checklist_tasks_done"],
 	["checklistTasksAdded", "checklist_tasks_added"],
 	["directMessagePriceChanged", "direct_message_price_changed"],
+	["suggestedPostApproved", "suggested_post_approved"],
+	["suggestedPostApprovalFailed", "suggested_post_approval_failed"],
+	["suggestedPostDeclined", "suggested_post_declined"],
+	["suggestedPostPaid", "suggested_post_paid"],
+	["suggestedPostRefunded", "suggested_post_refunded"],
 	["forumTopicCreated", "forum_topic_created"],
 	["forumTopicEdited", "forum_topic_edited"],
 	["forumTopicClosed", "forum_topic_closed"],

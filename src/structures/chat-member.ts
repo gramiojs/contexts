@@ -192,6 +192,12 @@ export class ChatMember {
 		return this.payload.can_manage_topics;
 	}
 
+	/** `true`, if the administrator can manage direct messages of the channel and decline suggested posts; channels only */
+	@Inspect({ compute: true, nullable: false })
+	canManageDirectMessages(): boolean | undefined {
+		return this.payload.can_manage_direct_messages;
+	}
+
 	/**
 	 * Restricted only.
 	 * `true`, if the user is a member of the chat at the moment of the request

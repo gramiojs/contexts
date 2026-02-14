@@ -3,6 +3,7 @@ import { Inspect, Inspectable } from "inspectable";
 import type { TelegramObjects } from "@gramio/types";
 
 import { StickerAttachment } from "./attachments/sticker";
+import { Chat } from "./chat";
 
 /**
  * This object describes a unique gift that was upgraded from a regular gift.
@@ -38,5 +39,15 @@ export class UniqueGift {
 	@Inspect()
 	get number() {
 		return this.payload.number;
+	}
+
+	/** *Optional*. Information about the chat that published the gift */
+	@Inspect({ nullable: false })
+	get publisherChat() {
+		const { publisher_chat } = this.payload;
+
+		if (!publisher_chat) return undefined;
+
+		return new Chat(publisher_chat);
 	}
 }

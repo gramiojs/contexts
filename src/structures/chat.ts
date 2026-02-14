@@ -70,4 +70,12 @@ export class Chat {
 	get isForum() {
 		return this.payload.is_forum;
 	}
+
+	/**
+	 * *Optional*. *True*, if the chat is the direct messages chat of a channel
+	 */
+	@Inspect()
+	get isDirectMessages() {
+		return this.payload.is_direct_messages;
+	}
 }

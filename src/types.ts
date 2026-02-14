@@ -140,6 +140,11 @@ export type ContextsMapping<Bot extends BotLike> = {
 	checklist_tasks_done: Contexts.ChecklistTasksDoneContext<Bot>;
 	checklist_tasks_added: Contexts.ChecklistTasksAddedContext<Bot>;
 	direct_message_price_changed: Contexts.DirectMessagePriceChangedContext<Bot>;
+	suggested_post_approved: Contexts.SuggestedPostApprovedContext<Bot>;
+	suggested_post_approval_failed: Contexts.SuggestedPostApprovalFailedContext<Bot>;
+	suggested_post_declined: Contexts.SuggestedPostDeclinedContext<Bot>;
+	suggested_post_paid: Contexts.SuggestedPostPaidContext<Bot>;
+	suggested_post_refunded: Contexts.SuggestedPostRefundedContext<Bot>;
 	forum_topic_created: Contexts.ForumTopicCreatedContext<Bot>;
 	forum_topic_edited: Contexts.ForumTopicEditedContext<Bot>;
 	forum_topic_closed: Contexts.ForumTopicClosedContext<Bot>;
@@ -227,7 +232,12 @@ export type MessageEventName =
 	| "chat_background_set"
 	| "checklist_tasks_done"
 	| "checklist_tasks_added"
-	| "direct_message_price_changed";
+	| "direct_message_price_changed"
+	| "suggested_post_approved"
+	| "suggested_post_approval_failed"
+	| "suggested_post_declined"
+	| "suggested_post_paid"
+	| "suggested_post_refunded";
 // | "removed_chat_boost";
 
 /** Custom Event Name */

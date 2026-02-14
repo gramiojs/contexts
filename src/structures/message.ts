@@ -61,12 +61,19 @@ import { Checklist } from "./checklist";
 import { ChecklistTasksAdded } from "./checklist-tasks-added";
 import { ChecklistTasksDone } from "./checklist-tasks-done";
 import { DirectMessagePriceChanged } from "./direct-message-price-changed";
+import { DirectMessagesTopic } from "./direct-messages-topic";
 import { GiftInfo } from "./gift-info";
 import { Giveaway } from "./giveaway";
 import { GiveawayCompleted } from "./giveaway-completed";
 import { GiveawayCreated } from "./giveaway-created";
 import { GiveawayWinners } from "./giveaway-winners";
 import { Story } from "./story";
+import { SuggestedPostApprovalFailed } from "./suggested-post-approval-failed";
+import { SuggestedPostApproved } from "./suggested-post-approved";
+import { SuggestedPostDeclined } from "./suggested-post-declined";
+import { SuggestedPostInfo } from "./suggested-post-info";
+import { SuggestedPostPaid } from "./suggested-post-paid";
+import { SuggestedPostRefunded } from "./suggested-post-refunded";
 import { UniqueGiftInfo } from "./unique-gift-info";
 
 /** This object represents a message. */
@@ -89,6 +96,16 @@ export class Message {
 	@Inspect({ nullable: false })
 	get threadId() {
 		return this.payload.message_thread_id;
+	}
+
+	/** *Optional*. Information about the direct messages chat topic that contains the message */
+	@Inspect({ nullable: false })
+	get directMessagesTopic() {
+		const { direct_messages_topic } = this.payload;
+
+		if (!direct_messages_topic) return undefined;
+
+		return new DirectMessagesTopic(direct_messages_topic);
 	}
 
 	/** Sender, empty for messages sent to channels */
@@ -206,6 +223,12 @@ export class Message {
 		return new Story(reply_to_story);
 	}
 
+	/** *Optional*. Identifier of the specific checklist task that is being replied to */
+	@Inspect({ nullable: false })
+	get replyToChecklistTaskId() {
+		return this.payload.reply_to_checklist_task_id;
+	}
+
 	@Inspect()
 	get checklist() {
 		const { checklist } = this.payload;
@@ -265,6 +288,12 @@ export class Message {
 		return this.payload.is_from_offline as true | undefined;
 	}
 
+	/** *Optional*. *True*, if the message is a paid post */
+	@Inspect({ compute: true, nullable: false })
+	isPaidPost() {
+		return this.payload.is_paid_post as true | undefined;
+	}
+
 	/** The unique identifier of a media message group this message belongs to */
 	@Inspect({ nullable: false })
 	get mediaGroupId() {
@@ -317,6 +346,16 @@ export class Message {
 		if (!link_preview_options) return undefined;
 
 		return new LinkPreviewOptions(link_preview_options);
+	}
+
+	/** *Optional*. Information about suggested post parameters if the message is a suggested post */
+	@Inspect({ nullable: false })
+	get suggestedPostInfo() {
+		const { suggested_post_info } = this.payload;
+
+		if (!suggested_post_info) return undefined;
+
+		return new SuggestedPostInfo(suggested_post_info);
 	}
 
 	/** Unique identifier of the message effect added to the message */
@@ -812,8 +851,6 @@ export class Message {
 	}
 
 	/** Service message: direct message price changed */
-
-	/** Service message: direct message price changed */
 	@Inspect({ nullable: false })
 	get directMessagePriceChanged() {
 		const { direct_message_price_changed } = this.payload;
@@ -821,6 +858,56 @@ export class Message {
 		if (!direct_message_price_changed) return undefined;
 
 		return new DirectMessagePriceChanged(direct_message_price_changed);
+	}
+
+	/** Service message: a suggested post was approved */
+	@Inspect({ nullable: false })
+	get suggestedPostApproved() {
+		const { suggested_post_approved } = this.payload;
+
+		if (!suggested_post_approved) return undefined;
+
+		return new SuggestedPostApproved(suggested_post_approved);
+	}
+
+	/** Service message: approval of a suggested post has failed */
+	@Inspect({ nullable: false })
+	get suggestedPostApprovalFailed() {
+		const { suggested_post_approval_failed } = this.payload;
+
+		if (!suggested_post_approval_failed) return undefined;
+
+		return new SuggestedPostApprovalFailed(suggested_post_approval_failed);
+	}
+
+	/** Service message: a suggested post was declined */
+	@Inspect({ nullable: false })
+	get suggestedPostDeclined() {
+		const { suggested_post_declined } = this.payload;
+
+		if (!suggested_post_declined) return undefined;
+
+		return new SuggestedPostDeclined(suggested_post_declined);
+	}
+
+	/** Service message: payment for a suggested post was received */
+	@Inspect({ nullable: false })
+	get suggestedPostPaid() {
+		const { suggested_post_paid } = this.payload;
+
+		if (!suggested_post_paid) return undefined;
+
+		return new SuggestedPostPaid(suggested_post_paid);
+	}
+
+	/** Service message: payment for a suggested post was refunded */
+	@Inspect({ nullable: false })
+	get suggestedPostRefunded() {
+		const { suggested_post_refunded } = this.payload;
+
+		if (!suggested_post_refunded) return undefined;
+
+		return new SuggestedPostRefunded(suggested_post_refunded);
 	}
 
 	/** Service message: forum topic created */
@@ -977,6 +1064,7 @@ memoizeGetters(Message, [
 	"from",
 	"senderChat",
 	"chat",
+	"directMessagesTopic",
 	"forwardOrigin",
 	"replyMessage",
 	"externalReply",
@@ -984,6 +1072,7 @@ memoizeGetters(Message, [
 	"viaBot",
 	"entities",
 	"linkPreviewOptions",
+	"suggestedPostInfo",
 	"animation",
 	"audio",
 	"document",
@@ -1012,6 +1101,11 @@ memoizeGetters(Message, [
 	"chatShared",
 	"proximityAlertTriggered",
 	"writeAccessAllowed",
+	"suggestedPostApproved",
+	"suggestedPostApprovalFailed",
+	"suggestedPostDeclined",
+	"suggestedPostPaid",
+	"suggestedPostRefunded",
 	"forumTopicClosed",
 	"forumTopicCreated",
 	"forumTopicEdited",

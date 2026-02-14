@@ -3,6 +3,7 @@ import { Inspect, Inspectable } from "inspectable";
 import type { TelegramObjects } from "@gramio/types";
 
 import { StickerAttachment } from "./attachments/sticker";
+import { Chat } from "./chat";
 
 /**
  * Describes a service message about a regular gift that was sent or received.
@@ -52,5 +53,15 @@ export class Gift {
 	@Inspect()
 	get id() {
 		return this.payload.id;
+	}
+
+	/** *Optional*. Information about the chat that published the gift */
+	@Inspect({ nullable: false })
+	get publisherChat() {
+		const { publisher_chat } = this.payload;
+
+		if (!publisher_chat) return undefined;
+
+		return new Chat(publisher_chat);
 	}
 }

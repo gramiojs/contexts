@@ -82,6 +82,14 @@ export class ChatFullInfo {
 	}
 
 	/**
+	 * *Optional*. *True*, if the chat is the direct messages chat of a channel
+	 */
+	@Inspect()
+	get isDirectMessages() {
+		return this.payload.is_direct_messages;
+	}
+
+	/**
 	 * Identifier of the accent color for the chat name and backgrounds of the chat photo, reply header, and link preview. See [accent colors](https://core.telegram.org/bots/api/#accent-colors) for more details.
 	 */
 	@Inspect()
@@ -160,6 +168,16 @@ export class ChatFullInfo {
 	get personalChat() {
 		return this.payload.personal_chat
 			? new Chat(this.payload.personal_chat)
+			: undefined;
+	}
+
+	/**
+	 * *Optional*. Information about the corresponding channel chat; for direct messages chats only
+	 */
+	@Inspect()
+	get parentChat() {
+		return this.payload.parent_chat
+			? new Chat(this.payload.parent_chat)
 			: undefined;
 	}
 
@@ -414,6 +432,7 @@ memoizeGetters(ChatFullInfo, [
 	"businessLocation",
 	"businessOpeningHours",
 	"personalChat",
+	"parentChat",
 	"pinnedMessage",
 	"permissions",
 	"location",

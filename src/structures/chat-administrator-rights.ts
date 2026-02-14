@@ -103,4 +103,10 @@ export class ChatAdministratorRights {
 	canManageTopics() {
 		return this.payload.can_manage_topics;
 	}
+
+	/** `true`, if the administrator can manage direct messages of the channel and decline suggested posts; channels only */
+	@Inspect({ compute: true })
+	canManageDirectMessages() {
+		return this.payload.can_manage_direct_messages;
+	}
 }
