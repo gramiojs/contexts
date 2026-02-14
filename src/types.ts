@@ -3,6 +3,7 @@ import type {
 	APIMethodReturn,
 	APIMethods,
 	TelegramInputMedia,
+	TelegramObjects,
 	TelegramParams,
 	TelegramResponseParameters,
 	TelegramUpdate,
@@ -373,6 +374,36 @@ export interface AttachmentsMapping {
 	video_note: Attachments.VideoNoteAttachment;
 	video: Attachments.VideoAttachment;
 	voice: Attachments.VoiceAttachment;
+}
+
+/** A chunk of text for streaming via sendMessageDraft */
+export type MessageDraftPiece =
+	| string
+	| {
+			/** Optional draft identifier to control message splitting */
+			draft_id?: number;
+			/** The text content of this chunk */
+			text: string;
+			/** Optional entities for this chunk (offsets relative to entire stream) */
+			entities?: TelegramObjects.TelegramMessageEntity[];
+	  };
+
+/** Options for SendMixin.streamMessage */
+export interface StreamMessageOptions {
+	/** Offset added to draft IDs. Defaults to 256 * updateId */
+	draftIdOffset?: number;
+	/** Extra params for sendMessageDraft calls (e.g. parse_mode) */
+	draftParams?: Omit<
+		TelegramParams.SendMessageDraftParams,
+		"chat_id" | "draft_id" | "text" | "entities"
+	>;
+	/** Extra params for sendMessage calls (e.g. reply_markup) */
+	messageParams?: Optional<
+		TelegramParams.SendMessageParams,
+		"chat_id" | "text" | "entities"
+	>;
+	/** AbortSignal to cancel streaming */
+	signal?: AbortSignal;
 }
 
 /** Enum of EntityType property */

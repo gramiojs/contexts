@@ -1,10 +1,15 @@
-import type { TelegramParams } from "@gramio/types";
+import type { TelegramObjects, TelegramParams } from "@gramio/types";
 
 import { Poll } from "../../structures/index";
-import type { Optional, tSendMethods } from "../../types";
+import type {
+	BotLike,
+	MessageDraftPiece,
+	Optional,
+	StreamMessageOptions,
+	tSendMethods,
+} from "../../types";
 
 import { applyMixins } from "utils";
-import type { BotLike } from "../../types";
 import type { Context } from "../context";
 import { MessageContext } from "../message";
 
@@ -546,6 +551,196 @@ class SendMixin<Bot extends BotLike> {
 		}
 
 		throw new TypeError("[sendMedia] unhandled media type");
+	}
+
+	/** Streams message drafts to the current chat, finalizing each completed draft as a sent message.
+	 *
+	 * Accepts an Iterable or AsyncIterable of MessageDraftPiece (strings or objects with text+entities).
+	 * Uses sendMessageDraft for live typing previews and sendMessage to finalize each 4096-char segment.
+	 * Returns an array of sent MessageContext objects.
+	 *
+	 * @example
+	 * ```ts
+	 * // Stream from an async generator (e.g., LLM output)
+	 * const messages = await context.streamMessage(llmStream);
+	 * ```
+	 */
+	async streamMessage(
+		stream: Iterable<MessageDraftPiece> | AsyncIterable<MessageDraftPiece>,
+		options: StreamMessageOptions = {},
+	): Promise<MessageContext<Bot>[]> {
+		const chatId = this.chatId || this.senderId || 0;
+		const draftIdOffset = options.draftIdOffset ?? 256 * (this.updateId || 0);
+
+		// Build base params for sendMessageDraft, auto-forwarding threadId
+		const baseDraftParams: Record<string, unknown> = {
+			...options.draftParams,
+		};
+		if (
+			this.threadId &&
+			this.isTopicMessage?.() &&
+			!baseDraftParams.message_thread_id
+		) {
+			baseDraftParams.message_thread_id = this.threadId;
+		}
+
+		// Build base params for sendMessage, auto-forwarding businessConnectionId and threadId
+		const baseMessageParams: Record<string, unknown> = {
+			...options.messageParams,
+		};
+		if (
+			this.businessConnectionId &&
+			!baseMessageParams.business_connection_id
+		) {
+			baseMessageParams.business_connection_id = this.businessConnectionId;
+		}
+		if (
+			this.threadId &&
+			this.isTopicMessage?.() &&
+			!baseMessageParams.message_thread_id
+		) {
+			baseMessageParams.message_thread_id = this.threadId;
+		}
+
+		type Draft = {
+			id: number;
+			text: string;
+			entities: TelegramObjects.TelegramMessageEntity[];
+		};
+
+		const outerStream = stream;
+
+		async function* enumerateDrafts(): AsyncGenerator<Draft> {
+			let currentDraftId = 0;
+			let currentByteCount = 0;
+			let currentNegativeEntityOffset = 0;
+
+			for await (const chunk of outerStream) {
+				const {
+					draft_id,
+					text,
+					entities = [],
+				} = typeof chunk === "string"
+					? { text: chunk, draft_id: undefined, entities: [] }
+					: chunk;
+
+				const lastDraftId = currentDraftId;
+				const addedLength = text.length;
+
+				if (draft_id !== undefined) {
+					currentDraftId = draft_id;
+				} else if (currentByteCount + addedLength > 4096) {
+					currentDraftId++;
+				}
+
+				if (lastDraftId === currentDraftId) {
+					currentByteCount += addedLength;
+				} else {
+					currentNegativeEntityOffset += currentByteCount;
+					currentByteCount = addedLength;
+				}
+
+				yield {
+					id: draftIdOffset + currentDraftId,
+					text,
+					entities: entities.map((e) => ({
+						...e,
+						offset: e.offset - currentNegativeEntityOffset,
+					})),
+				};
+			}
+		}
+
+		// Shared state between producer and consumer
+		let latest: Draft | undefined = undefined;
+		const complete: Draft[] = [];
+		let lock: PromiseWithResolvers<void> | undefined = undefined;
+		let running = true;
+		let exhausted = false;
+		const { signal } = options;
+
+		// Producer: consume iterator, accumulate drafts, signal consumer
+		async function pull() {
+			let current: Draft | undefined;
+			for await (const draft of enumerateDrafts()) {
+				if (!running || signal?.aborted) break;
+				if (current === undefined) {
+					current = draft;
+				} else if (current.id === draft.id) {
+					current.text += draft.text;
+					current.entities.push(...draft.entities);
+				} else {
+					complete.push(current);
+					current = draft;
+				}
+				latest = current;
+				if (lock !== undefined) {
+					lock.resolve();
+					lock = undefined;
+				}
+			}
+			if (current !== undefined) {
+				complete.push(current);
+			}
+			exhausted = true;
+			if (lock !== undefined) {
+				lock.resolve();
+				lock = undefined;
+			}
+		}
+
+		// Consumer: send completed messages and draft previews
+		const messages: MessageContext<Bot>[] = [];
+		const bot = this.bot;
+
+		async function push() {
+			try {
+				while (!exhausted || complete.length > 0) {
+					let draft: Draft | undefined;
+
+					// Priority 1: completed drafts -> sendMessage
+					draft = complete.shift();
+					if (draft !== undefined) {
+						const response = await bot.api.sendMessage({
+							chat_id: chatId,
+							text: draft.text,
+							entities: draft.entities,
+							...baseMessageParams,
+						});
+						messages.push(
+							new MessageContext({
+								bot,
+								payload: response,
+							}),
+						);
+						continue;
+					}
+
+					// Priority 2: in-progress draft -> sendMessageDraft (skippable)
+					draft = latest;
+					if (draft !== undefined) {
+						latest = undefined;
+						await bot.api.sendMessageDraft({
+							chat_id: chatId,
+							draft_id: draft.id,
+							text: draft.text,
+							entities: draft.entities,
+							...baseDraftParams,
+						});
+						continue;
+					}
+
+					// Priority 3: nothing to do -> wait for producer
+					lock = Promise.withResolvers();
+					await lock.promise;
+				}
+			} finally {
+				running = false;
+			}
+		}
+
+		await Promise.all([pull(), push()]);
+		return messages;
 	}
 
 	/** Returns chat boosts by the user */
