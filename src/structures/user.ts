@@ -101,4 +101,14 @@ export class User {
 	canConnectToBusiness() {
 		return this.payload.can_connect_to_business;
 	}
+
+	/**
+	 * `true`, if the bot allows users to create and delete topics in private chats.
+	 *
+	 * Returned only in `getMe`.
+	 */
+	@Inspect({ compute: true, nullable: false })
+	allowsUsersToCreateTopics() {
+		return this.payload.allows_users_to_create_topics;
+	}
 }

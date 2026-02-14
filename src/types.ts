@@ -160,6 +160,8 @@ export type ContextsMapping<Bot extends BotLike> = {
 	gift: Contexts.GiftContext<Bot>;
 	gift_upgrade_sent: Contexts.GiftUpgradeSentContext<Bot>;
 	unique_gift: Contexts.UniqueGiftContext<Bot>;
+	chat_owner_left: Contexts.ChatOwnerLeftContext<Bot>;
+	chat_owner_changed: Contexts.ChatOwnerChangedContext<Bot>;
 	paid_message_price_changed: Contexts.PaidMessagePriceChangedContext<Bot>;
 	video_chat_ended: Contexts.VideoChatEndedContext<Bot>;
 	video_chat_participants_invited: Contexts.VideoChatParticipantsInvitedContext<Bot>;
@@ -211,6 +213,8 @@ export type MessageEventName =
 	| "gift"
 	| "gift_upgrade_sent"
 	| "unique_gift"
+	| "chat_owner_left"
+	| "chat_owner_changed"
 	| "paid_message_price_changed"
 	| "proximity_alert_triggered"
 	| "write_access_allowed"

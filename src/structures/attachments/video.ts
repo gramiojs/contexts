@@ -4,6 +4,7 @@ import type { TelegramObjects } from "@gramio/types";
 import type { AttachmentType } from "../../types";
 
 import { PhotoSize } from "../photo-size";
+import { VideoQuality } from "../video-quality";
 
 import { memoizeGetters } from "../../utils";
 import { FileAttachment } from "./file-attachment";
@@ -73,6 +74,16 @@ export class VideoAttachment extends FileAttachment<TelegramObjects.TelegramVide
 	get startTimestamp() {
 		return this.payload.start_timestamp;
 	}
+
+	/** *Optional*. List of available qualities of the video */
+	@Inspect({ nullable: false })
+	get qualities() {
+		const { qualities } = this.payload;
+
+		if (!qualities) return undefined;
+
+		return qualities.map((quality) => new VideoQuality(quality));
+	}
 }
 
-memoizeGetters(VideoAttachment, ["thumbnail"]);
+memoizeGetters(VideoAttachment, ["thumbnail", "qualities"]);

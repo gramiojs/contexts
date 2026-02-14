@@ -57,6 +57,12 @@ export class UniqueGift {
 		return this.payload.is_premium;
 	}
 
+	/** *Optional*. True, if the gift was used to craft another gift and isn't available anymore */
+	@Inspect()
+	get isBurned() {
+		return this.payload.is_burned;
+	}
+
 	/** *Optional*. True, if the gift is assigned from the TON blockchain and can't be resold or transferred in Telegram */
 	@Inspect()
 	get isFromBlockchain() {

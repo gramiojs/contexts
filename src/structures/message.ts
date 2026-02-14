@@ -57,6 +57,8 @@ import {
 import { memoizeGetters } from "../utils";
 import { ChatBackground } from "./chat-background";
 import { ChatBoostAdded } from "./chat-boost-added";
+import { ChatOwnerChanged } from "./chat-owner-changed";
+import { ChatOwnerLeft } from "./chat-owner-left";
 import { Checklist } from "./checklist";
 import { ChecklistTasksAdded } from "./checklist-tasks-added";
 import { ChecklistTasksDone } from "./checklist-tasks-done";
@@ -615,6 +617,26 @@ export class Message {
 		return new User(left_chat_member);
 	}
 
+	/** Service message: chat owner has left */
+	@Inspect({ nullable: false })
+	get chatOwnerLeft() {
+		const { chat_owner_left } = this.payload;
+
+		if (!chat_owner_left) return undefined;
+
+		return new ChatOwnerLeft(chat_owner_left);
+	}
+
+	/** Service message: chat owner has changed */
+	@Inspect({ nullable: false })
+	get chatOwnerChanged() {
+		const { chat_owner_changed } = this.payload;
+
+		if (!chat_owner_changed) return undefined;
+
+		return new ChatOwnerChanged(chat_owner_changed);
+	}
+
 	/** A chat title was changed to this value */
 	@Inspect({ nullable: false })
 	get newChatTitle() {
@@ -1102,6 +1124,8 @@ memoizeGetters(Message, [
 	"passportData",
 	"newChatMembers",
 	"leftChatMember",
+	"chatOwnerLeft",
+	"chatOwnerChanged",
 	"newChatPhoto",
 	"messageAutoDeleteTimerChanged",
 	"pinnedMessage",

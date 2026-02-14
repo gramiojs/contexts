@@ -24,7 +24,7 @@
 	},
 	"peerDependencies": {
 		"inspectable": "^3.0.1",
-		"@gramio/types": "^9.3.0"
+		"@gramio/types": "^9.4.0"
 	},
 	"description": "Contexts for GramIO framework",
 	"scripts": {

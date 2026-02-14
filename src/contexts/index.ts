@@ -5,6 +5,8 @@ export * from "./callback-query.ts";
 export * from "./chat-background-set.ts";
 export * from "./chat-boost.ts";
 export * from "./chat-join-request.ts";
+export * from "./chat-owner-changed.ts";
+export * from "./chat-owner-left.ts";
 export * from "./chat-member.ts";
 export * from "./chat-shared.ts";
 export * from "./checklist-tasks-done.ts";

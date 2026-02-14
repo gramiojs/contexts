@@ -2,6 +2,7 @@ import type { TelegramObjects } from "@gramio/types";
 import { Inspect, Inspectable } from "inspectable";
 import { memoizeGetters } from "../utils";
 import { AcceptedGiftTypes } from "./accepted-gift-types";
+import { AudioAttachment } from "./attachments/audio";
 import { Birthdate } from "./birthdate";
 import { BusinessIntro } from "./business-intro";
 import { BusinessLocation } from "./business-location";
@@ -440,6 +441,18 @@ export class ChatFullInfo {
 	}
 
 	/**
+	 * *Optional*. For private chats, the first audio added to the profile of the user
+	 */
+	@Inspect({ nullable: false })
+	get firstProfileAudio() {
+		const { first_profile_audio } = this.payload;
+
+		if (!first_profile_audio) return undefined;
+
+		return new AudioAttachment(first_profile_audio);
+	}
+
+	/**
 	 * *Optional*. The color scheme based on a unique gift that must be used for the chat's name, message replies and link previews
 	 */
 	@Inspect({ nullable: false })
@@ -471,5 +484,6 @@ memoizeGetters(ChatFullInfo, [
 	"permissions",
 	"location",
 	"rating",
+	"firstProfileAudio",
 	"uniqueGiftColors",
 ]);

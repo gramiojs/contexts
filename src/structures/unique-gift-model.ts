@@ -38,4 +38,12 @@ export class UniqueGiftModel {
 	get rarityPerMille() {
 		return this.payload.rarity_per_mille;
 	}
+
+	/**
+	 * *Optional*. Rarity of the model if it is a crafted model. Currently, can be "uncommon", "rare", "epic", or "legendary".
+	 */
+	@Inspect({ nullable: false })
+	get rarity() {
+		return this.payload.rarity;
+	}
 }
