@@ -126,4 +126,10 @@ export class ChatPermissions {
 	get canManageTopics() {
 		return this.payload.can_manage_topics;
 	}
+
+	/** *Optional*. *True*, if the user is allowed to edit their own tag */
+	@Inspect()
+	get canEditTag() {
+		return this.payload.can_edit_tag;
+	}
 }

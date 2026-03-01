@@ -80,6 +80,18 @@ export class MessageEntity {
 	get customEmojiId() {
 		return this.payload.custom_emoji_id;
 	}
+
+	/** For `date_time` only, the Unix time associated with the entity */
+	@Inspect({ nullable: false })
+	get unixTime() {
+		return this.payload.unix_time;
+	}
+
+	/** For `date_time` only, the string that defines the formatting of the date and time */
+	@Inspect({ nullable: false })
+	get dateTimeFormat() {
+		return this.payload.date_time_format;
+	}
 }
 
 memoizeGetters(MessageEntity, ["user"]);

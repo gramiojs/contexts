@@ -198,6 +198,24 @@ export class ChatMember {
 		return this.payload.can_manage_direct_messages;
 	}
 
+	/** `true`, if the administrator can edit the tags of regular members; for groups and supergroups only */
+	@Inspect({ compute: true, nullable: false })
+	canManageTags(): boolean | undefined {
+		return this.payload.can_manage_tags;
+	}
+
+	/** Tag of the member; for members and restricted members */
+	@Inspect({ nullable: false })
+	get tag(): string | undefined {
+		return this.payload.tag;
+	}
+
+	/** `true`, if the user is allowed to edit their own tag; for restricted members */
+	@Inspect({ compute: true, nullable: false })
+	canEditTag(): boolean | undefined {
+		return this.payload.can_edit_tag;
+	}
+
 	/**
 	 * Restricted only.
 	 * `true`, if the user is a member of the chat at the moment of the request

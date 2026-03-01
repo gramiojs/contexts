@@ -68,6 +68,22 @@ class ChatMemberControlMixin<Bot extends BotLike> {
 			...params,
 		});
 	}
+
+	/** Sets a tag for a regular member */
+	setMemberTag(
+		tag: string | undefined,
+		params?: Optional<
+			TelegramParams.SetChatMemberTagParams,
+			"chat_id" | "user_id" | "tag"
+		>,
+	) {
+		return this.bot.api.setChatMemberTag({
+			chat_id: this.chatId,
+			user_id: this.senderId!,
+			tag,
+			...params,
+		});
+	}
 }
 
 interface ChatMemberControlMixin<Bot extends BotLike>

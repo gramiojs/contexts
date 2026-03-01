@@ -149,6 +149,12 @@ export class Message {
 			: undefined;
 	}
 
+	/** Tag or custom title of the sender of the message; for supergroups only */
+	@Inspect({ nullable: false })
+	get senderTag() {
+		return this.payload.sender_tag;
+	}
+
 	/** Date the message was sent in Unix time */
 	@Inspect()
 	get createdAt() {

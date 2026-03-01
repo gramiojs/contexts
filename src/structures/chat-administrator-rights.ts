@@ -109,4 +109,10 @@ export class ChatAdministratorRights {
 	canManageDirectMessages() {
 		return this.payload.can_manage_direct_messages;
 	}
+
+	/** `true`, if the administrator can edit the tags of regular members; for groups and supergroups only */
+	@Inspect({ compute: true })
+	canManageTags() {
+		return this.payload.can_manage_tags;
+	}
 }
