@@ -202,7 +202,7 @@ export class Message {
 	/** `true`, if the message is sent to a forum topic */
 	@Inspect({ compute: true, nullable: false })
 	isTopicMessage() {
-		return this.payload.is_topic_message;
+		return !!this.payload.is_topic_message;
 	}
 
 	/** `true`, if the message is a channel post that was automatically forwarded to the connected discussion group */

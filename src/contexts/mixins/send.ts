@@ -18,7 +18,7 @@ interface SendMixinMetadata {
 	get businessConnectionId(): string | undefined;
 	get senderId(): number | undefined;
 	get threadId(): number | undefined;
-	isTopicMessage: () => boolean | undefined;
+	isTopicMessage: (() => boolean);
 }
 
 /** This object represents a mixin which can invoke `chatId`/`senderId`-dependent methods */
