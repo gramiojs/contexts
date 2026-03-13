@@ -12,6 +12,9 @@ import type {
 import type * as Contexts from "./contexts/index";
 import type * as Attachments from "./structures/attachments/index";
 
+/** Helper to detect if a type is 'any' */
+export type IsAny<T> = 0 extends (1 & T) ? true : false;
+
 interface Suppress<IsSuppressed extends boolean | undefined = undefined> {
 	/**
 	 * Pass `true` if you want to suppress throwing errors of this method.
@@ -95,7 +98,9 @@ export interface BotLike {
 export type GetDerives<
 	Bot extends BotLike,
 	Event extends keyof ContextsMapping<Bot>,
-> = Bot["__Derives"]["global"] & Bot["__Derives"][Event];
+> = IsAny<Bot["__Derives"]> extends true
+	? {}
+	: Bot["__Derives"]["global"] & Bot["__Derives"][Event];
 
 export type MessageContextWithRequiredFrom<Bot extends BotLike> = Constructor<
 	InstanceType<Contexts.MessageContext<Bot>> &
