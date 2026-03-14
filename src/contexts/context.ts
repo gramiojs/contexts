@@ -4,7 +4,7 @@ import type { TelegramObjects } from "@gramio/types";
 
 import { SERVICE_MESSAGE_EVENTS } from "../utils";
 
-import type { BotLike } from "../types";
+import type { BotLike, IsAny } from "../types";
 import type { ContextType, MaybeArray, SoftString, UpdateName } from "../types";
 
 interface ContextOptions<Bot extends BotLike> {
@@ -50,11 +50,14 @@ interface Context<Bot extends BotLike> {
 	is<T extends UpdateName>(
 		rawTypes: MaybeArray<SoftString<T>>,
 	): this is ContextType<Bot, T> &
-		// biome-ignore lint/complexity/noBannedTypes: <explanation>
-		(Bot["__Derives"] extends {}
-			? Bot["__Derives"]["global"] & Bot["__Derives"][T]
-			: // biome-ignore lint/complexity/noBannedTypes: <explanation>
-				{});
+		// Check if __Derives is 'any' (from AnyBot) to prevent type collapse
+		(IsAny<Bot["__Derives"]> extends true
+			? // biome-ignore lint/complexity/noBannedTypes: empty object is needed for type guard
+				{}
+			: Bot["__Derives"] extends {}
+				? Bot["__Derives"]["global"] & Bot["__Derives"][T]
+				: // biome-ignore lint/complexity/noBannedTypes: empty object is needed for type guard
+					{});
 }
 
 inspectable(Context, {
