@@ -52,9 +52,11 @@ jobs:
 
             - name: Publish package to NPM
               if: ${{ github.event.inputs.publish_to_npm }}
-              run: bun publish --access public
+              run: |
+                  echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
+                  bun publish --access public
               env:
-                  NPM_CONFIG_TOKEN: ${{ secrets.NPM_TOKEN }}
+                  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
             - name: GitHub Release
               uses: ncipollo/release-action@v1
