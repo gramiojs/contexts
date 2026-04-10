@@ -1,5 +1,5 @@
 import type { TelegramObjects, TelegramParams } from "@gramio/types";
-
+import { applyMixins } from "utils";
 import { Poll } from "../../structures/index";
 import type {
 	BotLike,
@@ -8,8 +8,6 @@ import type {
 	StreamMessageOptions,
 	tSendMethods,
 } from "../../types";
-
-import { applyMixins } from "utils";
 import type { Context } from "../context";
 import { MessageContext } from "../message";
 
@@ -18,7 +16,7 @@ interface SendMixinMetadata {
 	get businessConnectionId(): string | undefined;
 	get senderId(): number | undefined;
 	get threadId(): number | undefined;
-	isTopicMessage: (() => boolean);
+	isTopicMessage: () => boolean;
 }
 
 /** This object represents a mixin which can invoke `chatId`/`senderId`-dependent methods */
@@ -652,9 +650,9 @@ class SendMixin<Bot extends BotLike> {
 		}
 
 		// Shared state between producer and consumer
-		let latest: Draft | undefined = undefined;
+		let latest: Draft | undefined;
 		const complete: Draft[] = [];
-		let lock: PromiseWithResolvers<void> | undefined = undefined;
+		let lock: PromiseWithResolvers<void> | undefined;
 		let running = true;
 		let exhausted = false;
 		const { signal } = options;

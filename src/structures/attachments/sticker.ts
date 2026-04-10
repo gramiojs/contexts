@@ -1,13 +1,10 @@
-import { Inspect, Inspectable } from "inspectable";
-
 import type { TelegramObjects } from "@gramio/types";
+import { Inspect, Inspectable } from "inspectable";
 import type { AttachmentType, Require } from "../../types";
-
+import { memoizeGetters } from "../../utils";
 import { File } from "../file";
 import { MaskPosition } from "../mask-position";
 import { PhotoSize } from "../photo-size";
-
-import { memoizeGetters } from "../../utils";
 import { FileAttachment } from "./file-attachment";
 
 /** This object represents a sticker. */

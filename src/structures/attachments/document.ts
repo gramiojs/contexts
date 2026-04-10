@@ -1,9 +1,7 @@
-import { Inspect, Inspectable } from "inspectable";
-
 import type { TelegramObjects } from "@gramio/types";
-import { memoizeGetters } from "../../utils";
-
+import { Inspect, Inspectable } from "inspectable";
 import type { AttachmentType } from "../../types";
+import { memoizeGetters } from "../../utils";
 import { PhotoSize } from "../photo-size";
 import { FileAttachment } from "./file-attachment";
 

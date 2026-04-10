@@ -1,6 +1,5 @@
-import { Inspect, Inspectable } from "inspectable";
-
 import type { TelegramObjects } from "@gramio/types";
+import { Inspect, Inspectable } from "inspectable";
 
 /** Contains information about an inline message sent by a Web App on behalf of a user. */
 @Inspectable()

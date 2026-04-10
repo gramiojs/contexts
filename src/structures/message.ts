@@ -1,11 +1,29 @@
-import { Inspect, Inspectable } from "inspectable";
-
 import type { TelegramObjects } from "@gramio/types";
-
+import { Inspect, Inspectable } from "inspectable";
+import { memoizeGetters } from "../utils";
+import {
+	AnimationAttachment,
+	AudioAttachment,
+	DocumentAttachment,
+	StickerAttachment,
+	StoryAttachment,
+	VideoAttachment,
+	VideoNoteAttachment,
+	VoiceAttachment,
+} from "./attachments/index";
 import { Chat } from "./chat";
+import { ChatBackground } from "./chat-background";
+import { ChatBoostAdded } from "./chat-boost-added";
+import { ChatOwnerChanged } from "./chat-owner-changed";
+import { ChatOwnerLeft } from "./chat-owner-left";
 import { ChatShared } from "./chat-shared";
+import { Checklist } from "./checklist";
+import { ChecklistTasksAdded } from "./checklist-tasks-added";
+import { ChecklistTasksDone } from "./checklist-tasks-done";
 import { Contact } from "./contact";
 import { Dice } from "./dice";
+import { DirectMessagePriceChanged } from "./direct-message-price-changed";
+import { DirectMessagesTopic } from "./direct-messages-topic";
 import { ExternalReplyInfo } from "./external-reply-info";
 import { ForumTopicClosed } from "./forum-topic-closed";
 import { ForumTopicCreated } from "./forum-topic-created";
@@ -14,11 +32,17 @@ import { ForumTopicReopened } from "./forum-topic-reopened";
 import { Game } from "./game";
 import { GeneralForumTopicHidden } from "./general-forum-topic-hidden";
 import { GeneralForumTopicUnhidden } from "./general-forum-topic-unhidden";
+import { GiftInfo } from "./gift-info";
+import { Giveaway } from "./giveaway";
+import { GiveawayCompleted } from "./giveaway-completed";
+import { GiveawayCreated } from "./giveaway-created";
+import { GiveawayWinners } from "./giveaway-winners";
 import { InaccessibleMessage } from "./inaccessible-message";
 import { InlineKeyboardMarkup } from "./inline-keyboard-markup";
 import { Invoice } from "./invoice";
 import { LinkPreviewOptions } from "./link-preview-options";
 import { Location } from "./location";
+import { ManagedBotCreated } from "./managed-bot-created";
 import { MessageAutoDeleteTimerChanged } from "./message-auto-delete-timer-changed";
 import { MessageEntity } from "./message-entity";
 import {
@@ -30,9 +54,19 @@ import {
 import { PassportData } from "./passport-data";
 import { PhotoSize } from "./photo-size";
 import { Poll } from "./poll";
+import { PollOptionAdded } from "./poll-option-added";
+import { PollOptionDeleted } from "./poll-option-deleted";
 import { ProximityAlertTriggered } from "./proximity-alert-triggered";
+import { Story } from "./story";
 import { SuccessfulPayment } from "./successful-payment";
+import { SuggestedPostApprovalFailed } from "./suggested-post-approval-failed";
+import { SuggestedPostApproved } from "./suggested-post-approved";
+import { SuggestedPostDeclined } from "./suggested-post-declined";
+import { SuggestedPostInfo } from "./suggested-post-info";
+import { SuggestedPostPaid } from "./suggested-post-paid";
+import { SuggestedPostRefunded } from "./suggested-post-refunded";
 import { TextQuote } from "./text-quote";
+import { UniqueGiftInfo } from "./unique-gift-info";
 import { User } from "./user";
 import { UsersShared } from "./users-shared";
 import { Venue } from "./venue";
@@ -42,41 +76,6 @@ import { VideoChatScheduled } from "./video-chat-scheduled";
 import { VideoChatStarted } from "./video-chat-started";
 import { WebAppData } from "./web-app-data";
 import { WriteAccessAllowed } from "./write-access-allowed";
-
-import {
-	AnimationAttachment,
-	AudioAttachment,
-	DocumentAttachment,
-	StickerAttachment,
-	StoryAttachment,
-	VideoAttachment,
-	VideoNoteAttachment,
-	VoiceAttachment,
-} from "./attachments/index";
-
-import { memoizeGetters } from "../utils";
-import { ChatBackground } from "./chat-background";
-import { ChatBoostAdded } from "./chat-boost-added";
-import { ChatOwnerChanged } from "./chat-owner-changed";
-import { ChatOwnerLeft } from "./chat-owner-left";
-import { Checklist } from "./checklist";
-import { ChecklistTasksAdded } from "./checklist-tasks-added";
-import { ChecklistTasksDone } from "./checklist-tasks-done";
-import { DirectMessagePriceChanged } from "./direct-message-price-changed";
-import { DirectMessagesTopic } from "./direct-messages-topic";
-import { GiftInfo } from "./gift-info";
-import { Giveaway } from "./giveaway";
-import { GiveawayCompleted } from "./giveaway-completed";
-import { GiveawayCreated } from "./giveaway-created";
-import { GiveawayWinners } from "./giveaway-winners";
-import { Story } from "./story";
-import { SuggestedPostApprovalFailed } from "./suggested-post-approval-failed";
-import { SuggestedPostApproved } from "./suggested-post-approved";
-import { SuggestedPostDeclined } from "./suggested-post-declined";
-import { SuggestedPostInfo } from "./suggested-post-info";
-import { SuggestedPostPaid } from "./suggested-post-paid";
-import { SuggestedPostRefunded } from "./suggested-post-refunded";
-import { UniqueGiftInfo } from "./unique-gift-info";
 
 /** This object represents a message. */
 @Inspectable()
@@ -235,6 +234,12 @@ export class Message {
 	@Inspect({ nullable: false })
 	get replyToChecklistTaskId() {
 		return this.payload.reply_to_checklist_task_id;
+	}
+
+	/** *Optional*. Persistent identifier of the specific poll option that is being replied to */
+	@Inspect({ nullable: false })
+	get replyToPollOptionId() {
+		return this.payload.reply_to_poll_option_id;
 	}
 
 	@Inspect()
@@ -1096,6 +1101,36 @@ export class Message {
 
 		return new WebAppData(web_app_data);
 	}
+
+	/** Service message: user created a bot that will be managed by the current bot */
+	@Inspect({ nullable: false })
+	get managedBotCreated() {
+		const { managed_bot_created } = this.payload;
+
+		if (!managed_bot_created) return undefined;
+
+		return new ManagedBotCreated(managed_bot_created);
+	}
+
+	/** Service message: answer option was added to a poll */
+	@Inspect({ nullable: false })
+	get pollOptionAdded() {
+		const { poll_option_added } = this.payload;
+
+		if (!poll_option_added) return undefined;
+
+		return new PollOptionAdded(poll_option_added);
+	}
+
+	/** Service message: answer option was deleted from a poll */
+	@Inspect({ nullable: false })
+	get pollOptionDeleted() {
+		const { poll_option_deleted } = this.payload;
+
+		if (!poll_option_deleted) return undefined;
+
+		return new PollOptionDeleted(poll_option_deleted);
+	}
 }
 
 memoizeGetters(Message, [
@@ -1162,4 +1197,7 @@ memoizeGetters(Message, [
 	"videoChatScheduled",
 	"videoChatStarted",
 	"webAppData",
+	"managedBotCreated",
+	"pollOptionAdded",
+	"pollOptionDeleted",
 ]);

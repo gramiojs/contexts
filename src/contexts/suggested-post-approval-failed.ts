@@ -1,12 +1,9 @@
 import type { TelegramObjects } from "@gramio/types";
-import { Message } from "../structures/index";
-
-import type { Constructor } from "../types";
-import { applyMixins, memoizeGetters } from "../utils";
-
 import { inspectable } from "inspectable";
+import { Message } from "../structures/index";
 import { SuggestedPostPrice } from "../structures/suggested-post-price";
-import type { BotLike } from "../types";
+import type { BotLike, Constructor } from "../types";
+import { applyMixins, memoizeGetters } from "../utils";
 import { Context } from "./context";
 import {
 	ChatActionMixin,

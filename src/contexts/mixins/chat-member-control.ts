@@ -1,11 +1,6 @@
-import type { TelegramParams } from "@gramio/types";
-import type { TelegramObjects } from "@gramio/types";
-
-import type { Optional } from "../../types";
-
+import type { TelegramObjects, TelegramParams } from "@gramio/types";
+import type { BotLike, Optional } from "../../types";
 import type { Context } from "../context";
-
-import type { BotLike } from "../../types";
 import type { NodeMixin } from "./node";
 import type { TargetMixin } from "./target";
 
@@ -81,6 +76,26 @@ class ChatMemberControlMixin<Bot extends BotLike> {
 			chat_id: this.chatId,
 			user_id: this.senderId!,
 			tag,
+			...params,
+		});
+	}
+
+	/** Returns the token of a managed bot */
+	getManagedBotToken(
+		params?: Optional<TelegramParams.GetManagedBotTokenParams, "user_id">,
+	) {
+		return this.bot.api.getManagedBotToken({
+			user_id: this.senderId!,
+			...params,
+		});
+	}
+
+	/** Revokes the current token of a managed bot and generates a new one */
+	replaceManagedBotToken(
+		params?: Optional<TelegramParams.ReplaceManagedBotTokenParams, "user_id">,
+	) {
+		return this.bot.api.replaceManagedBotToken({
+			user_id: this.senderId!,
 			...params,
 		});
 	}

@@ -1,6 +1,5 @@
-import { Inspect, Inspectable } from "inspectable";
-
 import type { TelegramObjects } from "@gramio/types";
+import { Inspect, Inspectable } from "inspectable";
 
 /** This object represents a Telegram user or bot. */
 @Inspectable()
@@ -110,5 +109,15 @@ export class User {
 	@Inspect({ compute: true, nullable: false })
 	allowsUsersToCreateTopics() {
 		return this.payload.allows_users_to_create_topics;
+	}
+
+	/**
+	 * `true`, if other bots can be created to be controlled by the bot.
+	 *
+	 * Returned only in `getMe`.
+	 */
+	@Inspect({ compute: true, nullable: false })
+	canManageBots() {
+		return this.payload.can_manage_bots;
 	}
 }

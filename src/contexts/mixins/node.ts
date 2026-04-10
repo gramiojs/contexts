@@ -1,10 +1,7 @@
-import type { TelegramParams } from "@gramio/types";
-import type { TelegramObjects } from "@gramio/types";
+import type { TelegramObjects, TelegramParams } from "@gramio/types";
 
 import { MessageId } from "../../structures/index";
-import type { MaybeArray, Optional } from "../../types";
-
-import type { BotLike } from "../../types";
+import type { BotLike, MaybeArray, Optional } from "../../types";
 import { applyMixins } from "../../utils";
 import type { Context } from "../context";
 import { MessageContext } from "../message";

@@ -1,6 +1,5 @@
-import { inspectable } from "inspectable";
-
 import type { TelegramObjects } from "@gramio/types";
+import { inspectable } from "inspectable";
 
 import { Poll } from "../structures/index";
 import type { BotLike } from "../types";
@@ -51,9 +50,9 @@ class PollContext<Bot extends BotLike> extends Context<Bot> {
 		return this.type === PollType.Quiz;
 	}
 
-	/** Checks if poll has `correctOptionId` property */
-	hasCorrectOptionId(): this is Require<this, "correctOptionId"> {
-		return this.correctOptionId !== undefined;
+	/** Checks if poll has `correctOptionIds` property */
+	hasCorrectOptionIds(): this is Require<this, "correctOptionIds"> {
+		return this.correctOptionIds !== undefined;
 	}
 
 	/** Checks if poll has `explanation` property */
@@ -95,7 +94,10 @@ inspectable(PollContext, {
 			isAnonymous: context.isAnonymous,
 			type: context.type,
 			allowsMultipleAnswers: context.allowsMultipleAnswers,
-			correctOptionId: context.correctOptionId,
+			allowsRevoting: context.allowsRevoting,
+			correctOptionIds: context.correctOptionIds,
+			description: context.description,
+			descriptionEntities: context.descriptionEntities,
 			explanation: context.explanation,
 			explanationEntities: context.explanationEntities,
 			openPeriod: context.openPeriod,

@@ -1,6 +1,5 @@
-import { Inspect, Inspectable } from "inspectable";
-
 import type { TelegramObjects } from "@gramio/types";
+import { Inspect, Inspectable } from "inspectable";
 
 /**
  * Describes a service message about a payment refund for a suggested post.

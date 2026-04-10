@@ -10,11 +10,11 @@
 
 export * from "./contexts/index";
 export * from "./structures/index";
-export * from "./utils";
 export * from "./types";
+export * from "./utils";
 
 import * as Contexts from "./contexts/index";
-import type { BotLike, ContextsMapping, MessageEventName } from "./types";
+import type { ContextsMapping, MessageEventName } from "./types";
 
 /**
  * Mapping UpdateNames to their contexts
@@ -37,6 +37,8 @@ export const contextsMappings = {
 	invoice: Contexts.InvoiceContext,
 	left_chat_member: Contexts.LeftChatMemberContext,
 	location: Contexts.LocationContext,
+	managed_bot: Contexts.ManagedBotContext,
+	managed_bot_created: Contexts.ManagedBotCreatedContext,
 	message_auto_delete_timer_changed:
 		Contexts.MessageAutoDeleteTimerChangedContext,
 	message: Contexts.MessageContext,
@@ -55,6 +57,8 @@ export const contextsMappings = {
 	passport_data: Contexts.PassportDataContext,
 	pinned_message: Contexts.PinnedMessageContext,
 	poll_answer: Contexts.PollAnswerContext,
+	poll_option_added: Contexts.PollOptionAddedContext,
+	poll_option_deleted: Contexts.PollOptionDeletedContext,
 	poll: Contexts.PollContext,
 	pre_checkout_query: Contexts.PreCheckoutQueryContext,
 	proximity_alert_triggered: Contexts.ProximityAlertTriggeredContext,

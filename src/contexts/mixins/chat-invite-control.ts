@@ -1,10 +1,6 @@
 import type { TelegramParams } from "@gramio/types";
-
-import type { Optional } from "../../types";
-
+import type { BotLike, Optional } from "../../types";
 import type { Context } from "../context";
-
-import type { BotLike } from "../../types";
 import type { TargetMixin } from "./target";
 
 /** This object represents a mixin that works with all `*ChatInviteLink` methods */

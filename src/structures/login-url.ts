@@ -1,6 +1,5 @@
-import { Inspect, Inspectable } from "inspectable";
-
 import type { TelegramObjects } from "@gramio/types";
+import { Inspect, Inspectable } from "inspectable";
 
 /**
  * This object represents a parameter of the inline keyboard button used to

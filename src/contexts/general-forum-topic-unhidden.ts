@@ -1,11 +1,8 @@
 import type { TelegramObjects } from "@gramio/types";
-import { Message } from "../structures/index";
-
-import type { Constructor, RequireValue } from "../types";
-import { applyMixins } from "../utils";
-
 import { inspectable } from "inspectable";
-import type { BotLike } from "../types";
+import { Message } from "../structures/index";
+import type { BotLike, Constructor, RequireValue } from "../types";
+import { applyMixins } from "../utils";
 import { Context } from "./context";
 import {
 	ChatActionMixin,
@@ -86,7 +83,7 @@ applyMixins(GeneralForumTopicUnhiddenContext, [
 ]);
 
 inspectable(GeneralForumTopicUnhiddenContext, {
-	serialize(context) {
+	serialize(_context) {
 		return {};
 	},
 });

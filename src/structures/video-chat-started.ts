@@ -1,6 +1,5 @@
-import { Inspectable } from "inspectable";
-
 import type { TelegramObjects } from "@gramio/types";
+import { Inspectable } from "inspectable";
 
 /**
  * This object represents a service message about a video chat started in the chat.

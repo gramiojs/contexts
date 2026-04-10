@@ -1,15 +1,9 @@
 import type { TelegramObjects } from "@gramio/types";
-import { Message, PhotoSize, UniqueGiftInfo } from "../structures/index";
-
-import type { Constructor } from "../types";
-import { applyMixins } from "../utils";
-
 import { Inspect, inspectable } from "inspectable";
-import { Gift } from "structures/gift";
-import { GiftInfo } from "structures/gift-info";
-import { MessageEntity } from "structures/message-entity";
 import { UniqueGift } from "structures/unique-gift";
-import type { BotLike } from "../types";
+import { Message } from "../structures/index";
+import type { BotLike, Constructor } from "../types";
+import { applyMixins } from "../utils";
 import { Context } from "./context";
 import {
 	ChatActionMixin,

@@ -1,32 +1,21 @@
+import type { TelegramObjects } from "@gramio/types";
 import { Inspect, inspectable } from "inspectable";
-
 import {
-	AnimationAttachment,
-	Attachment,
-	AudioAttachment,
 	ContactAttachment,
-	DocumentAttachment,
 	LocationAttachment,
 	PhotoAttachment,
 	PollAttachment,
-	StickerAttachment,
-	StoryAttachment,
 	VenueAttachment,
-	VideoAttachment,
-	VideoNoteAttachment,
-	VoiceAttachment,
 } from "../structures/attachments/index";
-
 // import { MediaGroup } from "../media-group";
 import { Message } from "../structures/message";
 import type { MessageEntity } from "../structures/message-entity";
-
-import type { TelegramObjects } from "@gramio/types";
-
+import { PaidMediaInfo } from "../structures/paid-media-info";
 import type {
+	AttachmentsMapping,
 	AttachmentType,
 	AttachmentType as AttachmentTypeEnum,
-	AttachmentsMapping,
+	BotLike,
 	Constructor,
 	EntityType,
 	Require,
@@ -35,14 +24,12 @@ import type {
 } from "../types";
 import {
 	applyMixins,
+	EVENTS,
 	filterPayload,
 	isParsable,
 	memoizeGetters,
+	SERVICE_MESSAGE_EVENTS,
 } from "../utils";
-import { EVENTS, SERVICE_MESSAGE_EVENTS } from "../utils";
-
-import { PaidMediaInfo } from "../structures/paid-media-info";
-import type { BotLike } from "../types";
 import { Context } from "./context";
 import {
 	ChatActionMixin,

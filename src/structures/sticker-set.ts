@@ -1,10 +1,7 @@
-import { Inspect, Inspectable } from "inspectable";
-
 import type { TelegramObjects } from "@gramio/types";
-
-import { StickerAttachment } from "./attachments/index";
-
+import { Inspect, Inspectable } from "inspectable";
 import { memoizeGetters } from "../utils";
+import { StickerAttachment } from "./attachments/index";
 import { PhotoSize } from "./photo-size";
 
 /** This object represents a sticker set. */

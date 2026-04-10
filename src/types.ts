@@ -13,7 +13,7 @@ import type * as Contexts from "./contexts/index";
 import type * as Attachments from "./structures/attachments/index";
 
 /** Helper to detect if a type is 'any' */
-export type IsAny<T> = 0 extends (1 & T) ? true : false;
+export type IsAny<T> = 0 extends 1 & T ? true : false;
 
 interface Suppress<IsSuppressed extends boolean | undefined = undefined> {
 	/**
@@ -98,9 +98,10 @@ export interface BotLike {
 export type GetDerives<
 	Bot extends BotLike,
 	Event extends keyof ContextsMapping<Bot>,
-> = IsAny<Bot["__Derives"]> extends true
-	? {}
-	: Bot["__Derives"]["global"] & Bot["__Derives"][Event];
+> =
+	IsAny<Bot["__Derives"]> extends true
+		? {}
+		: Bot["__Derives"]["global"] & Bot["__Derives"][Event];
 
 export type MessageContextWithRequiredFrom<Bot extends BotLike> = Constructor<
 	InstanceType<Contexts.MessageContext<Bot>> &
@@ -120,6 +121,8 @@ export type ContextsMapping<Bot extends BotLike> = {
 	invoice: Contexts.InvoiceContext<Bot>;
 	left_chat_member: Contexts.LeftChatMemberContext<Bot>;
 	location: Contexts.LocationContext<Bot>;
+	managed_bot: Contexts.ManagedBotContext<Bot>;
+	managed_bot_created: Contexts.ManagedBotCreatedContext<Bot>;
 	message_auto_delete_timer_changed: Contexts.MessageAutoDeleteTimerChangedContext<Bot>;
 	message: MessageContextWithRequiredFrom<Bot>;
 	channel_post: Contexts.MessageContext<Bot>;
@@ -137,6 +140,8 @@ export type ContextsMapping<Bot extends BotLike> = {
 	passport_data: Contexts.PassportDataContext<Bot>;
 	pinned_message: Contexts.PinnedMessageContext<Bot>;
 	poll_answer: Contexts.PollAnswerContext<Bot>;
+	poll_option_added: Contexts.PollOptionAddedContext<Bot>;
+	poll_option_deleted: Contexts.PollOptionDeletedContext<Bot>;
 	poll: Contexts.PollContext<Bot>;
 	pre_checkout_query: Contexts.PreCheckoutQueryContext<Bot>;
 	proximity_alert_triggered: Contexts.ProximityAlertTriggeredContext<Bot>;
@@ -248,7 +253,10 @@ export type MessageEventName =
 	| "suggested_post_approval_failed"
 	| "suggested_post_declined"
 	| "suggested_post_paid"
-	| "suggested_post_refunded";
+	| "suggested_post_refunded"
+	| "managed_bot_created"
+	| "poll_option_added"
+	| "poll_option_deleted";
 // | "removed_chat_boost";
 
 /** Custom Event Name */
@@ -300,19 +308,17 @@ export type RequireValue<O, K extends keyof O, V> = Omit<O, K> & {
 };
 
 /** Make some keys optional */
-export type Optional<
-	T,
-	K extends keyof T,
-> = /** We pick every field but `K` and leave them as is */
-Pick<
-	T,
-	Exclude<keyof T, K>
-> /** Then, we take our `K` fields and mark them as optional */ & {
-	[P in K]?: T[P];
-} /** Lastly, we add `[key: string]: any;` */ /** Lastly, we add `[key: string]: any;` */ & {
-	// // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-	// [key: string]: any;
-};
+export type Optional<T, K extends keyof T> =
+	/** We pick every field but `K` and leave them as is */
+	Pick<
+		T,
+		Exclude<keyof T, K>
+	> /** Then, we take our `K` fields and mark them as optional */ & {
+		[P in K]?: T[P];
+	} /** Lastly, we add `[key: string]: any;` */ /** Lastly, we add `[key: string]: any;` */ & {
+		// // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+		// [key: string]: any;
+	};
 
 /** Type util to make chat_id optional and add type property */
 type id<T, I extends { chat_id: string | number }> = { type: T } & Optional<

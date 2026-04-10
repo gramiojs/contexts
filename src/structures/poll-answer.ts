@@ -1,6 +1,5 @@
-import { Inspect, Inspectable } from "inspectable";
-
 import type { TelegramObjects } from "@gramio/types";
+import { Inspect, Inspectable } from "inspectable";
 
 import { memoizeGetters } from "../utils";
 import { Chat } from "./chat";
@@ -55,6 +54,15 @@ export class PollAnswer {
 	@Inspect()
 	get optionIds() {
 		return this.payload.option_ids;
+	}
+
+	/**
+	 * Persistent identifiers of the chosen answer options.
+	 * May be empty if the vote was retracted.
+	 */
+	@Inspect()
+	get optionPersistentIds() {
+		return this.payload.option_persistent_ids;
 	}
 }
 

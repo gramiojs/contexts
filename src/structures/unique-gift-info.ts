@@ -1,8 +1,6 @@
+import type { TelegramObjects } from "@gramio/types";
 import { Inspect, Inspectable } from "inspectable";
 
-import type { TelegramObjects } from "@gramio/types";
-
-import { StickerAttachment } from "./attachments/sticker";
 import { UniqueGift } from "./unique-gift";
 
 /**

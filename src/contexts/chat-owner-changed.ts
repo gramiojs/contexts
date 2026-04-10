@@ -1,11 +1,8 @@
 import type { TelegramObjects } from "@gramio/types";
-import { ChatOwnerChanged, Message, User } from "../structures/index";
-
-import type { Constructor } from "../types";
-import { applyMixins, memoizeGetters } from "../utils";
-
 import { inspectable } from "inspectable";
-import type { BotLike } from "../types";
+import { ChatOwnerChanged, Message, User } from "../structures/index";
+import type { BotLike, Constructor } from "../types";
+import { applyMixins, memoizeGetters } from "../utils";
 import { Context } from "./context";
 import {
 	ChatActionMixin,

@@ -1,10 +1,7 @@
-import { Inspect, Inspectable } from "inspectable";
-
 import type { TelegramObjects } from "@gramio/types";
-
-import { CallbackQuery } from "./callback-query";
-
+import { Inspect, Inspectable } from "inspectable";
 import { memoizeGetters } from "../utils";
+import { CallbackQuery } from "./callback-query";
 import { ChatBoostRemoved } from "./chat-boost-removed";
 import { ChatBoostUpdated } from "./chat-boost-updated";
 import { ChatJoinRequest } from "./chat-join-request";

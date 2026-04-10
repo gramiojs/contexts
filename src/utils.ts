@@ -88,7 +88,7 @@ export const filterPayload = (payload: Record<string, any>) => {
 export const isParsable = (source: string) => {
 	try {
 		JSON.parse(source);
-	} catch (e) {
+	} catch (_e) {
 		return false;
 	}
 
@@ -142,6 +142,9 @@ export const SERVICE_MESSAGE_EVENTS: MessageEventName[] = [
 	"suggested_post_declined",
 	"suggested_post_paid",
 	"suggested_post_refunded",
+	"managed_bot_created",
+	"poll_option_added",
+	"poll_option_deleted",
 ];
 
 /** Array of EVENTS */
@@ -193,4 +196,7 @@ export const EVENTS: [keyof Message, MessageEventName][] = [
 	["giveawayCreated", "giveaway_created"],
 	["giveawayCompleted", "giveaway_completed"],
 	["giveawayWinners", "giveaway_winners"],
+	["managedBotCreated", "managed_bot_created"],
+	["pollOptionAdded", "poll_option_added"],
+	["pollOptionDeleted", "poll_option_deleted"],
 ];

@@ -1,14 +1,10 @@
 import type { TelegramObjects } from "@gramio/types";
-import { Message, PhotoSize } from "../structures/index";
-
-import type { Constructor } from "../types";
-import { applyMixins } from "../utils";
-
 import { Inspect, inspectable } from "inspectable";
 import { Gift } from "structures/gift";
-import { GiftInfo } from "structures/gift-info";
 import { MessageEntity } from "structures/message-entity";
-import type { BotLike } from "../types";
+import { Message } from "../structures/index";
+import type { BotLike, Constructor } from "../types";
+import { applyMixins } from "../utils";
 import { Context } from "./context";
 import {
 	ChatActionMixin,
@@ -18,6 +14,7 @@ import {
 	SendMixin,
 	TargetMixin,
 } from "./mixins/index";
+
 interface GiftContextOptions<Bot extends BotLike> {
 	bot: Bot;
 	update: TelegramObjects.TelegramUpdate;

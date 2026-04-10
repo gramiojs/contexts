@@ -1,20 +1,15 @@
 // eslint-disable-next-line max-classes-per-file
-import { inspectable } from "inspectable";
 
+import type { TelegramObjects, TelegramParams } from "@gramio/types";
+import { inspectable } from "inspectable";
+import { CallbackQuery } from "../structures/index";
+import type { BotLike, Constructor, Require } from "../types";
 import {
 	applyMixins,
 	filterPayload,
 	isParsable,
 	memoizeGetters,
 } from "../utils";
-
-import { CallbackQuery } from "../structures/index";
-import type { Constructor, Require } from "../types";
-
-import type { TelegramParams } from "@gramio/types";
-import type { TelegramObjects } from "@gramio/types";
-
-import type { BotLike } from "../types";
 import { Context } from "./context";
 import { MessageContext } from "./message";
 import { CloneMixin, SendMixin } from "./mixins/index";

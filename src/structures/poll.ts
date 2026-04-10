@@ -1,6 +1,5 @@
-import { Inspect, Inspectable } from "inspectable";
-
 import type { TelegramObjects } from "@gramio/types";
+import { Inspect, Inspectable } from "inspectable";
 
 import { memoizeGetters } from "../utils";
 import { MessageEntity } from "./message-entity";
@@ -74,14 +73,20 @@ export class Poll {
 		return this.payload.allows_multiple_answers;
 	}
 
+	/** `true`, if the poll allows to change the chosen answer options */
+	@Inspect()
+	get allowsRevoting() {
+		return this.payload.allows_revoting;
+	}
+
 	/**
-	 * 0-based identifier of the correct answer option. Available only for polls
-	 * in the quiz mode, which are closed, or was sent (not forwarded) by the bot
-	 * or to the private chat with the bot.
+	 * Array of 0-based identifiers of the correct answer options. Available only for polls
+	 * in quiz mode which are closed or were sent (not forwarded) by the bot or to the
+	 * private chat with the bot.
 	 */
 	@Inspect({ nullable: false })
-	get correctOptionId() {
-		return this.payload.correct_option_id;
+	get correctOptionIds() {
+		return this.payload.correct_option_ids;
 	}
 
 	/**
@@ -119,6 +124,27 @@ export class Poll {
 	get closeDate() {
 		return this.payload.close_date;
 	}
+
+	/**
+	 * *Optional*. Description of the poll; for polls inside the Message object only
+	 */
+	@Inspect({ nullable: false })
+	get description() {
+		return this.payload.description;
+	}
+
+	/**
+	 * *Optional*. Special entities like usernames, URLs, bot commands, etc. that appear in
+	 * the description
+	 */
+	@Inspect({ nullable: false })
+	get descriptionEntities() {
+		const { description_entities } = this.payload;
+
+		if (!description_entities) return undefined;
+
+		return description_entities.map((entity) => new MessageEntity(entity));
+	}
 }
 
-memoizeGetters(Poll, ["explanationEntities"]);
+memoizeGetters(Poll, ["explanationEntities", "descriptionEntities"]);

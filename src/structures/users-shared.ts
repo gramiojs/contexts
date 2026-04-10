@@ -1,6 +1,5 @@
-import { Inspect, Inspectable } from "inspectable";
-
 import type { TelegramObjects } from "@gramio/types";
+import { Inspect, Inspectable } from "inspectable";
 import { SharedUser } from "./shared-user";
 
 /** This object contains information about the user whose identifier was shared with the bot using a `KeyboardButtonRequestUser` button. */

@@ -1,6 +1,5 @@
-import { Inspect, Inspectable } from "inspectable";
-
 import type { TelegramObjects } from "@gramio/types";
+import { Inspectable } from "inspectable";
 
 /** A placeholder, currently holds no information. */
 @Inspectable()

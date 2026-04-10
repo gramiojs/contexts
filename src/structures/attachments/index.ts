@@ -10,6 +10,6 @@ export * from "./poll";
 export * from "./sticker";
 export * from "./story";
 export * from "./venue";
-export * from "./video-note";
 export * from "./video";
+export * from "./video-note";
 export * from "./voice";

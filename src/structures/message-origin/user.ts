@@ -1,10 +1,7 @@
-import { Inspect, Inspectable } from "inspectable";
-
 import type { TelegramObjects } from "@gramio/types";
-
-import { User } from "../user";
-
+import { Inspect, Inspectable } from "inspectable";
 import { memoizeGetters } from "../../utils";
+import { User } from "../user";
 import { MessageOrigin } from "./message-origin";
 
 /** The message was originally sent by a known user. */

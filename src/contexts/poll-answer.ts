@@ -1,12 +1,9 @@
+import type { TelegramObjects } from "@gramio/types";
 import { inspectable } from "inspectable";
 
-import type { TelegramObjects } from "@gramio/types";
-
 import { PollAnswer } from "../structures/index";
-import type { Constructor, Require } from "../types";
+import type { BotLike, Constructor, Require } from "../types";
 import { applyMixins } from "../utils";
-
-import type { BotLike } from "../types";
 import { Context } from "./context";
 import { ChatActionMixin, CloneMixin, SendMixin } from "./mixins/index";
 
