@@ -3,6 +3,7 @@ import { Inspect, Inspectable } from "inspectable";
 import { memoizeGetters } from "../utils";
 import { Chat } from "./chat";
 import { MessageEntity } from "./message-entity";
+import { PollMedia } from "./poll-media";
 import { User } from "./user";
 
 /**
@@ -41,6 +42,16 @@ export class PollOption {
 		return this.payload.text_entities
 			? this.payload.text_entities.map((x) => new MessageEntity(x))
 			: undefined;
+	}
+
+	/** *Optional*. Media added to the poll option */
+	@Inspect({ nullable: false })
+	get media() {
+		const { media } = this.payload;
+
+		if (!media) return undefined;
+
+		return new PollMedia(media);
 	}
 
 	/**
@@ -84,4 +95,4 @@ export class PollOption {
 	}
 }
 
-memoizeGetters(PollOption, ["addedByUser", "addedByChat"]);
+memoizeGetters(PollOption, ["addedByUser", "addedByChat", "media"]);

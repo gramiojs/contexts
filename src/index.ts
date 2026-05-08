@@ -47,6 +47,7 @@ export const contextsMappings = {
 	edited_channel_post: Contexts.MessageContext,
 	business_message: Contexts.MessageContext,
 	edited_business_message: Contexts.MessageContext,
+	guest_message: Contexts.MessageContext,
 	deleted_business_messages: Contexts.BusinessMessagesDeletedContext,
 	business_connection: Contexts.BusinessConnectionContext,
 	migrate_from_chat_id: Contexts.MigrateFromChatIdContext,

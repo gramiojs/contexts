@@ -127,7 +127,13 @@ export class ChatPermissions {
 		return this.payload.can_manage_topics;
 	}
 
-	/** *Optional*. *True*, if the user is allowed to edit their own tag */
+	/** *Optional*. *True*, if the user is allowed to react to messages. If omitted, defaults to the value of `can_send_messages`. */
+	@Inspect()
+	get canReactToMessages() {
+		return this.payload.can_react_to_messages;
+	}
+
+	/** *Optional*. *True*, if the user is allowed to edit their own tag. If omitted, defaults to the value of `can_pin_messages`. */
 	@Inspect()
 	get canEditTag() {
 		return this.payload.can_edit_tag;

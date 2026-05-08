@@ -82,6 +82,16 @@ export class User {
 	}
 
 	/**
+	 * `true`, if the bot supports guest queries from chats it is not a member of.
+	 *
+	 * Returned only in `getMe`.
+	 */
+	@Inspect({ compute: true, nullable: false })
+	supportsGuestQueries() {
+		return this.payload.supports_guest_queries;
+	}
+
+	/**
 	 * `true`, if the bot supports inline queries.
 	 *
 	 * Returned only in `getMe`.

@@ -293,6 +293,12 @@ export class ChatMember {
 	canAddWebPagePreviews(): boolean | undefined {
 		return this.payload.can_add_web_page_previews;
 	}
+
+	/** Restricted only. `true`, if the user is allowed to react to messages */
+	@Inspect({ compute: true, nullable: false })
+	canReactToMessages(): boolean | undefined {
+		return this.payload.can_react_to_messages;
+	}
 }
 
 memoizeGetters(ChatMember, ["user"]);

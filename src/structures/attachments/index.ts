@@ -4,6 +4,7 @@ export * from "./audio";
 export * from "./contact";
 export * from "./document";
 export * from "./file-attachment";
+export * from "./live-photo";
 export * from "./location";
 export * from "./photo";
 export * from "./poll";

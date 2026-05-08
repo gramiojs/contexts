@@ -1,4 +1,4 @@
-import type { TelegramObjects } from "@gramio/types";
+import type { TelegramObjects, TelegramParams } from "@gramio/types";
 import { Inspect, inspectable } from "inspectable";
 import {
 	ContactAttachment,
@@ -189,6 +189,21 @@ class MessageContext<Bot extends BotLike> extends Context<Bot> {
 		return this.payload.paid_media
 			? new PaidMediaInfo(this.payload.paid_media)
 			: undefined;
+	}
+
+	/** Replies to a received guest message */
+	answerGuestQuery(
+		result: TelegramParams.AnswerGuestQueryParams["result"],
+		params: Omit<
+			TelegramParams.AnswerGuestQueryParams,
+			"guest_query_id" | "result"
+		> = {},
+	) {
+		return this.bot.api.answerGuestQuery({
+			guest_query_id: this.payload.guest_query_id!,
+			result,
+			...params,
+		});
 	}
 	// /** Checks whether current message contains a media group (`mergeMediaEvents` must be on) */
 	// isMediaGroup(): this is Require<this, "mediaGroupId" | "mediaGroup"> {

@@ -130,6 +130,7 @@ export type ContextsMapping<Bot extends BotLike> = {
 	edited_channel_post: MessageContextWithRequiredFrom<Bot>;
 	business_message: MessageContextWithRequiredFrom<Bot>;
 	edited_business_message: MessageContextWithRequiredFrom<Bot>;
+	guest_message: MessageContextWithRequiredFrom<Bot>;
 	deleted_business_messages: Contexts.BusinessMessagesDeletedContext<Bot>;
 	business_connection: Contexts.BusinessConnectionContext<Bot>;
 	migrate_from_chat_id: Contexts.MigrateFromChatIdContext<Bot>;
@@ -380,6 +381,7 @@ export interface AttachmentsMapping {
 	audio: Attachments.AudioAttachment;
 	contact: Attachments.ContactAttachment;
 	document: Attachments.DocumentAttachment;
+	live_photo: Attachments.LivePhotoAttachment;
 	location: Attachments.LocationAttachment;
 	photo: Attachments.PhotoAttachment;
 	poll: Attachments.PollAttachment;

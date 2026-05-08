@@ -6,6 +6,7 @@ import {
 	AudioAttachment,
 	ContactAttachment,
 	DocumentAttachment,
+	LivePhotoAttachment,
 	PhotoAttachment,
 	StickerAttachment,
 	StoryAttachment,
@@ -140,6 +141,18 @@ export class ExternalReplyInfo {
 		}
 
 		return new DocumentAttachment(document);
+	}
+
+	/** Message is a live photo, information about the live photo */
+	@Inspect({ nullable: false })
+	get livePhoto() {
+		const { live_photo } = this.payload;
+
+		if (!live_photo) {
+			return undefined;
+		}
+
+		return new LivePhotoAttachment(live_photo);
 	}
 
 	/** Message is a photo, available sizes of the photo */
@@ -343,6 +356,7 @@ memoizeGetters(ExternalReplyInfo, [
 	"animation",
 	"audio",
 	"document",
+	"livePhoto",
 	"photo",
 	"sticker",
 	"story",

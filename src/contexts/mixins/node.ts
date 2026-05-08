@@ -647,6 +647,33 @@ class NodeMixin<Bot extends BotLike> {
 		});
 	}
 
+	/** Removes a reaction from current message */
+	deleteReaction(
+		params: Optional<
+			TelegramParams.DeleteMessageReactionParams,
+			"chat_id" | "message_id"
+		> = {},
+	) {
+		return this.bot.api.deleteMessageReaction({
+			chat_id: this.chatId || this.senderId || 0,
+			message_id: this.id,
+			...params,
+		});
+	}
+
+	/** Removes up to 10000 recent reactions in current chat added by a given user or chat */
+	deleteAllReactions(
+		params: Optional<
+			TelegramParams.DeleteAllMessageReactionsParams,
+			"chat_id"
+		> = {},
+	) {
+		return this.bot.api.deleteAllMessageReactions({
+			chat_id: this.chatId || this.senderId || 0,
+			...params,
+		});
+	}
+
 	/** Edits current message live location */
 	async editMessageLiveLocation(
 		params: TelegramParams.EditMessageLiveLocationParams,

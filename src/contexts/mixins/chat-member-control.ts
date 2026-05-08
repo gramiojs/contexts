@@ -99,6 +99,49 @@ class ChatMemberControlMixin<Bot extends BotLike> {
 			...params,
 		});
 	}
+
+	/** Returns the last messages from the personal chat (i.e., the chat currently added to their profile) of a given user */
+	getUserPersonalChatMessages(
+		limit: TelegramParams.GetUserPersonalChatMessagesParams["limit"],
+		params?: Optional<
+			TelegramParams.GetUserPersonalChatMessagesParams,
+			"user_id" | "limit"
+		>,
+	) {
+		return this.bot.api.getUserPersonalChatMessages({
+			user_id: this.senderId!,
+			limit,
+			...params,
+		});
+	}
+
+	/** Returns the access settings of a managed bot */
+	getManagedBotAccessSettings(
+		params?: Optional<
+			TelegramParams.GetManagedBotAccessSettingsParams,
+			"user_id"
+		>,
+	) {
+		return this.bot.api.getManagedBotAccessSettings({
+			user_id: this.senderId!,
+			...params,
+		});
+	}
+
+	/** Changes the access settings of a managed bot */
+	setManagedBotAccessSettings(
+		isAccessRestricted: TelegramParams.SetManagedBotAccessSettingsParams["is_access_restricted"],
+		params?: Optional<
+			TelegramParams.SetManagedBotAccessSettingsParams,
+			"user_id" | "is_access_restricted"
+		>,
+	) {
+		return this.bot.api.setManagedBotAccessSettings({
+			user_id: this.senderId!,
+			is_access_restricted: isAccessRestricted,
+			...params,
+		});
+	}
 }
 
 interface ChatMemberControlMixin<Bot extends BotLike>

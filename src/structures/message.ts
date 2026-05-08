@@ -5,6 +5,7 @@ import {
 	AnimationAttachment,
 	AudioAttachment,
 	DocumentAttachment,
+	LivePhotoAttachment,
 	StickerAttachment,
 	StoryAttachment,
 	VideoAttachment,
@@ -160,6 +161,15 @@ export class Message {
 		return this.payload.date;
 	}
 
+	/**
+	 * *Optional*. The unique identifier for the guest query. Use this identifier with the method `answerGuestQuery` to send a response message.
+	 * If non-empty, the message belongs to the chat where the guest bot was summoned, which may not coincide with other existing bot chats sharing the same identifier.
+	 */
+	@Inspect({ nullable: false })
+	get guestQueryId() {
+		return this.payload.guest_query_id;
+	}
+
 	/** Unique identifier of the business connection from which the message was received. If non-empty, the message belongs to a chat of the corresponding business account that is independent from any potential bot chat which might share the same identifier. */
 	@Inspect()
 	get businessConnectionId() {
@@ -281,6 +291,26 @@ export class Message {
 		if (!via_bot) return undefined;
 
 		return new User(via_bot);
+	}
+
+	/** *Optional*. For a message sent by a guest bot, this is the user whose original message triggered the bot's response */
+	@Inspect({ nullable: false })
+	get guestBotCallerUser() {
+		const { guest_bot_caller_user } = this.payload;
+
+		if (!guest_bot_caller_user) return undefined;
+
+		return new User(guest_bot_caller_user);
+	}
+
+	/** *Optional*. For a message sent by a guest bot, this is the chat whose original message triggered the bot's response */
+	@Inspect({ nullable: false })
+	get guestBotCallerChat() {
+		const { guest_bot_caller_chat } = this.payload;
+
+		if (!guest_bot_caller_chat) return undefined;
+
+		return new Chat(guest_bot_caller_chat);
 	}
 
 	/** Date the message was last edited in Unix time */
@@ -408,6 +438,19 @@ export class Message {
 		if (!document) return undefined;
 
 		return new DocumentAttachment(document);
+	}
+
+	/**
+	 * Message is a live photo, information about the live photo. For backward
+	 * compatibility, when this field is set, the `photo` field will also be set
+	 */
+	@Inspect({ nullable: false })
+	get livePhoto() {
+		const { live_photo } = this.payload;
+
+		if (!live_photo) return undefined;
+
+		return new LivePhotoAttachment(live_photo);
 	}
 
 	/** Message is a photo, available sizes of the photo */
@@ -1143,12 +1186,15 @@ memoizeGetters(Message, [
 	"externalReply",
 	"quote",
 	"viaBot",
+	"guestBotCallerUser",
+	"guestBotCallerChat",
 	"entities",
 	"linkPreviewOptions",
 	"suggestedPostInfo",
 	"animation",
 	"audio",
 	"document",
+	"livePhoto",
 	"sticker",
 	"story",
 	"video",

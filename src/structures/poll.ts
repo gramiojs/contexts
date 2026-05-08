@@ -3,6 +3,7 @@ import { Inspect, Inspectable } from "inspectable";
 
 import { memoizeGetters } from "../utils";
 import { MessageEntity } from "./message-entity";
+import { PollMedia } from "./poll-media";
 import { PollOption } from "./poll-option";
 
 /** This object contains information about a poll. */
@@ -79,6 +80,18 @@ export class Poll {
 		return this.payload.allows_revoting;
 	}
 
+	/** `true` if voting is limited to users who have been members of the chat where the poll was originally sent for more than 24 hours */
+	@Inspect()
+	get membersOnly() {
+		return this.payload.members_only;
+	}
+
+	/** *Optional*. A list of two-letter ISO 3166-1 alpha-2 country codes indicating the countries from which users can vote in the poll. If omitted, then users from any country can participate in the poll. */
+	@Inspect({ nullable: false })
+	get countryCodes() {
+		return this.payload.country_codes;
+	}
+
 	/**
 	 * Array of 0-based identifiers of the correct answer options. Available only for polls
 	 * in quiz mode which are closed or were sent (not forwarded) by the bot or to the
@@ -109,6 +122,16 @@ export class Poll {
 		if (!explanation_entities) return undefined;
 
 		return explanation_entities.map((entity) => new MessageEntity(entity));
+	}
+
+	/** *Optional*. Media added to the quiz explanation */
+	@Inspect({ nullable: false })
+	get explanationMedia() {
+		const { explanation_media } = this.payload;
+
+		if (!explanation_media) return undefined;
+
+		return new PollMedia(explanation_media);
 	}
 
 	/** Amount of time in seconds the poll will be active after creation */
@@ -145,6 +168,21 @@ export class Poll {
 
 		return description_entities.map((entity) => new MessageEntity(entity));
 	}
+
+	/** *Optional*. Media added to the poll description; for polls inside the Message object only */
+	@Inspect({ nullable: false })
+	get media() {
+		const { media } = this.payload;
+
+		if (!media) return undefined;
+
+		return new PollMedia(media);
+	}
 }
 
-memoizeGetters(Poll, ["explanationEntities", "descriptionEntities"]);
+memoizeGetters(Poll, [
+	"explanationEntities",
+	"descriptionEntities",
+	"explanationMedia",
+	"media",
+]);

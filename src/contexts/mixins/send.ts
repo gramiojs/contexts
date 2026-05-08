@@ -65,6 +65,33 @@ class SendMixin<Bot extends BotLike> {
 		});
 	}
 
+	/** Sends live photo to current chat */
+	async sendLivePhoto(
+		livePhoto: TelegramParams.SendLivePhotoParams["live_photo"],
+		photo: TelegramParams.SendLivePhotoParams["photo"],
+		params: Optional<
+			TelegramParams.SendLivePhotoParams,
+			"chat_id" | "live_photo" | "photo"
+		> = {},
+	) {
+		if (this.businessConnectionId && !params.business_connection_id)
+			params.business_connection_id = this.businessConnectionId;
+		if (this.threadId && this.isTopicMessage?.() && !params.message_thread_id)
+			params.message_thread_id = this.threadId;
+
+		const response = await this.bot.api.sendLivePhoto({
+			chat_id: this.chatId || this.senderId || 0,
+			live_photo: livePhoto,
+			photo,
+			...params,
+		});
+
+		return new MessageContext({
+			bot: this.bot,
+			payload: response,
+		});
+	}
+
 	/** Sends document to current chat */
 	async sendDocument(
 		document: TelegramParams.SendDocumentParams["document"],
