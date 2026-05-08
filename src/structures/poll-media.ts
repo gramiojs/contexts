@@ -1,14 +1,12 @@
 import type { TelegramObjects } from "@gramio/types";
 import { Inspect, Inspectable } from "inspectable";
 import { memoizeGetters } from "../utils";
-import {
-	AnimationAttachment,
-	AudioAttachment,
-	DocumentAttachment,
-	LivePhotoAttachment,
-	StickerAttachment,
-	VideoAttachment,
-} from "./attachments/index";
+import { AnimationAttachment } from "./attachments/animation";
+import { AudioAttachment } from "./attachments/audio";
+import { DocumentAttachment } from "./attachments/document";
+import { LivePhotoAttachment } from "./attachments/live-photo";
+import { StickerAttachment } from "./attachments/sticker";
+import { VideoAttachment } from "./attachments/video";
 import { Location } from "./location";
 import { PhotoSize } from "./photo-size";
 import { Venue } from "./venue";
