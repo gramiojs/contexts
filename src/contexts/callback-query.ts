@@ -65,6 +65,17 @@ class CallbackQueryContext<Bot extends BotLike> extends Context<Bot> {
 		return this.message?.chat?.id;
 	}
 
+	/**
+	 * Identifier of the thread the originating message belongs to, or
+	 * `undefined` if it's not in a thread. Exposed so the `SendMixin`
+	 * auto-forwards `message_thread_id` on follow-up `send`/`reply`
+	 * calls from within a callback handler — keeping replies in the
+	 * same thread as the tapped button.
+	 */
+	get threadId() {
+		return this.message?.threadId;
+	}
+
 	/** Checks if the query has `queryPayload` property */
 	hasQueryPayload(): this is Require<this, "queryPayload"> {
 		return this.payload.data !== undefined;
