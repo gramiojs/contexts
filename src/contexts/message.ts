@@ -55,7 +55,14 @@ interface MessageContextOptions<Bot extends BotLike> {
 
 /** Called when `message` event occurs */
 class MessageContext<Bot extends BotLike> extends Context<Bot> {
-	/** The raw data that is used for this Context */
+	/**
+	 * The raw, snake_case Telegram object backing this context.
+	 *
+	 * @remarks
+	 * Prefer the camelCase getters on the context itself — `ctx.text`,
+	 * `ctx.from`, `ctx.chatId`, `ctx.document`, … — which are typed and
+	 * normalized. Reach for `payload` only for fields not yet exposed as a getter.
+	 */
 	payload: TelegramObjects.TelegramMessage;
 
 	#text: string | undefined;

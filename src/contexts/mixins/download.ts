@@ -1,7 +1,7 @@
 import { MessageContext } from "contexts/message";
 import { applyMixins } from "utils";
 import type { Attachment } from "../../structures/attachments/index";
-import type { BotLike } from "../../types";
+import type { BotLike, FileDownload } from "../../types";
 import type { Context } from "../context";
 
 interface DownloadMixinMetadata {
@@ -10,8 +10,21 @@ interface DownloadMixinMetadata {
 
 /** This object represents a mixin that can be used to download media files */
 class DownloadMixin<Bot extends BotLike> {
-	/** Downloads attachment */
-	download(): Promise<ArrayBuffer>;
+	/**
+	 * Download the message's attachment.
+	 *
+	 * Returns a lazy, `Response`-like {@link FileDownload} handle — `await` it for
+	 * an `ArrayBuffer`, or call `.bytes()` / `.text()` / `.json()` / `.blob()` /
+	 * `.stream()` / `.toFile(path)` / `.link()` / `.info()`. Pass `path` to save
+	 * straight to disk.
+	 *
+	 * @example
+	 * ```ts
+	 * await ctx.download().toFile("./photo.jpg");
+	 * const text = await ctx.download().text();
+	 * ```
+	 */
+	download(): FileDownload;
 	download(path: string): Promise<string>;
 
 	download(path?: string) {

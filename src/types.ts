@@ -71,6 +71,35 @@ type SuppressedAPIMethods<Methods extends keyof APIMethods = keyof APIMethods> =
 					) => Promise<SuppressedReturn<APIMethod, IsSuppressed>>;
 	};
 
+/**
+ * A lazy, `Response`-like handle for a file download (returned by
+ * `bot.downloadFile` / `context.download`). It is a `PromiseLike<ArrayBuffer>` —
+ * so `await`ing it yields the bytes — plus readers mirroring the web `Response`.
+ *
+ * (Structural mirror of `TelegramFileDownload` from `@gramio/files`; declared here
+ * so `@gramio/contexts` stays dependency-free.)
+ */
+export interface FileDownload extends PromiseLike<ArrayBuffer> {
+	/** `getFile` metadata — does not read the body. */
+	info(): Promise<TelegramObjects.TelegramFile>;
+	/** The whole file as an `ArrayBuffer`. */
+	arrayBuffer(): Promise<ArrayBuffer>;
+	/** The whole file as a `Uint8Array`. */
+	bytes(): Promise<Uint8Array>;
+	/** The whole file as a `Blob`. */
+	blob(): Promise<Blob>;
+	/** The file decoded as UTF-8 text. */
+	text(): Promise<string>;
+	/** The file parsed as JSON. */
+	json<T = unknown>(): Promise<T>;
+	/** A web `ReadableStream` of the file. */
+	stream(): Promise<ReadableStream<Uint8Array>>;
+	/** Save the file to `path` and return it. */
+	toFile(path: string): Promise<string>;
+	/** A download URL. Contains the bot token by default; token-less only when `files.baseURL` is set. */
+	link(): Promise<string>;
+}
+
 /** The required object that the contexts are based on */
 export interface BotLike {
 	// biome-ignore lint/complexity/noBannedTypes: <explanation>
@@ -83,7 +112,7 @@ export interface BotLike {
 					file_id: string;
 			  }
 			| string,
-	): Promise<ArrayBuffer>;
+	): FileDownload;
 	downloadFile(
 		attachment:
 			| Attachments.Attachment
