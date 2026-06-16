@@ -65,6 +65,26 @@ class CallbackQueryContext<Bot extends BotLike> extends Context<Bot> {
 		return this.message?.chat?.id;
 	}
 
+	/**
+	 * Identifier of the thread the originating message belongs to, or `undefined` if it isn't in
+	 * one. Exposed — together with {@link CallbackQueryContext.isTopicMessage} — so `SendMixin`
+	 * auto-forwards `message_thread_id` on `send`/`reply` from inside a callback handler, keeping
+	 * replies in the same thread as the tapped button.
+	 */
+	get threadId() {
+		return this.message?.threadId;
+	}
+
+	/**
+	 * Whether the originating message belongs to a forum topic or a private-chat thread. Mirrors
+	 * {@link MessageContext.isTopicMessage} so the `SendMixin` thread-forwarding guard behaves
+	 * identically in callback handlers (Bot API 10.1 sets `is_topic_message` for private-chat
+	 * Threaded Mode too, so this covers it without dropping the guard).
+	 */
+	isTopicMessage() {
+		return this.message?.isTopicMessage() ?? false;
+	}
+
 	/** Checks if the query has `queryPayload` property */
 	hasQueryPayload(): this is Require<this, "queryPayload"> {
 		return this.payload.data !== undefined;
