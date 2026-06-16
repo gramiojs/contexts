@@ -2,7 +2,7 @@ import type { TelegramObjects, TelegramParams } from "@gramio/types";
 
 import { MessageId } from "../../structures/index";
 import type { BotLike, MaybeArray, Optional } from "../../types";
-import { applyMixins } from "../../utils";
+import { applyMixins, isRichString } from "../../utils";
 import type { Context } from "../context";
 import { MessageContext } from "../message";
 import type { SendMixin } from "./send";
@@ -735,10 +735,15 @@ class NodeMixin<Bot extends BotLike> {
 		if (this.businessConnectionId && !params.business_connection_id)
 			params.business_connection_id = this.businessConnectionId;
 
+		// A `@gramio/format` RichString edits via `rich_message` (same method, different param).
+		const body = isRichString(text)
+			? { rich_message: text.toInputRichMessage() }
+			: { text };
+
 		const response = await this.bot.api.editMessageText({
 			chat_id: this.chatId || this.senderId || 0,
 			message_id: this.id,
-			text,
+			...body,
 			...params,
 		});
 

@@ -13,6 +13,7 @@ import { ChatPermissions } from "./chat-permissions";
 import { ChatPhoto } from "./chat-photo";
 import { Message } from "./message";
 import { UniqueGiftColors } from "./unique-gift-colors";
+import { User } from "./user";
 import { UserRating } from "./user-rating";
 /**
  * This object contains full information about a chat.
@@ -471,6 +472,18 @@ export class ChatFullInfo {
 	get paidMessageStarCount() {
 		return this.payload.paid_message_star_count;
 	}
+
+	/**
+	 * *Optional*. The bot that processes join request queries in the chat. The field is only available to chat administrators.
+	 */
+	@Inspect({ nullable: false })
+	get guardBot() {
+		const { guard_bot } = this.payload;
+
+		if (!guard_bot) return undefined;
+
+		return new User(guard_bot);
+	}
 }
 memoizeGetters(ChatFullInfo, [
 	"photo",
@@ -486,4 +499,5 @@ memoizeGetters(ChatFullInfo, [
 	"rating",
 	"firstProfileAudio",
 	"uniqueGiftColors",
+	"guardBot",
 ]);

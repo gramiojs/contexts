@@ -7,6 +7,7 @@ import { DocumentAttachment } from "./attachments/document";
 import { LivePhotoAttachment } from "./attachments/live-photo";
 import { StickerAttachment } from "./attachments/sticker";
 import { VideoAttachment } from "./attachments/video";
+import { Link } from "./link";
 import { Location } from "./location";
 import { PhotoSize } from "./photo-size";
 import { Venue } from "./venue";
@@ -52,6 +53,16 @@ export class PollMedia {
 		if (!document) return undefined;
 
 		return new DocumentAttachment(document);
+	}
+
+	/** The HTTP link attached to the poll option */
+	@Inspect({ nullable: false })
+	get link() {
+		const { link } = this.payload;
+
+		if (!link) return undefined;
+
+		return new Link(link);
 	}
 
 	/** Media is a live photo, information about the live photo */
@@ -119,6 +130,7 @@ memoizeGetters(PollMedia, [
 	"animation",
 	"audio",
 	"document",
+	"link",
 	"livePhoto",
 	"location",
 	"sticker",

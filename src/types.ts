@@ -10,6 +10,7 @@ import type {
 } from "@gramio/types";
 
 import type * as Contexts from "./contexts/index";
+import type { RichStringLike } from "./utils";
 import type * as Attachments from "./structures/attachments/index";
 
 /** Helper to detect if a type is 'any' */
@@ -434,6 +435,37 @@ export type MessageDraftPiece =
 			entities?: TelegramObjects.TelegramMessageEntity[];
 	  };
 
+/** A chunk appendable to a rich message draft — a `@gramio/format` `RichString` or raw rich-markdown. */
+export type RichChunk = string | RichStringLike;
+
+/** Options for {@link Contexts.MessageContext.streamRichMessage | streamRichMessage} */
+export interface StreamRichMessageOptions {
+	/**
+	 * Draft identifier (must be non-zero). Updates to the same id are animated by Telegram.
+	 * Defaults to an internal per-stream counter, so concurrent streams don't collide.
+	 */
+	draftId?: number;
+	/** Minimum milliseconds between draft (preview) updates. Defaults to `1000`. */
+	throttle?: number;
+	/** Rich options applied to every preview update **and** the final message. */
+	richOptions?: Pick<
+		TelegramObjects.TelegramInputRichMessage,
+		"is_rtl" | "skip_entity_detection"
+	>;
+	/** Extra params for `sendRichMessageDraft` (preview) calls. */
+	draftParams?: Optional<
+		TelegramParams.SendRichMessageDraftParams,
+		"chat_id" | "draft_id" | "rich_message"
+	>;
+	/** Extra params for the finalizing `sendRichMessage` call (e.g. `reply_markup`, `reply_parameters`). */
+	messageParams?: Optional<
+		TelegramParams.SendRichMessageParams,
+		"chat_id" | "rich_message"
+	>;
+	/** AbortSignal to cancel streaming — disposing an aborted draft skips finalization. */
+	signal?: AbortSignal;
+}
+
 /** Options for SendMixin.streamMessage */
 export interface StreamMessageOptions {
 	/** Offset added to draft IDs. Defaults to 256 * updateId */
@@ -448,9 +480,22 @@ export interface StreamMessageOptions {
 		TelegramParams.SendMessageParams,
 		"chat_id" | "text" | "entities"
 	>;
+	/**
+	 * Minimum milliseconds between draft (preview) updates — used by the `await using` handle form
+	 * (`streamMessage()`). Defaults to `1000`. Ignored by the iterable form, which paces itself.
+	 */
+	throttle?: number;
 	/** AbortSignal to cancel streaming */
 	signal?: AbortSignal;
 }
+
+/** A piece appendable to a {@link Contexts.MessageContext.streamMessage | message draft} handle — text + optional entities (a `FormattableString` fits). */
+export type MessageDraftAppend =
+	| string
+	| {
+			text: string;
+			entities?: TelegramObjects.TelegramMessageEntity[];
+	  };
 
 /** Enum of EntityType property */
 export enum EntityType {

@@ -85,10 +85,13 @@ class MessageContext<Bot extends BotLike> extends Context<Bot> {
 	}
 
 	/**
-	 * For text messages, the actual UTF-8 text of the message, 0-4096 characters
+	 * For text messages, the actual UTF-8 text of the message, 0-4096 characters.
+	 *
+	 * Falls back to the flattened {@link MessageContext.richMessage | rich message} text when
+	 * the message has no plain `text` — so command/filter handlers keep working on rich messages.
 	 */
 	get text() {
-		return this.#text;
+		return this.#text ?? (this.richMessage?.text || undefined);
 	}
 
 	set text(text) {

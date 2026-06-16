@@ -130,4 +130,14 @@ export class User {
 	canManageBots() {
 		return this.payload.can_manage_bots;
 	}
+
+	/**
+	 * `true`, if the bot supports join request queries and can be assigned to process them.
+	 *
+	 * Returned only in `getMe`.
+	 */
+	@Inspect({ compute: true, nullable: false })
+	supportsJoinRequestQueries() {
+		return this.payload.supports_join_request_queries;
+	}
 }

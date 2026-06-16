@@ -55,6 +55,16 @@ export class ChatJoinRequest {
 
 		return new ChatInviteLink(invite_link);
 	}
+
+	/**
+	 * Identifier of the join request query. If present, then the bot must call
+	 * `sendChatJoinRequestWebApp` or directly call `answerChatJoinRequestQuery`
+	 * within 10 seconds.
+	 */
+	@Inspect({ nullable: false })
+	get queryId() {
+		return this.payload.query_id;
+	}
 }
 
 memoizeGetters(ChatJoinRequest, ["chat", "from", "inviteLink"]);

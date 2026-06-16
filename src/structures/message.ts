@@ -58,6 +58,7 @@ import { Poll } from "./poll";
 import { PollOptionAdded } from "./poll-option-added";
 import { PollOptionDeleted } from "./poll-option-deleted";
 import { ProximityAlertTriggered } from "./proximity-alert-triggered";
+import { RichMessage } from "./rich-message";
 import { Story } from "./story";
 import { SuccessfulPayment } from "./successful-payment";
 import { SuggestedPostApprovalFailed } from "./suggested-post-approval-failed";
@@ -361,11 +362,14 @@ export class Message {
 	}
 
 	/**
-	 * For text messages, the actual UTF-8 text of the message, 0-4096 characters
+	 * For text messages, the actual UTF-8 text of the message, 0-4096 characters.
+	 *
+	 * Falls back to the flattened {@link Message.richMessage | rich message} text when the
+	 * message has no plain `text`, so text-based handlers keep working on rich messages.
 	 */
 	@Inspect({ nullable: false })
 	get text() {
-		return this.payload.text;
+		return this.payload.text ?? (this.richMessage?.text || undefined);
 	}
 
 	/**
@@ -405,6 +409,16 @@ export class Message {
 	@Inspect({ nullable: false })
 	get effectId() {
 		return this.payload.effect_id;
+	}
+
+	/** Message is a rich formatted message */
+	@Inspect({ nullable: false })
+	get richMessage() {
+		const { rich_message } = this.payload;
+
+		if (!rich_message) return undefined;
+
+		return new RichMessage(rich_message);
 	}
 
 	/**
@@ -1191,6 +1205,7 @@ memoizeGetters(Message, [
 	"entities",
 	"linkPreviewOptions",
 	"suggestedPostInfo",
+	"richMessage",
 	"animation",
 	"audio",
 	"document",

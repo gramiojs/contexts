@@ -1,6 +1,28 @@
+import type { TelegramObjects } from "@gramio/types";
 import type { Message } from "./structures/index";
 
 import type { MessageEventName } from "./types";
+
+/** A value carrying a `@gramio/format` rich message (see {@link isRichString}). */
+export interface RichStringLike {
+	toInputRichMessage(): TelegramObjects.TelegramInputRichMessage;
+}
+
+// Brand key shared with `@gramio/format`'s `RichString` (see `@gramio/format/rich`).
+const RICH_STRING_BRAND = Symbol.for("@gramio/format/rich.RichString");
+
+/**
+ * Detect a `@gramio/format` `RichString` **without importing `@gramio/format`** — by its global
+ * brand symbol. Lets `ctx.send`/`reply`/`editText` route a rich message to `sendRichMessage`
+ * while keeping `@gramio/contexts` free of a `@gramio/format` dependency.
+ */
+export function isRichString(value: unknown): value is RichStringLike {
+	return (
+		!!value &&
+		typeof value === "object" &&
+		(value as Record<symbol, unknown>)[RICH_STRING_BRAND] === true
+	);
+}
 
 /** Helper for getters memoization */
 export function memoizeGetters<T>(
