@@ -10,6 +10,7 @@ import { BusinessOpeningHours } from "./business-opening-hours";
 import { Chat } from "./chat";
 import { ChatLocation } from "./chat-location";
 import { ChatPermissions } from "./chat-permissions";
+import { Community } from "./community";
 import { ChatPhoto } from "./chat-photo";
 import { Message } from "./message";
 import { UniqueGiftColors } from "./unique-gift-colors";
@@ -484,6 +485,16 @@ export class ChatFullInfo {
 
 		return new User(guard_bot);
 	}
+
+	/** *Optional*. Information about the community the chat belongs to */
+	@Inspect({ nullable: false })
+	get community() {
+		const { community } = this.payload;
+
+		if (!community) return undefined;
+
+		return new Community(community);
+	}
 }
 memoizeGetters(ChatFullInfo, [
 	"photo",
@@ -500,4 +511,5 @@ memoizeGetters(ChatFullInfo, [
 	"firstProfileAudio",
 	"uniqueGiftColors",
 	"guardBot",
+	"community",
 ]);

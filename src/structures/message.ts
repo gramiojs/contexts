@@ -41,6 +41,8 @@ import { GiveawayWinners } from "./giveaway-winners";
 import { InaccessibleMessage } from "./inaccessible-message";
 import { InlineKeyboardMarkup } from "./inline-keyboard-markup";
 import { Invoice } from "./invoice";
+import { CommunityChatAdded } from "./community-chat-added";
+import { CommunityChatRemoved } from "./community-chat-removed";
 import { LinkPreviewOptions } from "./link-preview-options";
 import { Location } from "./location";
 import { ManagedBotCreated } from "./managed-bot-created";
@@ -1169,6 +1171,49 @@ export class Message {
 		return new ManagedBotCreated(managed_bot_created);
 	}
 
+	/**
+	 * The only user who can see this ephemeral message, along with the bot.
+	 * Present only for ephemeral messages.
+	 */
+	@Inspect({ nullable: false })
+	get receiverUser() {
+		const { receiver_user } = this.payload;
+
+		if (!receiver_user) return undefined;
+
+		return new User(receiver_user);
+	}
+
+	/**
+	 * Unique message identifier of this ephemeral message inside the chat. Use it
+	 * with `editEphemeralMessage*` / `deleteEphemeralMessage` and as
+	 * `ReplyParameters.ephemeral_message_id`. Present only for ephemeral messages.
+	 */
+	@Inspect({ nullable: false })
+	get ephemeralMessageId() {
+		return this.payload.ephemeral_message_id;
+	}
+
+	/** Service message: a chat was added to a community */
+	@Inspect({ nullable: false })
+	get communityChatAdded() {
+		const { community_chat_added } = this.payload;
+
+		if (!community_chat_added) return undefined;
+
+		return new CommunityChatAdded(community_chat_added);
+	}
+
+	/** Service message: a chat was removed from a community */
+	@Inspect({ nullable: false })
+	get communityChatRemoved() {
+		const { community_chat_removed } = this.payload;
+
+		if (!community_chat_removed) return undefined;
+
+		return new CommunityChatRemoved(community_chat_removed);
+	}
+
 	/** Service message: answer option was added to a poll */
 	@Inspect({ nullable: false })
 	get pollOptionAdded() {
@@ -1193,6 +1238,9 @@ export class Message {
 memoizeGetters(Message, [
 	"from",
 	"senderChat",
+	"receiverUser",
+	"communityChatAdded",
+	"communityChatRemoved",
 	"chat",
 	"directMessagesTopic",
 	"forwardOrigin",

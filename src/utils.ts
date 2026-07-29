@@ -165,6 +165,8 @@ export const SERVICE_MESSAGE_EVENTS: MessageEventName[] = [
 	"suggested_post_paid",
 	"suggested_post_refunded",
 	"managed_bot_created",
+	"community_chat_added",
+	"community_chat_removed",
 	"poll_option_added",
 	"poll_option_deleted",
 ];
@@ -219,6 +221,8 @@ export const EVENTS: [keyof Message, MessageEventName][] = [
 	["giveawayCompleted", "giveaway_completed"],
 	["giveawayWinners", "giveaway_winners"],
 	["managedBotCreated", "managed_bot_created"],
+	["communityChatAdded", "community_chat_added"],
+	["communityChatRemoved", "community_chat_removed"],
 	["pollOptionAdded", "poll_option_added"],
 	["pollOptionDeleted", "poll_option_deleted"],
 ];

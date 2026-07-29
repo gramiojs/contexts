@@ -39,6 +39,8 @@ export const contextsMappings = {
 	location: Contexts.LocationContext,
 	managed_bot: Contexts.ManagedBotContext,
 	managed_bot_created: Contexts.ManagedBotCreatedContext,
+	community_chat_added: Contexts.CommunityChatAddedContext,
+	community_chat_removed: Contexts.CommunityChatRemovedContext,
 	message_auto_delete_timer_changed:
 		Contexts.MessageAutoDeleteTimerChangedContext,
 	message: Contexts.MessageContext,
@@ -81,6 +83,7 @@ export const contextsMappings = {
 	general_forum_topic_hidden: Contexts.GeneralForumTopicHiddenContext,
 	general_forum_topic_unhidden: Contexts.GeneralForumTopicUnhiddenContext,
 	shipping_query: Contexts.ShippingQueryContext,
+	subscription: Contexts.SubscriptionContext,
 	successful_payment: Contexts.SuccessfulPaymentContext,
 	refunded_payment: Contexts.RefundedPaymentContext,
 	users_shared: Contexts.UsersSharedContext,

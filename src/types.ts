@@ -153,6 +153,8 @@ export type ContextsMapping<Bot extends BotLike> = {
 	location: Contexts.LocationContext<Bot>;
 	managed_bot: Contexts.ManagedBotContext<Bot>;
 	managed_bot_created: Contexts.ManagedBotCreatedContext<Bot>;
+	community_chat_added: Contexts.CommunityChatAddedContext<Bot>;
+	community_chat_removed: Contexts.CommunityChatRemovedContext<Bot>;
 	message_auto_delete_timer_changed: Contexts.MessageAutoDeleteTimerChangedContext<Bot>;
 	message: MessageContextWithRequiredFrom<Bot>;
 	channel_post: Contexts.MessageContext<Bot>;
@@ -194,6 +196,7 @@ export type ContextsMapping<Bot extends BotLike> = {
 	general_forum_topic_hidden: Contexts.GeneralForumTopicHiddenContext<Bot>;
 	general_forum_topic_unhidden: Contexts.GeneralForumTopicUnhiddenContext<Bot>;
 	shipping_query: Contexts.ShippingQueryContext<Bot>;
+	subscription: Contexts.SubscriptionContext<Bot>;
 	successful_payment: Contexts.SuccessfulPaymentContext<Bot>;
 	refunded_payment: Contexts.RefundedPaymentContext<Bot>;
 	users_shared: Contexts.UsersSharedContext<Bot>;
@@ -286,6 +289,8 @@ export type MessageEventName =
 	| "suggested_post_paid"
 	| "suggested_post_refunded"
 	| "managed_bot_created"
+	| "community_chat_added"
+	| "community_chat_removed"
 	| "poll_option_added"
 	| "poll_option_deleted";
 // | "removed_chat_boost";
