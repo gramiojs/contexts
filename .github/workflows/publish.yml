@@ -50,11 +50,16 @@ jobs:
             #   if: ${{ github.event.inputs.publish_to_jsr }}
             #   run: bunx jsr publish --allow-dirty --allow-slow-types
 
+            - name: Setup Node for npm trusted publishing
+              uses: actions/setup-node@v6
+              with:
+                  node-version: "24"
+                  registry-url: "https://registry.npmjs.org"
+                  package-manager-cache: false
+
             - name: Publish package to NPM
               if: ${{ github.event.inputs.publish_to_npm }}
-              run: bun publish --access public
-              env:
-                  NPM_CONFIG_TOKEN: ${{ secrets.NPM_TOKEN }}
+              run: npm publish --access public
 
             - name: GitHub Release
               uses: ncipollo/release-action@v1
