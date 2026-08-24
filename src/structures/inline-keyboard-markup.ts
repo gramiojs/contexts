@@ -22,4 +22,10 @@ export class InlineKeyboardMarkup {
 			row.map((element) => new InlineKeyboardButton(element)),
 		);
 	}
+
+	/** Whether the reply interface must be shown for this inline keyboard. */
+	@Inspect({ nullable: false })
+	get forceReply() {
+		return this.payload.force_reply;
+	}
 }

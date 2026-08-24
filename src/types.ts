@@ -154,7 +154,9 @@ export type ContextsMapping<Bot extends BotLike> = {
 	managed_bot: Contexts.ManagedBotContext<Bot>;
 	managed_bot_created: Contexts.ManagedBotCreatedContext<Bot>;
 	community_chat_added: Contexts.CommunityChatAddedContext<Bot>;
+	community_chat_joined: Contexts.CommunityChatJoinedContext<Bot>;
 	community_chat_removed: Contexts.CommunityChatRemovedContext<Bot>;
+	stopped_message_generation: Contexts.MessageGenerationStoppedContext<Bot>;
 	message_auto_delete_timer_changed: Contexts.MessageAutoDeleteTimerChangedContext<Bot>;
 	message: MessageContextWithRequiredFrom<Bot>;
 	channel_post: Contexts.MessageContext<Bot>;
@@ -290,6 +292,7 @@ export type MessageEventName =
 	| "suggested_post_refunded"
 	| "managed_bot_created"
 	| "community_chat_added"
+	| "community_chat_joined"
 	| "community_chat_removed"
 	| "poll_option_added"
 	| "poll_option_deleted";

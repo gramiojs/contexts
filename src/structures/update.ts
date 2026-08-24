@@ -9,6 +9,7 @@ import { ChatMemberUpdated } from "./chat-member-updated";
 import { ChosenInlineResult } from "./chosen-inline-result";
 import { InlineQuery } from "./inline-query";
 import { Message } from "./message";
+import { MessageGenerationStopped } from "./message-generation-stopped";
 import { MessageReactionCountUpdated } from "./message-reaction-count-updated";
 import { MessageReactionUpdated } from "./message-reaction-updated";
 import { Poll } from "./poll";
@@ -85,6 +86,16 @@ export class Update {
 		if (!edited_channel_post) return undefined;
 
 		return new Message(edited_channel_post);
+	}
+
+	/** A user stopped an in-progress message generation. */
+	@Inspect({ nullable: false })
+	get stoppedMessageGeneration() {
+		const { stopped_message_generation } = this.payload;
+
+		if (!stopped_message_generation) return undefined;
+
+		return new MessageGenerationStopped(stopped_message_generation);
 	}
 
 	/** A reaction to a message was changed by a user. The bot must be an administrator in the chat and must explicitly specify `message_reaction` in the list of allowed_updates to receive these updates. The update isn't received for reactions set by bots. */
@@ -249,6 +260,7 @@ memoizeGetters(Update, [
 	"editedMessage",
 	"channelPost",
 	"editedChannelPost",
+	"stoppedMessageGeneration",
 	"messageReaction",
 	"messageReactionCount",
 	"inlineQuery",

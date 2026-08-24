@@ -6,10 +6,25 @@ function flattenRichText(node: TelegramObjects.TelegramRichText | undefined): st
 	if (node == null) return "";
 	if (typeof node === "string") return node;
 	if (Array.isArray(node)) return node.map(flattenRichText).join("");
+	if (node.type === "button") return flattenRichText(node.button.text);
 	// Most node variants nest the visible text under `.text`; leaf nodes (e.g. `anchor`)
 	// carry only a name and contribute no visible text.
 	const withText = node as { text?: TelegramObjects.TelegramRichText };
 	return "text" in withText ? flattenRichText(withText.text) : "";
+}
+
+function joinVisible(parts: string[], separator = "\n") {
+	return parts.filter(Boolean).join(separator);
+}
+
+function flattenCaption(
+	caption: TelegramObjects.TelegramRichBlockCaption | undefined,
+) {
+	if (!caption) return "";
+	return joinVisible([
+		flattenRichText(caption.text),
+		flattenRichText(caption.credit),
+	]);
 }
 
 /** Flatten one {@link TelegramObjects.TelegramRichBlock | RichBlock} to plain text. */
@@ -21,15 +36,25 @@ function flattenRichBlock(block: TelegramObjects.TelegramRichBlock): string {
 		case "heading":
 		case "pre":
 		case "footer":
-		case "pullquote":
 		case "thinking":
 			return flattenRichText(b.text);
+		case "pullquote":
+		case "expandable_blockquote":
+			return joinVisible([
+				flattenRichText(b.text),
+				flattenRichText(b.credit),
+			]);
 		case "list":
 			return (b.items as TelegramObjects.TelegramRichBlockListItem[])
 				.map((item) => item.blocks.map(flattenRichBlock).join("\n"))
 				.join("\n");
 		case "blockquote":
-			return (b.blocks as TelegramObjects.TelegramRichBlock[]).map(flattenRichBlock).join("\n");
+			return joinVisible([
+				(b.blocks as TelegramObjects.TelegramRichBlock[])
+					.map(flattenRichBlock)
+					.join("\n"),
+				flattenRichText(b.credit),
+			]);
 		case "details":
 			return [
 				flattenRichText(b.summary),
@@ -38,18 +63,35 @@ function flattenRichBlock(block: TelegramObjects.TelegramRichBlock): string {
 				.filter(Boolean)
 				.join("\n");
 		case "table":
-			return (b.cells as TelegramObjects.TelegramRichBlockTableCell[][])
-				.map((row) => row.map((cell) => flattenRichText(cell.text)).join("\t"))
-				.join("\n");
+			return joinVisible([
+				(b.cells as TelegramObjects.TelegramRichBlockTableCell[][])
+					.map((row) =>
+						row.map((cell) => flattenRichText(cell.text)).join("\t"),
+					)
+					.join("\n"),
+				flattenRichText(b.caption),
+			]);
 		case "collage":
 		case "slideshow":
+			return joinVisible([
+				(b.blocks as TelegramObjects.TelegramRichBlock[])
+					.map(flattenRichBlock)
+					.join("\n"),
+				flattenCaption(b.caption),
+			]);
+		case "buttons":
+			return (b.buttons as TelegramObjects.TelegramRichMessageButton[])
+				.map((button) => flattenRichText(button.text))
+				.filter(Boolean)
+				.join(" ");
 		case "map":
 		case "animation":
 		case "audio":
+		case "document":
 		case "photo":
 		case "video":
 		case "voice_note":
-			return flattenRichText(b.caption?.text);
+			return flattenCaption(b.caption);
 		default:
 			// divider / anchor / mathematical_expression carry no flattenable text
 			return "";

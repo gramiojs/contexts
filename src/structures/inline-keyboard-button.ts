@@ -104,6 +104,12 @@ export class InlineKeyboardButton {
 	get pay() {
 		return this.payload.pay;
 	}
+
+	/** `true`, if the button is disabled and does nothing. */
+	@Inspect({ compute: true, nullable: false })
+	isDisabled() {
+		return this.payload.disabled !== undefined;
+	}
 }
 
 memoizeGetters(InlineKeyboardButton, ["loginUrl", "callbackGame"]);

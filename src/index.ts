@@ -40,7 +40,9 @@ export const contextsMappings = {
 	managed_bot: Contexts.ManagedBotContext,
 	managed_bot_created: Contexts.ManagedBotCreatedContext,
 	community_chat_added: Contexts.CommunityChatAddedContext,
+	community_chat_joined: Contexts.CommunityChatJoinedContext,
 	community_chat_removed: Contexts.CommunityChatRemovedContext,
+	stopped_message_generation: Contexts.MessageGenerationStoppedContext,
 	message_auto_delete_timer_changed:
 		Contexts.MessageAutoDeleteTimerChangedContext,
 	message: Contexts.MessageContext,

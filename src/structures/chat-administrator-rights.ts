@@ -61,6 +61,12 @@ export class ChatAdministratorRights {
 		return this.payload.can_invite_users;
 	}
 
+	/** `true`, if the administrator can send welcome messages in the chat */
+	@Inspect({ compute: true })
+	canSendWelcomeMessages() {
+		return this.payload.can_send_welcome_messages;
+	}
+
 	/** `true`, if the administrator can post in the channel; channels only */
 	@Inspect({ compute: true })
 	canPostMessages() {

@@ -42,6 +42,7 @@ import { InaccessibleMessage } from "./inaccessible-message";
 import { InlineKeyboardMarkup } from "./inline-keyboard-markup";
 import { Invoice } from "./invoice";
 import { CommunityChatAdded } from "./community-chat-added";
+import { CommunityChatJoined } from "./community-chat-joined";
 import { CommunityChatRemoved } from "./community-chat-removed";
 import { LinkPreviewOptions } from "./link-preview-options";
 import { Location } from "./location";
@@ -1204,6 +1205,16 @@ export class Message {
 		return new CommunityChatAdded(community_chat_added);
 	}
 
+	/** Service message: a chat joined a community */
+	@Inspect({ nullable: false })
+	get communityChatJoined() {
+		const { community_chat_joined } = this.payload;
+
+		if (!community_chat_joined) return undefined;
+
+		return new CommunityChatJoined(community_chat_joined);
+	}
+
 	/** Service message: a chat was removed from a community */
 	@Inspect({ nullable: false })
 	get communityChatRemoved() {
@@ -1240,6 +1251,7 @@ memoizeGetters(Message, [
 	"senderChat",
 	"receiverUser",
 	"communityChatAdded",
+	"communityChatJoined",
 	"communityChatRemoved",
 	"chat",
 	"directMessagesTopic",

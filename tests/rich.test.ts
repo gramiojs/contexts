@@ -116,6 +116,52 @@ describe("receiving rich messages → ctx.richMessage + .text flattener", () => 
 		const ctx = makeRichCtx([{ type: "divider" }]);
 		expect(ctx.text).toBeUndefined();
 	});
+
+	test(".text includes 10.3 buttons, expandable quotes, documents, captions and credits", () => {
+		const ctx = makeRichCtx([
+			{
+				type: "paragraph",
+				text: [
+					"Choose ",
+					{
+						type: "button",
+						button: { text: "inline", callback_data: "inline" },
+					},
+				],
+			},
+			{
+				type: "buttons",
+				buttons: [
+					{ text: "Approve", callback_data: "yes" },
+					{ text: "Reject", callback_data: "no" },
+				],
+			},
+			{
+				type: "expandable_blockquote",
+				text: "Hidden details",
+				credit: "Source",
+			},
+			{
+				type: "document",
+				document: { file_id: "file" },
+				caption: { text: "Report", credit: "Analyst" },
+			},
+			{
+				type: "table",
+				cells: [
+					[
+						{ text: "A", align: "left", valign: "top" },
+						{ text: "B", align: "left", valign: "top" },
+					],
+				],
+				caption: "Totals",
+			},
+		]);
+
+		expect(ctx.richMessage?.text).toBe(
+			"Choose inline\n\nApprove Reject\n\nHidden details\nSource\n\nReport\nAnalyst\n\nA\tB\nTotals",
+		);
+	});
 });
 
 describe("streamRichMessage — draft lifecycle", () => {

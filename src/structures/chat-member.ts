@@ -157,6 +157,12 @@ export class ChatMember {
 		return this.payload.can_invite_users;
 	}
 
+	/** Administrators only. `true`, if the administrator can send welcome messages in the chat */
+	@Inspect({ compute: true, nullable: false })
+	canSendWelcomeMessages(): boolean | undefined {
+		return this.payload.can_send_welcome_messages;
+	}
+
 	/**
 	 * Administrators and restricted only.
 	 * `true`, if the user is allowed to pin messages;

@@ -1,6 +1,8 @@
 import type { TelegramObjects } from "@gramio/types";
 import { Inspect, Inspectable } from "inspectable";
 
+import { memoizeGetters } from "../utils";
+import { MessageEntity } from "./message-entity";
 import { UniqueGift } from "./unique-gift";
 
 /**
@@ -30,6 +32,24 @@ export class UniqueGiftInfo {
 	@Inspect()
 	get origin() {
 		return this.payload.origin;
+	}
+
+	/** Text of the message that was added to the gift. */
+	@Inspect({ nullable: false })
+	get text() {
+		return this.payload.text;
+	}
+
+	/** Special entities that appear in the gift text. */
+	@Inspect({ nullable: false })
+	get entities() {
+		return this.payload.entities?.map((entity) => new MessageEntity(entity));
+	}
+
+	/** `true`, if the sender and gift text are visible only to the receiver. */
+	@Inspect({ compute: true, nullable: false })
+	isPrivate() {
+		return this.payload.is_private;
 	}
 
 	/**
@@ -80,3 +100,5 @@ export class UniqueGiftInfo {
 		return this.payload.next_transfer_date;
 	}
 }
+
+memoizeGetters(UniqueGiftInfo, ["gift", "entities"]);
